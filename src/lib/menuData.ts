@@ -14,7 +14,7 @@ export const menuData: {
 		label: 'Über Vampire',
 		subData: [
 			{ href: '/13-clans', label: '13 Clans' },
-			{ href: '/externe-links', label: 'Externe Links' }
+			{ href: '/was-ist-vampire-live', label: 'Was ist Vampire Live?' }
 		]
 	},
 	{

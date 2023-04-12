@@ -17,8 +17,15 @@ type Impressum = {
 	haftungsausschluss: string;
 };
 
+type WasIstVampireLive = {
+	id: ID;
+	ueberschrift: string;
+	erklaerung: string;
+};
+
 type MyCollections = {
 	impressum: Impressum;
+	was_ist_vampire_live: WasIstVampireLive;
 };
 
 export const directus = new Directus<MyCollections>(import.meta.env.VITE_DIRECTUS_URL);
