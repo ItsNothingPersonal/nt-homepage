@@ -23,9 +23,24 @@ type WasIstVampireLive = {
 	erklaerung: string;
 };
 
+type Clans = {
+	id: ID;
+	name: string;
+	logo: number;
+	beschreibung_synopsis: string;
+	beschreibung: string;
+};
+
+type WasSindClans = {
+	id: ID;
+	beschreibung: string;
+};
+
 type MyCollections = {
 	impressum: Impressum;
 	was_ist_vampire_live: WasIstVampireLive;
+	clans: Clans;
+	was_sind_clans: WasSindClans;
 };
 
 export const directus = new Directus<MyCollections>(import.meta.env.VITE_DIRECTUS_URL);
