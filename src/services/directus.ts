@@ -23,12 +23,20 @@ type WasIstVampireLive = {
 	erklaerung: string;
 };
 
-type Clans = {
+export type Clans = {
 	id: ID;
 	name: string;
+	nickname: string;
+	sekte: string;
 	logo: number;
 	beschreibung_synopsis: string;
 	beschreibung: string;
+};
+
+export type ClansFiles = {
+	id: ID;
+	clans_id: ID;
+	directus_files_id: string;
 };
 
 type WasSindClans = {
@@ -40,6 +48,7 @@ type MyCollections = {
 	impressum: Impressum;
 	was_ist_vampire_live: WasIstVampireLive;
 	clans: Clans;
+	clans_files: ClansFiles;
 	was_sind_clans: WasSindClans;
 };
 

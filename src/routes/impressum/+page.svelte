@@ -5,7 +5,7 @@
 	export let data: PageData;
 </script>
 
-<div class="mx-auto px-4">
+<div class="max-w-screen-xl">
 	<Heading tag="h1" class="mb-4">Impressum</Heading>
 	<Heading tag="h2" class="mt-2">Betreiber</Heading>
 	<P>
