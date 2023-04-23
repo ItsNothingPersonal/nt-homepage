@@ -10,7 +10,7 @@
 <Navbar />
 <DarkMode btnClass={darkmodebtn} />
 
-<div class="flex px-4 mx-auto">
+<div class="flex px-4">
 	<main class="mx-auto">
 		<slot />
 	</main>
