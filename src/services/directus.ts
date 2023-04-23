@@ -28,9 +28,9 @@ export type Clans = {
 	name: string;
 	nickname: string;
 	sekte: string;
-	logo: number;
-	beschreibung_synopsis: string;
-	beschreibung: string;
+	logo?: number;
+	beschreibung_synopsis?: string;
+	beschreibung?: string;
 };
 
 export type ClansFiles = {
