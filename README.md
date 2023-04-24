@@ -20,7 +20,7 @@ VITE_DIRECTUS_USER=<Ein in Directus existierender User>
 VITE_DIRECTUS_PW=<Passwort des Users>
 
 POSTGRES_USER=<Name für einen User in Postgres>
-POSTGRES_PASSWORD=<Das zu verwendente Passwort für den Postgres User>
+POSTGRES_PASSWORD=<Das zu verwendende Passwort für den Postgres User>
 POSTGRES_DB=<Name der Postgres Datenbank>
 KEY=<Random UUID>
 SECRET=<Random UUID>
