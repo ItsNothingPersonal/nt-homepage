@@ -4,7 +4,7 @@ services:
     container_name: database
     image: postgis/postgis:13-master
     ports:
-      - 5444:5432
+      - ${DB_PORT_HOST}:${DB_PORT}
     # Required when running on platform other than amd64, like Apple M1/M2:
     # platform: linux/amd64
     volumes:
@@ -19,7 +19,7 @@ services:
     container_name: directus
     image: directus/directus:latest
     ports:
-      - 8055:8055
+      - ${DIRECTUS_PORT}:${DIRECTUS_PORT}
     volumes:
       # By default, uploads are stored in /directus/uploads
       # Always make sure your volumes matches the storage root when using
