@@ -11,7 +11,7 @@
 <DarkMode btnClass={darkmodebtn} />
 
 <div class="flex px-4">
-	<main class="mx-auto">
+	<main class="mx-auto max-w-screen-2xl text-center">
 		<slot />
 	</main>
 </div>

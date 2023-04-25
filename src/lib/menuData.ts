@@ -6,11 +6,6 @@ export const menuData: {
 }[] = [
 	{
 		id: 0,
-		href: '/',
-		label: 'Startseite'
-	},
-	{
-		id: 1,
 		label: 'Über Vampire',
 		subData: [
 			{ href: '/13-clans', label: '13 Clans' },
@@ -18,7 +13,7 @@ export const menuData: {
 		]
 	},
 	{
-		id: 2,
+		id: 1,
 		href: '/verein',
 		label: 'Verein',
 		subData: [
@@ -29,19 +24,18 @@ export const menuData: {
 		]
 	},
 	{
-		id: 3,
+		id: 2,
 		label: 'Camarilla',
 		subData: [
-			{ href: '/camarilla/termine', label: 'Termine' },
+			{ href: '/camarilla/uebersicht', label: 'Übersicht' },
 			{ href: '/camarilla/spielort', label: 'Spielort' },
 			{ href: '/camarilla/orga', label: 'Orga-Team' },
 			{ href: '/camarilla/zeittafel-protektorat', label: 'Zeittafel d. Protektorats' },
-			{ href: '/camarilla/charakter-galerie', label: 'Charaktergalerie' },
-			{ href: '/camarilla/jagdgebiete-und-orte', label: 'Jagdgebiete und relevante Orte' }
+			{ href: '/camarilla/charakter-galerie', label: 'Charaktergalerie' }
 		]
 	},
 	{
-		id: 4,
+		id: 3,
 		label: 'Sabbat',
 		subData: [
 			{ href: '/sabbat/termine', label: 'Termine' },
@@ -52,7 +46,7 @@ export const menuData: {
 		]
 	},
 	{
-		id: 5,
+		id: 4,
 		label: '40K',
 		subData: [
 			{ href: '/40k/termine', label: 'Termine' },
@@ -63,7 +57,7 @@ export const menuData: {
 		]
 	},
 	{
-		id: 6,
+		id: 5,
 		href: '/impressum',
 		label: 'Impressum'
 	}

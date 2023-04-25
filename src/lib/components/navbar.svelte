@@ -17,11 +17,7 @@
 
 <Navbar let:hidden let:toggle>
 	<NavBrand href="/">
-		<img
-			src="favicon.ico"
-			class="mr-3 h-6 sm:h-9"
-			alt="Nächtliches Theater Logo"
-		/>
+		<img src="favicon.ico" class="mr-3 h-6 sm:h-9" alt="Nächtliches Theater Logo" />
 		<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
 			Nächtliches Theater e.V.
 		</span>

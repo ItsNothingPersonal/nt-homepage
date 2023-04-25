@@ -26,7 +26,9 @@
 			</Button>
 		</div>
 	</div>
-	<div class="row-start-2 md:row-start-1 md:col-start-2 flex flex-col text-center gap-2 items-center">
+	<div
+		class="row-start-2 md:row-start-1 md:col-start-2 flex flex-col text-center gap-2 items-center"
+	>
 		<Heading tag="h2">Camarilla</Heading>
 		<Img src="/images/NT_VS_013.webp" alt="Beispielbild Camarilla" />
 		<div class="w-full">
@@ -48,7 +50,9 @@
 			</Button>
 		</div>
 	</div>
-	<div class="row-start-3 md:row-start-1 md:col-start-3 flex flex-col text-center gap-2 items-center">
+	<div
+		class="row-start-3 md:row-start-1 md:col-start-3 flex flex-col text-center gap-2 items-center"
+	>
 		<Heading tag="h2">40K</Heading>
 		<Img src="/images/NT_MT_013.webp" alt="Beispielbild 40K" />
 		<div class="w-full">

@@ -44,12 +44,28 @@ type WasSindClans = {
 	beschreibung: string;
 };
 
+type CamarillaUebersicht = {
+	id: ID;
+	beschreibung: string;
+	spieltermine: string;
+	email: string;
+	discord: string;
+};
+
+type CamarillaUebersichtFiles = {
+	id: ID;
+	camarilla_uebersicht_id: ID;
+	directus_files_id: string;
+};
+
 type MyCollections = {
 	impressum: Impressum;
 	was_ist_vampire_live: WasIstVampireLive;
 	clans: Clans;
 	clans_files: ClansFiles;
 	was_sind_clans: WasSindClans;
+	camarilla_uebersicht: CamarillaUebersicht;
+	camarilla_uebersicht_files: CamarillaUebersichtFiles;
 };
 
 export const directus = new Directus<MyCollections>(import.meta.env.VITE_DIRECTUS_URL);
