@@ -23,38 +23,36 @@
 
 <svelte:window bind:innerWidth={width} />
 
-<div class="text-center flex flex-col max-w-screen-2xl">
-	<Heading tag="h1" class="mb-4">Die 13 großen Vampir-Clans</Heading>
+<Heading tag="h1" class="mb-4">Die 13 großen Vampir-Clans</Heading>
 
-	<P class="mb-4 border-2 border-gray-600 shadow-md p-2">
-		{@html data.beschreibung}
-	</P>
+<P class="mb-4 border-2 border-gray-600 shadow-md p-2">
+	{@html data.beschreibung}
+</P>
 
-	<div class="flex justify-center mb-4">
-		<ButtonGroup>
-			<Button on:click={() => swapSectFilter(Sect.Camarilla)}>{Sect.Camarilla}</Button>
-			<Button on:click={() => swapSectFilter(Sect.Sabbat)}>{Sect.Sabbat}</Button>
-			<Button on:click={() => swapSectFilter(Sect.Allianz)}>{Sect.Allianz}</Button>
-			<Button on:click={() => swapSectFilter(Sect.Unabhängig)}>{Sect.Unabhängig}</Button>
-		</ButtonGroup>
-	</div>
+<div class="flex justify-center mb-4">
+	<ButtonGroup>
+		<Button on:click={() => swapSectFilter(Sect.Camarilla)}>{Sect.Camarilla}</Button>
+		<Button on:click={() => swapSectFilter(Sect.Sabbat)}>{Sect.Sabbat}</Button>
+		<Button on:click={() => swapSectFilter(Sect.Allianz)}>{Sect.Allianz}</Button>
+		<Button on:click={() => swapSectFilter(Sect.Unabhängig)}>{Sect.Unabhängig}</Button>
+	</ButtonGroup>
+</div>
 
-	<div class={`grid grid-cols-4 md:grid-cols-7 grid-rows-7 md:grid-rows-1 gap-4`}>
-		{#each clans as clan}
-			<A href={`/13-clans/${clan.id}`} class="flex flex-col">
-				<Img
-					src={`${import.meta.env.VITE_DIRECTUS_URL}/assets/${clan.logo}?fit=cover&width=${
-						width < ScreenSize.MD ? '80' : '192'
-					}&height=${width < ScreenSize.MD ? '80' : '192'}&quality=80&format=auto`}
-					alt={`logo of clan ${clan.name}`}
-					class="object-cover w-20 h-20 md:w-48 md:h-48"
-				/>
-				{#if width > ScreenSize.MD}
-					<P weight="bold" size="lg">{clan.name}</P>
-				{:else}
-					<P weight="bold" size="base">{clan.name}</P>
-				{/if}
-			</A>
-		{/each}
-	</div>
+<div class={`grid grid-cols-4 md:grid-cols-7 grid-rows-7 md:grid-rows-1 gap-4`}>
+	{#each clans as clan}
+		<A href={`/13-clans/${clan.id}`} class="flex flex-col">
+			<Img
+				src={`${import.meta.env.VITE_DIRECTUS_URL}/assets/${clan.logo}?fit=cover&width=${
+					width < ScreenSize.MD ? '80' : '192'
+				}&height=${width < ScreenSize.MD ? '80' : '192'}&quality=80&format=auto`}
+				alt={`logo of clan ${clan.name}`}
+				class="object-cover w-20 h-20 md:w-48 md:h-48"
+			/>
+			{#if width > ScreenSize.MD}
+				<P weight="bold" size="lg">{clan.name}</P>
+			{:else}
+				<P weight="bold" size="base">{clan.name}</P>
+			{/if}
+		</A>
+	{/each}
 </div>
