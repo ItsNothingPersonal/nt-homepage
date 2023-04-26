@@ -39,7 +39,7 @@
 		</P>
 
 		<Heading tag="h2">Kontakt</Heading>
-		<div class="grid grid-cols-[min-content_1fr] grid-rows-2 gap-x-2">
+		<div class="grid grid-cols-min-content-first grid-rows-2 gap-x-2">
 			<P>E-Mail</P>
 			<A href={`mailto:${data.email}`}>{data.email}</A>
 			<P>Discord</P>
