@@ -7,7 +7,7 @@
 	export let characterName: string;
 	export let offizier: CamarillaOffizier | undefined = undefined;
 	export let clan: Clans;
-	export let status: CharakterStatusName;
+	export let status: CharakterStatusName | undefined = undefined;
 	export let beschreibung: string;
 	export let bild: string;
 </script>
@@ -35,7 +35,7 @@
 		</div>
 		<div class="grid grid-cols-min-content-first gap-x-2">
 			<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">Status</p>
-			<P class="mb-3 font-normal leading-tight">{status}</P>
+			<P class="mb-3 font-normal leading-tight">{status ?? '-'}</P>
 		</div>
 	</div>
 	<DropdownDivider />

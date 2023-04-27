@@ -1,4 +1,4 @@
-export enum Clan {
+export enum ClanName {
 	Assamiten = 'Assamiten',
 	Brujah = 'Brujah',
 	Gangrel = 'Gangrel',

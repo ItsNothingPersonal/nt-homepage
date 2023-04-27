@@ -1,14 +1,93 @@
 <script lang="ts">
 	import CharacterCard from '$lib/components/characterCard.svelte';
-	import { Heading } from 'flowbite-svelte';
+	import { ClanName } from '$lib/types/clanName';
+	import { SektenName } from '$lib/types/sektenName';
+	import { isNullOrUndefined } from '$lib/util';
+	import { Button, ButtonGroup, Chevron, Dropdown, DropdownItem, Heading } from 'flowbite-svelte';
+	import { writable } from 'svelte/store';
 	import type { CamarillaCharaktere } from '../../../services/directus';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	const charaktere = data.charaktere as unknown as CamarillaCharaktere[];
+
+	let clans = Object.keys(ClanName);
+
+	let sectFilter = writable('.*');
+	let offizierFilter = writable('');
+	let clanFilter = writable('.*');
+
+	$: charaktere = (data.charaktere as unknown as CamarillaCharaktere[]).filter(
+		(c) =>
+			c.sekte.name.match($sectFilter) &&
+			($offizierFilter.length > 0 ? !isNullOrUndefined(c.offizier) : true) &&
+			c.clan.name.match($clanFilter)
+	);
+
+	function swapSectFilter(filter: SektenName) {
+		if ($sectFilter.match(filter)) {
+			sectFilter.set('.*');
+		} else {
+			sectFilter.set(filter);
+		}
+	}
+
+	function swapOffizierFilter(filter: string) {
+		if ($offizierFilter.match(filter)) {
+			offizierFilter.set('');
+		} else {
+			offizierFilter.set(filter);
+		}
+	}
+
+	function swapClanFilter(filter: string) {
+		if ($clanFilter.match(filter)) {
+			clanFilter.set('.*');
+		} else {
+			clanFilter.set(filter);
+		}
+	}
 </script>
 
 <Heading tag="h1" class="mb-4">Charaktergalerie</Heading>
+<div class="mb-4">
+	<ButtonGroup>
+		{#if $sectFilter === SektenName.Camarilla}
+			<Button outline={true} on:click={() => swapSectFilter(SektenName.Camarilla)}>
+				Camarilla
+			</Button>
+		{:else}
+			<Button outline={false} on:click={() => swapSectFilter(SektenName.Camarilla)}>
+				Camarilla
+			</Button>
+		{/if}
+		{#if $sectFilter === SektenName.Anarchen}
+			<Button outline={true} on:click={() => swapSectFilter(SektenName.Anarchen)}>Anarchen</Button>
+		{:else}
+			<Button outline={false} on:click={() => swapSectFilter(SektenName.Anarchen)}>Anarchen</Button>
+		{/if}
+		{#if $offizierFilter.length > 0}
+			<Button outline={true} on:click={() => swapOffizierFilter('true')}>Offiziere</Button>
+		{:else}
+			<Button outline={false} on:click={() => swapOffizierFilter('true')}>Offiziere</Button>
+		{/if}
+
+		{#if $clanFilter !== '.*'}
+			<Button outline={true}><Chevron>Clans</Chevron></Button>
+			<Dropdown>
+				{#each clans as clan}
+					<DropdownItem on:click={() => swapClanFilter(clan)}>{clan}</DropdownItem>
+				{/each}
+			</Dropdown>
+		{:else}
+			<Button outline={false}><Chevron>Clans</Chevron></Button>
+			<Dropdown>
+				{#each clans as clan}
+					<DropdownItem on:click={() => swapClanFilter(clan)}>{clan}</DropdownItem>
+				{/each}
+			</Dropdown>
+		{/if}
+	</ButtonGroup>
+</div>
 
 <div class="grid grid-cols-1 md:grid-cols-5 grid-rows-5 gap-2">
 	{#each charaktere as charakter}
@@ -16,7 +95,7 @@
 			characterName={charakter.name}
 			clan={charakter.clan}
 			offizier={charakter.offizier?.name}
-			status={charakter.charakter_status.name}
+			status={charakter.charakter_status?.name}
 			beschreibung={charakter.beschreibung}
 			bild={charakter.bild}
 		/>
