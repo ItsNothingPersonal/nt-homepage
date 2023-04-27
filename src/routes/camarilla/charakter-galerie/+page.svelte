@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CharacterCard from '$lib/components/characterCard.svelte';
+	import Indicator from '$lib/components/indicator.svelte';
 	import { ClanName } from '$lib/types/clanName';
 	import { SektenName } from '$lib/types/sektenName';
 	import { isNullOrUndefined } from '$lib/util';
@@ -51,41 +52,35 @@
 <Heading tag="h1" class="mb-4">Charaktergalerie</Heading>
 <div class="mb-4">
 	<ButtonGroup>
-		{#if $sectFilter === SektenName.Camarilla}
-			<Button outline={true} on:click={() => swapSectFilter(SektenName.Camarilla)}>
-				Camarilla
-			</Button>
-		{:else}
-			<Button outline={false} on:click={() => swapSectFilter(SektenName.Camarilla)}>
-				Camarilla
-			</Button>
-		{/if}
-		{#if $sectFilter === SektenName.Anarchen}
-			<Button outline={true} on:click={() => swapSectFilter(SektenName.Anarchen)}>Anarchen</Button>
-		{:else}
-			<Button outline={false} on:click={() => swapSectFilter(SektenName.Anarchen)}>Anarchen</Button>
-		{/if}
-		{#if $offizierFilter.length > 0}
-			<Button outline={true} on:click={() => swapOffizierFilter('true')}>Offiziere</Button>
-		{:else}
-			<Button outline={false} on:click={() => swapOffizierFilter('true')}>Offiziere</Button>
-		{/if}
-
-		{#if $clanFilter !== '.*'}
-			<Button outline={true}><Chevron>Clans</Chevron></Button>
-			<Dropdown>
-				{#each clans as clan}
-					<DropdownItem on:click={() => swapClanFilter(clan)}>{clan}</DropdownItem>
-				{/each}
-			</Dropdown>
-		{:else}
-			<Button outline={false}><Chevron>Clans</Chevron></Button>
-			<Dropdown>
-				{#each clans as clan}
-					<DropdownItem on:click={() => swapClanFilter(clan)}>{clan}</DropdownItem>
-				{/each}
-			</Dropdown>
-		{/if}
+		<Button on:click={() => swapSectFilter(SektenName.Camarilla)} class="relative">
+			Camarilla
+			{#if $sectFilter === SektenName.Camarilla}
+				<Indicator />
+			{/if}
+		</Button>
+		<Button on:click={() => swapSectFilter(SektenName.Anarchen)} class="relative">
+			Anarchen
+			{#if $sectFilter === SektenName.Anarchen}
+				<Indicator />
+			{/if}
+		</Button>
+		<Button on:click={() => swapOffizierFilter('true')} class="relative">
+			Offiziere
+			{#if $offizierFilter.length > 0}
+				<Indicator />
+			{/if}
+		</Button>
+		<Button class="relative">
+			<Chevron>Clans</Chevron>
+			{#if $clanFilter !== '.*'}
+				<Indicator />
+			{/if}
+		</Button>
+		<Dropdown>
+			{#each clans as clan}
+				<DropdownItem on:click={() => swapClanFilter(clan)}>{clan}</DropdownItem>
+			{/each}
+		</Dropdown>
 	</ButtonGroup>
 </div>
 
