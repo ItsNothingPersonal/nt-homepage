@@ -1,3 +1,7 @@
+import type { CamarillaOffizier } from '$lib/types/camarillaOffizier';
+import type { CharakterStatusName } from '$lib/types/charakterStatusName';
+import type { ClanName } from '$lib/types/clanName';
+import type { SektenName } from '$lib/types/sektenName';
 import { Directus, type ID } from '@directus/sdk';
 
 type Impressum = {
@@ -25,7 +29,7 @@ type WasIstVampireLive = {
 
 export type Clans = {
 	id: ID;
-	name: string;
+	name: ClanName;
 	nickname: string;
 	sekte: string;
 	logo?: number;
@@ -58,6 +62,33 @@ type CamarillaUebersichtFiles = {
 	directus_files_id: string;
 };
 
+export type CamarillaCharaktere = {
+	id: ID;
+	name: string;
+	clan: Clans;
+	charakter_status?: CharakterStatus;
+	offizier?: ChamarillaAemter;
+	zusatzfunktion?: ChamarillaAemter;
+	sekte: Sekten;
+	beschreibung: string;
+	bild: string;
+};
+
+export type CharakterStatus = {
+	id: ID;
+	name: CharakterStatusName;
+};
+
+export type ChamarillaAemter = {
+	id: ID;
+	name: CamarillaOffizier;
+};
+
+export type Sekten = {
+	id: ID;
+	name: SektenName;
+};
+
 type MyCollections = {
 	impressum: Impressum;
 	was_ist_vampire_live: WasIstVampireLive;
@@ -66,6 +97,10 @@ type MyCollections = {
 	was_sind_clans: WasSindClans;
 	camarilla_uebersicht: CamarillaUebersicht;
 	camarilla_uebersicht_files: CamarillaUebersichtFiles;
+	camarilla_charaktere: CamarillaCharaktere;
+	charakter_status: CharakterStatus;
+	camarilla_aemter: ChamarillaAemter;
+	sekten: Sekten;
 };
 
 export const directus = new Directus<MyCollections>(import.meta.env.VITE_DIRECTUS_URL);

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ScreenSize } from '$lib/types/sceenSize';
-	import { Sect } from '$lib/types/sect';
+	import { SektenName } from '$lib/types/sektenName';
 	import { A, Button, ButtonGroup, Heading, Img, P } from 'flowbite-svelte';
 	import { writable } from 'svelte/store';
 	import type { PageData } from './$types';
@@ -12,7 +12,7 @@
 
 	$: clans = data.clans.filter((e) => e.sekte.match($sectFilter));
 
-	function swapSectFilter(filter: Sect) {
+	function swapSectFilter(filter: SektenName) {
 		if ($sectFilter.match(filter)) {
 			sectFilter.set('.*');
 		} else {
@@ -31,10 +31,10 @@
 
 <div class="flex justify-center mb-4">
 	<ButtonGroup>
-		<Button on:click={() => swapSectFilter(Sect.Camarilla)}>{Sect.Camarilla}</Button>
-		<Button on:click={() => swapSectFilter(Sect.Sabbat)}>{Sect.Sabbat}</Button>
-		<Button on:click={() => swapSectFilter(Sect.Allianz)}>{Sect.Allianz}</Button>
-		<Button on:click={() => swapSectFilter(Sect.Unabhängig)}>{Sect.Unabhängig}</Button>
+		<Button on:click={() => swapSectFilter(SektenName.Camarilla)}>{SektenName.Camarilla}</Button>
+		<Button on:click={() => swapSectFilter(SektenName.Sabbat)}>{SektenName.Sabbat}</Button>
+		<Button on:click={() => swapSectFilter(SektenName.Allianz)}>{SektenName.Allianz}</Button>
+		<Button on:click={() => swapSectFilter(SektenName.Unabhängig)}>{SektenName.Unabhängig}</Button>
 	</ButtonGroup>
 </div>
 
