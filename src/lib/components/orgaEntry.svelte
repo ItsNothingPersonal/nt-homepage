@@ -12,9 +12,9 @@
 
 <slot name="beschreibung" />
 <Hr height="h-px" />
-<div class="grid grid-cols-1 md:grid-cols-2 grid-rows-2 md:grid-rows-1 mt-2 mb-2">
+<div class="flex flex-col md:grid md:grid-cols-2 md:grid-rows-1 mt-2 mb-2">
 	{#each personen as person}
-		<div class="grid grid-cols-1 grid-rows-min-content-first">
+		<div class="flex flex-col items-center mb-2 last:mb-0">
 			<P weight="semibold">{person.name}</P>
 			<img
 				alt={`Bild der Spielleitung ${person.name}`}
