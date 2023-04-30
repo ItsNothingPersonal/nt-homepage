@@ -89,6 +89,21 @@ export type Sekten = {
 	name: SektenName;
 };
 
+export type CamarillaSpielort = {
+	id: ID;
+	spielort_name: string;
+	spielort_strasse: string;
+	spielort_plz: string;
+	spielort_ort: string;
+	spielort_karte: string;
+};
+
+export type CamarillaSpielortFiles = {
+	id: ID;
+	camarilla_spielort_id: ID;
+	directus_files_id: string;
+};
+
 type MyCollections = {
 	impressum: Impressum;
 	was_ist_vampire_live: WasIstVampireLive;
@@ -100,6 +115,8 @@ type MyCollections = {
 	camarilla_charaktere: CamarillaCharaktere;
 	charakter_status: CharakterStatus;
 	camarilla_aemter: ChamarillaAemter;
+	camarilla_spielort: CamarillaSpielort;
+	camarilla_spielort_files: CamarillaSpielortFiles;
 	sekten: Sekten;
 };
 
