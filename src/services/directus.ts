@@ -120,6 +120,19 @@ export type CamarillaBrujahKonflikt = {
 	text: string;
 };
 
+export type Orga = {
+	id: ID;
+	name: string;
+	rolle: OrgaRollen;
+	email?: string;
+	bild?: string;
+};
+
+export type OrgaRollen = {
+	id: ID;
+	name: string;
+};
+
 type MyCollections = {
 	impressum: Impressum;
 	was_ist_vampire_live: WasIstVampireLive;
@@ -135,6 +148,8 @@ type MyCollections = {
 	camarilla_spielort_files: CamarillaSpielortFiles;
 	camarilla_zeittafel_protektorat: CamarillaZeittafelProtektorat;
 	camarilla_brujah_konflikt: CamarillaBrujahKonflikt;
+	camarilla_orga: Orga;
+	orga_rollen: OrgaRollen;
 	sekten: Sekten;
 };
 

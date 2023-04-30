@@ -32,7 +32,7 @@
 		<Heading tag="h2">Camarilla</Heading>
 		<Img src="/images/NT_VS_013.webp" alt="Beispielbild Camarilla" />
 		<div class="w-full">
-			<Button href="/" gradient color="purpleToPink">
+			<Button href="/camarilla/uebersicht" gradient color="purpleToPink">
 				Eine Camarilla Domäne und eine Enklave der Anarchen: Wie lange wird das Pulverfass noch
 				halten?
 				<svg

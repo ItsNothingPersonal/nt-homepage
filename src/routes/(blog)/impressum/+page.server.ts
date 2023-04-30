@@ -1,5 +1,5 @@
 import { isNullOrUndefined } from '$lib/util';
-import { directus } from '../../services/directus';
+import { directus } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {

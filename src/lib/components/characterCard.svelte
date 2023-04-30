@@ -2,7 +2,7 @@
 	import type { CamarillaOffizier } from '$lib/types/camarillaOffizier';
 	import type { CharakterStatusName } from '$lib/types/charakterStatusName';
 	import { Card, DropdownDivider, P } from 'flowbite-svelte';
-	import type { Clans } from '../../services/directus';
+	import type { Clans } from 'services/directus';
 
 	export let characterName: string;
 	export let offizier: CamarillaOffizier | undefined = undefined;
