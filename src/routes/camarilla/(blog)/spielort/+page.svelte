@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { ScreenSize } from '$lib/types/sceenSize';
 	import { isNullOrUndefined } from '$lib/util';
 	import { Carousel, Heading, P } from 'flowbite-svelte';
 	import type { PageData } from './$types';
@@ -8,6 +9,8 @@
 	let showThumbs = false;
 	let showCaptions = false;
 	let showIndicators = false;
+	let width = 0;
+	let breakPoint: number = ScreenSize.MD;
 
 	let images = data.bilder?.map((e) => {
 		return {
@@ -16,6 +19,8 @@
 		};
 	});
 </script>
+
+<svelte:window bind:innerWidth={width} />
 
 <Heading tag="h1" class="mb-4">Spielort</Heading>
 
@@ -30,30 +35,25 @@
 		<P>{data.spielort?.spielort_plz} {data.spielort?.spielort_ort}</P>
 	</div>
 	<Heading tag="h3" class="mb-2">Google Maps</Heading>
-	<div class="mb-4 ml-0 mr-4">
-		<iframe
-			title="Spielort Karte"
-			src={data.spielort?.spielort_karte}
-			width="600"
-			height="450"
-			style="border:0;"
-			allowfullscreen={true}
-			loading="lazy"
-			referrerpolicy="no-referrer-when-downgrade"
-		/>
-	</div>
+
+	<iframe
+		title="Spielort Karte"
+		src={data.spielort?.spielort_karte}
+		style={`border:0; width: 100%;`}
+		allowfullscreen={true}
+		loading="lazy"
+		referrerpolicy="no-referrer-when-downgrade"
+	/>
 
 	{#if !isNullOrUndefined(data.bilder) && data.bilder?.length > 0}
-		<Heading tag="h3" class="mb-2">Bildergalerie</Heading>
-		<div class="ml-0 mr-4">
-			<Carousel
-				images={images ?? []}
-				{showThumbs}
-				{showCaptions}
-				{showIndicators}
-				loop
-				duration={3000}
-			/>
-		</div>
+		<Heading tag="h3" class="mb-2 mt-4">Bildergalerie</Heading>
+		<Carousel
+			images={images ?? []}
+			{showThumbs}
+			{showCaptions}
+			{showIndicators}
+			loop
+			duration={3000}
+		/>
 	{/if}
 </div>
