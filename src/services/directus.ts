@@ -104,6 +104,22 @@ export type CamarillaSpielortFiles = {
 	directus_files_id: string;
 };
 
+export type CamarillaZeittafelProtektorat = {
+	id: ID;
+	titel?: string;
+	datum: string;
+	text: string;
+	link?: string;
+};
+
+export type CamarillaBrujahKonflikt = {
+	id: ID;
+	sort: number;
+	titel?: string;
+	datum: string;
+	text: string;
+};
+
 type MyCollections = {
 	impressum: Impressum;
 	was_ist_vampire_live: WasIstVampireLive;
@@ -117,6 +133,8 @@ type MyCollections = {
 	camarilla_aemter: ChamarillaAemter;
 	camarilla_spielort: CamarillaSpielort;
 	camarilla_spielort_files: CamarillaSpielortFiles;
+	camarilla_zeittafel_protektorat: CamarillaZeittafelProtektorat;
+	camarilla_brujah_konflikt: CamarillaBrujahKonflikt;
 	sekten: Sekten;
 };
 
