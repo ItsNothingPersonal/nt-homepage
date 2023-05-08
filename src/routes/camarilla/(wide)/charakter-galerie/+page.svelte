@@ -5,8 +5,8 @@
 	import { SektenName } from '$lib/types/sektenName';
 	import { isNullOrUndefined } from '$lib/util';
 	import { Button, ButtonGroup, Chevron, Dropdown, DropdownItem, Heading } from 'flowbite-svelte';
+	import type { CamarillaCharaktere } from 'services/directus';
 	import { writable } from 'svelte/store';
-	import type { CamarillaCharaktere } from '../../../services/directus';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

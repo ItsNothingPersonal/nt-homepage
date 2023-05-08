@@ -25,7 +25,7 @@
 
 <Heading tag="h1" class="mb-4">Die 13 großen Vampir-Clans</Heading>
 
-<P class="mb-4 border-2 border-gray-600 shadow-md p-2">
+<P class="mb-4 border-2 border-gray-600 shadow-md p-2 text-justify">
 	{@html data.beschreibung}
 </P>
 
@@ -38,7 +38,7 @@
 	</ButtonGroup>
 </div>
 
-<div class={`grid grid-cols-4 md:grid-cols-7 grid-rows-7 md:grid-rows-1 gap-4`}>
+<div class={`grid grid-cols-4 md:grid-cols-5 grid-rows-7 md:grid-rows-1 gap-4`}>
 	{#each clans as clan}
 		<A href={`/13-clans/${clan.id}`} class="flex flex-col">
 			<Img
