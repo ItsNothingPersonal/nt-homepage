@@ -22,7 +22,6 @@
 					person.bild
 				}?fit=cover&width=192&height=192&quality=80&format=auto`}
 			/>
-			<A href={`mailto:${person.email}`}>{person.email ?? ''}</A>
 		</div>
 	{/each}
 </div>
