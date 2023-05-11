@@ -38,6 +38,7 @@ export const menuData: {
 		id: 3,
 		label: 'Sabbat',
 		subData: [
+			{ href: '/sabbat/uebersicht', label: 'Übersicht' },
 			{ href: '/sabbat/termine', label: 'Termine' },
 			{ href: '/sabbat/spielort', label: 'Spielort' },
 			{ href: '/sabbat/orga', label: 'Orga-Team' },

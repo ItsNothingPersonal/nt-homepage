@@ -133,6 +133,20 @@ export type OrgaRollen = {
 	name: string;
 };
 
+type SabbatUebersicht = {
+	id: ID;
+	beschreibung: string;
+	spieltermine: string;
+	email: string;
+	discord: string;
+};
+
+type SabbatUebersichtFiles = {
+	id: ID;
+	sabbat_uebersicht_id: ID;
+	directus_files_id: string;
+};
+
 type MyCollections = {
 	impressum: Impressum;
 	was_ist_vampire_live: WasIstVampireLive;
@@ -151,6 +165,8 @@ type MyCollections = {
 	camarilla_orga: Orga;
 	orga_rollen: OrgaRollen;
 	sekten: Sekten;
+	sabbat_uebersicht: SabbatUebersicht;
+	sabbat_uebersicht_files: SabbatUebersichtFiles;
 };
 
 export const directus = new Directus<MyCollections>(import.meta.env.VITE_DIRECTUS_URL);
