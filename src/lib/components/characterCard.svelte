@@ -1,13 +1,15 @@
 <script lang="ts">
 	import type { CamarillaOffizier } from '$lib/types/camarillaOffizier';
 	import type { CharakterStatusName } from '$lib/types/charakterStatusName';
+	import type { SabbatCharakterStatusName } from '$lib/types/sabbatCharakterStatusName';
+	import type { SabbatOffizier } from '$lib/types/sabbatOffizier';
 	import { Card, DropdownDivider, P } from 'flowbite-svelte';
 	import type { Clans } from 'services/directus';
 
 	export let characterName: string;
-	export let offizier: CamarillaOffizier | undefined = undefined;
+	export let offizier: CamarillaOffizier | SabbatOffizier | undefined = undefined;
 	export let clan: Clans;
-	export let status: CharakterStatusName | undefined = undefined;
+	export let status: CharakterStatusName | SabbatCharakterStatusName | undefined = undefined;
 	export let beschreibung: string;
 	export let bild: string;
 </script>
@@ -39,5 +41,5 @@
 		</div>
 	</div>
 	<DropdownDivider />
-	<P>{beschreibung}</P>
+	<P>{beschreibung ?? ''}</P>
 </Card>

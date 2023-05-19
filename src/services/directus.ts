@@ -1,6 +1,8 @@
 import type { CamarillaOffizier } from '$lib/types/camarillaOffizier';
 import type { CharakterStatusName } from '$lib/types/charakterStatusName';
 import type { ClanName } from '$lib/types/clanName';
+import type { SabbatCharakterStatusName } from '$lib/types/sabbatCharakterStatusName';
+import type { SabbatOffizier } from '$lib/types/sabbatOffizier';
 import type { SektenName } from '$lib/types/sektenName';
 import { Directus, type ID } from '@directus/sdk';
 
@@ -147,6 +149,32 @@ type SabbatUebersichtFiles = {
 	directus_files_id: string;
 };
 
+export type SabbatCharakterStatus = {
+	id: ID;
+	name: SabbatCharakterStatusName;
+};
+
+export type SabbatAemter = {
+	id: ID;
+	name: SabbatOffizier;
+};
+
+export type SabbatPacks = {
+	id: ID;
+	name: string;
+};
+
+export type SabbatCharaktere = {
+	id: ID;
+	name: string;
+	clan: Clans;
+	charakter_status?: CharakterStatus;
+	offizier?: SabbatAemter;
+	pack: SabbatPacks;
+	beschreibung: string;
+	bild: string;
+};
+
 type MyCollections = {
 	impressum: Impressum;
 	was_ist_vampire_live: WasIstVampireLive;
@@ -167,6 +195,10 @@ type MyCollections = {
 	sekten: Sekten;
 	sabbat_uebersicht: SabbatUebersicht;
 	sabbat_uebersicht_files: SabbatUebersichtFiles;
+	sabbat_charakter_status: SabbatCharakterStatus;
+	sabbat_aemter: SabbatAemter;
+	sabbat_packs: SabbatPacks;
+	sabbat_charaktere: SabbatCharaktere;
 };
 
 export const directus = new Directus<MyCollections>(import.meta.env.VITE_DIRECTUS_URL);
