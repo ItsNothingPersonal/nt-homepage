@@ -53,7 +53,7 @@
 			{#if $offizierFilter.length > 0}
 				<Indicator />
 			{/if}
-		</Button>		
+		</Button>
 	</ButtonGroup>
 </div>
 
