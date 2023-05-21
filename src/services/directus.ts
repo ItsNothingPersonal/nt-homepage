@@ -91,7 +91,7 @@ export type Sekten = {
 	name: SektenName;
 };
 
-export type CamarillaSpielort = {
+export type Spielort = {
 	id: ID;
 	spielort_name: string;
 	spielort_strasse: string;
@@ -175,6 +175,12 @@ export type SabbatCharaktere = {
 	bild: string;
 };
 
+export type SabbatSpielortFiles = {
+	id: ID;
+	sabbat_spielort_id: ID;
+	directus_files_id: string;
+};
+
 type MyCollections = {
 	impressum: Impressum;
 	was_ist_vampire_live: WasIstVampireLive;
@@ -186,7 +192,7 @@ type MyCollections = {
 	camarilla_charaktere: CamarillaCharaktere;
 	charakter_status: CharakterStatus;
 	camarilla_aemter: ChamarillaAemter;
-	camarilla_spielort: CamarillaSpielort;
+	camarilla_spielort: Spielort;
 	camarilla_spielort_files: CamarillaSpielortFiles;
 	camarilla_zeittafel_protektorat: CamarillaZeittafelProtektorat;
 	camarilla_brujah_konflikt: CamarillaBrujahKonflikt;
@@ -199,6 +205,20 @@ type MyCollections = {
 	sabbat_aemter: SabbatAemter;
 	sabbat_packs: SabbatPacks;
 	sabbat_charaktere: SabbatCharaktere;
+	sabbat_spielort: Spielort;
+	sabbat_spielort_files: SabbatSpielortFiles;
 };
 
 export const directus = new Directus<MyCollections>(import.meta.env.VITE_DIRECTUS_URL);
+
+export function getImageUrl(
+	filesId: string,
+	width = 768,
+	height = 512,
+	fit: 'cover' | 'contain' | 'inside' | 'outside' = 'contain',
+	format: 'auto' | 'jpg' | 'png' | 'webp' | 'tiff' = 'auto'
+) {
+	return `${
+		import.meta.env.VITE_DIRECTUS_URL
+	}/assets/${filesId}?format=${format}&width=${width}&height=${height}&fit=${fit}`;
+}
