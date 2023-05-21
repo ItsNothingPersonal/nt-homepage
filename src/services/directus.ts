@@ -207,6 +207,7 @@ type MyCollections = {
 	sabbat_charaktere: SabbatCharaktere;
 	sabbat_spielort: Spielort;
 	sabbat_spielort_files: SabbatSpielortFiles;
+	sabbat_orga: Orga;
 };
 
 export const directus = new Directus<MyCollections>(import.meta.env.VITE_DIRECTUS_URL);
