@@ -1,4 +1,4 @@
-export enum CamarillaOffizier {
+export enum CamarillaAemterName {
 	Prinz = 'Prinz',
 	Seneschall = 'Seneschall',
 	Sheriff = 'Sheriff',

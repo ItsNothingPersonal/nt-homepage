@@ -1,8 +1,9 @@
+import { camarillaCharaktere } from '$lib/types/zod/camarillaCharaktere';
 import { directus } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const charaktere = await directus.items('camarilla_charaktere').readByQuery({
+	const charaktere = directus.items('camarilla_charaktere').readByQuery({
 		limit: -1,
 		fields: [
 			'*',
@@ -15,6 +16,6 @@ export const load = (async () => {
 	});
 
 	return {
-		charaktere: charaktere.data ?? []
+		charaktere: camarillaCharaktere.array().parse((await charaktere).data)
 	};
 }) satisfies PageServerLoad;

@@ -1,4 +1,4 @@
-export enum SabbatOffizier {
+export enum SabbatAemterName {
 	Erzbischof = 'Erzbischof',
 	Templer = 'Templer',
 	BischofDerTaktik = 'BischofDerTaktik',

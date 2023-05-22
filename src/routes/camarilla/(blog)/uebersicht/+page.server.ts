@@ -1,19 +1,20 @@
+import { camarillaUebersichtFiles } from '$lib/types/zod/camarillaUebersichtFiles';
+import { projektUebersicht } from '$lib/types/zod/projektUebersicht';
 import { compile } from 'mdsvex';
 import { directus } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const camarilla_uebersicht = await directus
-		.items('camarilla_uebersicht')
-		.readByQuery({ limit: 1 });
-	const data = camarilla_uebersicht.data?.length !== 1 ? undefined : camarilla_uebersicht.data[0];
+	const response = projektUebersicht
+		.array()
+		.parse((await directus.items('camarilla_uebersicht').readByQuery({ limit: 1 })).data);
+
+	const data = response.length !== 1 ? undefined : response[0];
 
 	const beschreibungCompiled = data?.beschreibung ? await compile(data.beschreibung) : undefined;
 	const spieltermineCompiled = data?.spieltermine ? await compile(data.spieltermine) : undefined;
-	const email = data?.email;
-	const discord = data?.discord;
 
-	const camarillaBilder = await directus.items('camarilla_uebersicht_files').readByQuery({
+	const camarillaBilder = directus.items('camarilla_uebersicht_files').readByQuery({
 		filter: {
 			camarilla_uebersicht_id: {
 				_eq: data?.id
@@ -24,8 +25,8 @@ export const load = (async () => {
 	return {
 		beschreibung: beschreibungCompiled,
 		spieltermine: spieltermineCompiled,
-		email: email,
-		discord: discord,
-		bilder: camarillaBilder.data
+		email: data?.email,
+		discord: data?.discord,
+		bilder: camarillaUebersichtFiles.array().parse((await camarillaBilder).data)
 	};
 }) satisfies PageServerLoad;

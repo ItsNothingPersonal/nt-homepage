@@ -10,7 +10,7 @@
 	let width: number;
 	let sectFilter = writable('.*');
 
-	$: clans = data.clans.filter((e) => e.sekte.match($sectFilter));
+	$: clans = data.clans.filter((e) => e.sekte?.match($sectFilter));
 
 	function swapSectFilter(filter: SektenName) {
 		if ($sectFilter.match(filter)) {

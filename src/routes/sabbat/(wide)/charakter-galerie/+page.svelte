@@ -3,15 +3,15 @@
 	import Indicator from '$lib/components/indicator.svelte';
 	import { isNullOrUndefined } from '$lib/util';
 	import { Button, ButtonGroup, Chevron, Dropdown, DropdownItem, Heading } from 'flowbite-svelte';
-	import type { SabbatCharaktere } from 'services/directus';
 	import { writable } from 'svelte/store';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+	const { packs, charaktere } = data;
 	let packFilter = writable('.*');
 	let offizierFilter = writable('');
 
-	$: charaktere = (data.charaktere as unknown as SabbatCharaktere[]).filter(
+	$: gefilterteCharaktere = charaktere.filter(
 		(c) =>
 			c.pack.name.match($packFilter) &&
 			($offizierFilter.length > 0 ? !isNullOrUndefined(c.offizier) : true)
@@ -44,7 +44,7 @@
 			{/if}
 		</Button>
 		<Dropdown>
-			{#each data.packs as pack}
+			{#each packs as pack}
 				<DropdownItem on:click={() => swapPackFilter(pack.name)}>{pack.name}</DropdownItem>
 			{/each}
 		</Dropdown>
@@ -58,13 +58,13 @@
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-5 gap-2">
-	{#each charaktere as charakter}
+	{#each gefilterteCharaktere as charakter}
 		<CharacterCard
 			characterName={charakter.name}
 			clan={charakter.clan}
-			offizier={charakter.offizier?.name}
+			aemterName={charakter.offizier?.name}
 			status={charakter.charakter_status?.name}
-			beschreibung={charakter.beschreibung}
+			beschreibung={charakter.beschreibung ?? ''}
 			bild={charakter.bild}
 		/>
 	{/each}
