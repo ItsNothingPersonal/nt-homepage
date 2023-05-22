@@ -39,22 +39,18 @@ export const menuData: {
 		label: 'Sabbat',
 		subData: [
 			{ href: '/sabbat/uebersicht', label: 'Übersicht' },
-			{ href: '/sabbat/termine', label: 'Termine' },
 			{ href: '/sabbat/spielort', label: 'Spielort' },
 			{ href: '/sabbat/orga', label: 'Orga-Team' },
-			{ href: '/sabbat/charakter-galerie', label: 'Charaktergalerie' },
-			{ href: '/sabbat/karte-von-nuernberg', label: 'Karte von Nürnberg' }
+			{ href: '/sabbat/charakter-galerie', label: 'Charaktergalerie' }
 		]
 	},
 	{
 		id: 4,
 		label: '40K',
 		subData: [
-			{ href: '/40k/termine', label: 'Termine' },
+			{ href: '/40k/uebersicht', label: 'Übersicht' },
 			{ href: '/40k/spielort', label: 'Spielort' },
-			{ href: '/40k/orga', label: 'Orga-Team' },
-			{ href: '/40k/spieler-galerie', label: 'Spielergalerie' },
-			{ href: '/40k/kampfberichte', label: 'Kampfberichte' }
+			{ href: '/40k/orga', label: 'Orga-Team' }
 		]
 	},
 	{
