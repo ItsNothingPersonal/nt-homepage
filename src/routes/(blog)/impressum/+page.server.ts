@@ -1,13 +1,13 @@
-import { isNullOrUndefined } from '$lib/util';
+import { impressum } from '$lib/types/zod/impressum';
 import { directus } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const impressum = await directus.items('impressum').readByQuery({
-		limit: 1
-	});
+	const response = impressum
+		.array()
+		.parse((await directus.items('impressum').readByQuery({ limit: 1 })).data);
 
 	return {
-		impressum: !isNullOrUndefined(impressum.data) ? impressum.data[0] : undefined
+		impressum: response.length === 1 ? response[0] : undefined
 	};
 }) satisfies PageServerLoad;

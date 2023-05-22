@@ -1,14 +1,14 @@
 <script lang="ts">
-	import type { CamarillaOffizier } from '$lib/types/camarillaOffizier';
+	import type { CamarillaAemterName } from '$lib/types/camarillaAemterName';
 	import type { CharakterStatusName } from '$lib/types/charakterStatusName';
 	import type { SabbatCharakterStatusName } from '$lib/types/sabbatCharakterStatusName';
-	import type { SabbatOffizier } from '$lib/types/sabbatOffizier';
+	import type { SabbatAemterName } from '$lib/types/sabbatOffizier';
+	import type { Clan } from '$lib/types/zod/clan';
 	import { Card, DropdownDivider, P } from 'flowbite-svelte';
-	import type { Clans } from 'services/directus';
 
 	export let characterName: string;
-	export let offizier: CamarillaOffizier | SabbatOffizier | undefined = undefined;
-	export let clan: Clans;
+	export let aemterName: CamarillaAemterName | SabbatAemterName | undefined = undefined;
+	export let clan: Clan;
 	export let status: CharakterStatusName | SabbatCharakterStatusName | undefined = undefined;
 	export let beschreibung: string;
 	export let bild: string;
@@ -23,8 +23,8 @@
 		{characterName}
 	</h5>
 
-	{#if offizier}
-		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">{offizier}</p>
+	{#if aemterName}
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">{aemterName}</p>
 	{:else}
 		<p class="mb-3 leading-tight"><br /></p>
 	{/if}

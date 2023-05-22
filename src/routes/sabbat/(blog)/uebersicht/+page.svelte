@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { A, Carousel, Heading, P } from 'flowbite-svelte';
+	import { getImageUrl } from 'services/directus';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -10,7 +11,7 @@
 	let images = data.bilder?.map((e) => {
 		return {
 			id: e.sabbat_uebersicht_id,
-			imgurl: `${import.meta.env.VITE_DIRECTUS_URL}/assets/${e.directus_files_id}?format=auto`
+			imgurl: getImageUrl(e.directus_files_id)
 		};
 	});
 </script>

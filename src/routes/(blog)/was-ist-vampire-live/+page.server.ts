@@ -1,15 +1,13 @@
-import { isNullOrUndefined } from '$lib/util';
+import { wasIstVampireLive } from '$lib/types/zod/wasIstVampireLive';
 import { directus } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const wasIstVampireLive = await directus.items('was_ist_vampire_live').readByQuery({
-		limit: 1
-	});
+	const response = wasIstVampireLive
+		.array()
+		.parse((await directus.items('was_ist_vampire_live').readByQuery({ limit: 1 })).data);
 
 	return {
-		wasIstVampireLive: !isNullOrUndefined(wasIstVampireLive.data)
-			? wasIstVampireLive.data[0]
-			: undefined
+		wasIstVampireLive: response.length === 1 ? response[0] : undefined
 	};
 }) satisfies PageServerLoad;

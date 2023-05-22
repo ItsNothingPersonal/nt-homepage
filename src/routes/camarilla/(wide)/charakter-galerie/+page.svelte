@@ -5,11 +5,11 @@
 	import { SektenName } from '$lib/types/sektenName';
 	import { isNullOrUndefined } from '$lib/util';
 	import { Button, ButtonGroup, Chevron, Dropdown, DropdownItem, Heading } from 'flowbite-svelte';
-	import type { CamarillaCharaktere } from 'services/directus';
 	import { writable } from 'svelte/store';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+	const { charaktere } = data;
 
 	let clans = Object.keys(ClanName);
 
@@ -17,7 +17,7 @@
 	let offizierFilter = writable('');
 	let clanFilter = writable('.*');
 
-	$: charaktere = (data.charaktere as unknown as CamarillaCharaktere[]).filter(
+	$: gefilterteCharaktere = charaktere.filter(
 		(c) =>
 			c.sekte.name.match($sectFilter) &&
 			($offizierFilter.length > 0 ? !isNullOrUndefined(c.offizier) : true) &&
@@ -85,11 +85,11 @@
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-5 grid-rows-5 gap-2">
-	{#each charaktere as charakter}
+	{#each gefilterteCharaktere as charakter}
 		<CharacterCard
 			characterName={charakter.name}
 			clan={charakter.clan}
-			offizier={charakter.offizier?.name}
+			aemterName={charakter.offizier?.name}
 			status={charakter.charakter_status?.name}
 			beschreibung={charakter.beschreibung}
 			bild={charakter.bild}
