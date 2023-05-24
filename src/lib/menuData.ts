@@ -46,11 +46,10 @@ export const menuData: {
 	},
 	{
 		id: 4,
-		label: '40K',
+		label: 'W40K',
 		subData: [
 			{ href: '/w40k/uebersicht', label: 'Übersicht' },
-			{ href: '/w40k/spielort', label: 'Spielort' },
-			{ href: '/w40k/orga', label: 'Orga-Team' }
+			{ href: '/w40k/spielort', label: 'Spielort' }
 		]
 	},
 	{

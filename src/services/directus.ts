@@ -20,6 +20,7 @@ import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles
 import type { Sekten } from '$lib/types/zod/sekten';
 import type { Spielort } from '$lib/types/zod/spielort';
 import type { W40KUebersichtFiles } from '$lib/types/zod/w40KUebersichtFiles';
+import type { W40KSpielortFiles } from '$lib/types/zod/w40kSpielortFiles';
 import type { WasIstVampireLive } from '$lib/types/zod/wasIstVampireLive';
 import type { WasSindClans } from '$lib/types/zod/wasSindClans';
 import { Directus } from '@directus/sdk';
@@ -53,6 +54,8 @@ type DirectusCollections = {
 	sabbat_orga: Orga;
 	w40k_uebersicht: ProjektUebersicht;
 	w40k_uebersicht_files: W40KUebersichtFiles;
+	w40k_spielort: Spielort;
+	w40k_spielort_files: W40KSpielortFiles;
 };
 
 export const directus = new Directus<DirectusCollections>(import.meta.env.VITE_DIRECTUS_URL);
