@@ -7,8 +7,8 @@
 
 	let images = data.bilder?.map((e) => {
 		return {
-			id: e.sabbat_spielort_id,
-			imgurl: getImageUrl(e.directus_files_id)
+			id: e.w40k_spielort_id,
+			imgurl: getImageUrl(e.directus_files_id, 768, 512, 'cover')
 		};
 	});
 </script>
