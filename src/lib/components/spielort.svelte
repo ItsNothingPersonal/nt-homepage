@@ -4,11 +4,11 @@
 	import { Carousel, Heading, P } from 'flowbite-svelte';
 
 	export let name: string;
-    export let strasse: string;
-    export let plz: string;
-    export let ort: string;
-    export let karte: string;
-    export let bilder: ImageInformation[];
+	export let strasse: string;
+	export let plz: string;
+	export let ort: string;
+	export let karte: string;
+	export let bilder: ImageInformation[];
 
 	export let showThumbs = false;
 	export let showCaptions = false;
@@ -40,13 +40,6 @@
 
 	{#if !isNullOrUndefined(bilder) && bilder?.length > 0}
 		<Heading tag="h3" class="mb-2 mt-4">Bildergalerie</Heading>
-		<Carousel
-			images={bilder}
-			{showThumbs}
-			{showCaptions}
-			{showIndicators}
-			loop
-			duration={3000}
-		/>
+		<Carousel images={bilder} {showThumbs} {showCaptions} {showIndicators} loop duration={3000} />
 	{/if}
 </div>
