@@ -14,17 +14,6 @@ export const menuData: {
 	},
 	{
 		id: 1,
-		href: '/verein',
-		label: 'Verein',
-		subData: [
-			{ href: '/verein/ansprechpersonen', label: 'Ansprechpersonen' },
-			{ href: '/verein/downloads', label: 'Downloads' },
-			{ href: '/verein/datenschutz', label: 'Datenschutz' },
-			{ href: '/verein/paragraph-86-und-86a', label: '§86/86a' }
-		]
-	},
-	{
-		id: 2,
 		label: 'Camarilla',
 		subData: [
 			{ href: '/camarilla/uebersicht', label: 'Übersicht' },
@@ -35,7 +24,7 @@ export const menuData: {
 		]
 	},
 	{
-		id: 3,
+		id: 2,
 		label: 'Sabbat',
 		subData: [
 			{ href: '/sabbat/uebersicht', label: 'Übersicht' },
@@ -45,11 +34,22 @@ export const menuData: {
 		]
 	},
 	{
-		id: 4,
+		id: 3,
 		label: 'W40K',
 		subData: [
 			{ href: '/w40k/uebersicht', label: 'Übersicht' },
 			{ href: '/w40k/spielort', label: 'Spielort' }
+		]
+	},
+	{
+		id: 4,
+		href: '/verein',
+		label: 'Verein',
+		subData: [
+			{ href: '/verein/ansprechpersonen', label: 'Ansprechpersonen' },
+			{ href: '/verein/downloads', label: 'Downloads' },
+			{ href: '/verein/datenschutz', label: 'Datenschutz' },
+			{ href: '/verein/paragraph-86-und-86a', label: '§86/86a' }
 		]
 	},
 	{
