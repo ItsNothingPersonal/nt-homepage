@@ -9,6 +9,7 @@
 		Drawer,
 		Dropdown,
 		DropdownItem,
+		Img,
 		NavBrand,
 		NavHamburger,
 		NavLi,
@@ -73,7 +74,7 @@
 	<NavHamburger on:click={toggleDrawer} btnClass="ml-3 lg:hidden" />
 
 	<NavBrand href="/" class="lg:ml-64">
-		<img src="favicon.ico" alt="Nächtliches Theater Logo" />
+		<Img src="/favicon.ico" alt="Nächtliches Theater Logo" />
 		<span class="ml-2 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
 			Nächtliches Theater e.V.
 		</span>
