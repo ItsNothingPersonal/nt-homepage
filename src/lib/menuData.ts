@@ -47,6 +47,7 @@ export const menuData: {
 		label: 'Verein',
 		subData: [
 			{ href: '/verein/ansprechpersonen', label: 'Ansprechpersonen' },
+			{ href: '/verein/kontakt', label: 'Kontakt' },
 			{ href: '/verein/downloads', label: 'Downloads' },
 			{ href: '/verein/datenschutz', label: 'Datenschutz' },
 			{ href: '/verein/paragraph-86-und-86a', label: '§86/86a' }
