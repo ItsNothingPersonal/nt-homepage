@@ -20,6 +20,7 @@ import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles
 import type { Sekten } from '$lib/types/zod/sekten';
 import type { Spielort } from '$lib/types/zod/spielort';
 import type { VereinAnsprechpersonen } from '$lib/types/zod/vereinAnsprechpersonen';
+import type { VereinKontakt } from '$lib/types/zod/vereinKontakt';
 import type { VereinRollen } from '$lib/types/zod/vereinRollen';
 import type { W40KUebersichtFiles } from '$lib/types/zod/w40KUebersichtFiles';
 import type { W40KSpielortFiles } from '$lib/types/zod/w40kSpielortFiles';
@@ -60,6 +61,7 @@ type DirectusCollections = {
 	w40k_spielort_files: W40KSpielortFiles;
 	verein_rollen: VereinRollen;
 	verein_ansprechpersonen: VereinAnsprechpersonen;
+	verein_kontakt: VereinKontakt;
 };
 
 export const directus = new Directus<DirectusCollections>(import.meta.env.VITE_DIRECTUS_URL);

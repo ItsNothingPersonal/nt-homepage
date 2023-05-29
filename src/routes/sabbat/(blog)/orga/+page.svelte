@@ -1,6 +1,7 @@
 <script lang="ts">
 	import OrgaEntry from '$lib/components/orgaEntry.svelte';
-	import { A, Heading, P } from 'flowbite-svelte';
+	import SocialButton from '$lib/components/socialButton.svelte';
+	import { Heading, P } from 'flowbite-svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -17,10 +18,12 @@
 		spielförderlich aus. Bei Streitfragen entscheiden sie, wie die Situation aufzulösen ist. Sie
 		springen auch als NSCs ein, sofern die Entwicklungen dies erfordern sollten.
 	</P>
-	<P class="mb-4" slot="footer">
-		Die gesamte Spielleitung ist unter <A href="mailto:Sabbat@NaechtlichesTheater.de">
-			Sabbat@NaechtlichesTheater.de
-		</A> erreichbar.
+	<P class="mb-4 flex place-content-center" slot="footer">
+		<SocialButton
+			icon="email"
+			href={`mailto:Sabbat@NaechtlichesTheater.de`}
+			text="Kontakt zur Spielleitung"
+		/>
 	</P>
 </OrgaEntry>
 
