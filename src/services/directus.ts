@@ -24,6 +24,7 @@ import type { Spielort } from '$lib/types/zod/spielort';
 import type { VereinAnsprechpersonen } from '$lib/types/zod/vereinAnsprechpersonen';
 import type { VereinKontakt } from '$lib/types/zod/vereinKontakt';
 import type { VereinRollen } from '$lib/types/zod/vereinRollen';
+import type { VereinDatenschutz } from '$lib/types/zod/vereindatenschutz';
 import type { W40KUebersichtFiles } from '$lib/types/zod/w40KUebersichtFiles';
 import type { W40KSpielortFiles } from '$lib/types/zod/w40kSpielortFiles';
 import type { WasIstVampireLive } from '$lib/types/zod/wasIstVampireLive';
@@ -64,6 +65,7 @@ type DirectusCollections = {
 	verein_rollen: VereinRollen;
 	verein_ansprechpersonen: VereinAnsprechpersonen;
 	verein_kontakt: VereinKontakt;
+	verein_datenschutz: VereinDatenschutz;
 	directus_files: FileInformation;
 	directus_folders: FolderInformation;
 };
