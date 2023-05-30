@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Orga } from '$lib/types/zod/orga';
+	import { getImageUrl } from '$lib/util';
 	import { Heading, Hr, P } from 'flowbite-svelte';
-	import { getImageUrl } from 'services/directus';
 
 	export let title: 'Spielleitung' | 'Erzähler';
 	export let personen: OrgaOhneRolle[];

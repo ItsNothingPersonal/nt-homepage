@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ProjektUebersicht from '$lib/components/projektUebersicht.svelte';
-	import { getImageUrl } from 'services/directus';
+	import { getImageUrl } from '$lib/util';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
