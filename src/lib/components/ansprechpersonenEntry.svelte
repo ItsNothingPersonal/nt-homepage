@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { VereinAnsprechpersonen } from '$lib/types/zod/vereinAnsprechpersonen';
+	import { getImageUrl } from '$lib/util';
 	import { A, Heading, Hr, P } from 'flowbite-svelte';
-	import { getImageUrl } from 'services/directus';
 
 	export let personen: VereinAnsprechpersonen[];
 	export let titel: string;

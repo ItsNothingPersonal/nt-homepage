@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Spielort from '$lib/components/spielort.svelte';
-	import { getImageUrl } from 'services/directus';
+	import { getImageUrl } from '$lib/util';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

@@ -7,6 +7,8 @@ import type { CamarillaZeittafelProtektorat } from '$lib/types/zod/camarillaZeit
 import type { CharakterStatus } from '$lib/types/zod/charakterStatus';
 import type { Clan } from '$lib/types/zod/clan';
 import type { ClansFiles } from '$lib/types/zod/clansFiles';
+import type { FileInformation } from '$lib/types/zod/fileInformation';
+import type { FolderInformation } from '$lib/types/zod/folderInformation';
 import type { Impressum } from '$lib/types/zod/impressum';
 import type { Orga } from '$lib/types/zod/orga';
 import type { OrgaRollen } from '$lib/types/zod/orgaRollen';
@@ -62,18 +64,8 @@ type DirectusCollections = {
 	verein_rollen: VereinRollen;
 	verein_ansprechpersonen: VereinAnsprechpersonen;
 	verein_kontakt: VereinKontakt;
+	directus_files: FileInformation;
+	directus_folders: FolderInformation;
 };
 
 export const directus = new Directus<DirectusCollections>(import.meta.env.VITE_DIRECTUS_URL);
-
-export function getImageUrl(
-	filesId: string,
-	width = 768,
-	height = 512,
-	fit: 'cover' | 'contain' | 'inside' | 'outside' = 'contain',
-	format: 'auto' | 'jpg' | 'png' | 'webp' | 'tiff' = 'auto'
-) {
-	return `${
-		import.meta.env.VITE_DIRECTUS_URL
-	}/assets/${filesId}?format=${format}&width=${width}&height=${height}&fit=${fit}`;
-}
