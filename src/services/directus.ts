@@ -23,6 +23,7 @@ import type { Sekten } from '$lib/types/zod/sekten';
 import type { Spielort } from '$lib/types/zod/spielort';
 import type { VereinAnsprechpersonen } from '$lib/types/zod/vereinAnsprechpersonen';
 import type { VereinKontakt } from '$lib/types/zod/vereinKontakt';
+import type { VereinParagraph86 } from '$lib/types/zod/vereinParagraph86';
 import type { VereinRollen } from '$lib/types/zod/vereinRollen';
 import type { VereinDatenschutz } from '$lib/types/zod/vereindatenschutz';
 import type { W40KUebersichtFiles } from '$lib/types/zod/w40KUebersichtFiles';
@@ -66,6 +67,7 @@ type DirectusCollections = {
 	verein_ansprechpersonen: VereinAnsprechpersonen;
 	verein_kontakt: VereinKontakt;
 	verein_datenschutz: VereinDatenschutz;
+	verein_paragraph_86_und_86a: VereinParagraph86;
 	directus_files: FileInformation;
 	directus_folders: FolderInformation;
 };
