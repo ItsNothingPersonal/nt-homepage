@@ -10,7 +10,8 @@ export default {
 				'min-content-first': 'min-content 1fr;'
 			},
 			gridTemplateRows: {
-				'min-content-first': 'min-content 1fr;'
+				'min-content-first': 'min-content 1fr;',
+				'body-template': '1fr auto'
 			}
 		}
 	},

@@ -10,9 +10,9 @@
 <Heading tag="h3" class="mb-2">Social-Media</Heading>
 <P align="center">Der Verein ist auf den folgenden Social-Media-Kanälen vertreten.</P>
 <div class="flex flex-col md:flex-row gap-1 w-50 mt-2 mb-4 justify-center">
-	<SocialButton icon="discord" href={data.kontakt.discord} />
-	<SocialButton icon="facebook" href={data.kontakt.facebook} />
-	<SocialButton icon="instagram" href={data.kontakt.instagram} />
+	<SocialButton icon="discord" />
+	<SocialButton icon="facebook" />
+	<SocialButton icon="instagram" />
 </div>
 
 <Heading tag="h3" class="mb-2">E-Mail</Heading>
