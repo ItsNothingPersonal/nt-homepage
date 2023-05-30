@@ -20,6 +20,7 @@ import type { SabbatPacks } from '$lib/types/zod/sabbatPacks';
 import type { SabbatSpielortFiles } from '$lib/types/zod/sabbatSpielortFiles';
 import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles';
 import type { Sekten } from '$lib/types/zod/sekten';
+import type { SettingSteckbrief } from '$lib/types/zod/settingSteckbrief';
 import type { Spielort } from '$lib/types/zod/spielort';
 import type { VereinAnsprechpersonen } from '$lib/types/zod/vereinAnsprechpersonen';
 import type { VereinKontakt } from '$lib/types/zod/vereinKontakt';
@@ -59,6 +60,7 @@ type DirectusCollections = {
 	sabbat_spielort: Spielort;
 	sabbat_spielort_files: SabbatSpielortFiles;
 	sabbat_orga: Orga;
+	sabbat_steckbrief: SettingSteckbrief;
 	w40k_uebersicht: ProjektUebersicht;
 	w40k_uebersicht_files: W40KUebersichtFiles;
 	w40k_spielort: Spielort;

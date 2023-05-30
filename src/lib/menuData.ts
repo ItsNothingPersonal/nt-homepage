@@ -30,6 +30,7 @@ export const menuData: {
 			{ href: '/sabbat/uebersicht', label: 'Übersicht' },
 			{ href: '/sabbat/spielort', label: 'Spielort' },
 			{ href: '/sabbat/orga', label: 'Orga-Team' },
+			{ href: '/sabbat/setting-steckbrief', label: 'Setting-Steckbrief' },
 			{ href: '/sabbat/charakter-galerie', label: 'Charaktergalerie' }
 		]
 	},
