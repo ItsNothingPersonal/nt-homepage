@@ -10,7 +10,5 @@ export const load = (async () => {
 
 	const data = response.length !== 1 ? undefined : response[0];
 
-	const beschreibungCompiled = data?.beschreibung ? await compile(data.beschreibung) : undefined;
-
-	return { steckbrief: data, beschreibung: beschreibungCompiled };
+	return { steckbrief: data, beschreibung: compile(data?.beschreibung ?? '') };
 }) satisfies PageServerLoad;
