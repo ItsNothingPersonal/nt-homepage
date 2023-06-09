@@ -11,9 +11,6 @@ export const load = (async () => {
 
 	const data = response.length !== 1 ? undefined : response[0];
 
-	const beschreibungCompiled = data?.beschreibung ? await compile(data.beschreibung) : undefined;
-	const spieltermineCompiled = data?.spieltermine ? await compile(data.spieltermine) : undefined;
-
 	const sabbatBilder = directus.items('sabbat_uebersicht_files').readByQuery({
 		filter: {
 			sabbat_uebersicht_id: {
@@ -23,8 +20,8 @@ export const load = (async () => {
 	});
 
 	return {
-		beschreibung: beschreibungCompiled,
-		spieltermine: spieltermineCompiled,
+		beschreibung: compile(data?.beschreibung ?? ''),
+		spieltermine: compile(data?.spieltermine ?? ''),
 		email: data?.email,
 		discord: data?.discord,
 		bilder: sabbatUebersichtFiles.array().parse((await sabbatBilder).data)

@@ -10,9 +10,7 @@ export const load = (async () => {
 
 	const data = response.length !== 1 ? undefined : response[0];
 
-	const paragraph86und86aCompiled = data?.inhalt ? await compile(data.inhalt) : undefined;
-
 	return {
-		paragraph86und86aCompiled: paragraph86und86aCompiled
+		paragraph86und86aCompiled: compile(data?.inhalt ?? '')
 	};
 }) satisfies PageServerLoad;

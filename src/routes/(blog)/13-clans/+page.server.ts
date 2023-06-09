@@ -10,10 +10,8 @@ export const load = (async () => {
 		.array()
 		.parse((await directus.items('was_sind_clans').readByQuery({ limit: 1 })).data);
 
-	const beschreibungCompiled = data.length !== 1 ? undefined : await compile(data[0].beschreibung);
-
 	return {
 		clans: clan.array().parse((await clansResponse).data),
-		beschreibung: beschreibungCompiled?.code
+		beschreibung: await compile(data[0].beschreibung)
 	};
 }) satisfies PageServerLoad;

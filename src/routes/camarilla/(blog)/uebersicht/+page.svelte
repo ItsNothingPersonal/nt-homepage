@@ -1,25 +1,30 @@
 <script lang="ts">
 	import ProjektUebersicht from '$lib/components/projektUebersicht.svelte';
 	import { getImageUrl } from '$lib/util';
+	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
-	let showThumbs = false;
-	let showCaptions = false;
-	let showIndicators = false;
 	let images = data.bilder?.map((e) => {
 		return {
 			id: e.camarilla_uebersicht_id,
 			imgurl: getImageUrl(e.directus_files_id)
 		};
 	});
+	let beschreibung = '';
+	let spieltermine = '';
+
+	onMount(() => {
+		beschreibung = data.beschreibung?.code ?? '';
+		spieltermine = data.spieltermine?.code ?? '';
+	});
 </script>
 
 <ProjektUebersicht
 	titel="Vampire Live - Camarilla"
-	beschreibung={data.beschreibung?.code ?? ''}
-	spieltermine={data.spieltermine?.code ?? ''}
+	{beschreibung}
+	{spieltermine}
 	email={data.email ?? ''}
 	{images}
 />

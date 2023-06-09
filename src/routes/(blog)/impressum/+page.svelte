@@ -1,8 +1,17 @@
 <script lang="ts">
 	import { Heading, P } from 'flowbite-svelte';
+	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+
+	let copyrightNotice = '';
+	let haftungsausschluss = '';
+
+	onMount(() => {
+		copyrightNotice = data.impressum?.copyright_notice ?? '';
+		haftungsausschluss = data.impressum?.haftungsausschluss ?? '';
+	});
 </script>
 
 <Heading tag="h1" class="mb-4">Impressum</Heading>
@@ -56,6 +65,6 @@
 {/if}
 
 <Heading tag="h2" class="mt-2">Copyright</Heading>
-<P>{@html data.impressum?.copyright_notice}</P>
+<P>{@html copyrightNotice}</P>
 <Heading tag="h2" class="mt-2">Haftungsausschluss</Heading>
-<P>{@html data.impressum?.haftungsausschluss}</P>
+<P>{@html haftungsausschluss}</P>

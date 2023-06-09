@@ -1,9 +1,16 @@
 <script lang="ts">
 	import { Heading, Li, List, P } from 'flowbite-svelte';
+	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 	const { steckbrief, beschreibung } = data;
+
+	let beschreibungCompiled = '';
+
+	onMount(() => {
+		beschreibungCompiled = beschreibung?.code ?? '';
+	});
 </script>
 
 <Heading tag="h1" class="mb-4">Setting Steckbrief</Heading>
@@ -22,7 +29,7 @@
 	class={`[&>p]:first-letter:text-2xl [&>p]::text-2xl [&>p]:text-justify [&>p]:mb-2 [&>h2]:text-4xl [&>h2]:font-bold [&>h3]:text-3xl [&>h3]:font-bold text-gray-900 dark:text-white w-full ` +
 		`[&>p>a]:underline [&>p>a]:decoration-dotted`}
 >
-	{@html beschreibung?.code}
+	{@html beschreibungCompiled}
 </P>
 
 <Heading tag="h3" class="mb-1">Regeln</Heading>
