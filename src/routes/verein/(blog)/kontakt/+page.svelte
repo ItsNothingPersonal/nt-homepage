@@ -6,29 +6,29 @@
 	export let data: PageData;
 </script>
 
-<Heading tag="h1" class="mb-4">Kontakt</Heading>
-<Heading tag="h2" class="mb-2">Social-Media</Heading>
-<P align="center">Der Verein ist auf den folgenden Social-Media-Kanälen vertreten.</P>
-<div class="flex flex-col md:flex-row gap-1 w-50 mt-2 mb-4 justify-center">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
+	<Heading tag="h1" class="mb-4 md:col-span-3">Kontakt</Heading>
+	<Heading tag="h2" class="mb-2 md:col-span-3">Social-Media</Heading>
+	<div class="md:col-span-3">
+		<P align="center">Der Verein ist auf den folgenden Social-Media-Kanälen vertreten.</P>
+	</div>
 	<SocialButton icon="discord" />
 	<SocialButton icon="facebook" />
 	<SocialButton icon="instagram" />
-</div>
 
-<Heading tag="h2" class="mb-2">E-Mail</Heading>
-<P align="center">
-	Der Verein und seine Projekte können über die folgenden E-Mail-Adressen kontaktiert werden.
-</P>
+	<Heading tag="h2" class="md:mt-2 md:col-span-3">E-Mail</Heading>
+	<div class="md:col-span-3">
+		<P align="center">
+			Der Verein und seine Projekte können über die folgenden E-Mail-Adressen kontaktiert werden.
+		</P>
+	</div>
 
-<Heading tag="h3" class="mb-1">Verein</Heading>
-<div class="flex flex-col md:flex-row gap-1 w-50 mt-2 mb-4 justify-center">
+	<Heading tag="h3" class="md:col-span-3">Verein</Heading>
 	<SocialButton icon="email" href={`mailto:${data.kontakt.email_allgemein}`} text="Allgemein" />
 	<SocialButton icon="email" href={`mailto:${data.kontakt.email_vorstand}`} text="Vorstand" />
 	<SocialButton icon="email" href={`mailto:${data.kontakt.email_webmaster}`} text="Webmaster" />
-</div>
 
-<Heading tag="h3" class="mb-2">Projekte</Heading>
-<div class="flex flex-col md:flex-row gap-1 w-50 mt-2 mb-4 justify-center">
+	<Heading tag="h3" class="md:col-span-3">Projekte</Heading>
 	<SocialButton
 		icon="email"
 		href={`mailto:${data.kontakt.email_camarilla}`}
