@@ -5,7 +5,7 @@ import { directus } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const clansResponse = directus.items('clans').readByQuery({ limit: -1 });
+	const clansResponse = directus.items('clans').readByQuery({ limit: -1, sort: ['name'] });
 	const data = wasSindClans
 		.array()
 		.parse((await directus.items('was_sind_clans').readByQuery({ limit: 1 })).data);

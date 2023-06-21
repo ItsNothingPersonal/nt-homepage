@@ -23,7 +23,6 @@ export const load = (async () => {
 		beschreibung: compile(data?.beschreibung ?? ''),
 		spieltermine: compile(data?.spieltermine ?? ''),
 		email: data?.email,
-		discord: data?.discord,
 		bilder: camarillaUebersichtFiles.array().parse((await camarillaBilder).data)
 	};
 }) satisfies PageServerLoad;
