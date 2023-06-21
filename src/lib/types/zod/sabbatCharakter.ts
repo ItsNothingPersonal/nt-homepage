@@ -6,7 +6,7 @@ import { sabbatPacks } from './sabbatPacks';
 
 export const sabbatCharakter = z.object({
 	name: z.string(),
-	clan: clan,
+	clan: clan.nullable(),
 	charakter_status: sabbatCharakterStatus.optional(),
 	offizier: sabbatAemter.nullable(),
 	pack: sabbatPacks,
