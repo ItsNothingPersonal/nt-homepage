@@ -8,7 +8,7 @@
 
 	export let characterName: string;
 	export let aemterName: CamarillaAemterName | SabbatAemterName | undefined = undefined;
-	export let clan: Clan;
+	export let clan: Clan | undefined | null;
 	export let status: CharakterStatusName | SabbatCharakterStatusName | undefined = undefined;
 	export let beschreibung: string;
 	export let bild: string;
@@ -33,7 +33,7 @@
 	<div clasS="grid grid-cols-2 grid-rows-1 items-center gap-2">
 		<div class="grid grid-cols-min-content-first gap-x-2">
 			<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">Clan</p>
-			<P class="mb-3 font-normal leading-tight">{clan.name}</P>
+			<P class="mb-3 font-normal leading-tight">{clan?.name ?? 'unbekannt'}</P>
 		</div>
 		<div class="grid grid-cols-min-content-first gap-x-2">
 			<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">Status</p>
