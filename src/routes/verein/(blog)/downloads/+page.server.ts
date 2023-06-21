@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
 	const fileResponse = directus.files.readByQuery({
-		filter: { folder: { _eq: await getFolderByName('verein_downloads') } }
+		filter: { folder: { _eq: await getFolderByName('Verein Downloads') } }
 	});
 
 	const downloadInformation = fileInformation
