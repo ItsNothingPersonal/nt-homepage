@@ -7,7 +7,6 @@ export const clan = z.object({
 	nickname: z.string().optional(),
 	sekte: z.string().optional(),
 	logo: z.string().optional(),
-	beschreibung_synopsis: z.string().nullish(),
 	beschreibung: z.string().nullish()
 });
 
