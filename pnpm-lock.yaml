@@ -1497,10 +1497,7 @@ packages:
     resolution: {integrity: sha512-JYzyqRv+d7gKQ1Gue5i8qijmyvNEDE6TgnaGAc32vgQok+OmystB4/hUIi9KjdIJphAdajIcC8hkuTQARiSRPQ==}
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
     peerDependencies:
-      '@popperjs/core': ^2.11.6
-      classnames: ^2.3.2
-      flowbite: ^1.6.3
-      svelte: ^3.55.1
+      svelte: ^3.55.1 || ^4.0.0
     dependencies:
       '@docsearch/js': 3.5.1(@algolia/client-search@4.17.2)(search-insights@2.6.0)
       '@popperjs/core': 2.11.8
