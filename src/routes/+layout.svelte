@@ -6,7 +6,7 @@
 
 <div class="px-4 flex flex-col">
 	<Navbar />
-	<main class="mx-auto max-w-screen-2xl text-center">
+	<main class="mx-auto max-w-screen-2xl text-center mt-24">
 		<slot />
 	</main>
 </div>

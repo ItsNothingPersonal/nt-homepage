@@ -70,7 +70,10 @@
 
 <svelte:window bind:innerWidth={width} />
 
-<Navbar let:hidden navDivClass="mx-auto flex flex-wrap justify-between items-center">
+<Navbar
+	let:hidden
+	navClass="px-2 sm:px-4 py-2.5 w-full top-0 left-0 right-0 z-10 inset-x-0 fixed border-b pb-2"
+>
 	<NavHamburger on:click={toggleDrawer} btnClass="ml-3 lg:hidden" />
 
 	<NavBrand href="/" class="lg:ml-64">
@@ -78,7 +81,7 @@
 			src="/images/Logo_Navbar.webp"
 			imgClass="max-h-14"
 			alt="Nächtliches Theater Logo"
-			class="rounded-lg shadow-xl dark:shadow-gray-800"
+			class="rounded-lg shadow-lg dark:shadow-gray-800"
 		/>
 		<span class="ml-2 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
 			Nächtliches Theater e.V.
