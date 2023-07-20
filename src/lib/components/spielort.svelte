@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { ImageInformation } from '$lib/types/imageInformation';
 	import { isNullOrUndefined } from '$lib/util';
-	import { Carousel, Heading, P } from 'flowbite-svelte';
+	import { Heading, P } from 'flowbite-svelte';
+	import ImageCarousel from './imageCarousel.svelte';
 
 	export let name: string;
 	export let strasse: string;
@@ -9,10 +10,6 @@
 	export let ort: string;
 	export let karte: string;
 	export let bilder: ImageInformation[];
-
-	export let showThumbs = false;
-	export let showCaptions = false;
-	export let showIndicators = false;
 </script>
 
 <Heading tag="h1" class="mb-4">Spielort</Heading>
@@ -40,6 +37,6 @@
 
 	{#if !isNullOrUndefined(bilder) && bilder?.length > 0}
 		<Heading tag="h3" class="mb-2 mt-4">Bildergalerie</Heading>
-		<Carousel images={bilder} {showThumbs} {showCaptions} {showIndicators} loop duration={5000} />
+		<ImageCarousel images={bilder} />
 	{/if}
 </div>

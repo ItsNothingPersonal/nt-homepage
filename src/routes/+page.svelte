@@ -8,7 +8,11 @@
 	<div class="row-start-1 md:col-start-1 flex flex-col text-center gap-2 items-center">
 		<Heading tag="h2">Sabbat</Heading>
 		<A href="/sabbat/uebersicht">
-			<Img src="/images/NT_MT_009.webp" alt="Beispielbild Sabbat" />
+			<Img
+				src="/images/NT_MT_009.webp"
+				alt="Beispielbild Sabbat"
+				imgClass="rounded-t-lg md:rounded-none md:rounded-l-lg shadow-lg dark:shadow-gray-800"
+			/>
 		</A>
 	</div>
 	<div
@@ -16,7 +20,11 @@
 	>
 		<Heading tag="h2">Camarilla</Heading>
 		<A href="/camarilla/uebersicht">
-			<Img src="/images/NT_VS_013.webp" alt="Beispielbild Camarilla" />
+			<Img
+				src="/images/NT_VS_013.webp"
+				alt="Beispielbild Camarilla"
+				class="shadow-lg dark:shadow-gray-800"
+			/>
 		</A>
 	</div>
 	<div
@@ -24,7 +32,11 @@
 	>
 		<Heading tag="h2">40K</Heading>
 		<A href="/w40k/uebersicht">
-			<Img src="/images/NT_MT_013.webp" alt="Beispielbild W40K" />
+			<Img
+				src="/images/NT_MT_013.webp"
+				alt="Beispielbild W40K"
+				imgClass="rounded-b-lg md:rounded-none md:rounded-r-lg shadow-lg dark:shadow-gray-800"
+			/>
 		</A>
 	</div>
 </div>

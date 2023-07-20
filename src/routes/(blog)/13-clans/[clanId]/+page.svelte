@@ -1,6 +1,7 @@
 <script lang="ts">
+	import ImageCarousel from '$lib/components/imageCarousel.svelte';
 	import { isNullOrUndefined } from '$lib/util';
-	import { A, Carousel, Heading, P } from 'flowbite-svelte';
+	import { A, Heading, P } from 'flowbite-svelte';
 	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 
@@ -30,9 +31,7 @@
 
 <div class="container">
 	{#if !isNullOrUndefined(images) && images.length > 0}
-		<div class={`float-left max-w-sm md:mr-2 mb-2`}>
-			<Carousel {images} {showThumbs} {showCaptions} {showIndicators} loop duration={5000} />
-		</div>
+		<ImageCarousel {images} />
 	{/if}
 	<P uppercase class="[&>p]:first-letter:text-2xl [&>p]::text-2xl [&>p]:text-justify [&>p]:mb-2">
 		{@html beschreibung}

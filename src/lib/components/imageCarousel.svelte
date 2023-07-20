@@ -1,0 +1,25 @@
+<script lang="ts">
+	import { Carousel } from 'flowbite-svelte';
+	import { onMount } from 'svelte';
+
+	export let images: any[];
+	export let showThumbs: boolean | undefined = false;
+	export let showCaptions: boolean | undefined = false;
+	export let showIndicators: boolean | undefined = false;
+	export let duration: number | undefined = 5000;
+	export let style: 'small' | 'normal' = 'normal';
+
+	let additionalCarouselStyles = '';
+
+	onMount(() => {
+		if (style === 'small') {
+			additionalCarouselStyles = '[&>div]:max-w-sm [&>div]:h-56 md:[&>div]:h-64 md:mr-2';
+		}
+	});
+</script>
+
+<div
+	class="float-left overflow-hidden relative rounded-lg shadow-lg dark:shadow-gray-800 mb-2 {additionalCarouselStyles}"
+>
+	<Carousel {images} {showThumbs} {showCaptions} {showIndicators} {duration} loop />
+</div>

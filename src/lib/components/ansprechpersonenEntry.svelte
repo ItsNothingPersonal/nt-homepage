@@ -23,7 +23,7 @@
 					<img
 						alt={`Bild von ${person.name}`}
 						src={getImageUrl(person.bild, 192, 192, 'contain', 'auto')}
-						class="my-1"
+						class="my-1 rounded-lg shadow-lg dark:shadow-gray-800"
 					/>
 				{/if}
 				<A href={`mailto:${person.email}`}>{person.email ?? ''}</A>

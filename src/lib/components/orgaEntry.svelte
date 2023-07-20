@@ -22,6 +22,7 @@
 					<img
 						alt={`Bild der Spielleitung ${person.name}`}
 						src={getImageUrl(person.bild, 192, 192, 'contain', 'auto')}
+						class="rounded-lg shadow-lg dark:shadow-gray-800"
 					/>
 				{/if}
 			</div>
