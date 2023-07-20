@@ -18,7 +18,7 @@
 <div class="flex flex-col-reverse md:inline-block md:container">
 	{#if !isNullOrUndefined(images) && images.length > 0}
 		<div class={`float-left max-w-sm md:mr-2 mb-2`}>
-			<Carousel {images} {showThumbs} {showCaptions} {showIndicators} loop duration={3000} />
+			<Carousel {images} {showThumbs} {showCaptions} {showIndicators} loop duration={5000} />
 		</div>
 	{/if}
 

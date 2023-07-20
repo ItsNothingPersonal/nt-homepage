@@ -40,6 +40,6 @@
 
 	{#if !isNullOrUndefined(bilder) && bilder?.length > 0}
 		<Heading tag="h3" class="mb-2 mt-4">Bildergalerie</Heading>
-		<Carousel images={bilder} {showThumbs} {showCaptions} {showIndicators} loop duration={3000} />
+		<Carousel images={bilder} {showThumbs} {showCaptions} {showIndicators} loop duration={5000} />
 	{/if}
 </div>
