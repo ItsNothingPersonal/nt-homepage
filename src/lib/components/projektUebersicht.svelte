@@ -1,25 +1,21 @@
 <script lang="ts">
 	import type { ImageInformation } from '$lib/types/imageInformation';
 	import { isNullOrUndefined } from '$lib/util';
-	import { A, Carousel, Heading, P } from 'flowbite-svelte';
+	import { A, Heading, P } from 'flowbite-svelte';
+	import ImageCarousel from './imageCarousel.svelte';
 
 	export let titel: string;
 	export let beschreibung: string;
 	export let spieltermine: string;
 	export let email: string;
 	export let images: ImageInformation[] | undefined = undefined;
-	export let showThumbs = false;
-	export let showCaptions = false;
-	export let showIndicators = false;
 </script>
 
 <Heading tag="h1" class="mb-4">{titel}</Heading>
 
 <div class="flex flex-col-reverse md:inline-block md:container">
 	{#if !isNullOrUndefined(images) && images.length > 0}
-		<div class={`float-left max-w-sm md:mr-2 mb-2`}>
-			<Carousel {images} {showThumbs} {showCaptions} {showIndicators} loop duration={5000} />
-		</div>
+		<ImageCarousel {images} style="small" />
 	{/if}
 
 	<div class="flex flex-col">

@@ -52,7 +52,7 @@
 					width < ScreenSize.MD ? '80' : '192'
 				}&height=${width < ScreenSize.MD ? '80' : '192'}&quality=80&format=auto`}
 				alt={`logo of clan ${clan.name}`}
-				class="object-cover w-20 h-20 md:w-48 md:h-48"
+				class="object-cover w-20 h-20 md:w-48 md:h-48 rounded-lg shadow-lg dark:shadow-gray-800"
 			/>
 			{#if width > ScreenSize.MD}
 				<P weight="bold" size="lg">{clan.name}</P>
