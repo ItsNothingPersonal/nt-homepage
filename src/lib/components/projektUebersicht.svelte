@@ -33,8 +33,8 @@
 		</P>
 
 		<Heading tag="h2">Kontakt</Heading>
-		<div class="grid grid-cols-min-content-first grid-rows-2 gap-x-2">
-			<P>E-Mail</P>
+		<div class="grid grid-cols-min-content-first grid-rows-1 gap-x-2 mb-4">
+			<P whitespace="pre">E-Mail</P>
 			<A href={`mailto:${email}`}>{email}</A>
 		</div>
 	</div>
