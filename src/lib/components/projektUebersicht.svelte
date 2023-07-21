@@ -15,7 +15,7 @@
 
 <div class="flex flex-col-reverse md:inline-block md:container">
 	{#if !isNullOrUndefined(images) && images.length > 0}
-		<ImageCarousel {images} style="small" />
+		<ImageCarousel {images} style="small" floatLeft={true} />
 	{/if}
 
 	<div class="flex flex-col">

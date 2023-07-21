@@ -17,13 +17,14 @@
 		if (style === 'small') {
 			additionalCarouselStyles = '[&>div]:max-w-sm [&>div]:h-56 md:[&>div]:h-64';
 		}
+		if (floatLeft === true) {
+			additionalCarouselStyles += ` ${floatLeftStyle}`;
+		}
 	});
 </script>
 
 <div
-	class="overflow-hidden relative rounded-lg shadow-lg dark:shadow-gray-800 mb-2 {additionalCarouselStyles} {floatLeft
-		? floatLeftStyle
-		: ''}"
+	class="overflow-hidden relative rounded-lg shadow-lg dark:shadow-gray-800 mb-2 {additionalCarouselStyles}"
 >
 	<Carousel {images} {showThumbs} {showCaptions} {showIndicators} {duration} loop />
 </div>
