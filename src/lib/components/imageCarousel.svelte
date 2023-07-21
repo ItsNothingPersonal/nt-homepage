@@ -8,18 +8,22 @@
 	export let showIndicators: boolean | undefined = false;
 	export let duration: number | undefined = 5000;
 	export let style: 'small' | 'normal' = 'normal';
+	export let floatLeft = false;
 
 	let additionalCarouselStyles = '';
+	let floatLeftStyle = 'float-left md:mr-2';
 
 	onMount(() => {
 		if (style === 'small') {
-			additionalCarouselStyles = '[&>div]:max-w-sm [&>div]:h-56 md:[&>div]:h-64 md:mr-2';
+			additionalCarouselStyles = '[&>div]:max-w-sm [&>div]:h-56 md:[&>div]:h-64';
 		}
 	});
 </script>
 
 <div
-	class="float-left overflow-hidden relative rounded-lg shadow-lg dark:shadow-gray-800 mb-2 {additionalCarouselStyles}"
+	class="overflow-hidden relative rounded-lg shadow-lg dark:shadow-gray-800 mb-2 {additionalCarouselStyles} {floatLeft
+		? floatLeftStyle
+		: ''}"
 >
 	<Carousel {images} {showThumbs} {showCaptions} {showIndicators} {duration} loop />
 </div>

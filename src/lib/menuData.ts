@@ -31,6 +31,7 @@ export const menuData: {
 			{ href: '/sabbat/spielort', label: 'Spielort' },
 			{ href: '/sabbat/orga', label: 'Orga-Team' },
 			{ href: '/sabbat/setting-steckbrief', label: 'Setting-Steckbrief' },
+			{ href: '/sabbat/zeittafel-sabbat', label: 'Zeittafel d. Diozöse' },
 			{ href: '/sabbat/charakter-galerie', label: 'Charaktergalerie' }
 		]
 	},

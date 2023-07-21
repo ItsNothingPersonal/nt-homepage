@@ -31,7 +31,7 @@
 
 <div class="container">
 	{#if !isNullOrUndefined(images) && images.length > 0}
-		<ImageCarousel {images} />
+		<ImageCarousel {images} floatLeft={true} />
 	{/if}
 	<P uppercase class="[&>p]:first-letter:text-2xl [&>p]::text-2xl [&>p]:text-justify [&>p]:mb-2">
 		{@html beschreibung}
