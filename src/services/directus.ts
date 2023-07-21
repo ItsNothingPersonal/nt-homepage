@@ -3,7 +3,6 @@ import type { CamarillaBrujahKonflikt } from '$lib/types/zod/camarillaBrujahKonf
 import type { CamarillaCharaktere } from '$lib/types/zod/camarillaCharaktere';
 import type { CamarillaSpielortFiles } from '$lib/types/zod/camarillaSpielortFiles';
 import type { CamarillaUebersichtFiles } from '$lib/types/zod/camarillaUebersichtFiles';
-import type { CamarillaZeittafelProtektorat } from '$lib/types/zod/camarillaZeittafelProtektorat';
 import type { CharakterStatus } from '$lib/types/zod/charakterStatus';
 import type { Clan } from '$lib/types/zod/clan';
 import type { ClansFiles } from '$lib/types/zod/clansFiles';
@@ -31,6 +30,7 @@ import type { W40KUebersichtFiles } from '$lib/types/zod/w40KUebersichtFiles';
 import type { W40KSpielortFiles } from '$lib/types/zod/w40kSpielortFiles';
 import type { WasIstVampireLive } from '$lib/types/zod/wasIstVampireLive';
 import type { WasSindClans } from '$lib/types/zod/wasSindClans';
+import type { Zeittafel } from '$lib/types/zod/zeittafel';
 import { Directus } from '@directus/sdk';
 
 type DirectusCollections = {
@@ -46,7 +46,7 @@ type DirectusCollections = {
 	camarilla_aemter: CamarillaAemter;
 	camarilla_spielort: Spielort;
 	camarilla_spielort_files: CamarillaSpielortFiles;
-	camarilla_zeittafel_protektorat: CamarillaZeittafelProtektorat;
+	camarilla_zeittafel_protektorat: Zeittafel;
 	camarilla_brujah_konflikt: CamarillaBrujahKonflikt;
 	camarilla_orga: Orga;
 	orga_rollen: OrgaRollen;
@@ -59,6 +59,7 @@ type DirectusCollections = {
 	sabbat_charaktere: SabbatCharakter;
 	sabbat_spielort: Spielort;
 	sabbat_spielort_files: SabbatSpielortFiles;
+	sabbat_zeittafel: Zeittafel;
 	sabbat_orga: Orga;
 	sabbat_steckbrief: SettingSteckbrief;
 	w40k_uebersicht: ProjektUebersicht;
