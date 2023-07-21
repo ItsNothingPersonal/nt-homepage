@@ -9,7 +9,7 @@ export const sabbatCharakter = z.object({
 	clan: clan.nullable(),
 	charakter_status: sabbatCharakterStatus.optional(),
 	offizier: sabbatAemter.nullable(),
-	pack: sabbatPacks,
+	pack: sabbatPacks.nullable(),
 	beschreibung: z.string().nullish(),
 	bild: z.string()
 });
