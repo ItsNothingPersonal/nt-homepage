@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { socialIconConfig, type SocialMedia } from '$lib/socialIconConfig';
-	import { Button, P } from 'flowbite-svelte';
+	import { Button } from 'flowbite-svelte';
 
 	export let icon: SocialMedia;
 	export let href: string | undefined = undefined;
@@ -18,12 +18,12 @@
 		<path d={socialIconConfig[icon].svg} />
 	</svg>
 	{#if icon === 'discord'}
-		<P>Discord</P>
+		Discord
 	{:else if icon === 'facebook'}
-		<P>Facebook</P>
+		Facebook
 	{:else if icon === 'instagram'}
-		<P>Instagram</P>
+		Instagram
 	{:else}
-		<P>{text}</P>
+		{text}
 	{/if}
 </Button>
