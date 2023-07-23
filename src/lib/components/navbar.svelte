@@ -32,8 +32,8 @@
 	};
 	let breakPoint: number = ScreenSize.MD;
 	let width: number;
-	let drawerHidden: boolean = true;
-	let backdrop: boolean = true;
+	let drawerHidden = true;
+	let backdrop = true;
 	let activateClickOutside = true;
 
 	let spanClass = 'pl-2 self-center text-md text-gray-900 whitespace-nowrap dark:text-white';
@@ -47,8 +47,6 @@
 	} else {
 		activateClickOutside = true;
 	}
-
-	$: activeUrl = $page.url.pathname;
 
 	onMount(() => {
 		if (width <= breakPoint) {
@@ -124,7 +122,12 @@
 	<Sidebar asideClass="w-54">
 		<SidebarWrapper divClass="overflow-y-auto py-4 px-3 rounded dark:bg-gray-800">
 			<SidebarGroup>
-				<SidebarItem label="Startseite" href="/" on:click={toggleSide} active={activeUrl === `/`} />
+				<SidebarItem
+					label="Startseite"
+					href="/"
+					on:click={toggleSide}
+					active={$page.url.pathname === `/`}
+				/>
 				{#each menuData as { label, href, subData }}
 					{#if isNullOrUndefined(subData)}
 						<SidebarItem
@@ -132,7 +135,7 @@
 							{href}
 							{spanClass}
 							on:click={toggleSide}
-							active={activeUrl === href}
+							active={$page.url.pathname === href}
 						/>
 					{:else}
 						<SidebarDropdownWrapper {label}>
@@ -142,7 +145,7 @@
 									{href}
 									{spanClass}
 									on:click={toggleSide}
-									active={activeUrl === href}
+									active={$page.url.pathname === href}
 								/>
 							{/each}
 						</SidebarDropdownWrapper>
