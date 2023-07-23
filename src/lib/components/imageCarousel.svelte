@@ -2,7 +2,7 @@
 	import { Carousel } from 'flowbite-svelte';
 	import { onMount } from 'svelte';
 
-	export let images: any[];
+	export let images: unknown[];
 	export let showThumbs: boolean | undefined = false;
 	export let showCaptions: boolean | undefined = false;
 	export let showIndicators: boolean | undefined = false;

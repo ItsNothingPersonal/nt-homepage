@@ -7,9 +7,6 @@
 
 	export let data: PageData;
 
-	let showThumbs = false;
-	let showCaptions = false;
-	let showIndicators = false;
 	let beschreibung = '';
 
 	let images = data.bilder?.map((e) => {
