@@ -32,7 +32,7 @@
 	{/if}
 
 	<DropdownDivider />
-	<div class="grid grid-cols-2 auto-rows-auto items-center">
+	<div class="grid grid-cols-2 auto-rows-auto items-center gap-x-4">
 		<div class="grid grid-cols-min-content-first gap-x-2">
 			<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Clan</p>
 			<P class="font-normal leading-tight">{clan?.name ?? 'unbekannt'}</P>
