@@ -10,7 +10,7 @@
 </Heading>
 <P
 	uppercase
-	class="[&>p]:first-letter:text-2xl [&>p]:text-justify [&>p]:mb-2 [&>ul>li>a]:underline [&>ul>li>a]:decoration-dotted"
+	class="[&>p]:first-letter:text-2xl [&>p]:text-justify [&>p]:mb-2 [&>ul>li>a]:underline [&>ul>li>a]:decoration-dotted [&>ul]:list-disc [&>ul]:list-inside"
 >
 	{@html data.erklaerung?.code}
 </P>
