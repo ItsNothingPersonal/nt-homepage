@@ -2,7 +2,6 @@
 	import { ScreenSize } from '$lib/types/sceenSize';
 	import { SektenName } from '$lib/types/sektenName';
 	import { A, Button, ButtonGroup, Heading, Img, P } from 'flowbite-svelte';
-	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 	import type { PageData } from './$types';
 
@@ -10,7 +9,6 @@
 
 	let width: number;
 	let sectFilter = writable('.*');
-	let beschreibungCompiled = '';
 
 	$: clans = data.clans.filter((e) => e.sekte?.match($sectFilter));
 
@@ -21,10 +19,6 @@
 			sectFilter.set(filter);
 		}
 	}
-
-	onMount(() => {
-		beschreibungCompiled = data.beschreibung?.code ?? '';
-	});
 </script>
 
 <svelte:window bind:innerWidth={width} />
@@ -32,7 +26,7 @@
 <Heading tag="h1" class="mb-4">Die 13 großen Vampir-Clans</Heading>
 
 <P class="mb-4 border-2 border-gray-600 shadow-md p-2 text-justify">
-	{@html beschreibungCompiled}
+	{@html data.beschreibung?.code}
 </P>
 
 <div class="flex justify-center mb-4">

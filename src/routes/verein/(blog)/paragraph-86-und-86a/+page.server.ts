@@ -1,16 +1,12 @@
-import { vereinParagraph86 } from '$lib/types/zod/vereinParagraph86';
+import { readSingleton } from '@directus/sdk';
 import { compile } from 'mdsvex';
-import { directus } from 'services/directus';
+import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const response = vereinParagraph86
-		.array()
-		.parse((await directus.items('verein_paragraph_86_und_86a').readByQuery({ limit: 1 })).data);
-
-	const data = response.length !== 1 ? undefined : response[0];
+	const paragraph86und86a = client.request(readSingleton('verein_paragraph_86_und_86a'));
 
 	return {
-		paragraph86und86aCompiled: compile(data?.inhalt ?? '')
+		paragraph86und86a: compile((await paragraph86und86a).inhalt)
 	};
 }) satisfies PageServerLoad;

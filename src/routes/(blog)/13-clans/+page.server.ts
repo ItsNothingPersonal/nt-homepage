@@ -1,17 +1,15 @@
 import { clan } from '$lib/types/zod/clan';
-import { wasSindClans } from '$lib/types/zod/wasSindClans';
+import { readItems, readSingleton } from '@directus/sdk';
 import { compile } from 'mdsvex';
-import { directus } from 'services/directus';
+import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const clansResponse = directus.items('clans').readByQuery({ limit: -1, sort: ['name'] });
-	const data = wasSindClans
-		.array()
-		.parse((await directus.items('was_sind_clans').readByQuery({ limit: 1 })).data);
+	const clans = client.request(readItems('clans', { sort: ['name'] }));
+	const wasSindClans = client.request(readSingleton('was_sind_clans'));
 
 	return {
-		clans: clan.array().parse((await clansResponse).data),
-		beschreibung: await compile(data[0].beschreibung)
+		clans: clan.array().parse(await clans),
+		beschreibung: await compile((await wasSindClans).beschreibung)
 	};
 }) satisfies PageServerLoad;

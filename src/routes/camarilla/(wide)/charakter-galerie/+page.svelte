@@ -89,6 +89,7 @@
 		<CharacterCard
 			characterName={charakter.name}
 			clan={charakter.clan}
+			blutlinie={charakter.blutlinie}
 			aemterName={charakter.offizier?.name}
 			status={charakter.charakter_status?.name}
 			beschreibung={charakter.beschreibung}

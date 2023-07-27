@@ -1,24 +1,5 @@
-import { directus } from 'services/directus';
-import { folderInformation } from './types/zod/folderInformation';
-
 export function isNullOrUndefined<T>(obj: T | null | undefined): obj is null | undefined {
 	return typeof obj === 'undefined' || obj === null;
-}
-
-export async function getFolderByName(name: string): Promise<string | undefined> {
-	const folderResponse = directus.folders.readByQuery({
-		filter: { name: { _eq: name } }
-	});
-
-	const folderIds = folderInformation
-		.array()
-		.parse((await folderResponse).data)
-		.map((e) => e.id);
-
-	if (folderIds.length !== 1) {
-		return undefined;
-	}
-	return folderIds[0];
 }
 
 export function getImageUrl(

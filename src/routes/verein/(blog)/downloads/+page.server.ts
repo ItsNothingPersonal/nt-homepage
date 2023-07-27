@@ -1,16 +1,18 @@
 import { fileInformation } from '$lib/types/zod/fileInformation';
-import { getFolderByName } from '$lib/util';
-import { directus } from 'services/directus';
+import { readFiles } from '@directus/sdk';
+import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const fileResponse = directus.files.readByQuery({
-		filter: { folder: { _eq: await getFolderByName('Verein Downloads') } }
-	});
+	const folderResponse = client.request(
+		readFiles({
+			filter: { folder: { name: { _eq: 'Verein Downloads' } } }
+		})
+	);
 
 	const downloadInformation = fileInformation
 		.array()
-		.parse((await fileResponse).data)
+		.parse(await folderResponse)
 		.map((e) => {
 			return { id: e.id, name: e.filename_download, size: parseInt(e.filesize) / 1024 ** 2 };
 		});

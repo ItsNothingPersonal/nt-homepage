@@ -1,14 +1,10 @@
-import { settingSteckbrief } from '$lib/types/zod/settingSteckbrief';
+import { readSingleton } from '@directus/sdk';
 import { compile } from 'mdsvex';
-import { directus } from 'services/directus';
+import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const response = settingSteckbrief
-		.array()
-		.parse((await directus.items('sabbat_steckbrief').readByQuery({ limit: 1 })).data);
+	const data = client.request(readSingleton('sabbat_steckbrief'));
 
-	const data = response.length !== 1 ? undefined : response[0];
-
-	return { steckbrief: data, beschreibung: compile(data?.beschreibung ?? '') };
+	return { steckbrief: data, beschreibung: compile((await data).beschreibung ?? '') };
 }) satisfies PageServerLoad;

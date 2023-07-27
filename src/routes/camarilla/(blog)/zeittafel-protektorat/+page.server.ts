@@ -1,12 +1,11 @@
-import { zeittafel } from '$lib/types/zod/zeittafel';
-import { directus } from 'services/directus';
+import { readItems } from '@directus/sdk';
+import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const zeittafel_protektorat = directus.items('camarilla_zeittafel_protektorat').readByQuery({
-		limit: -1,
-		sort: ['datum']
-	});
+	const zeittafel = client.request(
+		readItems('camarilla_zeittafel_protektorat', { sort: ['datum'] })
+	);
 
-	return { zeittafel: zeittafel.array().parse((await zeittafel_protektorat).data) };
+	return { zeittafel };
 }) satisfies PageServerLoad;

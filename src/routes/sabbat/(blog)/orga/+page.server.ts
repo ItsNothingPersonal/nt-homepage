@@ -1,22 +1,24 @@
-import { orga } from '$lib/types/zod/orga';
-import { directus } from 'services/directus';
+import { readItems } from '@directus/sdk';
+import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const spielleitung = directus.items('sabbat_orga').readByQuery({
-		limit: -1,
-		fields: ['*', 'rolle.name'],
-		filter: { rolle: { name: 'Spielleitung' } }
-	});
+	const spielleitung = client.request(
+		readItems('sabbat_orga', {
+			filter: { rolle: { name: { _eq: 'Spielleitung' } } },
+			fields: ['*', { rolle: ['name'] }]
+		})
+	);
 
-	const erzaehler = directus.items('sabbat_orga').readByQuery({
-		limit: -1,
-		fields: ['*', 'rolle.name'],
-		filter: { rolle: { name: 'Erzähler' } }
-	});
+	const erzaehler = client.request(
+		readItems('sabbat_orga', {
+			filter: { rolle: { name: { _eq: 'Erzähler' } } },
+			fields: ['*', { rolle: ['name'] }]
+		})
+	);
 
 	return {
-		spielleitung: orga.array().parse((await spielleitung).data),
-		erzaehler: orga.array().parse((await erzaehler).data)
+		spielleitung,
+		erzaehler
 	};
 }) satisfies PageServerLoad;

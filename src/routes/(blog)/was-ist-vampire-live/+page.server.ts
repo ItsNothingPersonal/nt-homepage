@@ -1,13 +1,13 @@
-import { wasIstVampireLive } from '$lib/types/zod/wasIstVampireLive';
-import { directus } from 'services/directus';
+import { readSingleton } from '@directus/sdk';
+import { compile } from 'mdsvex';
+import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const response = wasIstVampireLive
-		.array()
-		.parse((await directus.items('was_ist_vampire_live').readByQuery({ limit: 1 })).data);
+	const wasIstVampireLiveResponse = client.request(readSingleton('was_ist_vampire_live'));
 
 	return {
-		wasIstVampireLive: response.length === 1 ? response[0] : undefined
+		ueberschrift: (await wasIstVampireLiveResponse).ueberschrift,
+		erklaerung: await compile((await wasIstVampireLiveResponse).erklaerung)
 	};
 }) satisfies PageServerLoad;

@@ -1,24 +1,19 @@
-import { clan } from '$lib/types/zod/clan';
 import { clansFiles } from '$lib/types/zod/clansFiles';
+import { readItem, readItems } from '@directus/sdk';
 import { compile } from 'mdsvex';
-import { directus } from 'services/directus';
+import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ params }) => {
-	const data = clan.parse(await directus.items('clans').readOne(params.clanId));
+	const clan = client.request(readItem('clans', params.clanId, { sort: ['name'] }));
 
-	const clanBeschreibung = await compile(data.beschreibung ?? '');
-	const clansBilder = directus.items('clans_files').readByQuery({
-		filter: {
-			clans_id: {
-				_eq: data.id
-			}
-		}
-	});
+	const clanBilder = client.request(
+		readItems('clans_files', { filter: { clans_id: { _eq: params.clanId } } })
+	);
 
 	return {
-		clan: data,
-		beschreibung: clanBeschreibung,
-		bilder: clansFiles.array().parse((await clansBilder).data)
+		clan,
+		beschreibung: compile((await clan).beschreibung ?? ''),
+		bilder: clansFiles.array().parse(await clanBilder)
 	};
 }) satisfies PageServerLoad;

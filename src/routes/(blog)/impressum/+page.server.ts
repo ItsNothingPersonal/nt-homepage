@@ -1,13 +1,13 @@
-import { impressum } from '$lib/types/zod/impressum';
-import { directus } from 'services/directus';
+import { readSingleton } from '@directus/sdk';
+import { compile } from 'mdsvex';
+import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const response = impressum
-		.array()
-		.parse((await directus.items('impressum').readByQuery({ limit: 1 })).data);
+	const impressum = client.request(readSingleton('impressum'));
 
 	return {
-		impressum: response.length === 1 ? response[0] : undefined
+		impressum,
+		copyrightNotice: compile((await impressum).copyright_notice)
 	};
 }) satisfies PageServerLoad;

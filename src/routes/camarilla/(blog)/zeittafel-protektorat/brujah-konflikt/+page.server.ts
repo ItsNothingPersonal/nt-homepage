@@ -1,12 +1,9 @@
-import { camarillaBrujahKonflikt } from '$lib/types/zod/camarillaBrujahKonflikt';
-import { directus } from 'services/directus';
+import { readItems } from '@directus/sdk';
+import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const zeittafel = directus.items('camarilla_brujah_konflikt').readByQuery({
-		limit: -1,
-		sort: ['sort']
-	});
+	const zeittafel = client.request(readItems('camarilla_brujah_konflikt', { sort: ['sort'] }));
 
-	return { zeittafel: camarillaBrujahKonflikt.array().parse((await zeittafel).data) };
+	return { zeittafel };
 }) satisfies PageServerLoad;
