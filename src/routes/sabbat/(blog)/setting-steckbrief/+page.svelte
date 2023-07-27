@@ -34,32 +34,50 @@
 
 <Heading tag="h3" class="mb-1">Regeln</Heading>
 <Heading tag="h4">Erfahrungspunkte</Heading>
-<List tag="ul" position="outside" class="min-w-full text-left">
-	<Li>
-		<P>
+<List tag="ul" position="outside" class="space-y-1">
+	<P>
+		<Li>
 			{steckbrief?.erfahrung_beginn_menge} XP für die ersten {steckbrief?.erfahrung_beginn_dauer_monate}
 			Spielabende.
-		</P>
-	</Li>
-	<Li>
-		<P>{steckbrief?.erfahrung_rest} XP für jeden folgenden Spielabend.</P>
-	</Li>
+		</Li>
+	</P>
+	<P>
+		<Li>
+			{steckbrief?.erfahrung_rest} XP für jeden folgenden Spielabend.
+		</Li>
+	</P>
 </List>
 
 <Heading tag="h4">Clans</Heading>
-<List tag="ul" position="outside" class="min-w-full text-left">
-	<Li><P>Üblich (0 XP): {steckbrief?.clan_ueblich}</P></Li>
-	<Li><P>Unüblich (2/3 XP): {steckbrief?.clan_unueblich}</P></Li>
-	<Li><P>Selten (4/5 XP): {steckbrief?.clan_selten}</P></Li>
-	<Li><P>Sehr selten (6 XP): {steckbrief?.clan_sehr_selten}</P></Li>
+<List tag="ul" position="outside" class="space-y-1">
+	<P>
+		<Li>Üblich (0 XP): {steckbrief?.clan_ueblich}</Li>
+	</P>
+	<P>
+		<Li>Unüblich (2/3 XP): {steckbrief?.clan_unueblich}</Li>
+	</P>
+	<P>
+		<Li>Selten (4/5 XP): {steckbrief?.clan_selten}</Li>
+	</P>
+	<P>
+		<Li>Sehr selten (6 XP): {steckbrief?.clan_sehr_selten}</Li>
+	</P>
 	{#if steckbrief?.clan_verboten}
-		<Li><P>Verboten: {steckbrief?.clan_verboten}</P></Li>
+		<P>
+			<Li>Verboten: {steckbrief?.clan_verboten}</Li>
+		</P>
 	{/if}
 </List>
 
 <Heading tag="h4">Spezialregeln</Heading>
-<List tag="ul" position="outside" class="min-w-full text-left">
-	<Li><P>Start-Erfahrungspunkte: {steckbrief?.erfahrung_start}</P></Li>
-	<Li><P>{steckbrief?.clans_kosten}</P></Li>
-	<Li><P>{steckbrief?.pfad_kosten}</P></Li>
+<List tag="ul" position="outside" class="space-y-1">
+	<P>
+		<Li>Start-Erfahrungspunkte: {steckbrief?.erfahrung_start}</Li>
+	</P>
+	<P>
+		<Li>{steckbrief?.clans_kosten}</Li>
+	</P>
+	<P>
+		<Li>{steckbrief?.pfad_kosten}</Li>
+	</P>
 </List>
