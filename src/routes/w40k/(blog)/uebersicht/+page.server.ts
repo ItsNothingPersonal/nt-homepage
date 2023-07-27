@@ -1,28 +1,16 @@
-import { projektUebersicht } from '$lib/types/zod/projektUebersicht';
-import { w40KUebersichtFiles } from '$lib/types/zod/w40KUebersichtFiles';
+import { readItems, readSingleton } from '@directus/sdk';
 import { compile } from 'mdsvex';
-import { directus } from 'services/directus';
+import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const response = projektUebersicht
-		.array()
-		.parse((await directus.items('w40k_uebersicht').readByQuery({ limit: 1 })).data);
-
-	const data = response.length !== 1 ? undefined : response[0];
-
-	const w40kBilder = directus.items('w40k_uebersicht_files').readByQuery({
-		filter: {
-			w40k_uebersicht_id: {
-				_eq: data?.id
-			}
-		}
-	});
+	const response = client.request(readSingleton('w40k_uebersicht'));
+	const bilder = client.request(readItems('w40k_uebersicht_files'));
 
 	return {
-		beschreibung: compile(data?.beschreibung ?? ''),
-		spieltermine: compile(data?.spieltermine ?? ''),
-		email: data?.email,
-		bilder: w40KUebersichtFiles.array().parse((await w40kBilder).data)
+		beschreibung: compile((await response).beschreibung ?? ''),
+		spieltermine: compile((await response).spieltermine ?? ''),
+		email: (await response).email,
+		bilder
 	};
 }) satisfies PageServerLoad;

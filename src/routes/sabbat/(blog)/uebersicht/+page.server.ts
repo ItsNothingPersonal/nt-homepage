@@ -1,28 +1,16 @@
-import { projektUebersicht } from '$lib/types/zod/projektUebersicht';
-import { sabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles';
+import { readItems, readSingleton } from '@directus/sdk';
 import { compile } from 'mdsvex';
-import { directus } from 'services/directus';
+import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const response = projektUebersicht
-		.array()
-		.parse((await directus.items('sabbat_uebersicht').readByQuery({ limit: 1 })).data);
-
-	const data = response.length !== 1 ? undefined : response[0];
-
-	const sabbatBilder = directus.items('sabbat_uebersicht_files').readByQuery({
-		filter: {
-			sabbat_uebersicht_id: {
-				_eq: data?.id
-			}
-		}
-	});
+	const response = client.request(readSingleton('sabbat_uebersicht'));
+	const bilder = client.request(readItems('sabbat_uebersicht_files'));
 
 	return {
-		beschreibung: compile(data?.beschreibung ?? ''),
-		spieltermine: compile(data?.spieltermine ?? ''),
-		email: data?.email,
-		bilder: sabbatUebersichtFiles.array().parse((await sabbatBilder).data)
+		beschreibung: compile((await response).beschreibung ?? ''),
+		spieltermine: compile((await response).spieltermine ?? ''),
+		email: (await response).email,
+		bilder
 	};
 }) satisfies PageServerLoad;
