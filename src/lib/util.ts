@@ -17,3 +17,15 @@ export function getImageUrl(
 export function getDownloadUrl(filesId: string) {
 	return `${import.meta.env.VITE_DIRECTUS_URL}/assets/${filesId}`;
 }
+
+export function getFormattedDay(date: Date | undefined): string {
+	return date ? ('0' + date.getDate()).slice(-2) : '';
+}
+
+export function getFormattedMonth(date: Date | undefined): string {
+	return date ? ('0' + (date.getMonth() + 1)).slice(-2) : '';
+}
+
+export function isString(input: unknown): input is string {
+	return typeof input === 'string';
+}

@@ -14,7 +14,11 @@ export const load = (async () => {
 		.array()
 		.parse(await folderResponse)
 		.map((e) => {
-			return { id: e.id, name: e.filename_download, size: parseInt(e.filesize) / 1024 ** 2 };
+			return {
+				id: e.id,
+				name: e.filename_download,
+				size: e.filesize ? parseInt(e.filesize) / 1024 ** 2 : 0
+			};
 		});
 
 	return { downloadInformation };
