@@ -1,6 +1,6 @@
-import { basicUser, type BasicUser } from '$lib/types/zod/basicUser';
+import type { BasicUser } from '$lib/types/zod/basicUser';
 import type { ProjektName } from '$lib/types/zod/projektName';
-import { shortNews, type ShortNews } from '$lib/types/zod/shortNews';
+import type { ShortNews } from '$lib/types/zod/shortNews';
 import type { ShortNewsWithUser } from '$lib/types/zod/shortNewsWithUser';
 import { readItems, readUser } from '@directus/sdk';
 import { client } from 'services/directus';
@@ -21,42 +21,34 @@ async function getProjectNews(project: ProjektName): Promise<ShortNewsWithUser[]
 	let newsList: ShortNews[];
 	switch (project) {
 		case 'Camarilla': {
-			newsList = shortNews.array().parse(
-				await client.request(
-					readItems('camarilla_news', {
-						fields: ['id', 'titel', 'synopsis', 'date_created', 'date_updated', 'user_created']
-					})
-				)
+			newsList = await client.request(
+				readItems('camarilla_news', {
+					fields: ['id', 'titel', 'synopsis', 'date_created', 'date_updated', 'user_created']
+				})
 			);
 			break;
 		}
 		case 'Sabbat': {
-			newsList = shortNews.array().parse(
-				await client.request(
-					readItems('sabbat_news', {
-						fields: ['id', 'titel', 'synopsis', 'date_created', 'date_updated', 'user_created']
-					})
-				)
+			newsList = await client.request(
+				readItems('sabbat_news', {
+					fields: ['id', 'titel', 'synopsis', 'date_created', 'date_updated', 'user_created']
+				})
 			);
 			break;
 		}
 		case 'W40K': {
-			newsList = shortNews.array().parse(
-				await client.request(
-					readItems('w40k_news', {
-						fields: ['id', 'titel', 'synopsis', 'date_created', 'date_updated', 'user_created']
-					})
-				)
+			newsList = await client.request(
+				readItems('w40k_news', {
+					fields: ['id', 'titel', 'synopsis', 'date_created', 'date_updated', 'user_created']
+				})
 			);
 			break;
 		}
 		case 'Verein': {
-			newsList = shortNews.array().parse(
-				await client.request(
-					readItems('verein_news', {
-						fields: ['id', 'titel', 'synopsis', 'date_created', 'date_updated', 'user_created']
-					})
-				)
+			newsList = await client.request(
+				readItems('verein_news', {
+					fields: ['id', 'titel', 'synopsis', 'date_created', 'date_updated', 'user_created']
+				})
 			);
 			break;
 		}
@@ -88,12 +80,12 @@ async function getProjectNews(project: ProjektName): Promise<ShortNewsWithUser[]
 		if (!userSet.has(news.user_created)) {
 			userSet.set(news.user_created, await client.request(readUser(news.user_created)));
 		}
-		const author = basicUser.required().parse(userSet.get(news.user_created));
+		const author = userSet.get(news.user_created);
 
-		temp.user_created.id = author.id;
-		temp.user_created.first_name = author.first_name;
-		temp.user_created.last_name = author.last_name;
-		temp.user_created.avatar = author.avatar;
+		temp.user_created.id = author?.id;
+		temp.user_created.first_name = author?.first_name;
+		temp.user_created.last_name = author?.last_name;
+		temp.user_created.avatar = author?.avatar;
 
 		shortNewsWithUsers.push(temp);
 	}

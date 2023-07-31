@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ProjektNews from '$lib/components/projektNews.svelte';
 	import { isString } from '$lib/util';
-	import { A, Heading, Img } from 'flowbite-svelte';
+	import { A, Heading, Img, P } from 'flowbite-svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -48,21 +48,25 @@
 <Heading class="mb-4 text-center" tag="h2">Neuigkeiten</Heading>
 <div class="container flex justify-center">
 	<div class="grid grid-cols-1 md:grid-cols-3 auto-rows-auto gap-4">
-		{#each data.news
-			.flat()
-			.sort((objA, objB) => objB.date_created.getTime() - objA.date_created.getTime()) as news}
-			<ProjektNews
-				title={news.titel}
-				synopsis={news.synopsis}
-				authorFirstName={news.user_created.first_name}
-				authorLastName={news.user_created.last_name}
-				date={news.date_created}
-				avatar={isString(news.user_created.avatar)
-					? news.user_created.avatar
-					: news.user_created.avatar?.id}
-				project={news.project}
-				newsId={news.id}
-			/>
-		{/each}
+		{#await data.news}
+			<P>Warte auf Daten...</P>
+		{:then value}
+			{#each value
+				.flat()
+				.sort((objA, objB) => objB.date_created.getTime() - objA.date_created.getTime()) as news}
+				<ProjektNews
+					title={news.titel}
+					synopsis={news.synopsis}
+					authorFirstName={news.user_created.first_name}
+					authorLastName={news.user_created.last_name}
+					date={news.date_created}
+					avatar={isString(news.user_created.avatar)
+						? news.user_created.avatar
+						: news.user_created.avatar?.id}
+					project={news.project}
+					newsId={news.id}
+				/>
+			{/each}
+		{/await}
 	</div>
 </div>
