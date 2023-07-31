@@ -32,13 +32,14 @@
 			{getFormattedDay(date)}.{getFormattedMonth(date)}.{date?.getFullYear()}
 		</P>
 	</div>
-	<h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+	<h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
 		{title}
-	</h5>
+	</h1>
 
 	<P
-		class={`[&>p]:first-letter:text-2xl [&>p]::text-2xl [&>p]:text-justify [&>p]:mb-2 [&>h2]:text-4xl [&>h2]:font-bold [&>h3]:text-3xl [&>h3]:font-bold text-gray-900 dark:text-white w-full ` +
-			`[&>p>a]:underline [&>p>a]:decoration-dotted`}
+		class={`[&>p]:first-letter:text-2xl [&>p]:text-justify [&>p]:mb-2 [&>h1]:text-3xl [&>h1]:font-bold [&>h2]:text-2xl [&>h2]:font-bold [&>h3]:text-xl [&>h3]:font-bold ` +
+			`text-gray-900 dark:text-white w-full [&>p>a]:underline [&>p>a]:decoration-dotted [&>ol]:list-decimal [&>ol]:list-inside [&>ul]:list-disc [&>ul]:list-inside ` +
+			`[&>blockquote]:p-4 [&>blockquote]:border-l-4 [&>blockquote]:border-gray-300 [&>blockquote]:bg-gray-50 [&>blockquote]:dark:bg-gray-800 [&>table]:w-full [&>table]:table-auto`}
 	>
 		{@html news}
 	</P>
