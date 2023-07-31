@@ -6,6 +6,7 @@ import type { CamarillaUebersichtFiles } from '$lib/types/zod/camarillaUebersich
 import type { Clan } from '$lib/types/zod/clan';
 import type { ClansFiles } from '$lib/types/zod/clansFiles';
 import type { Impressum } from '$lib/types/zod/impressum';
+import type { News } from '$lib/types/zod/news';
 import type { Orga } from '$lib/types/zod/orga';
 import type { ProjektUebersicht } from '$lib/types/zod/projektUebersicht';
 import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
@@ -30,6 +31,7 @@ export interface DirectusSchema {
 	blutlinien: Blutlinie[];
 	camarilla_brujah_konflikt: CamarillaBrujahKonflikt[];
 	camarilla_charaktere: CamarillaCharaktere[];
+	camarilla_news: News[];
 	camarilla_orga: Orga[];
 	camarilla_spielort: Spielort;
 	camarilla_spielort_files: CamarillaSpielortFiles[];
@@ -40,6 +42,7 @@ export interface DirectusSchema {
 	clans_files: ClansFiles[];
 	impressum: Impressum;
 	sabbat_charaktere: SabbatCharakter[];
+	sabbat_news: News[];
 	sabbat_orga: Orga[];
 	sabbat_packs: SabbatPacks[];
 	sabbat_spielort: Spielort;
@@ -51,8 +54,10 @@ export interface DirectusSchema {
 	verein_ansprechpersonen: VereinAnsprechpersonen[];
 	verein_datenschutz: VereinDatenschutz;
 	verein_kontakt: VereinKontakt;
+	verein_news: News[];
 	verein_paragraph_86_und_86a: VereinParagraph86;
 	verein_rollen: VereinRollen[];
+	w40k_news: News[];
 	w40k_spielort: Spielort;
 	w40k_spielort_files: W40KSpielortFiles[];
 	w40k_uebersicht: ProjektUebersicht;
