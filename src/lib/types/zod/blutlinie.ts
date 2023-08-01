@@ -3,7 +3,7 @@ import { clan } from './clan';
 
 export const blutlinie = z.object({
 	id: z.string().or(z.number()).optional(),
-	clan: clan.optional(), //das sollte nicht optional sein?
+	clan: clan.optional(),
 	name: z.string()
 });
 
