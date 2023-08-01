@@ -14,7 +14,8 @@ export const load = (async () => {
 				{ offizier: ['name'] },
 				{ zusatzfunktion: ['name'] },
 				{ sekte: ['name'] }
-			]
+			],
+			sort: ['offizier', 'charakter_status']
 		})
 	);
 

@@ -15,7 +15,8 @@ export const load = (async () => {
 				{ pack: ['name'] },
 				{ charakter_status: ['name'] },
 				{ clan: ['name'] }
-			]
+			],
+			sort: ['offizier', '-charakter_status']
 		})
 	);
 

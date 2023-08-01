@@ -54,9 +54,11 @@
 	function swapFilterEinzelgaenger() {
 		if ($einzelgaengerFilter === true) {
 			einzelgaengerFilter.set(false);
+			selektiertesPack.set(undefined);
 		} else {
 			packFilter.set('.*');
 			einzelgaengerFilter.set(true);
+			selektiertesPack.set(undefined);
 		}
 	}
 </script>
