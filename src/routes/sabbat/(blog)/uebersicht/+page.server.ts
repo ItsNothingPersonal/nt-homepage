@@ -10,7 +10,7 @@ export const load = (async () => {
 	return {
 		beschreibung: compile((await response).beschreibung ?? ''),
 		spieltermine: compile((await response).spieltermine ?? ''),
-		email: (await response).email,
-		bilder
+		bilder,
+		sabbatUebersicht: response
 	};
 }) satisfies PageServerLoad;

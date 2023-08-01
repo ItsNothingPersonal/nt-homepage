@@ -17,6 +17,7 @@
 	titel="Warhammer 40K"
 	beschreibung={data.beschreibung?.code ?? ''}
 	spieltermine={data.spieltermine?.code ?? ''}
-	email={data.email}
+	email={data.w40kUebersicht.email}
 	{images}
+	googleCalendarLink={data.w40kUebersicht.google_calendar_link}
 />
