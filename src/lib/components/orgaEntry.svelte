@@ -17,7 +17,12 @@
 	<div class="flex flex-col md:grid md:grid-cols-2 md:grid-rows-1 mt-2 mb-2">
 		{#each personen as person}
 			<div class="flex flex-col items-center mb-2 last:mb-0">
-				<P weight="semibold">{person.name}</P>
+				<P weight="semibold">
+					{person.name}
+					{#if person.projektleiter}
+						{` (Projektleiter)`}
+					{/if}
+				</P>
 				{#if person.bild}
 					<img
 						alt={`Bild der Spielleitung ${person.name}`}
