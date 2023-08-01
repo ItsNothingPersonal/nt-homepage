@@ -17,6 +17,7 @@
 	titel="Vampire Live - Sabbat"
 	beschreibung={data.beschreibung?.code ?? ''}
 	spieltermine={data.spieltermine?.code ?? ''}
-	email={data.email}
+	email={data.sabbatUebersicht.email}
 	{images}
+	googleCalendarLink={data.sabbatUebersicht.google_calendar_link}
 />

@@ -17,6 +17,7 @@
 	titel="Vampire Live - Camarilla"
 	beschreibung={data.beschreibung?.code ?? ''}
 	spieltermine={data.spieltermine?.code ?? ''}
-	email={data.email}
+	email={data.camarillaUebersicht.email}
 	{images}
+	googleCalendarLink={data.camarillaUebersicht.google_calendar_link}
 />
