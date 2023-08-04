@@ -30,11 +30,12 @@
 		duration: 200,
 		easing: sineIn
 	};
-	let breakPoint: number = ScreenSize.MD;
+	let breakPoint: number = ScreenSize.LG;
 	let width: number;
 	let drawerHidden = true;
 	let backdrop = true;
 	let activateClickOutside = true;
+	$: mobile = width < breakPoint;
 
 	let spanClass = 'pl-2 self-center text-md text-gray-900 whitespace-nowrap dark:text-white';
 	let divClass = 'w-full md:block md:w-auto pr-8';
@@ -42,14 +43,8 @@
 	let darkmodebtn =
 		'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-lg p-2.5 fixed right-2 top-12  md:top-3 md:right-2 z-50';
 
-	$: if (width <= breakPoint) {
-		activateClickOutside = false;
-	} else {
-		activateClickOutside = true;
-	}
-
 	onMount(() => {
-		if (width <= breakPoint) {
+		if (mobile) {
 			activateClickOutside = false;
 		} else {
 			activateClickOutside = true;
@@ -57,51 +52,49 @@
 	});
 
 	const toggleSide = () => {
-		if (width < breakPoint) {
-			drawerHidden = !drawerHidden;
-		}
-	};
-	const toggleDrawer = () => {
-		drawerHidden = false;
+		drawerHidden = !drawerHidden;
 	};
 </script>
 
 <svelte:window bind:innerWidth={width} />
 
 <Navbar
-	let:hidden
 	navClass="px-2 sm:px-4 py-2.5 w-full top-0 left-0 right-0 z-10 inset-x-0 fixed border-b pb-2"
 >
-	<NavHamburger on:click={toggleDrawer} btnClass="ml-3 lg:hidden" />
+	<NavHamburger on:click={toggleSide} btnClass="ml-3 lg:hidden" />
 
-	<NavBrand href="/" class="lg:ml-64">
-		<Img
-			src="/images/Logo_Navbar.webp"
-			imgClass="max-h-14"
-			alt="Nächtliches Theater Logo"
-			class="rounded-lg shadow-lg dark:shadow-gray-800"
-		/>
+	<NavBrand href="/" class="pl-4 2xl:pl-0 2xl:ml-64">
+		{#if width > 390}
+			<Img
+				src="/images/Logo_Navbar.webp"
+				imgClass="max-h-14"
+				alt="Nächtliches Theater Logo"
+				class="rounded-lg shadow-lg dark:shadow-gray-800"
+			/>
+		{/if}
 		<span class="ml-2 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
 			Nächtliches Theater e.V.
 		</span>
 	</NavBrand>
 
-	<NavUl {hidden} {divClass} {ulClass}>
-		{#each menuData as menuEntry}
-			{#if menuEntry.subData === undefined}
-				<NavLi href={menuEntry.href}>{menuEntry.label}</NavLi>
-			{:else}
-				<NavLi id={`nav-menu-${menuEntry.id}`} class="cursor-pointer">
-					<Chevron aligned>{menuEntry.label}</Chevron>
-				</NavLi>
-				<Dropdown triggeredBy={`#nav-menu-${menuEntry.id}`} class="w-44 z-20">
-					{#each menuEntry.subData as subMenu}
-						<DropdownItem><NavLi href={subMenu.href}>{subMenu.label}</NavLi></DropdownItem>
-					{/each}
-				</Dropdown>
-			{/if}
-		{/each}
-	</NavUl>
+	{#if !mobile}
+		<NavUl {divClass} {ulClass}>
+			{#each menuData as menuEntry}
+				{#if menuEntry.subData === undefined}
+					<NavLi href={menuEntry.href}>{menuEntry.label}</NavLi>
+				{:else}
+					<NavLi id={`nav-menu-${menuEntry.id}`} class="cursor-pointer">
+						<Chevron aligned>{menuEntry.label}</Chevron>
+					</NavLi>
+					<Dropdown triggeredBy={`#nav-menu-${menuEntry.id}`} class="w-44 z-20">
+						{#each menuEntry.subData as subMenu}
+							<DropdownItem><NavLi href={subMenu.href}>{subMenu.label}</NavLi></DropdownItem>
+						{/each}
+					</Dropdown>
+				{/if}
+			{/each}
+		</NavUl>
+	{/if}
 </Navbar>
 
 <DarkMode btnClass={darkmodebtn} />
