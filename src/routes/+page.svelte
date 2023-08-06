@@ -27,7 +27,7 @@
 		<Heading tag="h2">Camarilla</Heading>
 		<A href="/camarilla/uebersicht" aClass="w-full h-full">
 			<Img
-				src="/images/camarilla.webp"
+				src="/images/Protektorat-2.webp"
 				alt="Beispielbild Camarilla"
 				class={`rounded-lg md:rounded-none shadow-lg dark:shadow-gray-800 md:transition-all md:duration-300 ` +
 					`cursor-pointer md:filter md:grayscale md:hover:grayscale-0 h-full object-cover`}
