@@ -6,54 +6,53 @@
 </script>
 
 <Heading tag="h1" class="mb-4">Impressum</Heading>
-<Heading tag="h2" class="mt-2">Betreiber</Heading>
+<Heading tag="h2" class="mt-2">Angaben gemäß § 5 TMG</Heading>
 <P>
-	<strong class="font-semibold text-gray-900 dark:text-white">Name: </strong>
-	{data.impressum?.betreiber_name}
+	{data.impressum.betreiber_name}
 </P>
 <P>
-	<strong class="font-semibold text-gray-900 dark:text-white">Geschäftsadresse: </strong>
-	{data.impressum?.geschaeftsadresse}
+	{data.impressum.strasse}
+</P>
+<P>
+	{data.impressum.plz}
+	{data.impressum.ort}
+</P>
+<br />
+<P>
+	<strong class="font-semibold text-gray-900 dark:text-white">Vereinsregister: </strong>
+	{data.impressum.vereinsregister}
+</P>
+<P>
+	<strong class="font-semibold text-gray-900 dark:text-white">Registergericht: </strong>
+	{data.impressum.registergericht}
+</P>
+
+<Heading tag="h3" class="mt-2">Vertreten durch</Heading>
+<P>{data.impressum.erster_vorstand} (Erster Vorstand)</P>
+<P>{data.impressum.zweiter_vorstand} (Zweiter Vorstand)</P>
+<P>{data.impressum.schatzmeister} (Schatzmeister)</P>
+
+<Heading tag="h2" class="mt-2">Kontakt</Heading>
+<P>
+	<strong class="font-semibold text-gray-900 dark:text-white">Telefon: </strong>
+	{data.impressum.telefon}
 </P>
 <P>
 	<strong class="font-semibold text-gray-900 dark:text-white">E-Mail: </strong>
-	<a class="underline decoration-dotted" href={`mailto:${data.impressum?.email}`}>
-		{data.impressum?.email}
+	<a class="underline decoration-dotted" href={`mailto:${data.impressum.email}`}>
+		{data.impressum.email}
 	</a>
 </P>
-<P>
-	<strong class="font-semibold text-gray-900 dark:text-white">Kontodaten: </strong>
-	{data.impressum?.kontodaten}
-</P>
 
-<Heading tag="h2" class="mt-2">Vertretungsorgane</Heading>
-<Heading tag="h3">Erster Vorstand</Heading>
-<P>{data.impressum?.erster_vorstand}</P>
-<Heading tag="h3">Zweiter Vorstand</Heading>
-<P>{data.impressum?.zweiter_vorstand}</P>
-<Heading tag="h3">Schatzmeister</Heading>
-<P>{data.impressum?.schatzmeister}</P>
-
-<Heading tag="h2" class="mt-2">Webmaster</Heading>
-<Heading tag="h3">Name</Heading>
-<P>{data.impressum?.webmaster_name}</P>
-<Heading tag="h3">Kontakt & Anschrift</Heading>
+<Heading tag="h2" class="mt-2">Redaktionell verantwortlich</Heading>
+<P>{data.impressum.webmaster_name}</P>
 <P>
-	<strong class="font-semibold text-gray-900 dark:text-white">Anschrift: </strong>
-	{data.impressum?.webmaster_anschrift}
+	{data.impressum.webmaster_strasse}
 </P>
 <P>
-	<strong class="font-semibold text-gray-900 dark:text-white">E-Mail: </strong>
-	<a class="underline decoration-dotted" href={`mailto:${data.impressum?.webmaster_email}`}>
-		{data.impressum?.webmaster_email}
-	</a>
+	{data.impressum.webmaster_plz}
+	{data.impressum.webmaster_ort}
 </P>
-{#if data.impressum?.webmaster_telefon}
-	<P>
-		<strong class="font-semibold text-gray-900 dark:text-white">Telefon: </strong>
-		{data.impressum.webmaster_telefon}
-	</P>
-{/if}
 
 <Heading tag="h2" class="mt-2">Copyright</Heading>
 <P
@@ -62,7 +61,13 @@
 >
 	{@html data.copyrightNotice?.code}
 </P>
+
 <Heading tag="h2" class="mt-2">Haftungsausschluss</Heading>
 <P uppercase class="first-letter:text-2xl text-justify mb-2">
 	{data.impressum.haftungsausschluss}
+</P>
+
+<Heading tag="h2" class="mt-2">Streitbeilegung</Heading>
+<P uppercase class="first-letter:text-2xl text-justify mb-2">
+	{data.impressum.schlichtungsstelle}
 </P>
