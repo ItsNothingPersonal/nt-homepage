@@ -3,7 +3,10 @@
 	import { Footer, FooterCopyright, FooterIcon } from 'flowbite-svelte';
 </script>
 
-<Footer footerType="socialmedia" class="row-start-2 row-end-3">
+<Footer
+	footerType="socialmedia"
+	class="row-start-2 row-end-3 bg-light-100 dark:bg-dark-800 border-t border-light-500 dark:border-dark-500"
+>
 	<div class="sm:flex sm:items-center sm:justify-between">
 		<FooterCopyright href="/" by="Nächtliches Theater e.V." year={2023} />
 		<div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">

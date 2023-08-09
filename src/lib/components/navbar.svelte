@@ -5,7 +5,6 @@
 	import {
 		Chevron,
 		CloseButton,
-		DarkMode,
 		Drawer,
 		Dropdown,
 		DropdownItem,
@@ -37,11 +36,9 @@
 	let activateClickOutside = true;
 	$: mobile = width < breakPoint;
 
-	let spanClass = 'pl-2 self-center text-md text-gray-900 whitespace-nowrap dark:text-white';
+	let spanClass = 'pl-2 self-center text-md text-light-800 whitespace-nowrap dark:text-white';
 	let divClass = 'w-full md:block md:w-auto pr-8';
 	let ulClass = 'flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-lg md:font-medium';
-	let darkmodebtn =
-		'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-lg p-2.5 fixed right-2 top-12  md:top-3 md:right-2 z-50';
 
 	onMount(() => {
 		if (mobile) {
@@ -59,7 +56,7 @@
 <svelte:window bind:innerWidth={width} />
 
 <Navbar
-	navClass="px-2 sm:px-4 py-2.5 w-full top-0 left-0 right-0 z-10 inset-x-0 fixed border-b pb-2"
+	navClass="px-2 sm:px-4 py-2.5 w-full top-0 left-0 right-0 z-10 inset-x-0 fixed border-b border-light-500 dark:border-dark-500 pb-2 bg-light-100 dark:bg-dark-800"
 >
 	<NavHamburger on:click={toggleSide} btnClass="ml-3 lg:hidden" />
 
@@ -69,7 +66,7 @@
 				src="/images/Logo_Navbar.webp"
 				imgClass="max-h-14"
 				alt="Nächtliches Theater Logo"
-				class="rounded-lg shadow-lg dark:shadow-gray-800"
+				class="rounded-lg shadow-lg dark:shadow-dark-800"
 			/>
 		{/if}
 		<span class="ml-2 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
@@ -97,8 +94,6 @@
 	{/if}
 </Navbar>
 
-<DarkMode btnClass={darkmodebtn} />
-
 <Drawer
 	transitionType="fly"
 	{backdrop}
@@ -113,7 +108,7 @@
 		<CloseButton on:click={() => (drawerHidden = true)} class="mb-4 dark:text-white lg:hidden" />
 	</div>
 	<Sidebar asideClass="w-54">
-		<SidebarWrapper divClass="overflow-y-auto py-4 px-3 rounded dark:bg-gray-800">
+		<SidebarWrapper divClass="overflow-y-auto py-4 px-3 rounded dark:bg-dark-800">
 			<SidebarGroup>
 				<SidebarItem
 					label="Startseite"
