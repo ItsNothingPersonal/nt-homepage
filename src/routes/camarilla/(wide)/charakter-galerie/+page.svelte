@@ -51,32 +51,41 @@
 
 <Heading tag="h1" class="mb-4">Charaktergalerie</Heading>
 <div class="mb-4">
-	<ButtonGroup>
-		<Button on:click={() => swapSectFilter(SektenName.Camarilla)} class="relative">
+	<ButtonGroup class="inline-flex rounded-lg shadow-sm bg-light-50 dark:bg-dark-700">
+		<Button
+			on:click={() => swapSectFilter(SektenName.Camarilla)}
+			class="relative bg-light-50 dark:bg-dark-700"
+		>
 			Camarilla
 			{#if $sectFilter === SektenName.Camarilla}
 				<Indicator />
 			{/if}
 		</Button>
-		<Button on:click={() => swapSectFilter(SektenName.Anarchen)} class="relative">
+		<Button
+			on:click={() => swapSectFilter(SektenName.Anarchen)}
+			class="relative bg-light-50 dark:bg-dark-700"
+		>
 			Anarchen
 			{#if $sectFilter === SektenName.Anarchen}
 				<Indicator />
 			{/if}
 		</Button>
-		<Button on:click={() => swapOffizierFilter('true')} class="relative">
+		<Button
+			on:click={() => swapOffizierFilter('true')}
+			class="relative bg-light-50 dark:bg-dark-700"
+		>
 			Offiziere
 			{#if $offizierFilter.length > 0}
 				<Indicator />
 			{/if}
 		</Button>
-		<Button class="relative">
+		<Button class="relative bg-light-50">
 			<Chevron>Clans</Chevron>
 			{#if $clanFilter !== '.*'}
 				<Indicator />
 			{/if}
 		</Button>
-		<Dropdown>
+		<Dropdown containerClass="divide-y w-44 z-20 bg-light-50 dark:bg-dark-700">
 			{#each clans as clan}
 				<DropdownItem on:click={() => swapClanFilter(clan)}>{clan}</DropdownItem>
 			{/each}

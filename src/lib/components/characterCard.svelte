@@ -20,6 +20,7 @@
 	img={`${
 		import.meta.env.VITE_DIRECTUS_URL
 	}/assets/${bild}?fit=cover&width=380&height=380&quality=80&format=auto`}
+	class="bg-light-50 dark:bg-dark-700"
 >
 	<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 		{characterName}

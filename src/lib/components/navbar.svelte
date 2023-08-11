@@ -83,7 +83,10 @@
 					<NavLi id={`nav-menu-${menuEntry.id}`} class="cursor-pointer">
 						<Chevron aligned>{menuEntry.label}</Chevron>
 					</NavLi>
-					<Dropdown triggeredBy={`#nav-menu-${menuEntry.id}`} class="w-44 z-20">
+					<Dropdown
+						triggeredBy={`#nav-menu-${menuEntry.id}`}
+						containerClass="divide-y w-44 z-20 bg-light-50 dark:bg-dark-700"
+					>
 						{#each menuEntry.subData as subMenu}
 							<DropdownItem><NavLi href={subMenu.href}>{subMenu.label}</NavLi></DropdownItem>
 						{/each}
@@ -101,14 +104,14 @@
 	bind:hidden={drawerHidden}
 	bind:activateClickOutside
 	width="w-64"
-	class="overflow-scroll pb-32"
+	class="overflow-scroll pb-32 bg-light-50 dark:bg-dark-700"
 	id="sidebar"
 >
 	<div class="flex items-center">
 		<CloseButton on:click={() => (drawerHidden = true)} class="mb-4 dark:text-white lg:hidden" />
 	</div>
 	<Sidebar asideClass="w-54">
-		<SidebarWrapper divClass="overflow-y-auto py-4 px-3 rounded dark:bg-dark-800">
+		<SidebarWrapper divClass="overflow-y-auto py-4 px-3 rounded bg-light-50 dark:bg-dark-700">
 			<SidebarGroup>
 				<SidebarItem
 					label="Startseite"

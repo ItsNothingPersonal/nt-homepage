@@ -14,7 +14,7 @@
 	export let newsId: string | number | undefined;
 </script>
 
-<Card class="text-left w-full" size="lg" padding="xl">
+<Card class="text-left w-full bg-light-50 dark:bg-dark-700" size="lg" padding="xl">
 	<div class="flex items-center gap-x-2 mb-1">
 		<Img
 			src={avatar ? getDownloadUrl(avatar) : 'https://placehold.co/28x28?text=%22Platzhalter%22'}

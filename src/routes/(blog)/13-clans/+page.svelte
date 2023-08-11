@@ -30,7 +30,7 @@
 </P>
 
 <div class="flex justify-center mb-4">
-	<ButtonGroup>
+	<ButtonGroup divClass="inline-flex rounded-lg shadow-sm bg-light-50 dark:bg-dark-700">
 		<Button on:click={() => swapSectFilter(SektenName.Camarilla)}>{SektenName.Camarilla}</Button>
 		<Button on:click={() => swapSectFilter(SektenName.Sabbat)}>{SektenName.Sabbat}</Button>
 		<Button on:click={() => swapSectFilter(SektenName.Allianz)}>{SektenName.Allianz}</Button>
