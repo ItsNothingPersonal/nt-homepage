@@ -65,25 +65,31 @@
 
 <Heading tag="h1" class="mb-4">Charaktergalerie</Heading>
 <div class="mb-4">
-	<ButtonGroup>
-		<Button on:click={() => swapFilterEinzelgaenger()} class="relative">
+	<ButtonGroup class="inline-flex rounded-lg shadow-sm bg-light-50 dark:bg-dark-700">
+		<Button
+			on:click={() => swapFilterEinzelgaenger()}
+			class="relative bg-light-50 dark:bg-dark-700"
+		>
 			Einzelgänger
 			{#if $einzelgaengerFilter === true}
 				<Indicator />
 			{/if}
 		</Button>
-		<Button class="relative">
+		<Button class="relative bg-light-50 dark:bg-dark-700">
 			<Chevron>Packs</Chevron>
 			{#if $packFilter !== '.*'}
 				<Indicator />
 			{/if}
 		</Button>
-		<Dropdown>
+		<Dropdown containerClass="divide-y z-20 bg-light-50 dark:bg-dark-700">
 			{#each packs as pack}
 				<DropdownItem on:click={() => swapPackFilter(pack.name)}>{pack.name}</DropdownItem>
 			{/each}
 		</Dropdown>
-		<Button on:click={() => swapOffizierFilter('true')} class="relative">
+		<Button
+			on:click={() => swapOffizierFilter('true')}
+			class="relative bg-light-50 dark:bg-dark-700"
+		>
 			Offiziere
 			{#if $offizierFilter.length > 0}
 				<Indicator />
@@ -94,7 +100,7 @@
 
 {#if !isNullOrUndefined($selektiertesPack?.beschreibung) || !isNullOrUndefined($selektiertesPack?.logo)}
 	<div class="flex items-center justify-center gap-x-2 mb-4">
-		<Card class="w-full" size="lg" padding="xl">
+		<Card class="text-left w-full bg-light-50 dark:bg-dark-700" size="lg" padding="xl">
 			<div
 				class={$selektiertesPack?.beschreibung ? 'container' : 'flex items-center justify-center'}
 			>

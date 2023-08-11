@@ -12,7 +12,7 @@
 	export let project: ProjektName;
 </script>
 
-<Card class="text-left w-full" size="xl" padding="xl">
+<Card class="text-left w-full bg-light-50 dark:bg-dark-700" size="xl" padding="xl">
 	<div class="flex items-center gap-x-2 mb-1 w-full">
 		<Img
 			src={avatar
