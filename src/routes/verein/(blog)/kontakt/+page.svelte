@@ -42,6 +42,6 @@
 	<SocialButton
 		icon="email"
 		href={`mailto:${data.kontakt.email_wh40k}`}
-		text="Projektleitung wh40k"
+		text="Projektleitung Wh40k"
 	/>
 </div>
