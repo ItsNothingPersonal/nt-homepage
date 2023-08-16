@@ -37,10 +37,10 @@ export const menuData: {
 	},
 	{
 		id: 3,
-		label: 'W40K',
+		label: 'Wh40k',
 		subData: [
-			{ href: '/w40k/uebersicht', label: 'Übersicht' },
-			{ href: '/w40k/spielort', label: 'Spielort' }
+			{ href: '/wh40k/uebersicht', label: 'Übersicht' },
+			{ href: '/wh40k/spielort', label: 'Spielort' }
 		]
 	},
 	{

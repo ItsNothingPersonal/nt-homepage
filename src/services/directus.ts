@@ -20,10 +20,10 @@ import type { VereinKontakt } from '$lib/types/zod/vereinKontakt';
 import type { VereinParagraph86 } from '$lib/types/zod/vereinParagraph86';
 import type { VereinRollen } from '$lib/types/zod/vereinRollen';
 import type { VereinDatenschutz } from '$lib/types/zod/vereindatenschutz';
-import type { W40KUebersichtFiles } from '$lib/types/zod/w40KUebersichtFiles';
-import type { W40KSpielortFiles } from '$lib/types/zod/w40kSpielortFiles';
 import type { WasIstVampireLive } from '$lib/types/zod/wasIstVampireLive';
 import type { WasSindClans } from '$lib/types/zod/wasSindClans';
+import type { wh40kSpielortFiles } from '$lib/types/zod/wh40kSpielortFiles';
+import type { wh40kUebersichtFiles } from '$lib/types/zod/wh40kUebersichtFiles';
 import type { Zeittafel } from '$lib/types/zod/zeittafel';
 import { createDirectus, rest } from '@directus/sdk';
 
@@ -57,11 +57,11 @@ export interface DirectusSchema {
 	verein_news: News[];
 	verein_paragraph_86_und_86a: VereinParagraph86;
 	verein_rollen: VereinRollen[];
-	w40k_news: News[];
-	w40k_spielort: Spielort;
-	w40k_spielort_files: W40KSpielortFiles[];
-	w40k_uebersicht: ProjektUebersicht;
-	w40k_uebersicht_files: W40KUebersichtFiles[];
+	wh40k_news: News[];
+	wh40k_spielort: Spielort;
+	wh40k_spielort_files: wh40kSpielortFiles[];
+	wh40k_uebersicht: ProjektUebersicht;
+	wh40k_uebersicht_files: wh40kUebersichtFiles[];
 	was_ist_vampire_live: WasIstVampireLive;
 	was_sind_clans: WasSindClans;
 }

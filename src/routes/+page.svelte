@@ -38,11 +38,11 @@
 	<div
 		class="row-start-3 md:row-start-1 md:col-start-3 flex flex-col text-center gap-2 items-center"
 	>
-		<Heading tag="h2">W40K</Heading>
-		<A href="/w40k/uebersicht" aClass="w-full h-full">
+		<Heading tag="h2">Wh40k</Heading>
+		<A href="/wh40k/uebersicht" aClass="w-full h-full">
 			<Img
 				src="/images/WH40K_40KBoxCover2018.webp"
-				alt="Beispielbild W40K"
+				alt="Beispielbild wh40k"
 				class={`rounded-lg md:rounded-r-lg md:rounded-l-none shadow-lg dark:shadow-gray-800 md:transition-all ` +
 					`md:duration-300 cursor-pointer md:filter md:grayscale md:hover:grayscale-0 h-full w-full object-cover`}
 				size="max-w-full"

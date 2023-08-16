@@ -7,7 +7,7 @@
 
 	let images = data.bilder?.map((e) => {
 		return {
-			id: e.w40k_uebersicht_id,
+			id: e.wh40k_uebersicht_id,
 			imgurl: getImageUrl(e.directus_files_id)
 		};
 	});
@@ -17,7 +17,7 @@
 	titel="Warhammer 40K"
 	beschreibung={data.beschreibung?.code ?? ''}
 	spieltermine={data.spieltermine?.code ?? ''}
-	email={data.w40kUebersicht.email}
+	email={data.wh40kUebersicht.email}
 	{images}
-	googleCalendarLink={data.w40kUebersicht.google_calendar_link}
+	googleCalendarLink={data.wh40kUebersicht.google_calendar_link}
 />
