@@ -6,7 +6,7 @@ export const vereinKontakt = z.object({
 	email_webmaster: z.string().email(),
 	email_camarilla: z.string().email(),
 	email_sabbat: z.string().email(),
-	email_w40k: z.string().email()
+	email_wh40k: z.string().email()
 });
 
 export type VereinKontakt = z.infer<typeof vereinKontakt>;
