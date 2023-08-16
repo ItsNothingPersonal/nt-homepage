@@ -10,13 +10,13 @@
 <Heading class="mb-4 text-center" tag="h1">Willkommen beim Nächtlichen Theater</Heading>
 <div class="grid grid-cols-1 md:row-start-1 md:grid-cols-3 grid-rows-3 md:grid-rows-1 gap-y-4 mb-8">
 	<div class="row-start-1 md:col-start-1 flex flex-col text-center gap-2 items-center">
-		<Heading tag="h2">Sabbat</Heading>
-		<A href="/sabbat/uebersicht" aClass="w-full h-full">
+		<Heading tag="h2">Camarilla</Heading>
+		<A href="/camarilla/uebersicht" aClass="w-full h-full">
 			<Img
-				src="/images/P1080017-small.webp"
-				alt="Beispielbild Sabbat"
+				src="/images/Protektorat-2.webp"
+				alt="Beispielbild Camarilla"
 				class={`rounded-lg md:rounded-r-none md:rounded-l-lg shadow-lg dark:shadow-gray-800 md:transition-all ` +
-					`md:duration-300 cursor-pointer md:filter md:grayscale md:hover:grayscale-0 h-full object-cover`}
+					`md:duration-300 cursor-pointer md:filter md:grayscale md:hover:grayscale-0 h-full w-full object-cover`}
 				size="max-w-full"
 			/>
 		</A>
@@ -24,13 +24,13 @@
 	<div
 		class="row-start-2 md:row-start-1 md:col-start-2 flex flex-col text-center gap-2 items-center"
 	>
-		<Heading tag="h2">Camarilla</Heading>
-		<A href="/camarilla/uebersicht" aClass="w-full h-full">
+		<Heading tag="h2">Sabbat</Heading>
+		<A href="/sabbat/uebersicht" aClass="w-full h-full">
 			<Img
-				src="/images/Protektorat-2.webp"
-				alt="Beispielbild Camarilla"
+				src="/images/P1080017-small.webp"
+				alt="Beispielbild Sabbat"
 				class={`rounded-lg md:rounded-none shadow-lg dark:shadow-gray-800 md:transition-all md:duration-300 ` +
-					`cursor-pointer md:filter md:grayscale md:hover:grayscale-0 h-full object-cover`}
+					`cursor-pointer md:filter md:grayscale md:hover:grayscale-0 h-full w-full object-cover`}
 				size="max-w-full"
 			/>
 		</A>
@@ -44,7 +44,7 @@
 				src="/images/WH40K_40KBoxCover2018.webp"
 				alt="Beispielbild W40K"
 				class={`rounded-lg md:rounded-r-lg md:rounded-l-none shadow-lg dark:shadow-gray-800 md:transition-all ` +
-					`md:duration-300 cursor-pointer md:filter md:grayscale md:hover:grayscale-0 h-full object-cover`}
+					`md:duration-300 cursor-pointer md:filter md:grayscale md:hover:grayscale-0 h-full w-full object-cover`}
 				size="max-w-full"
 			/>
 		</A>
