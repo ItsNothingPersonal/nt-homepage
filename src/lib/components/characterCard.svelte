@@ -33,21 +33,23 @@
 	{/if}
 
 	<DropdownDivider />
-	<div class="grid grid-cols-2 auto-rows-auto items-center">
+	<div class="grid auto-rows-auto items-center grid-cols-min-content-first gap-x-4">
 		<div class="grid grid-cols-min-content-first gap-x-1">
 			<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Status</p>
-			<P class="font-normal leading-tight">{status ?? '-'}</P>
+			<P class="font-normal leading-tight whitespace-nowrap">{status ?? '-'}</P>
 		</div>
 		<div class="grid grid-cols-min-content-first gap-x-1">
 			<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Clan</p>
-			<P class="font-normal leading-tight">{clan?.name ?? 'unbekannt'}</P>
+			<P class="font-normal leading-tight">
+				{#if blutlinie?.name}
+					{blutlinie.name}
+				{:else if clan?.name}
+					{clan.name}
+				{:else}
+					unbekannt
+				{/if}
+			</P>
 		</div>
-		{#if blutlinie?.name}
-			<div class="grid grid-cols-min-content-first auto-rows-auto col-span-2 gap-x-2">
-				<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Blutlinie</p>
-				<P class="font-normal leading-tight">{blutlinie.name}</P>
-			</div>
-		{/if}
 	</div>
 	<DropdownDivider />
 	<P>{beschreibung ?? ''}</P>
