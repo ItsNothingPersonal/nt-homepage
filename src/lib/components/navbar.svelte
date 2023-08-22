@@ -61,7 +61,7 @@
 	<NavHamburger on:click={toggleSide} btnClass="ml-3 lg:hidden" />
 
 	<NavBrand href="/" class="pl-4 2xl:pl-0 2xl:ml-64">
-		{#if width > 390}
+		{#if width > 395}
 			<Img
 				src="/images/Logo_Navbar.webp"
 				imgClass="max-h-14"
