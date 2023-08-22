@@ -14,11 +14,14 @@ export default {
 		},
 		extend: {
 			gridTemplateColumns: {
-				'min-content-first': 'min-content 1fr;'
+				'min-content-first': 'min-content 1fr;',
+				'news-header': '1.75rem auto'
 			},
 			gridTemplateRows: {
 				'min-content-first': 'min-content 1fr;',
-				'body-template': '1fr auto'
+				'body-template': '1fr auto',
+				'news-preview':
+					'minmax(min-content,15%) minmax(min-content,15%) minmax(min-content, 55%) min-content'
 			}
 		}
 	},

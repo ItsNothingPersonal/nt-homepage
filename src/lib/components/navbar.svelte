@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { ScreenSize } from '$lib/types/sceenSize';
 	import { isNullOrUndefined } from '$lib/util';
 	import {
 		Chevron,
@@ -29,8 +28,9 @@
 		duration: 200,
 		easing: sineIn
 	};
-	let breakPoint: number = ScreenSize.LG;
+	let breakPoint: number = 1050;
 	let width: number;
+	let height: number;
 	let drawerHidden = true;
 	let backdrop = true;
 	let activateClickOutside = true;
@@ -53,15 +53,17 @@
 	};
 </script>
 
-<svelte:window bind:innerWidth={width} />
+<svelte:window bind:innerWidth={width} bind:innerHeight={height} />
 
 <Navbar
 	navClass="px-2 sm:px-4 py-2.5 w-full top-0 left-0 right-0 z-10 inset-x-0 fixed border-b border-light-500 dark:border-dark-500 pb-2 bg-light-100 dark:bg-dark-800"
 >
-	<NavHamburger on:click={toggleSide} btnClass="ml-3 lg:hidden" />
+	{#if mobile}
+		<NavHamburger on:click={toggleSide} btnClass="ml-3" />
+	{/if}
 
 	<NavBrand href="/" class="pl-4 2xl:pl-0 2xl:ml-64">
-		{#if width > 395}
+		{#if (width > 395 && mobile) || (width > height && mobile) || width < 315 || width > 1280}
 			<Img
 				src="/images/Logo_Navbar.webp"
 				imgClass="max-h-14"
@@ -69,9 +71,11 @@
 				class="rounded-lg shadow-lg dark:shadow-dark-800"
 			/>
 		{/if}
-		<span class="ml-2 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-			Nächtliches Theater e.V.
-		</span>
+		{#if width > 315}
+			<span class="ml-2 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+				Nächtliches Theater e.V.
+			</span>
+		{/if}
 	</NavBrand>
 
 	{#if !mobile}

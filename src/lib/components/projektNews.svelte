@@ -14,22 +14,29 @@
 	export let newsId: string | number | undefined;
 </script>
 
-<Card class="text-left w-full bg-light-50 dark:bg-dark-700" size="lg" padding="xl">
-	<div class="flex items-center gap-x-2 mb-1">
+<Card
+	class="grid grid-rows-news-preview gap-2 grid-cols-1 text-left w-full bg-light-50 dark:bg-dark-700"
+	size="lg"
+>
+	<div class="grid grid-cols-news-header gap-x-2">
 		<Img
-			src={avatar ? getDownloadUrl(avatar) : 'https://placehold.co/28x28?text=%22Platzhalter%22'}
+			src={avatar
+				? `${getDownloadUrl(avatar)}&width=28&height=28`
+				: 'https://placehold.co/28x28?text=%22Platzhalter%22'}
 			alt="sample 1"
 			size="w-7"
 			imgClass="h-7"
 			class="rounded-full"
 		/>
-		<P weight="bold" size="sm">{authorFirstName} {authorLastName}</P>
-		<P size="sm">im Projekt</P><P weight="bold" size="sm">{project}</P><P size="sm">am</P><P
-			weight="bold"
-			size="sm"
-		>
-			{getFormattedDay(date)}.{getFormattedMonth(date)}.{date?.getFullYear()}
-		</P>
+		<div class="flex flex-grow flex-auto flex-wrap gap-x-1 h-auto max-h-11">
+			<P weight="bold" size="sm" whitespace="nowrap">{authorFirstName} {authorLastName}</P>
+			<P size="sm" whitespace="nowrap">in</P>
+			<P weight="bold" size="sm" whitespace="nowrap">{project}</P>
+			<P size="sm" whitespace="nowrap">am</P>
+			<P weight="bold" size="sm" whitespace="nowrap">
+				{getFormattedDay(date)}.{getFormattedMonth(date)}.{date?.getFullYear()}
+			</P>
+		</div>
 	</div>
 	<h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 		{title}
