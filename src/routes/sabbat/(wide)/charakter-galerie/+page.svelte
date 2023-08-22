@@ -1,6 +1,8 @@
 <script lang="ts">
 	import CharacterCard from '$lib/components/characterCard.svelte';
 	import Indicator from '$lib/components/indicator.svelte';
+	import { SabbatAemterName } from '$lib/types/sabbatOffizier';
+	import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
 	import type { SabbatPacks } from '$lib/types/zod/sabbatPacks';
 	import { getDownloadUrl, isNullOrUndefined } from '$lib/util';
 	import {
@@ -19,18 +21,24 @@
 
 	export let data: PageData;
 	const { packs, charaktere } = data;
+	const leader = getLeader();
+	const officers = getOfficers();
 	let packFilter = writable('.*');
 	let offizierFilter = writable('');
 	let einzelgaengerFilter: Writable<boolean> = writable(false);
 	let selektiertesPack = writable<SabbatPacks | undefined>();
 
-	$: gefilterteCharaktere = charaktere.filter(
-		(c) =>
-			(($einzelgaengerFilter === true && (c.pack === null || c.pack === undefined)) ||
-				($packFilter === '.*' && $einzelgaengerFilter === false) ||
-				($einzelgaengerFilter === false && c.pack?.name.match($packFilter))) &&
-			($offizierFilter.length > 0 ? !isNullOrUndefined(c.offizier) : true)
+	$: gefilterteCharaktere = charaktere.filter((c) =>
+		!noFilterActive
+			? (($einzelgaengerFilter === true && (c.pack === null || c.pack === undefined)) ||
+					($packFilter === '.*' && $einzelgaengerFilter === false) ||
+					($einzelgaengerFilter === false && c.pack?.name.match($packFilter))) &&
+			  ($offizierFilter.length > 0 ? !isNullOrUndefined(c.offizier) : true)
+			: isNullOrUndefined(c.offizier)
 	);
+
+	$: noFilterActive =
+		$packFilter === '.*' && $einzelgaengerFilter === false && $offizierFilter === '';
 
 	function swapPackFilter(filter: string) {
 		if ($packFilter.match(filter)) {
@@ -60,6 +68,16 @@
 			einzelgaengerFilter.set(true);
 			selektiertesPack.set(undefined);
 		}
+	}
+
+	function getLeader(): SabbatCharakter | undefined {
+		return charaktere.find((e) => e.offizier?.name === SabbatAemterName.Erzbischof);
+	}
+
+	function getOfficers(): SabbatCharakter[] | undefined {
+		return charaktere.filter(
+			(e) => !isNullOrUndefined(e.offizier) && e.offizier.name !== SabbatAemterName.Erzbischof
+		);
 	}
 </script>
 
@@ -120,6 +138,36 @@
 				{/if}
 			</div>
 		</Card>
+	</div>
+{/if}
+
+{#if leader && noFilterActive}
+	<div class="flex justify-center mb-4">
+		<CharacterCard
+			characterName={leader.name}
+			clan={leader.clan}
+			blutlinie={leader.blutlinie}
+			aemterName={leader.offizier?.name}
+			status={leader.charakter_status?.name}
+			beschreibung={leader.beschreibung ?? ''}
+			bild={leader.bild}
+		/>
+	</div>
+{/if}
+
+{#if officers && noFilterActive}
+	<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-auto gap-2 mb-4">
+		{#each officers as charakter}
+			<CharacterCard
+				characterName={charakter.name}
+				clan={charakter.clan}
+				blutlinie={charakter.blutlinie}
+				aemterName={charakter.offizier?.name}
+				status={charakter.charakter_status?.name}
+				beschreibung={charakter.beschreibung ?? ''}
+				bild={charakter.bild}
+			/>
+		{/each}
 	</div>
 {/if}
 
