@@ -190,7 +190,7 @@
 
 {#if $selektiertesPack && $offizierFilter === '' && getPackLeaders($selektiertesPack.name).length > 0}
 	<Heading tag="h2" class="mb-2">Anführer</Heading>
-	<div class="flex flex-col md:flex-row mb-4 gap-2">
+	<div class="flex flex-col md:flex-row justify-center mb-4 gap-2">
 		{#each getPackLeaders($selektiertesPack.name) as charakter}
 			<CharacterCard
 				characterName={charakter.name}
@@ -210,7 +210,7 @@
 {/if}
 
 {#if gefilterteCharaktere.length < 4}
-	<div class="flex flex-col md:flex-row mb-4 gap-2">
+	<div class="flex flex-col md:flex-row justify-center mb-4 gap-2">
 		{#each gefilterteCharaktere as charakter}
 			<CharacterCard
 				characterName={charakter.name}
