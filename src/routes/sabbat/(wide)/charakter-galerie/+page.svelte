@@ -142,6 +142,7 @@
 {/if}
 
 {#if leader && noFilterActive}
+	<Heading tag="h2" class="mb-2">Erzbischof</Heading>
 	<div class="flex justify-center mb-4">
 		<CharacterCard
 			characterName={leader.name}
@@ -156,6 +157,7 @@
 {/if}
 
 {#if officers && noFilterActive}
+	<Heading tag="h2" class="mb-2">Offiziere</Heading>
 	<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-auto gap-2 mb-4">
 		{#each officers as charakter}
 			<CharacterCard
@@ -171,6 +173,9 @@
 	</div>
 {/if}
 
+{#if noFilterActive}
+	<Heading tag="h2" class="mb-2">True Sabbat</Heading>
+{/if}
 <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-5 gap-2">
 	{#each gefilterteCharaktere as charakter}
 		<CharacterCard
