@@ -49,7 +49,7 @@
 	}
 </script>
 
-<Heading tag="h1" class="mb-4">Charaktergalerie</Heading>
+<Heading tag="h1" class="mb-4">Charakter-Galerie</Heading>
 <div class="mb-4">
 	<ButtonGroup class="inline-flex rounded-lg shadow-sm bg-light-50 dark:bg-dark-700">
 		<Button

@@ -1,6 +1,9 @@
 <script lang="ts">
 	import CharacterCard from '$lib/components/characterCard.svelte';
 	import Indicator from '$lib/components/indicator.svelte';
+	import { SabbatCharakterStatusName } from '$lib/types/sabbatCharakterStatusName';
+	import { SabbatAemterName } from '$lib/types/sabbatOffizier';
+	import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
 	import type { SabbatPacks } from '$lib/types/zod/sabbatPacks';
 	import { getDownloadUrl, isNullOrUndefined } from '$lib/util';
 	import {
@@ -19,18 +22,26 @@
 
 	export let data: PageData;
 	const { packs, charaktere } = data;
+	const leader = getLeader();
+	const officers = getOfficers();
 	let packFilter = writable('.*');
 	let offizierFilter = writable('');
 	let einzelgaengerFilter: Writable<boolean> = writable(false);
 	let selektiertesPack = writable<SabbatPacks | undefined>();
 
-	$: gefilterteCharaktere = charaktere.filter(
-		(c) =>
-			(($einzelgaengerFilter === true && (c.pack === null || c.pack === undefined)) ||
-				($packFilter === '.*' && $einzelgaengerFilter === false) ||
-				($einzelgaengerFilter === false && c.pack?.name.match($packFilter))) &&
-			($offizierFilter.length > 0 ? !isNullOrUndefined(c.offizier) : true)
+	$: gefilterteCharaktere = charaktere.filter((c) =>
+		!noFilterActive
+			? (($einzelgaengerFilter === true && (c.pack === null || c.pack === undefined)) ||
+					($packFilter === '.*' && $einzelgaengerFilter === false) ||
+					($einzelgaengerFilter === false &&
+						c.pack?.name.match($packFilter) &&
+						c.charakter_status?.name === SabbatCharakterStatusName.TrueSabbat)) &&
+			  ($offizierFilter.length > 0 ? !isNullOrUndefined(c.offizier) : true)
+			: isNullOrUndefined(c.offizier)
 	);
+
+	$: noFilterActive =
+		$packFilter === '.*' && $einzelgaengerFilter === false && $offizierFilter === '';
 
 	function swapPackFilter(filter: string) {
 		if ($packFilter.match(filter)) {
@@ -61,9 +72,31 @@
 			selektiertesPack.set(undefined);
 		}
 	}
+
+	function getLeader(): SabbatCharakter | undefined {
+		return charaktere.find((e) => e.offizier?.name === SabbatAemterName.Erzbischof);
+	}
+
+	function getOfficers(): SabbatCharakter[] | undefined {
+		return charaktere.filter(
+			(e) => !isNullOrUndefined(e.offizier) && e.offizier.name !== SabbatAemterName.Erzbischof
+		);
+	}
+
+	function getPackLeaders(name: string | undefined): SabbatCharakter[] {
+		return getPackByName(name).filter(
+			(e) =>
+				e.charakter_status?.name === SabbatCharakterStatusName.Ductus ||
+				e.charakter_status?.name === SabbatCharakterStatusName.Priester
+		);
+	}
+
+	function getPackByName(name: string | undefined): SabbatCharakter[] {
+		return charaktere.filter((e) => e.pack?.name === name);
+	}
 </script>
 
-<Heading tag="h1" class="mb-4">Charaktergalerie</Heading>
+<Heading tag="h1" class="mb-4">Charakter-Galerie</Heading>
 <div class="mb-4">
 	<ButtonGroup class="inline-flex rounded-lg shadow-sm bg-light-50 dark:bg-dark-700">
 		<Button
@@ -123,16 +156,91 @@
 	</div>
 {/if}
 
-<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-5 gap-2">
-	{#each gefilterteCharaktere as charakter}
+{#if leader && noFilterActive}
+	<Heading tag="h2" class="mb-2">Erzbischof</Heading>
+	<div class="flex justify-center mb-4">
 		<CharacterCard
-			characterName={charakter.name}
-			clan={charakter.clan}
-			blutlinie={charakter.blutlinie}
-			aemterName={charakter.offizier?.name}
-			status={charakter.charakter_status?.name}
-			beschreibung={charakter.beschreibung ?? ''}
-			bild={charakter.bild}
+			characterName={leader.name}
+			clan={leader.clan}
+			blutlinie={leader.blutlinie}
+			aemterName={leader.offizier?.name}
+			status={leader.charakter_status?.name}
+			beschreibung={leader.beschreibung ?? ''}
+			bild={leader.bild}
 		/>
-	{/each}
-</div>
+	</div>
+{/if}
+
+{#if officers && noFilterActive}
+	<Heading tag="h2" class="mb-2">Offiziere</Heading>
+	<div
+		class="grid grid-cols-1 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4 auto-rows-auto gap-2 mb-4 justify-items-center"
+	>
+		{#each officers as charakter}
+			<CharacterCard
+				characterName={charakter.name}
+				clan={charakter.clan}
+				blutlinie={charakter.blutlinie}
+				aemterName={charakter.offizier?.name}
+				status={charakter.charakter_status?.name}
+				beschreibung={charakter.beschreibung ?? ''}
+				bild={charakter.bild}
+			/>
+		{/each}
+	</div>
+{/if}
+
+{#if $selektiertesPack && $offizierFilter === '' && getPackLeaders($selektiertesPack.name).length > 0}
+	<Heading tag="h2" class="mb-2">Anführer</Heading>
+	<div class="flex flex-col md:flex-row mb-4 gap-2 items-center justify-center">
+		{#each getPackLeaders($selektiertesPack.name) as charakter}
+			<CharacterCard
+				characterName={charakter.name}
+				clan={charakter.clan}
+				blutlinie={charakter.blutlinie}
+				aemterName={charakter.offizier?.name}
+				status={charakter.charakter_status?.name}
+				beschreibung={charakter.beschreibung ?? ''}
+				bild={charakter.bild}
+			/>
+		{/each}
+	</div>
+{/if}
+
+{#if noFilterActive || ($selektiertesPack && $offizierFilter === '' && gefilterteCharaktere.length > 0)}
+	<Heading tag="h2" class="mb-2">True Sabbat</Heading>
+{/if}
+
+{#if gefilterteCharaktere.length >= 4}
+	<div
+		class="grid grid-cols-1 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4 auto-rows-auto gap-2 justify-items-center"
+	>
+		{#each gefilterteCharaktere as charakter}
+			<CharacterCard
+				characterName={charakter.name}
+				clan={charakter.clan}
+				blutlinie={charakter.blutlinie}
+				aemterName={charakter.offizier?.name}
+				status={charakter.charakter_status?.name}
+				beschreibung={charakter.beschreibung ?? ''}
+				bild={charakter.bild}
+			/>
+		{/each}
+	</div>
+{:else}
+	<div class="flex h-max w-full justify-center">
+		<div class="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row mb-4 gap-2">
+			{#each gefilterteCharaktere as charakter}
+				<CharacterCard
+					characterName={charakter.name}
+					clan={charakter.clan}
+					blutlinie={charakter.blutlinie}
+					aemterName={charakter.offizier?.name}
+					status={charakter.charakter_status?.name}
+					beschreibung={charakter.beschreibung ?? ''}
+					bild={charakter.bild}
+				/>
+			{/each}
+		</div>
+	</div>
+{/if}

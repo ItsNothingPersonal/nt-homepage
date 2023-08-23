@@ -22,6 +22,11 @@ export default {
 				'body-template': '1fr auto',
 				'news-preview':
 					'minmax(min-content,15%) minmax(min-content,15%) minmax(min-content, 55%) min-content'
+			},
+			screens: {
+				'gal-sm': '1060px',
+				gal: '1400px',
+				xxl: '1450px'
 			}
 		}
 	},
