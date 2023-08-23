@@ -35,6 +35,7 @@
 	let backdrop = true;
 	let activateClickOutside = true;
 	$: mobile = width < breakPoint;
+	$: quer = width > height;
 
 	let spanClass = 'pl-2 self-center text-md text-light-800 whitespace-nowrap dark:text-white';
 	let divClass = 'w-full md:block md:w-auto pr-8';
@@ -55,51 +56,62 @@
 
 <svelte:window bind:innerWidth={width} bind:innerHeight={height} />
 
-<Navbar
-	navClass="px-2 sm:px-4 py-2.5 w-full top-0 left-0 right-0 z-10 inset-x-0 fixed border-b border-light-500 dark:border-dark-500 pb-2 bg-light-100 dark:bg-dark-800"
->
-	{#if mobile}
-		<NavHamburger on:click={toggleSide} btnClass="ml-3" />
-	{/if}
+{#if mobile && quer}
+	<NavHamburger
+		on:click={toggleSide}
+		btnClass={'text-light-500 dark:text-dark-400 hover:bg-light-100 dark:hover:bg-dark-700 focus:outline-none ' +
+			'focus:ring-4 focus:ring-light-200 dark:focus:ring-dark-700 rounded-lg text-lg p-2.5 fixed left-2 top-12 ' +
+			'md:top-3 md:left-2 z-50'}
+	/>
+{/if}
 
-	<NavBrand href="/" class="pl-4 2xl:pl-0 2xl:ml-64">
-		{#if (width > 395 && mobile) || (width > height && mobile) || width < 315 || width > 1280}
-			<Img
-				src="/images/Logo_Navbar.webp"
-				imgClass="max-h-14"
-				alt="Nächtliches Theater Logo"
-				class="rounded-lg shadow-lg dark:shadow-dark-800"
-			/>
+{#if !(mobile && quer)}
+	<Navbar
+		navClass="px-2 sm:px-4 py-2.5 w-full top-0 left-0 right-0 z-10 inset-x-0 fixed border-b border-light-500 dark:border-dark-500 pb-2 bg-light-100 dark:bg-dark-800"
+	>
+		{#if mobile}
+			<NavHamburger on:click={toggleSide} btnClass="ml-3" />
 		{/if}
-		{#if width > 315}
-			<span class="ml-2 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-				Nächtliches Theater e.V.
-			</span>
-		{/if}
-	</NavBrand>
 
-	{#if !mobile}
-		<NavUl {divClass} {ulClass}>
-			{#each menuData as menuEntry}
-				{#if menuEntry.subData === undefined}
-					<NavLi href={menuEntry.href}>{menuEntry.label}</NavLi>
-				{:else}
-					<NavLi id={`nav-menu-${menuEntry.id}`} class="cursor-pointer">
-						<Chevron aligned>{menuEntry.label}</Chevron>
-					</NavLi>
-					<Dropdown
-						triggeredBy={`#nav-menu-${menuEntry.id}`}
-						containerClass="divide-y w-44 z-20 bg-light-50 dark:bg-dark-700"
-					>
-						{#each menuEntry.subData as subMenu}
-							<DropdownItem><NavLi href={subMenu.href}>{subMenu.label}</NavLi></DropdownItem>
-						{/each}
-					</Dropdown>
-				{/if}
-			{/each}
-		</NavUl>
-	{/if}
-</Navbar>
+		<NavBrand href="/" class="pl-4 2xl:pl-0 2xl:ml-64">
+			{#if (width > 395 && mobile) || (width > height && mobile) || width < 315 || width > 1280}
+				<Img
+					src="/images/Logo_Navbar.webp"
+					imgClass="max-h-14"
+					alt="Nächtliches Theater Logo"
+					class="rounded-lg shadow-lg dark:shadow-dark-800"
+				/>
+			{/if}
+			{#if width > 315}
+				<span class="ml-2 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+					Nächtliches Theater e.V.
+				</span>
+			{/if}
+		</NavBrand>
+
+		{#if !mobile}
+			<NavUl {divClass} {ulClass}>
+				{#each menuData as menuEntry}
+					{#if menuEntry.subData === undefined}
+						<NavLi href={menuEntry.href}>{menuEntry.label}</NavLi>
+					{:else}
+						<NavLi id={`nav-menu-${menuEntry.id}`} class="cursor-pointer">
+							<Chevron aligned>{menuEntry.label}</Chevron>
+						</NavLi>
+						<Dropdown
+							triggeredBy={`#nav-menu-${menuEntry.id}`}
+							containerClass="divide-y w-44 z-20 bg-light-50 dark:bg-dark-700"
+						>
+							{#each menuEntry.subData as subMenu}
+								<DropdownItem><NavLi href={subMenu.href}>{subMenu.label}</NavLi></DropdownItem>
+							{/each}
+						</Dropdown>
+					{/if}
+				{/each}
+			</NavUl>
+		{/if}
+	</Navbar>
+{/if}
 
 <Drawer
 	transitionType="fly"
