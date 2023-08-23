@@ -192,7 +192,7 @@
 
 {#if $selektiertesPack && $offizierFilter === '' && getPackLeaders($selektiertesPack.name).length > 0}
 	<Heading tag="h2" class="mb-2">Anführer</Heading>
-	<div class="flex flex-col md:flex-row justify-center mb-4 gap-2 items-center">
+	<div class="flex flex-col md:flex-row mb-4 gap-2 items-center justify-center">
 		{#each getPackLeaders($selektiertesPack.name) as charakter}
 			<CharacterCard
 				characterName={charakter.name}
@@ -211,18 +211,36 @@
 	<Heading tag="h2" class="mb-2">True Sabbat</Heading>
 {/if}
 
-<div
-	class="grid grid-cols-1 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4 auto-rows-auto gap-2 justify-items-center"
->
-	{#each gefilterteCharaktere as charakter}
-		<CharacterCard
-			characterName={charakter.name}
-			clan={charakter.clan}
-			blutlinie={charakter.blutlinie}
-			aemterName={charakter.offizier?.name}
-			status={charakter.charakter_status?.name}
-			beschreibung={charakter.beschreibung ?? ''}
-			bild={charakter.bild}
-		/>
-	{/each}
-</div>
+{#if gefilterteCharaktere.length >= 4}
+	<div
+		class="grid grid-cols-1 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4 auto-rows-auto gap-2 justify-items-center"
+	>
+		{#each gefilterteCharaktere as charakter}
+			<CharacterCard
+				characterName={charakter.name}
+				clan={charakter.clan}
+				blutlinie={charakter.blutlinie}
+				aemterName={charakter.offizier?.name}
+				status={charakter.charakter_status?.name}
+				beschreibung={charakter.beschreibung ?? ''}
+				bild={charakter.bild}
+			/>
+		{/each}
+	</div>
+{:else}
+	<div class="flex h-max w-full justify-center">
+		<div class="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row mb-4 gap-2">
+			{#each gefilterteCharaktere as charakter}
+				<CharacterCard
+					characterName={charakter.name}
+					clan={charakter.clan}
+					blutlinie={charakter.blutlinie}
+					aemterName={charakter.offizier?.name}
+					status={charakter.charakter_status?.name}
+					beschreibung={charakter.beschreibung ?? ''}
+					bild={charakter.bild}
+				/>
+			{/each}
+		</div>
+	</div>
+{/if}
