@@ -14,8 +14,12 @@
 	export let status: CharakterStatusName | SabbatCharakterStatusName | undefined = undefined;
 	export let beschreibung: string;
 	export let bild: string;
+
+	let width: number;
+	let height: number;
 </script>
 
+<svelte:window bind:innerWidth={width} bind:innerHeight={height} />
 <Card
 	img={`${
 		import.meta.env.VITE_DIRECTUS_URL
@@ -33,14 +37,14 @@
 	{/if}
 
 	<DropdownDivider />
-	<div class="grid auto-rows-auto items-center grid-cols-min-content-first gap-x-4">
+	<div class="flex gap-x-4">
 		<div class="grid grid-cols-min-content-first gap-x-1">
 			<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Status</p>
 			<P class="font-normal leading-tight whitespace-nowrap">{status ?? '-'}</P>
 		</div>
-		<div class="grid grid-cols-min-content-first gap-x-1">
+		<div class="grid grid-cols-min-content-first gap-x-1 row-start-2 xxl:row-start-1">
 			<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Clan</p>
-			<P class="font-normal leading-tight">
+			<P class="font-normal leading-tight lg:whitespace-nowrap">
 				{#if blutlinie?.name}
 					{blutlinie.name}
 				{:else if clan?.name}

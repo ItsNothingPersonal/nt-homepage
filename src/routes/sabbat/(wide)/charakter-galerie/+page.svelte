@@ -173,7 +173,9 @@
 
 {#if officers && noFilterActive}
 	<Heading tag="h2" class="mb-2">Offiziere</Heading>
-	<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-auto gap-2 mb-4">
+	<div
+		class="grid grid-cols-1 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4 auto-rows-auto gap-2 mb-4"
+	>
 		{#each officers as charakter}
 			<CharacterCard
 				characterName={charakter.name}
@@ -224,7 +226,9 @@
 		{/each}
 	</div>
 {:else}
-	<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-5 gap-2">
+	<div
+		class="grid grid-cols-1 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4 auto-rows-auto gap-2"
+	>
 		{#each gefilterteCharaktere as charakter}
 			<CharacterCard
 				characterName={charakter.name}
