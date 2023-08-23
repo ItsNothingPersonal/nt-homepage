@@ -174,7 +174,7 @@
 {#if officers && noFilterActive}
 	<Heading tag="h2" class="mb-2">Offiziere</Heading>
 	<div
-		class="grid grid-cols-1 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4 auto-rows-auto gap-2 mb-4"
+		class="grid grid-cols-1 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4 auto-rows-auto gap-2 mb-4 justify-items-center"
 	>
 		{#each officers as charakter}
 			<CharacterCard
@@ -192,7 +192,7 @@
 
 {#if $selektiertesPack && $offizierFilter === '' && getPackLeaders($selektiertesPack.name).length > 0}
 	<Heading tag="h2" class="mb-2">Anführer</Heading>
-	<div class="flex flex-col md:flex-row justify-center mb-4 gap-2">
+	<div class="flex flex-col md:flex-row justify-center mb-4 gap-2 items-center">
 		{#each getPackLeaders($selektiertesPack.name) as charakter}
 			<CharacterCard
 				characterName={charakter.name}
@@ -211,34 +211,18 @@
 	<Heading tag="h2" class="mb-2">True Sabbat</Heading>
 {/if}
 
-{#if gefilterteCharaktere.length < 4}
-	<div class="flex flex-col md:flex-row justify-center mb-4 gap-2">
-		{#each gefilterteCharaktere as charakter}
-			<CharacterCard
-				characterName={charakter.name}
-				clan={charakter.clan}
-				blutlinie={charakter.blutlinie}
-				aemterName={charakter.offizier?.name}
-				status={charakter.charakter_status?.name}
-				beschreibung={charakter.beschreibung ?? ''}
-				bild={charakter.bild}
-			/>
-		{/each}
-	</div>
-{:else}
-	<div
-		class="grid grid-cols-1 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4 auto-rows-auto gap-2"
-	>
-		{#each gefilterteCharaktere as charakter}
-			<CharacterCard
-				characterName={charakter.name}
-				clan={charakter.clan}
-				blutlinie={charakter.blutlinie}
-				aemterName={charakter.offizier?.name}
-				status={charakter.charakter_status?.name}
-				beschreibung={charakter.beschreibung ?? ''}
-				bild={charakter.bild}
-			/>
-		{/each}
-	</div>
-{/if}
+<div
+	class="grid grid-cols-1 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4 auto-rows-auto gap-2 justify-items-center"
+>
+	{#each gefilterteCharaktere as charakter}
+		<CharacterCard
+			characterName={charakter.name}
+			clan={charakter.clan}
+			blutlinie={charakter.blutlinie}
+			aemterName={charakter.offizier?.name}
+			status={charakter.charakter_status?.name}
+			beschreibung={charakter.beschreibung ?? ''}
+			bild={charakter.bild}
+		/>
+	{/each}
+</div>
