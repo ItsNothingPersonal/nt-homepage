@@ -1,4 +1,4 @@
-# NT Redsign Prototyp
+# NT Redesign Prototyp
 
 Die Codebase des Prototypen für das Redesign der Hompeage des [Nächlichen Theaters](https://www.naechtlichestheater.de)
 
