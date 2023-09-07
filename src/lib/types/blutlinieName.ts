@@ -1,4 +1,5 @@
 export enum BlutlinieName {
 	Crusader = 'Crusader',
-	VentrueAntitribu = 'Ventrue Antitribu'
+	VentrueAntitribu = 'Ventrue Antitribu',
+	LasombraAntitribu = 'Lasombra antitribu'
 }
