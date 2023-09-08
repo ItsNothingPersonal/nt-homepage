@@ -19,7 +19,7 @@ export const menuData: {
 			{ href: '/camarilla/uebersicht', label: 'Übersicht' },
 			{ href: '/camarilla/spielort', label: 'Spielort' },
 			{ href: '/camarilla/orga', label: 'Orga-Team' },
-			{ href: '/camarilla/zeittafel-protektorat', label: 'Zeittafel d. Protektorats' },
+			{ href: '/camarilla/zeittafel-protektorat', label: 'Zeittafel' },
 			{ href: '/camarilla/charakter-galerie', label: 'Charaktergalerie' }
 		]
 	},
@@ -31,7 +31,7 @@ export const menuData: {
 			{ href: '/sabbat/spielort', label: 'Spielort' },
 			{ href: '/sabbat/orga', label: 'Orga-Team' },
 			{ href: '/sabbat/setting-steckbrief', label: 'Setting-Steckbrief' },
-			{ href: '/sabbat/zeittafel-sabbat', label: 'Zeittafel d. Diozöse' },
+			{ href: '/sabbat/zeittafel-sabbat', label: 'Zeittafel' },
 			{ href: '/sabbat/charakter-galerie', label: 'Charaktergalerie' }
 		]
 	},

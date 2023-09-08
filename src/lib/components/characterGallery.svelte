@@ -91,7 +91,7 @@
 			{/each}
 		</div>
 	{:else}
-		<div class="flex gap-2 mb-4 justify-center">
+		<div class="flex gap-2 mb-4 justify-center flex-wrap">
 			{#each officers as charakter}
 				<CharacterCard
 					characterName={charakter.name}
