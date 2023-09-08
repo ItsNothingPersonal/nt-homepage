@@ -5,5 +5,7 @@ export enum SabbatAemterName {
 	BischofDerDiplomatie = 'Bischof der Diplomatie',
 	BischofDerInformation = 'Bischof der Information',
 	BischofDesGlaubens = 'Bischof des Glaubens',
-	BischofDerStille = 'Bischof der Stille'
+	BischofDerStille = 'Bischof der Stille',
+	BischofDerRessourcen = 'Bischof der Ressourcen',
+	SibyllinischerBischof = 'Sibyllinischer Bischof'
 }

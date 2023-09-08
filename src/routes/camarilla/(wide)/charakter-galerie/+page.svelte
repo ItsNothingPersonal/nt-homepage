@@ -1,8 +1,10 @@
 <script lang="ts">
-	import CharacterCard from '$lib/components/characterCard.svelte';
+	import CharacterGallery from '$lib/components/characterGallery.svelte';
 	import Indicator from '$lib/components/indicator.svelte';
+	import { CamarillaAemterName } from '$lib/types/camarillaAemterName';
 	import { ClanName } from '$lib/types/clanName';
 	import { SektenName } from '$lib/types/sektenName';
+	import type { CamarillaCharaktere } from '$lib/types/zod/camarillaCharaktere';
 	import { isNullOrUndefined } from '$lib/util';
 	import { Button, ButtonGroup, Chevron, Dropdown, DropdownItem, Heading } from 'flowbite-svelte';
 	import { writable } from 'svelte/store';
@@ -10,19 +12,20 @@
 
 	export let data: PageData;
 	const { charaktere } = data;
+	$: leaders = getLeader()?.filter((e) => e.sekte.name.match($sectFilter)) ?? [];
+	$: officers = getOfficers($sectFilter) ?? [];
+	$: gefilterteCharaktere = filterStandardMembers(
+		charaktere,
+		$sectFilter,
+		$clanFilter,
+		$offizierFilter
+	);
+	$: noFilterActive = $clanFilter === '.*' && $offizierFilter === '';
 
-	let clans = Object.keys(ClanName);
-
+	let clans = [...Object.keys(ClanName), 'Lasombra antitribu'];
 	let sectFilter = writable('.*');
 	let offizierFilter = writable('');
 	let clanFilter = writable('.*');
-
-	$: gefilterteCharaktere = charaktere.filter(
-		(c) =>
-			c.sekte.name.match($sectFilter) &&
-			($offizierFilter.length > 0 ? !isNullOrUndefined(c.offizier) : true) &&
-			c.clan.name.match($clanFilter)
-	);
 
 	function swapSectFilter(filter: SektenName) {
 		if ($sectFilter.match(filter)) {
@@ -46,6 +49,42 @@
 		} else {
 			clanFilter.set(filter);
 		}
+	}
+
+	function getOfficers(sectFilter: string): CamarillaCharaktere[] | undefined {
+		return charaktere.filter(
+			(e) =>
+				!isNullOrUndefined(e.offizier) &&
+				e.offizier.name !== CamarillaAemterName.Prinz &&
+				e.offizier.name !== CamarillaAemterName.Baron &&
+				e.sekte.name.match(sectFilter)
+		);
+	}
+
+	function getLeader(): CamarillaCharaktere[] | undefined {
+		return charaktere.filter(
+			(e) =>
+				e.offizier?.name === CamarillaAemterName.Baron ||
+				e.offizier?.name === CamarillaAemterName.Prinz
+		);
+	}
+
+	function filterStandardMembers(
+		characterPool: CamarillaCharaktere[],
+		sectFilter: string,
+		clanFilter: string,
+		offizierFilter: string
+	) {
+		return characterPool.filter(
+			(c) =>
+				(sectFilter !== '.*' ? c.sekte.name.match(sectFilter) : true) &&
+				(clanFilter === '.*'
+					? offizierFilter === ''
+						? isNullOrUndefined(c.offizier)
+						: c.offizier
+					: c.clan?.name.match(clanFilter) || c.blutlinie?.name.match(clanFilter)) &&
+				(offizierFilter === '' ? true : c.offizier)
+		);
 	}
 </script>
 
@@ -93,16 +132,10 @@
 	</ButtonGroup>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-5 grid-rows-5 gap-2">
-	{#each gefilterteCharaktere as charakter}
-		<CharacterCard
-			characterName={charakter.name}
-			clan={charakter.clan}
-			blutlinie={charakter.blutlinie}
-			aemterName={charakter.offizier?.name}
-			status={charakter.charakter_status?.name}
-			beschreibung={charakter.beschreibung}
-			bild={charakter.bild}
-		/>
-	{/each}
-</div>
+<CharacterGallery
+	{leaders}
+	{officers}
+	{noFilterActive}
+	charaktere={gefilterteCharaktere}
+	setting="Camarilla"
+/>

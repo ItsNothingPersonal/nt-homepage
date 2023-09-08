@@ -6,5 +6,9 @@ export enum CamarillaAemterName {
 	Hüter = 'Hüter',
 	Geißel = 'Geißel',
 	Primogen = 'Primogen',
-	Whip = 'Whip'
+	Whip = 'Whip',
+	Baron = 'Baron',
+	Botschafter = 'Botschafter',
+	Architekt = 'Architekt',
+	Wachtmesiter = 'Wachtmeister'
 }

@@ -7,7 +7,7 @@ import { sekten } from './sekten';
 
 export const camarillaCharaktere = z.object({
 	name: z.string(),
-	clan: clan,
+	clan: clan.nullable(),
 	blutlinie: blutlinie.nullable(),
 	charakter_status: charakterStatus.nullable(),
 	offizier: camarillaAemter.nullable(),

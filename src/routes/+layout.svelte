@@ -25,7 +25,7 @@
 			<slot />
 		</main>
 	{:else}
-		<main class="mx-auto max-w-screen-2xl text-center mt-20 sm:mt-24 lg:mt-40 xl:mt-24">
+		<main class="mx-auto max-w-screen-2xl text-center mt-20 sm:mt-24 lg:mt-28 xl:mt-24">
 			<slot />
 		</main>
 	{/if}
