@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { CamarillaCharaktere } from '$lib/types/zod/camarillaCharaktere';
+	import type { PackInformation } from '$lib/types/zod/packInformation';
 	import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
-	import type { SabbatPacks } from '$lib/types/zod/sabbatPacks';
 	import { getDownloadUrl, isNullOrUndefined } from '$lib/util';
 	import { Card, Heading, Img, P } from 'flowbite-svelte';
 	import CharacterCard from './characterCard.svelte';
@@ -11,8 +11,7 @@
 	export let charaktere: CamarillaCharaktere[] | SabbatCharakter[];
 	export let noFilterActive: boolean;
 	export let setting: 'Camarilla' | 'Sabbat';
-	export let selektiertesPack: { pack: SabbatPacks; leaders: SabbatCharakter[] } | undefined =
-		undefined;
+	export let selektiertesPack: PackInformation | undefined = undefined;
 </script>
 
 {#if !isNullOrUndefined(selektiertesPack?.pack?.beschreibung) || !isNullOrUndefined(selektiertesPack?.pack.logo)}
