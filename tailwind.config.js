@@ -10,7 +10,7 @@ export default {
 		colors: {
 			primary: colors.amber,
 			light: colors.slate,
-			dark: colors.slate
+			dark: colors.gray
 		},
 		extend: {
 			gridTemplateColumns: {

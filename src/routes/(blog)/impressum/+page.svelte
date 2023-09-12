@@ -57,7 +57,7 @@
 <Heading tag="h2" class="mt-2">Copyright</Heading>
 <P
 	uppercase
-	class="[&>p]:first-letter:text-2xl [&>p]:text-justify [&>p]:mb-2 [&>p>a]:underline [&>p>a]:decoration-dotted"
+	class="[&>p]:first-letter:text-2xl [&>p]:text-justify [&>p]:mb-2 [&>p>a]:underline [&>p>a]:decoration-dotted [&>h3]:text-xl [&>h3]:font-bold"
 >
 	{@html data.copyrightNotice?.code}
 </P>
