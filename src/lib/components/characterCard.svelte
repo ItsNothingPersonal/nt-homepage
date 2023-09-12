@@ -24,14 +24,14 @@
 	img={`${
 		import.meta.env.VITE_DIRECTUS_URL
 	}/assets/${bild}?fit=cover&width=380&height=380&quality=80&format=auto`}
-	class="bg-light-50 dark:bg-dark-700 w-full"
+	class="w-full bg-light-50 shadow-md dark:bg-dark-700 dark:shadow-gray-800"
 >
 	<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 		{characterName}
 	</h5>
 
 	{#if aemterName}
-		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">{aemterName}</p>
+		<p class="mb-3 font-normal leading-tight text-gray-700 dark:text-gray-400">{aemterName}</p>
 	{:else}
 		<p class="mb-3 leading-tight"><br /></p>
 	{/if}
@@ -39,11 +39,11 @@
 	<DropdownDivider />
 	<div class="flex gap-x-4">
 		<div class="grid grid-cols-min-content-first gap-x-1">
-			<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Status</p>
-			<P class="font-normal leading-tight whitespace-nowrap">{status ?? '-'}</P>
+			<p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Status</p>
+			<P class="whitespace-nowrap font-normal leading-tight">{status ?? '-'}</P>
 		</div>
-		<div class="grid grid-cols-min-content-first gap-x-1 row-start-2 xxl:row-start-1">
-			<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Clan</p>
+		<div class="row-start-2 grid grid-cols-min-content-first gap-x-1 xxl:row-start-1">
+			<p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Clan</p>
 			<P class="font-normal leading-tight lg:whitespace-nowrap">
 				{#if blutlinie?.name}
 					{blutlinie.name}
