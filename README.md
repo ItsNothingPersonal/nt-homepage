@@ -1,6 +1,6 @@
-# NT Redesign Prototyp
+# NT-Homepage
 
-Die Codebase des Prototypen für das Redesign der Hompeage des [Nächlichen Theaters](https://www.naechtlichestheater.de)
+Die Codebase der Homepage des [Nächlichen Theaters](https://www.naechtlichestheater.de)
 
 ## Entwicklung
 
