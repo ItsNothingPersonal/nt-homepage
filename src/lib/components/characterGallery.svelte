@@ -15,8 +15,12 @@
 </script>
 
 {#if !isNullOrUndefined(selektiertesPack?.pack?.beschreibung) || !isNullOrUndefined(selektiertesPack?.pack.logo)}
-	<div class="flex items-center justify-center gap-x-2 mb-4">
-		<Card class="text-left w-full bg-light-50 dark:bg-dark-700" size="lg" padding="xl">
+	<div class="mb-4 flex items-center justify-center gap-x-2">
+		<Card
+			class="w-full bg-light-50 text-left shadow-lg dark:bg-dark-700 dark:shadow-gray-800"
+			size="lg"
+			padding="xl"
+		>
 			<div
 				class={selektiertesPack?.pack.beschreibung
 					? 'container'
@@ -26,7 +30,7 @@
 					<Img
 						src={getDownloadUrl(selektiertesPack?.pack.logo)}
 						alt={`Logo des Packs ${selektiertesPack?.pack.name}`}
-						class={`rounded-lg  mr-2 mb-2 max-h-56  ${
+						class={`mb-2  mr-2 max-h-56 rounded-lg  ${
 							selektiertesPack?.pack.beschreibung ? 'float-left shadow-lg dark:shadow-gray-800' : ''
 						}`}
 					/>
@@ -55,7 +59,7 @@
 				bild={leaders[0].bild}
 			/>
 		{:else}
-			<div class="grid grid-cols-1 md:grid-cols-2 auto-rows-auto gap-2 mb-4 justify-items-center">
+			<div class="mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2">
 				{#each leaders as singleLeader}
 					<CharacterCard
 						characterName={singleLeader.name}
@@ -76,7 +80,7 @@
 	<Heading tag="h2" class="mb-2 mt-4">Offiziere</Heading>
 	{#if officers.length >= 4}
 		<div
-			class="grid grid-cols-1 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4 auto-rows-auto gap-2 mb-4 justify-items-center"
+			class="mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4"
 		>
 			{#each officers as charakter}
 				<CharacterCard
@@ -91,7 +95,7 @@
 			{/each}
 		</div>
 	{:else}
-		<div class="flex gap-2 mb-4 justify-center flex-wrap">
+		<div class="mb-4 flex flex-wrap justify-center gap-2">
 			{#each officers as charakter}
 				<CharacterCard
 					characterName={charakter.name}
@@ -109,7 +113,7 @@
 
 {#if selektiertesPack && selektiertesPack.leaders.length > 0}
 	<Heading tag="h2" class="mb-2">Anführer</Heading>
-	<div class="flex flex-col md:flex-row mb-4 gap-2 justify-center">
+	<div class="mb-4 flex flex-col justify-center gap-2 md:flex-row">
 		{#each selektiertesPack.leaders as charakter}
 			<CharacterCard
 				characterName={charakter.name}
@@ -131,7 +135,7 @@
 {/if}
 {#if charaktere.length >= 4}
 	<div
-		class="grid grid-cols-1 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4 auto-rows-auto gap-2 justify-items-center"
+		class="grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4"
 	>
 		{#each charaktere as charakter}
 			<CharacterCard
@@ -147,7 +151,7 @@
 	</div>
 {:else}
 	<div class="flex h-max w-full justify-center">
-		<div class="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row mb-4 gap-2">
+		<div class="mb-4 flex flex-col gap-2 md:grid md:grid-cols-2 lg:flex lg:flex-row">
 			{#each charaktere as charakter}
 				<CharacterCard
 					characterName={charakter.name}
