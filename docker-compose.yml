@@ -41,9 +41,15 @@ services:
       - cache
       - database
     environment:
+      # Directus
       KEY: ${KEY}
       SECRET: ${SECRET}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      CORS_ENABLED: ${CORS_ENABLED}
+      PUBLIC_URL: ${PUBLIC_URL}
 
+      # Database
       DB_CLIENT: ${DB_CLIENT}
       DB_HOST: ${DB_HOST}
       DB_PORT: ${POSTGRES_PORT_INTERNAL}
@@ -51,17 +57,19 @@ services:
       DB_USER: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
 
-      CACHE_ENABLED: 'true'
+      # Cache
+      CACHE_ENABLED: true
       CACHE_STORE: 'redis'
-      CACHE_AUTO_PURGE: 'true'
+      CACHE_AUTO_PURGE: true
       REDIS: 'redis://cache:6379'
 
-      ADMIN_EMAIL: ${ADMIN_EMAIL}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
-
-      CORS_ENABLED: ${CORS_ENABLED}
-
-      PUBLIC_URL: ${PUBLIC_URL}
+      # E-Mail
+      EMAIL_TRANSPORT: smtp
+      EMAIL_SMTP_HOST: smtp.strato.de
+      EMAIL_SMTP_PORT: 465
+      EMAIL_SMTP_USER: ${EMAIL_USER}
+      EMAIL_SMTP_PASSWORD: ${EMAIL_PASSWORD}
+      EMAIL_SMTP_SECURE: true
 
 networks:
   directus:
