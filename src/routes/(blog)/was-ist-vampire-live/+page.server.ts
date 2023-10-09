@@ -8,6 +8,6 @@ export const load = (async () => {
 
 	return {
 		ueberschrift: (await wasIstVampireLiveResponse).ueberschrift,
-		erklaerung: await compile((await wasIstVampireLiveResponse).erklaerung)
+		erklaerung: compile((await wasIstVampireLiveResponse).erklaerung)
 	};
 }) satisfies PageServerLoad;
