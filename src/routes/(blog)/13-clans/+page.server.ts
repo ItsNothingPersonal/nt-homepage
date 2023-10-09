@@ -10,6 +10,6 @@ export const load = (async () => {
 
 	return {
 		clans: clan.array().parse(await clans),
-		beschreibung: await compile((await wasSindClans).beschreibung)
+		beschreibung: compile((await wasSindClans).beschreibung)
 	};
 }) satisfies PageServerLoad;

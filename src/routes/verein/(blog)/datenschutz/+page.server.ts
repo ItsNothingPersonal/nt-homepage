@@ -7,7 +7,7 @@ export const load = (async () => {
 	const data = client.request(readSingleton('verein_datenschutz'));
 
 	return {
-		datenschutzerklaerung: await compile((await data).datenschutzerklaerung),
-		datenverarbeitung: await compile((await data).datenverarbeitung_und_uebermittlung)
+		datenschutzerklaerung: compile((await data).datenschutzerklaerung),
+		datenverarbeitung: compile((await data).datenverarbeitung_und_uebermittlung)
 	};
 }) satisfies PageServerLoad;
