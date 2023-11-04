@@ -36,7 +36,7 @@
 
 		<Heading tag="h2">Kontakt</Heading>
 		<div class="mb-4">
-			<SocialButton icon="email" href={`mailto:${email}`} text="Kontakt zur Spielleitung" />
+			<SocialButton icon="email" href={`mailto:${email}`} text="Kontakt zur Projektleitung" />
 		</div>
 	</div>
 </div>

@@ -58,7 +58,7 @@ export const menuData: {
 	{
 		id: 5,
 		href: 'http://user.naechtlichestheater.de',
-		label: 'Benutzer'
+		label: 'Login'
 	},
 	{
 		id: 6,
