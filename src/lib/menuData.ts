@@ -57,6 +57,11 @@ export const menuData: {
 	},
 	{
 		id: 5,
+		href: 'http://user.naechtlichestheater.de',
+		label: 'Benutzer'
+	},
+	{
+		id: 6,
 		href: '/impressum',
 		label: 'Impressum'
 	}
