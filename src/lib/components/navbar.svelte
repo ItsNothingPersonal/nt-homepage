@@ -37,7 +37,7 @@
 	$: mobile = width < breakPoint;
 	$: quer = width > height;
 
-	let spanClass = 'pl-2 self-center text-md text-light-800 whitespace-nowrap dark:text-white';
+	let spanClass = 'pl-8 self-center text-md text-light-800 whitespace-nowrap dark:text-white';
 	let divClass = 'w-full md:block md:w-auto pr-8';
 	let ulClass = 'flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-lg md:font-medium';
 
@@ -140,7 +140,6 @@
 						<SidebarItem
 							{label}
 							{href}
-							{spanClass}
 							on:click={toggleSide}
 							active={$page.url.pathname === href}
 						/>
