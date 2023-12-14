@@ -1,73 +1,70 @@
 <script lang="ts">
-	import { Heading, P } from 'flowbite-svelte';
-	import type { PageData } from './$types';
-
-	export let data: PageData;
+	export let data;
 </script>
 
-<Heading tag="h1" class="mb-4">Impressum</Heading>
-<Heading tag="h2" class="mt-2">Angaben gemäß § 5 TMG</Heading>
-<P>
+<h1 class="h1">Impressum</h1>
+<h2 class="h2 mb-1 mt-4">Angaben gemäß § 5 TMG</h2>
+
+<p>
 	{data.impressum.betreiber_name}
-</P>
-<P>
+</p>
+<p>
 	{data.impressum.strasse}
-</P>
-<P>
+</p>
+<p>
 	{data.impressum.plz}
 	{data.impressum.ort}
-</P>
+</p>
 <br />
-<P>
+<p>
 	<strong class="font-semibold text-gray-900 dark:text-white">Vereinsregister: </strong>
 	{data.impressum.vereinsregister}
-</P>
-<P>
+</p>
+<p>
 	<strong class="font-semibold text-gray-900 dark:text-white">Registergericht: </strong>
 	{data.impressum.registergericht}
-</P>
+</p>
 
-<Heading tag="h3" class="mt-2">Vertreten durch</Heading>
-<P>{data.impressum.erster_vorstand} (Erster Vorstand)</P>
-<P>{data.impressum.zweiter_vorstand} (Zweiter Vorstand)</P>
-<P>{data.impressum.schatzmeister} (Schatzmeister)</P>
+<h3 class="h3 mt-2">Vertreten durch</h3>
+<p>{data.impressum.erster_vorstand} (Erster Vorstand)</p>
+<p>{data.impressum.zweiter_vorstand} (Zweiter Vorstand)</p>
+<p>{data.impressum.schatzmeister} (Schatzmeister)</p>
 
-<Heading tag="h2" class="mt-2">Kontakt</Heading>
-<P>
+<h2 class="h2 mb-1 mt-4">Kontakt</h2>
+<p>
 	<strong class="font-semibold text-gray-900 dark:text-white">Telefon: </strong>
 	{data.impressum.telefon}
-</P>
-<P>
+</p>
+<p>
 	<strong class="font-semibold text-gray-900 dark:text-white">E-Mail: </strong>
-	<a class="underline decoration-dotted" href={`mailto:${data.impressum.email}`}>
+	<a class="underline decoration-dotted underline-offset-4" href={`mailto:${data.impressum.email}`}>
 		{data.impressum.email}
 	</a>
-</P>
+</p>
 
-<Heading tag="h2" class="mt-2">Redaktionell verantwortlich</Heading>
-<P>{data.impressum.webmaster_name}</P>
-<P>
+<h2 class="h2 mb-1 mt-4">Redaktionell verantwortlich</h2>
+<p>{data.impressum.webmaster_name}</p>
+<p>
 	{data.impressum.webmaster_strasse}
-</P>
-<P>
+</p>
+<p>
 	{data.impressum.webmaster_plz}
 	{data.impressum.webmaster_ort}
-</P>
+</p>
 
-<Heading tag="h2" class="mt-2">Copyright</Heading>
-<P
-	uppercase
-	class="[&>p]:first-letter:text-2xl [&>p]:text-justify [&>p]:mb-2 [&>p>a]:underline [&>p>a]:decoration-dotted [&>h3]:text-xl [&>h3]:font-bold"
+<h2 class="h2 mb-1 mt-4">Copyright</h2>
+<p
+	class="[&>h3]:h3 [&>h3]:mt-2 [&>p:not(:last-of-type)]:mb-2 [&>p>a]:underline [&>p>a]:decoration-dotted [&>p>a]:underline-offset-4 [&>p>a]:underline-offset-4 [&>p]:text-justify [&>p]:first-letter:text-2xl"
 >
 	{@html data.copyrightNotice?.code}
-</P>
+</p>
 
-<Heading tag="h2" class="mt-2">Haftungsausschluss</Heading>
-<P uppercase class="first-letter:text-2xl text-justify mb-2">
+<h2 class="h2 mb-1 mt-4">Haftungsausschluss</h2>
+<p class=" mb-2 text-justify first-letter:text-2xl">
 	{data.impressum.haftungsausschluss}
-</P>
+</p>
 
-<Heading tag="h2" class="mt-2">Streitbeilegung</Heading>
-<P uppercase class="first-letter:text-2xl text-justify mb-2">
+<h2 class="h2 mb-1 mt-4">Streitbeilegung</h2>
+<p class="mb-2 text-justify first-letter:text-2xl">
 	{data.impressum.schlichtungsstelle}
-</P>
+</p>

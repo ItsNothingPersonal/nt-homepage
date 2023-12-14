@@ -1,7 +1,5 @@
 <script lang="ts">
-	import type { ImageInformation } from '$lib/types/imageInformation';
 	import { isNullOrUndefined } from '$lib/util';
-	import { Heading, P } from 'flowbite-svelte';
 	import GoogleCalendar from './googleCalendar.svelte';
 	import ImageCarousel from './imageCarousel.svelte';
 	import SocialButton from './socialButton.svelte';
@@ -10,37 +8,37 @@
 	export let beschreibung: string;
 	export let spieltermine: string;
 	export let email: string;
-	export let images: ImageInformation[] | undefined = undefined;
+	export let images: string[] | undefined = undefined;
 	export let googleCalendarLink: string | undefined | null = undefined;
 
 	let innerWidth: number;
 </script>
 
 <svelte:window bind:innerWidth />
-<Heading tag="h1" class="mb-4">{titel}</Heading>
+<h1 class="h1 mb-4 text-center font-bold">{titel}</h1>
 
 <div class="flex flex-col-reverse md:container md:inline-block">
 	{#if !isNullOrUndefined(images) && images.length > 0}
-		<ImageCarousel {images} style="small" floatLeft={true} />
+		<ImageCarousel size={innerWidth > 640 ? 'w-96' : 'w-fit'} {images} floatLeft={true} />
 	{/if}
 
 	<div class="flex flex-col">
-		<P uppercase class="[&>p]::text-2xl [&>p]:mb-2 [&>p]:text-justify [&>p]:first-letter:text-2xl">
+		<p class="[&>p]::text-2xl [&>p]:mb-2 [&>p]:text-justify [&>p]:first-letter:text-2xl">
 			{@html beschreibung}
-		</P>
+		</p>
 
-		<Heading tag="h2">Spieltermine</Heading>
-		<P uppercase class="[&>p]::text-2xl [&>p]:mb-2 [&>p]:text-justify [&>p]:first-letter:text-2xl">
+		<h2 class="h2 mb-2 text-center">Spieltermine</h2>
+		<p class="[&>p]::text-2xl [&>p]:mb-2 [&>p]:text-justify [&>p]:first-letter:text-2xl">
 			{@html spieltermine}
-		</P>
+		</p>
 
-		<Heading tag="h2">Kontakt</Heading>
-		<div class="mb-4">
+		<h2 class="h2 mb-2 text-center">Kontakt</h2>
+		<div class="mb-4 flex justify-center">
 			<SocialButton icon="email" href={`mailto:${email}`} text="Kontakt zur Projektleitung" />
 		</div>
 	</div>
 </div>
 
 {#if googleCalendarLink}
-	<GoogleCalendar src={googleCalendarLink} size={innerWidth >= 768 ? 'normal' : 'small'} />
+	<GoogleCalendar src={googleCalendarLink} size={innerWidth >= 640 ? 'normal' : 'small'} />
 {/if}

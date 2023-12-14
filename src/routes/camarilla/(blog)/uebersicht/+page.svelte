@@ -1,18 +1,12 @@
 <script lang="ts">
 	import ProjektUebersicht from '$lib/components/projektUebersicht.svelte';
 	import { getImageUrl, isNullOrUndefined } from '$lib/util';
-	import type { PageData } from './$types';
 
-	export let data: PageData;
+	export let data;
 
 	const images = data.bilder
 		?.filter((e) => !isNullOrUndefined(e.directus_files_id))
-		.map((e) => {
-			return {
-				id: e.camarilla_uebersicht_id,
-				imgurl: getImageUrl(e.directus_files_id)
-			};
-		});
+		.map((e) => getImageUrl(e.directus_files_id, 384));
 </script>
 
 <ProjektUebersicht

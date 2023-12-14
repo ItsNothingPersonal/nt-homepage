@@ -1,16 +1,13 @@
 <script lang="ts">
 	import Spielort from '$lib/components/spielort.svelte';
-	import { getImageUrl } from '$lib/util';
+	import { getImageUrl, isNullOrUndefined } from '$lib/util';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
-	let images = data.bilder?.map((e) => {
-		return {
-			id: e.wh40k_spielort_id,
-			imgurl: getImageUrl(e.directus_files_id, 768, 512, 'cover')
-		};
-	});
+	const images = data.bilder
+		?.filter((e) => !isNullOrUndefined(e.directus_files_id))
+		.map((e) => getImageUrl(e.directus_files_id, 768, 512, 'inside'));
 </script>
 
 <Spielort

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { VereinAnsprechpersonen } from '$lib/types/zod/vereinAnsprechpersonen';
 	import { getImageUrl } from '$lib/util';
-	import { A, Heading, Hr, P } from 'flowbite-svelte';
 
 	export let personen: VereinAnsprechpersonen[];
 	export let titel: string;
@@ -9,16 +8,16 @@
 </script>
 
 {#if personen.length > 0}
-	<Heading tag="h3" class="mb-1">{titel}</Heading>
+	<h3 class="h3 mb-1 text-center">{titel}</h3>
 	{#if beschreibung}
-		<P class="text-justify">{beschreibung}</P>
+		<p class="text-justify">{beschreibung}</p>
 	{/if}
-	<Hr height="h-px" />
-	<div class="flex flex-col md:grid md:grid-cols-3 md:grid-rows-1 mt-2 mb-2">
+	<hr class="my-1" />
+	<div class="mb-2 mt-2 flex flex-col md:grid md:grid-cols-3 md:grid-rows-1">
 		{#each personen as person}
-			<div class="flex flex-col items-center mb-2 last:mb-0">
-				<P weight="semibold">{person.name}</P>
-				<P>{person.rolle.name}</P>
+			<div class="mb-2 flex flex-col items-center last:mb-0">
+				<p class="font-semibold">{person.name}</p>
+				<p>{person.rolle.name}</p>
 				{#if person.bild}
 					<img
 						alt={`Bild von ${person.name}`}
@@ -26,10 +25,10 @@
 						class="my-1 rounded-lg shadow-lg dark:shadow-gray-800"
 					/>
 				{/if}
-				<A href={`mailto:${person.email}`}>{person.email ?? ''}</A>
+				<a class="anchor no-underline" href={`mailto:${person.email}`}>{person.email ?? ''}</a>
 			</div>
 		{/each}
 	</div>
-	<Hr height="h-px" />
+	<hr clasS="my-1" />
 	<slot name="footer" />
 {/if}

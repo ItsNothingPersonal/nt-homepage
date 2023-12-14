@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Orga } from '$lib/types/zod/orga';
 	import { getImageUrl } from '$lib/util';
-	import { Heading, Hr, P } from 'flowbite-svelte';
 
 	export let title: 'Spielleitung' | 'Erzähler';
 	export let personen: OrgaOhneRolle[];
@@ -10,19 +9,19 @@
 </script>
 
 {#if personen.length > 0}
-	<Heading tag="h2" class="mb-2">{title}</Heading>
+	<h2 class="h2 mb-2 text-center">{title}</h2>
 
 	<slot name="beschreibung" />
-	<Hr height="h-px" />
-	<div class="flex flex-col md:grid md:grid-cols-2 md:grid-rows-1 mt-2 mb-2">
+	<hr class="my-2" />
+	<div class="mb-2 mt-2 flex flex-col md:grid md:grid-cols-2 md:grid-rows-1">
 		{#each personen as person}
-			<div class="flex flex-col items-center mb-2 last:mb-0">
-				<P weight="semibold">
+			<div class="mb-2 flex flex-col items-center last:mb-0">
+				<p class="font-semibold">
 					{person.name}
 					{#if person.projektleiter}
 						{` (Projektleiter)`}
 					{/if}
-				</P>
+				</p>
 				{#if person.bild}
 					<img
 						alt={`Bild der Spielleitung ${person.name}`}
@@ -33,6 +32,6 @@
 			</div>
 		{/each}
 	</div>
-	<Hr height="h-px" />
+	<hr class="my-2" />
 	<slot name="footer" />
 {/if}

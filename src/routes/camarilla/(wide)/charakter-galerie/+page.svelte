@@ -1,17 +1,19 @@
 <script lang="ts">
+	import ButtonGroup from '$lib/components/ButtonGroup/ButtonGroup.svelte';
 	import CharacterGallery from '$lib/components/characterGallery.svelte';
-	import Indicator from '$lib/components/indicator.svelte';
 	import { CamarillaAemterName } from '$lib/types/camarillaAemterName';
 	import { ClanName } from '$lib/types/clanName';
+	import { ScreenSize } from '$lib/types/sceenSize.js';
 	import { SektenName } from '$lib/types/sektenName';
+	import type { SubMenuConfig } from '$lib/types/subMenuConfig.js';
 	import type { CamarillaCharaktere } from '$lib/types/zod/camarillaCharaktere';
 	import { isNullOrUndefined } from '$lib/util';
-	import { Button, ButtonGroup, Chevron, Dropdown, DropdownItem, Heading } from 'flowbite-svelte';
+	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
-	import type { PageData } from './$types';
 
-	export let data: PageData;
+	export let data;
 	const { charaktere } = data;
+
 	$: leaders = getLeader()?.filter((e) => e.sekte.name.match($sectFilter)) ?? [];
 	$: officers = getOfficers($sectFilter) ?? [];
 	$: gefilterteCharaktere = filterStandardMembers(
@@ -22,12 +24,22 @@
 	);
 	$: noFilterActive = $clanFilter === '.*' && $offizierFilter === '';
 
-	let clans = [...Object.keys(ClanName), 'Lasombra antitribu'];
 	let sectFilter = writable('.*');
 	let offizierFilter = writable('');
 	let clanFilter = writable('.*');
+	let width: number = 0;
+	let clanSubMenu: SubMenuConfig[];
 
-	function swapSectFilter(filter: SektenName) {
+	onMount(() => {
+		clanSubMenu = [...Object.keys(ClanName), 'Lasombra antitribu'].map((e) => {
+			return {
+				label: e,
+				onClick: () => swapClanFilter(e)
+			};
+		});
+	});
+
+	function swapSectFilter(filter: string) {
 		if ($sectFilter.match(filter)) {
 			sectFilter.set('.*');
 		} else {
@@ -88,48 +100,36 @@
 	}
 </script>
 
-<Heading tag="h1" class="mb-4">Charakter-Galerie</Heading>
+<svelte:window bind:innerWidth={width} />
+
+<h1 class="h1 mb-4 text-center font-bold">Charakter-Galerie</h1>
 <div class="mb-4">
-	<ButtonGroup class="inline-flex rounded-lg shadow-sm bg-light-50 dark:bg-dark-700">
-		<Button
-			on:click={() => swapSectFilter(SektenName.Camarilla)}
-			class="relative bg-light-50 dark:bg-dark-700"
-		>
-			Camarilla
-			{#if $sectFilter === SektenName.Camarilla}
-				<Indicator />
-			{/if}
-		</Button>
-		<Button
-			on:click={() => swapSectFilter(SektenName.Anarchen)}
-			class="relative bg-light-50 dark:bg-dark-700"
-		>
-			Anarchen
-			{#if $sectFilter === SektenName.Anarchen}
-				<Indicator />
-			{/if}
-		</Button>
-		<Button
-			on:click={() => swapOffizierFilter('true')}
-			class="relative bg-light-50 dark:bg-dark-700"
-		>
-			Offiziere
-			{#if $offizierFilter.length > 0}
-				<Indicator />
-			{/if}
-		</Button>
-		<Button class="relative bg-light-50">
-			<Chevron>Clans</Chevron>
-			{#if $clanFilter !== '.*'}
-				<Indicator />
-			{/if}
-		</Button>
-		<Dropdown containerClass="divide-y w-44 z-20 bg-light-50 dark:bg-dark-700">
-			{#each clans as clan}
-				<DropdownItem on:click={() => swapClanFilter(clan)}>{clan}</DropdownItem>
-			{/each}
-		</Dropdown>
-	</ButtonGroup>
+	<ButtonGroup
+		config={[
+			{
+				label: SektenName.Camarilla,
+				onClick: swapSectFilter,
+				indicator: $sectFilter === SektenName.Camarilla
+			},
+			{
+				label: SektenName.Anarchen,
+				onClick: swapSectFilter,
+				indicator: $sectFilter === SektenName.Anarchen
+			},
+			{
+				label: 'Offiziere',
+				onClick: () => swapOffizierFilter('true'),
+				indicator: $offizierFilter.length > 0
+			},
+			{
+				label: 'Clans',
+				indicator: $clanFilter !== '.*',
+				subMenu: clanSubMenu
+			}
+		]}
+		smallSwitch={width < ScreenSize.SM}
+		rounded={'!rounded-none'}
+	/>
 </div>
 
 <CharacterGallery

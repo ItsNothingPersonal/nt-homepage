@@ -1,30 +1,80 @@
 <script lang="ts">
-	import { Carousel } from 'flowbite-svelte';
-	import { onMount } from 'svelte';
+	import Icon from '@iconify/svelte';
+	import { onDestroy, onMount } from 'svelte';
 
-	export let images: unknown[];
-	export let showThumbs: boolean | undefined = false;
-	export let showCaptions: boolean | undefined = false;
-	export let showIndicators: boolean | undefined = false;
-	export let duration: number | undefined = 5000;
-	export let style: 'small' | 'normal' = 'normal';
+	export let images: string[];
+	export let timeout: number = 5000;
+	export let size: string = 'w-96';
 	export let floatLeft = false;
 
 	let additionalCarouselStyles = '';
-	let floatLeftStyle = 'float-left md:mr-2';
+	const floatLeftStyle = 'float-left md:mr-4';
 
 	onMount(() => {
-		if (style === 'small') {
-			additionalCarouselStyles = '[&>div]:max-w-sm [&>div]:h-56 md:[&>div]:h-64';
-		}
 		if (floatLeft === true) {
-			additionalCarouselStyles += ` ${floatLeftStyle}`;
+			additionalCarouselStyles = floatLeftStyle;
 		}
+	});
+
+	let elemCarousel: HTMLDivElement;
+	let timeoutId: NodeJS.Timeout;
+
+	function carouselLeft(): void {
+		const x =
+			elemCarousel.scrollLeft === 0
+				? elemCarousel.clientWidth * elemCarousel.childElementCount // loop
+				: elemCarousel.scrollLeft - elemCarousel.clientWidth; // step left
+		elemCarousel.scroll(x, 0);
+	}
+
+	function carouselRight(): void {
+		const x =
+			elemCarousel.scrollLeft === elemCarousel.scrollWidth - elemCarousel.clientWidth
+				? 0 // loop
+				: elemCarousel.scrollLeft + elemCarousel.clientWidth; // step right
+		elemCarousel.scroll(x, 0);
+
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(carouselRight, timeout);
+	}
+
+	onMount(() => {
+		// Start the image rotation when the component is mounted
+		carouselRight();
+	});
+
+	onDestroy(() => {
+		// Clear any pending timeouts when the component is unmounted to avoid memory leaks
+		clearTimeout(timeoutId);
 	});
 </script>
 
 <div
-	class="overflow-hidden relative rounded-lg shadow-lg dark:shadow-gray-800 mb-2 {additionalCarouselStyles}"
+	class="card relative flex items-center overflow-hidden rounded-lg p-2 {size} {additionalCarouselStyles}"
 >
-	<Carousel {images} {showThumbs} {showCaptions} {showIndicators} {duration} loop />
+	<!-- Button: Left -->
+	<button
+		type="button"
+		class="variant-glass btn-icon absolute left-4 border-2 border-white dark:border-primary-500"
+		on:click={carouselLeft}
+	>
+		<Icon icon="mdi:arrow-left" />
+	</button>
+	<!-- Full Images -->
+	<div
+		bind:this={elemCarousel}
+		class="hide-scrollbar flex snap-x snap-mandatory overflow-x-auto scroll-smooth"
+	>
+		{#each images as image}
+			<img class="snap-center rounded-lg" src={image} alt={image} loading="lazy" />
+		{/each}
+	</div>
+	<!-- Button: Right -->
+	<button
+		type="button"
+		class="variant-glass btn-icon absolute right-4 border-2 border-white dark:border-primary-500"
+		on:click={carouselRight}
+	>
+		<Icon icon="mdi:arrow-right" />
+	</button>
 </div>

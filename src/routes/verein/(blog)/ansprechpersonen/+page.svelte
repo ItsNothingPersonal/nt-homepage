@@ -1,12 +1,10 @@
 <script lang="ts">
 	import AnsprechpersonenEntry from '$lib/components/ansprechpersonenEntry.svelte';
-	import { Heading } from 'flowbite-svelte';
-	import type { PageData } from './$types';
 
-	export let data: PageData;
+	export let data;
 </script>
 
-<Heading tag="h2" class="mb-2">Ansprechpersonen</Heading>
+<h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Ansprechpersonen</h2>
 
 <AnsprechpersonenEntry
 	personen={data.vorstand}

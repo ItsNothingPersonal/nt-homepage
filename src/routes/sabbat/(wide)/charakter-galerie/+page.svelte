@@ -1,17 +1,18 @@
 <script lang="ts">
+	import ButtonGroup from '$lib/components/ButtonGroup/ButtonGroup.svelte';
 	import CharacterGallery from '$lib/components/characterGallery.svelte';
-	import Indicator from '$lib/components/indicator.svelte';
 	import { SabbatCharakterStatusName } from '$lib/types/sabbatCharakterStatusName';
 	import { SabbatAemterName } from '$lib/types/sabbatOffizier';
+	import { ScreenSize } from '$lib/types/sceenSize';
+	import type { SubMenuConfig } from '$lib/types/subMenuConfig';
 	import type { PackInformation } from '$lib/types/zod/packInformation';
 	import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
 	import type { SabbatPacks } from '$lib/types/zod/sabbatPacks';
 	import { isNullOrUndefined } from '$lib/util';
-	import { Button, ButtonGroup, Chevron, Dropdown, DropdownItem, Heading } from 'flowbite-svelte';
+	import { onMount } from 'svelte';
 	import { writable, type Writable } from 'svelte/store';
-	import type { PageData } from './$types';
 
-	export let data: PageData;
+	export let data;
 	const { packs, charaktere } = data;
 
 	$: leaders = getLeader();
@@ -35,6 +36,17 @@
 	let offizierFilter = writable('');
 	let einzelgaengerFilter: Writable<boolean> = writable(false);
 	let selektiertesPack = writable<SabbatPacks | undefined>();
+	let width: number = 0;
+	let packSubMenu: SubMenuConfig[];
+
+	onMount(() => {
+		packSubMenu = packs.map((e) => {
+			return {
+				label: e.name,
+				onClick: () => swapPackFilter(e.name)
+			};
+		});
+	});
 
 	function swapPackFilter(filter: string) {
 		if ($packFilter.match(filter)) {
@@ -101,39 +113,31 @@
 	}
 </script>
 
-<Heading tag="h1" class="mb-4">Charakter-Galerie</Heading>
+<svelte:window bind:innerWidth={width} />
+
+<h1 class="h1 mb-4 text-center font-bold">Charakter-Galerie</h1>
 <div class="mb-4">
-	<ButtonGroup class="inline-flex rounded-lg shadow-sm bg-light-50 dark:bg-dark-700">
-		<Button
-			on:click={() => swapFilterEinzelgaenger()}
-			class="relative bg-light-50 dark:bg-dark-700"
-		>
-			Einzelgänger
-			{#if $einzelgaengerFilter === true}
-				<Indicator />
-			{/if}
-		</Button>
-		<Button class="relative bg-light-50 dark:bg-dark-700">
-			<Chevron>Packs</Chevron>
-			{#if $packFilter !== '.*'}
-				<Indicator />
-			{/if}
-		</Button>
-		<Dropdown containerClass="divide-y z-20 bg-light-50 dark:bg-dark-700">
-			{#each packs as pack}
-				<DropdownItem on:click={() => swapPackFilter(pack.name)}>{pack.name}</DropdownItem>
-			{/each}
-		</Dropdown>
-		<Button
-			on:click={() => swapOffizierFilter('true')}
-			class="relative bg-light-50 dark:bg-dark-700"
-		>
-			Offiziere
-			{#if $offizierFilter.length > 0}
-				<Indicator />
-			{/if}
-		</Button>
-	</ButtonGroup>
+	<ButtonGroup
+		config={[
+			{
+				label: 'Einzelgänger',
+				onClick: swapFilterEinzelgaenger,
+				indicator: $einzelgaengerFilter === true
+			},
+			{
+				label: 'Packs',
+				indicator: $packFilter !== '.*',
+				subMenu: packSubMenu
+			},
+			{
+				label: 'Offiziere',
+				onClick: () => swapOffizierFilter('true'),
+				indicator: $offizierFilter.length > 0
+			}
+		]}
+		smallSwitch={width < ScreenSize.SM}
+		rounded={'!rounded-none'}
+	/>
 </div>
 
 <CharacterGallery

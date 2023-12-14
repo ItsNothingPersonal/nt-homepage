@@ -1,36 +1,32 @@
 <script lang="ts">
-	import { getDownloadUrl } from '$lib/util';
-	import {
-		A,
-		Heading,
-		Table,
-		TableBody,
-		TableBodyCell,
-		TableBodyRow,
-		TableHead,
-		TableHeadCell
-	} from 'flowbite-svelte';
-	import type { PageData } from './$types';
+	import { getDownloadUrl } from '$lib/util.js';
+	import { Table, tableMapperValues, type TableSource } from '@skeletonlabs/skeleton';
 
-	export let data: PageData;
+	export let data;
+
+	const dataTable = data.downloadInformation.map((e) => {
+		return {
+			id: e.id,
+			name: e.name,
+			size: `${e.size.toFixed(2)} MB`
+		};
+	});
+
+	const tableSimple: TableSource = {
+		head: ['Name', 'Größe'],
+		body: tableMapperValues(dataTable, ['name', 'size']),
+		meta: tableMapperValues(dataTable, ['id'])
+	};
+
+	function onSelected(info: { detail: string[] }) {
+		window.open(getDownloadUrl(info.detail[0]));
+	}
 </script>
 
-<Heading tag="h1" class="mb-4">Downloads</Heading>
-<Table hoverable={true} shadow>
-	<TableHead>
-		<TableHeadCell>Name</TableHeadCell>
-		<TableHeadCell>Größe</TableHeadCell>
-	</TableHead>
-	<TableBody>
-		{#each data.downloadInformation as downloadInfo}
-			<TableBodyRow>
-				<TableBodyCell>
-					<A href={getDownloadUrl(downloadInfo.id)}>
-						{downloadInfo.name}
-					</A>
-				</TableBodyCell>
-				<TableBodyCell>{downloadInfo.size.toFixed(2)} MB</TableBodyCell>
-			</TableBodyRow>
-		{/each}
-	</TableBody>
-</Table>
+<h1 class="h1 mb-4 text-center font-bold">Downloads</h1>
+<Table
+	class="!rounded-lg [&>table]:!rounded-lg"
+	source={tableSimple}
+	interactive={true}
+	on:selected={onSelected}
+/>

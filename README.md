@@ -74,5 +74,5 @@ Die erzeugte Anwendung kann mit `pnpm preview` lokal gestartet werden.
 Ohne die folgenden Projekte wäre dieses hier nicht möglich:
 
 - [svelte](https://svelte.dev/) & [sveltekit](https://kit.svelte.dev/)
-- [flowbite-svelte](https://flowbite-svelte.com/)
+- [skeleton](https://www.skeleton.dev)
 - [directus](https://directus.io/)

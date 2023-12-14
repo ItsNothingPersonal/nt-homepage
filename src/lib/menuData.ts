@@ -1,9 +1,6 @@
-export const menuData: {
-	id: number;
-	label: string;
-	href?: string;
-	subData?: { href: string; label: string }[];
-}[] = [
+import type { MenuButtonConfig } from './types/menuButtonConfig';
+
+export const menuData: MenuButtonConfig[] = [
 	{
 		id: 0,
 		label: 'Über Vampire',

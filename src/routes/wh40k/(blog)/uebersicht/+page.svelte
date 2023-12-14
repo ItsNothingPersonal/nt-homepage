@@ -7,12 +7,7 @@
 
 	const images = data.bilder
 		?.filter((e) => !isNullOrUndefined(e.directus_files_id))
-		.map((e) => {
-			return {
-				id: e.wh40k_uebersicht_id,
-				imgurl: getImageUrl(e.directus_files_id)
-			};
-		});
+		.map((e) => getImageUrl(e.directus_files_id, 384));
 </script>
 
 <ProjektUebersicht
