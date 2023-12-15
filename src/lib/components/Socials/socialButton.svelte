@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { titleCaseWord } from '$lib/util';
 	import Icon from '@iconify/svelte';
 	import { socialIconConfig, type SocialMedia } from './socialIconConfig';
 
@@ -16,6 +17,9 @@
 	class={styling}
 	role="button"
 	href={socialIconConfig[icon].href ? socialIconConfig[icon].href : href}
+	aria-label={icon !== 'email'
+		? `Link zu unserem Social-Media-Auftritt bei ${titleCaseWord(icon)}`
+		: `E-Mail-Adresse ${text}`}
 >
 	<Icon icon={socialIconConfig[icon].icon} class="{style === 'button' ? 'mr-2' : ''} {iconSize}" />
 	{#if style === 'button'}

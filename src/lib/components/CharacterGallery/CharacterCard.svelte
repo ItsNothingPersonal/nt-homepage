@@ -30,9 +30,9 @@
 		/>
 	</header>
 	<section class="p-4 pb-6">
-		<h5 class="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+		<h3 class="h3 mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			{characterName}
-		</h5>
+		</h3>
 
 		{#if aemterName}
 			<p class="mb-3 text-center font-normal leading-tight text-gray-700 dark:text-gray-400">
