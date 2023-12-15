@@ -1,4 +1,3 @@
-import { camarillaCharaktere } from '$lib/types/zod/camarillaCharaktere';
 import { readItems } from '@directus/sdk';
 import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
@@ -20,6 +19,6 @@ export const load = (async () => {
 	);
 
 	return {
-		charaktere: camarillaCharaktere.array().parse(await charaktere)
+		charaktere
 	};
 }) satisfies PageServerLoad;

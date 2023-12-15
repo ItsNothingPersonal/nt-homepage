@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { ProjektName } from '$lib/types/zod/projektName';
 	import { getDownloadUrl, getFormattedDay, getFormattedMonth } from '$lib/util';
-	import ArrowRight from './arrowRight.svelte';
+	import Icon from '@iconify/svelte';
 
 	export let title: string;
 	export let synopsis: string;
@@ -41,6 +41,6 @@
 		{synopsis}
 	</p>
 	<a class="variant-filled-primary btn w-fit" role="button" href={`/news/${project}/${newsId}`}>
-		Weiterlesen <ArrowRight />
+		Weiterlesen <Icon icon="mdi:arrow-right-thin" class="left-[0.2rem] ml-2 self-center text-2xl" />
 	</a>
 </div>

@@ -2,7 +2,7 @@
 	import type { FilterButtonConfig } from '$lib/types/filterButtonConfig';
 	import type { FilterFunction } from '$lib/types/filterFunction';
 	import Icon from '@iconify/svelte';
-	import NavButton from '../NavButton/NavButton.svelte';
+	import NavButton from '../DropdownMenuButton/DropdownMenuButton.svelte';
 
 	export let config: FilterButtonConfig[];
 	export let defaultOnClick: FilterFunction | undefined = undefined;
@@ -26,14 +26,14 @@
 										subMenu.onClick
 											? subMenu.onClick(entry.label)
 											: defaultOnClick
-											? defaultOnClick(entry.label)
-											: undefined}
+												? defaultOnClick(entry.label)
+												: undefined}
 									on:keyup={() =>
 										subMenu.onClick
 											? subMenu.onClick(entry.label)
 											: defaultOnClick
-											? defaultOnClick(entry.label)
-											: undefined}
+												? defaultOnClick(entry.label)
+												: undefined}
 								>
 									{subMenu.label}
 								</button>
@@ -48,14 +48,14 @@
 							entry.onClick
 								? entry.onClick(entry.label)
 								: defaultOnClick
-								? defaultOnClick(entry.label)
-								: undefined}
+									? defaultOnClick(entry.label)
+									: undefined}
 						on:keyup={() =>
 							entry.onClick
 								? entry.onClick(entry.label)
 								: defaultOnClick
-								? defaultOnClick(entry.label)
-								: undefined}
+									? defaultOnClick(entry.label)
+									: undefined}
 					>
 						{entry.label}
 						{#if entry.indicator}
@@ -84,14 +84,14 @@
 									subMenu.onClick
 										? subMenu.onClick(entry.label)
 										: defaultOnClick
-										? defaultOnClick(entry.label)
-										: undefined}
+											? defaultOnClick(entry.label)
+											: undefined}
 								on:keyup={() =>
 									subMenu.onClick
 										? subMenu.onClick(entry.label)
 										: defaultOnClick
-										? defaultOnClick(entry.label)
-										: undefined}
+											? defaultOnClick(entry.label)
+											: undefined}
 							>
 								{subMenu.label}
 							</button>
@@ -106,14 +106,14 @@
 						entry.onClick
 							? entry.onClick(entry.label)
 							: defaultOnClick
-							? defaultOnClick(entry.label)
-							: undefined}
+								? defaultOnClick(entry.label)
+								: undefined}
 					on:keyup={() =>
 						entry.onClick
 							? entry.onClick(entry.label)
 							: defaultOnClick
-							? defaultOnClick(entry.label)
-							: undefined}
+								? defaultOnClick(entry.label)
+								: undefined}
 				>
 					{entry.label}
 					{#if entry.indicator}

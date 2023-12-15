@@ -48,7 +48,7 @@
 
 <AppShell
 	slotSidebarLeft="bg-surface-500/5 w-0"
-	slotPageContent="px-2 mx-auto"
+	slotPageContent="px-2 mx-auto mt-2"
 	slotHeader="[&>div>div]:gap-0"
 >
 	<svelte:fragment slot="header">

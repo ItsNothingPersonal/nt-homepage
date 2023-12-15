@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ProjektNewsArticle from '$lib/components/projektNewsArticle.svelte';
+	import ProjektNewsArticle from '$lib/components/Projekt/News/ProjektNewsArticle.svelte';
 	import { isString } from '$lib/util';
 
 	export let data;

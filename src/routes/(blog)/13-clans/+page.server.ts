@@ -1,4 +1,4 @@
-import { clan } from '$lib/types/zod/clan';
+import { type Clan } from '$lib/types/zod/clan';
 import { readItems, readSingleton } from '@directus/sdk';
 import { compile } from 'mdsvex';
 import { client } from 'services/directus';
@@ -9,7 +9,7 @@ export const load = (async () => {
 	const wasSindClans = client.request(readSingleton('was_sind_clans'));
 
 	return {
-		clans: clan.array().parse(await clans),
+		clans: clans as Promise<Clan[]>,
 		beschreibung: compile((await wasSindClans).beschreibung)
 	};
 }) satisfies PageServerLoad;

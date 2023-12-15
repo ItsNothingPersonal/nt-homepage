@@ -8,5 +8,5 @@ export const load = (async () => {
 		readItems('camarilla_zeittafel_protektorat', { sort: ['datum'] })
 	);
 
-	return { zeittafel: (await zeittafel) as Zeittafel[] };
+	return { zeittafel: zeittafel as Promise<Zeittafel[]> };
 }) satisfies PageServerLoad;

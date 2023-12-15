@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AnsprechpersonenEntry from '$lib/components/ansprechpersonenEntry.svelte';
+	import AnsprechpersonenEntry from '$lib/components/Ansprechperson/AnsprechpersonenEntry.svelte';
 
 	export let data;
 </script>

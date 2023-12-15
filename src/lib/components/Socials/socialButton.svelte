@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { socialIconConfig, type SocialMedia } from '$lib/socialIconConfig';
 	import Icon from '@iconify/svelte';
+	import { socialIconConfig, type SocialMedia } from './socialIconConfig';
 
 	export let icon: SocialMedia;
 	export let href: string | undefined = undefined;

@@ -6,5 +6,5 @@ import type { PageServerLoad } from './$types';
 export const load = (async () => {
 	const zeittafel = client.request(readItems('camarilla_brujah_konflikt', { sort: ['sort'] }));
 
-	return { zeittafel: (await zeittafel) as Zeittafel[] };
+	return { zeittafel: zeittafel as Promise<Zeittafel[]> };
 }) satisfies PageServerLoad;

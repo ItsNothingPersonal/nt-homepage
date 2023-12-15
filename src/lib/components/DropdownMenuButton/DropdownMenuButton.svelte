@@ -29,7 +29,7 @@
 </button>
 
 <div
-	class="card bg-surface-100-800-token min-w-[12rem] !rounded-lg border-l-0 py-2 text-left shadow-xl"
+	class="card bg-surface-100-800-token z-20 min-w-[12rem] !rounded-lg border-l-0 py-2 text-left shadow-xl"
 	data-popup={`popupCombobox-${popUpId}`}
 >
 	<div

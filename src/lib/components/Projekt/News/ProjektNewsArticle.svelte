@@ -17,7 +17,7 @@
 			src={avatar
 				? getDownloadUrl(avatar)
 				: `https://placehold.co/28x28?text=${authorFirstName?.charAt(0)}` +
-				  `${authorLastName?.charAt(0)}`}
+					`${authorLastName?.charAt(0)}`}
 			alt="sample 1"
 			class="h-7 w-7 rounded-full"
 		/>

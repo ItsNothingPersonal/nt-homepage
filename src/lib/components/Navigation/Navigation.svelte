@@ -2,7 +2,7 @@
 	import { menuData } from '$lib/menuData';
 	import { isMobile } from '$lib/util';
 	import { Accordion, AccordionItem, getDrawerStore } from '@skeletonlabs/skeleton';
-	import NavButton from '../NavButton/NavButton.svelte';
+	import NavButton from '../DropdownMenuButton/DropdownMenuButton.svelte';
 
 	const drawerStore = getDrawerStore();
 	let innerWidth = 0;

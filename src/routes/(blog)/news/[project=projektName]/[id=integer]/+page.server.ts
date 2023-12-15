@@ -28,8 +28,8 @@ export const load = (async ({ params }) => {
 		}
 		default: {
 			error(404, {
-            				message: 'Not found'
-            			});
+				message: 'Not found'
+			});
 		}
 	}
 

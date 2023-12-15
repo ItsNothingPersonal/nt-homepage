@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ButtonGroup from '$lib/components/ButtonGroup/ButtonGroup.svelte';
-	import CharacterGallery from '$lib/components/characterGallery.svelte';
+	import CharacterGallery from '$lib/components/CharacterGallery/CharacterGallery.svelte';
+	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 	import { CamarillaAemterName } from '$lib/types/camarillaAemterName';
 	import { ClanName } from '$lib/types/clanName';
 	import { ScreenSize } from '$lib/types/sceenSize.js';
@@ -8,36 +9,23 @@
 	import type { SubMenuConfig } from '$lib/types/subMenuConfig.js';
 	import type { CamarillaCharaktere } from '$lib/types/zod/camarillaCharaktere';
 	import { isNullOrUndefined } from '$lib/util';
-	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 
 	export let data;
-	const { charaktere } = data;
-
-	$: leaders = getLeader()?.filter((e) => e.sekte.name.match($sectFilter)) ?? [];
-	$: officers = getOfficers($sectFilter) ?? [];
-	$: gefilterteCharaktere = filterStandardMembers(
-		charaktere,
-		$sectFilter,
-		$clanFilter,
-		$offizierFilter
-	);
-	$: noFilterActive = $clanFilter === '.*' && $offizierFilter === '';
 
 	let sectFilter = writable('.*');
 	let offizierFilter = writable('');
 	let clanFilter = writable('.*');
 	let width: number = 0;
-	let clanSubMenu: SubMenuConfig[];
 
-	onMount(() => {
-		clanSubMenu = [...Object.keys(ClanName), 'Lasombra antitribu'].map((e) => {
+	function getClanSubMenu(): SubMenuConfig[] {
+		return [...Object.keys(ClanName), 'Lasombra antitribu'].map((e) => {
 			return {
 				label: e,
 				onClick: () => swapClanFilter(e)
 			};
 		});
-	});
+	}
 
 	function swapSectFilter(filter: string) {
 		if ($sectFilter.match(filter)) {
@@ -63,7 +51,10 @@
 		}
 	}
 
-	function getOfficers(sectFilter: string): CamarillaCharaktere[] | undefined {
+	function getOfficers(
+		charaktere: CamarillaCharaktere[],
+		sectFilter: string
+	): CamarillaCharaktere[] {
 		return charaktere.filter(
 			(e) =>
 				!isNullOrUndefined(e.offizier) &&
@@ -73,7 +64,7 @@
 		);
 	}
 
-	function getLeader(): CamarillaCharaktere[] | undefined {
+	function getLeader(charaktere: CamarillaCharaktere[]): CamarillaCharaktere[] {
 		return charaktere.filter(
 			(e) =>
 				e.offizier?.name === CamarillaAemterName.Baron ||
@@ -81,13 +72,13 @@
 		);
 	}
 
-	function filterStandardMembers(
-		characterPool: CamarillaCharaktere[],
+	function getGefilterteCharaktere(
+		charaktere: CamarillaCharaktere[],
 		sectFilter: string,
 		clanFilter: string,
 		offizierFilter: string
-	) {
-		return characterPool.filter(
+	): CamarillaCharaktere[] {
+		return charaktere.filter(
 			(c) =>
 				(sectFilter !== '.*' ? c.sekte.name.match(sectFilter) : true) &&
 				(clanFilter === '.*'
@@ -103,7 +94,9 @@
 <svelte:window bind:innerWidth={width} />
 
 <h1 class="h1 mb-4 text-center font-bold">Charakter-Galerie</h1>
-<div class="mb-4">
+{#await data.charaktere}
+	<LoadingMessage>Lade Charakter-Galerie</LoadingMessage>
+{:then charaktere}
 	<ButtonGroup
 		config={[
 			{
@@ -124,18 +117,18 @@
 			{
 				label: 'Clans',
 				indicator: $clanFilter !== '.*',
-				subMenu: clanSubMenu
+				subMenu: getClanSubMenu()
 			}
 		]}
 		smallSwitch={width < ScreenSize.SM}
 		rounded={'!rounded-none'}
 	/>
-</div>
 
-<CharacterGallery
-	{leaders}
-	{officers}
-	{noFilterActive}
-	charaktere={gefilterteCharaktere}
-	setting="Camarilla"
-/>
+	<CharacterGallery
+		leaders={getLeader(charaktere)?.filter((e) => e.sekte.name.match($sectFilter))}
+		officers={getOfficers(charaktere, $sectFilter)}
+		noFilterActive={$clanFilter === '.*' && $offizierFilter === ''}
+		charaktere={getGefilterteCharaktere(charaktere, $sectFilter, $clanFilter, $offizierFilter)}
+		setting="Camarilla"
+	/>
+{/await}

@@ -3,7 +3,7 @@
 	import type { PackInformation } from '$lib/types/zod/packInformation';
 	import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
 	import { getDownloadUrl, isNullOrUndefined } from '$lib/util';
-	import CharacterCard from './characterCard.svelte';
+	import CharacterCard from './CharacterCard.svelte';
 
 	export let leaders: CamarillaCharaktere[] | SabbatCharakter[] | undefined;
 	export let officers: CamarillaCharaktere[] | SabbatCharakter[];

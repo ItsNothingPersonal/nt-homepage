@@ -1,5 +1,6 @@
 <script lang="ts">
-	import ProjektNews from '$lib/components/projektNews.svelte';
+	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
+	import ProjektNews from '$lib/components/Projekt/News/ProjektNews.svelte';
 	import { isString } from '$lib/util';
 
 	export let data;
@@ -50,20 +51,24 @@
 
 <h2 class="h2 mb-2 text-center font-bold">Neuigkeiten</h2>
 <div class="mx-auto grid max-w-screen-2xl auto-rows-auto grid-cols-1 gap-4 md:grid-cols-3">
-	{#each data.news
-		.flat()
-		.sort((objA, objB) => objB.date_created.getTime() - objA.date_created.getTime()) as news}
-		<ProjektNews
-			title={news.titel}
-			synopsis={news.synopsis}
-			authorFirstName={news.user_created.first_name}
-			authorLastName={news.user_created.last_name}
-			date={news.date_created}
-			avatar={isString(news.user_created.avatar)
-				? news.user_created.avatar
-				: news.user_created.avatar?.id}
-			project={news.project}
-			newsId={news.id}
-		/>
-	{/each}
+	{#await data.news}
+		<LoadingMessage>Lade News</LoadingMessage>
+	{:then newsListEntry}
+		{#each newsListEntry
+			.flat()
+			.sort((objA, objB) => objB.date_created.getTime() - objA.date_created.getTime()) as news}
+			<ProjektNews
+				title={news.titel}
+				synopsis={news.synopsis}
+				authorFirstName={news.user_created.first_name}
+				authorLastName={news.user_created.last_name}
+				date={news.date_created}
+				avatar={isString(news.user_created.avatar)
+					? news.user_created.avatar
+					: news.user_created.avatar?.id}
+				project={news.project}
+				newsId={news.id}
+			/>
+		{/each}
+	{/await}
 </div>

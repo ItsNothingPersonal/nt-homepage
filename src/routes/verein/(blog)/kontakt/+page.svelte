@@ -1,5 +1,6 @@
 <script lang="ts">
-	import SocialButton from '$lib/components/socialButton.svelte';
+	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
+	import SocialButton from '$lib/components/Socials/socialButton.svelte';
 
 	export let data;
 </script>
@@ -21,24 +22,28 @@
 	</p>
 
 	<h3 class="h3 text-center md:col-span-3">Verein</h3>
-	<SocialButton icon="email" href={`mailto:${data.kontakt.email_allgemein}`} text="Allgemein" />
-	<SocialButton icon="email" href={`mailto:${data.kontakt.email_vorstand}`} text="Vorstand" />
-	<SocialButton icon="email" href={`mailto:${data.kontakt.email_webmaster}`} text="Webmaster" />
+	{#await data.kontakt}
+		<LoadingMessage>Lade Vorstands-Kontakt-Informationen</LoadingMessage>
+	{:then kontakt}
+		<SocialButton icon="email" href={`mailto:${kontakt.email_allgemein}`} text="Allgemein" />
+		<SocialButton icon="email" href={`mailto:${kontakt.email_vorstand}`} text="Vorstand" />
+		<SocialButton icon="email" href={`mailto:${kontakt.email_webmaster}`} text="Webmaster" />
+	{/await}
 
 	<h3 class="h3 text-center md:col-span-3">Projekte</h3>
-	<SocialButton
-		icon="email"
-		href={`mailto:${data.kontakt.email_camarilla}`}
-		text="Projektleitung Protektorat"
-	/>
-	<SocialButton
-		icon="email"
-		href={`mailto:${data.kontakt.email_sabbat}`}
-		text="Projektleitung Sabbat"
-	/>
-	<SocialButton
-		icon="email"
-		href={`mailto:${data.kontakt.email_wh40k}`}
-		text="Projektleitung Wh40k"
-	/>
+	{#await data.kontakt}
+		<LoadingMessage>Lade Projekt-Kontakt-Informationen</LoadingMessage>
+	{:then kontakt}
+		<SocialButton
+			icon="email"
+			href={`mailto:${kontakt.email_camarilla}`}
+			text="Projektleitung Protektorat"
+		/>
+		<SocialButton
+			icon="email"
+			href={`mailto:${kontakt.email_sabbat}`}
+			text="Projektleitung Sabbat"
+		/>
+		<SocialButton icon="email" href={`mailto:${kontakt.email_wh40k}`} text="Projektleitung Wh40k" />
+	{/await}
 </div>

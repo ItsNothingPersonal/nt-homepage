@@ -1,6 +1,6 @@
 <script lang="ts">
-	import OrgaEntry from '$lib/components/orgaEntry.svelte';
-	import SocialButton from '$lib/components/socialButton.svelte';
+	import OrgaEntry from '$lib/components/Orga/OrgaEntry.svelte';
+	import SocialButton from '$lib/components/Socials/socialButton.svelte';
 
 	export let data;
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import SocialButton from '../socialButton.svelte';
+	import SocialButton from '../Socials/socialButton.svelte';
 </script>
 
 <div
