@@ -60,7 +60,7 @@
 
 <h2 class="h2 mb-1 mt-4">Copyright</h2>
 <p
-	class="[&>h3]:h3 [&>h3]:mt-2 [&>p:not(:last-of-type)]:mb-2 [&>p>a]:underline [&>p>a]:decoration-dotted [&>p>a]:underline-offset-4 [&>p>a]:underline-offset-4 [&>p]:text-justify [&>p]:first-letter:text-2xl"
+	class="[&>h3]:h3 [&>h3]:mt-2 [&>p:not(:last-of-type)]:mb-2 [&>p>a]:underline [&>p>a]:decoration-dotted [&>p>a]:underline-offset-4 [&>p]:text-justify [&>p]:first-letter:text-2xl"
 >
 	{#await data.copyrightNotice}
 		<LoadingMessage>Lade Copyright-Angaben</LoadingMessage>
