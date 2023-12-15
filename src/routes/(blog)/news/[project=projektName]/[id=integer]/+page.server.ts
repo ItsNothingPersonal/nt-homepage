@@ -27,9 +27,9 @@ export const load = (async ({ params }) => {
 			break;
 		}
 		default: {
-			throw error(404, {
-				message: 'Not found'
-			});
+			error(404, {
+            				message: 'Not found'
+            			});
 		}
 	}
 
