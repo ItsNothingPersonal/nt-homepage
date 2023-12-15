@@ -1,3 +1,5 @@
+import { ScreenSize } from './types/sceenSize';
+
 export function isNullOrUndefined<T>(obj: T | null | undefined): obj is null | undefined {
 	return typeof obj === 'undefined' || obj === null;
 }
@@ -28,4 +30,16 @@ export function getFormattedMonth(date: Date | undefined): string {
 
 export function isString(input: unknown): input is string {
 	return typeof input === 'string';
+}
+
+export function isMobile(innerWidth: number): boolean {
+	return innerWidth < ScreenSize.XL;
+}
+
+export function isPotraitMode(width: number, height: number): boolean {
+	return height > width;
+}
+
+export function isLandscapeMode(width: number, height: number): boolean {
+	return height < width;
 }

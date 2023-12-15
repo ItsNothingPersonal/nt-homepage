@@ -1,36 +1,48 @@
 <script lang="ts">
-	import { getDownloadUrl } from '$lib/util';
-	import {
-		A,
-		Heading,
-		Table,
-		TableBody,
-		TableBodyCell,
-		TableBodyRow,
-		TableHead,
-		TableHeadCell
-	} from 'flowbite-svelte';
-	import type { PageData } from './$types';
+	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
+	import type { FileInformation } from '$lib/types/zod/fileInformation.js';
+	import { getDownloadUrl } from '$lib/util.js';
+	import { Table, tableMapperValues } from '@skeletonlabs/skeleton';
 
-	export let data: PageData;
+	export let data;
+
+	function onSelected(info: { detail: string[] }) {
+		window.open(getDownloadUrl(info.detail[0]));
+	}
+
+	function getTableContent(
+		fileInformation: FileInformation[]
+	): { id: string; name: string; size: string }[] {
+		return fileInformation
+			.map((e) => {
+				return {
+					id: e.id,
+					name: e.filename_download,
+					size: e.filesize ? parseInt(e.filesize) / 1024 ** 2 : 0
+				};
+			})
+			.map((e) => {
+				return {
+					id: e.id,
+					name: e.name,
+					size: `${e.size.toFixed(2)} MB`
+				};
+			});
+	}
 </script>
 
-<Heading tag="h1" class="mb-4">Downloads</Heading>
-<Table hoverable={true} shadow>
-	<TableHead>
-		<TableHeadCell>Name</TableHeadCell>
-		<TableHeadCell>Größe</TableHeadCell>
-	</TableHead>
-	<TableBody>
-		{#each data.downloadInformation as downloadInfo}
-			<TableBodyRow>
-				<TableBodyCell>
-					<A href={getDownloadUrl(downloadInfo.id)}>
-						{downloadInfo.name}
-					</A>
-				</TableBodyCell>
-				<TableBodyCell>{downloadInfo.size.toFixed(2)} MB</TableBodyCell>
-			</TableBodyRow>
-		{/each}
-	</TableBody>
-</Table>
+<h1 class="h1 mb-4 text-center font-bold">Downloads</h1>
+{#await data.folderResponse}
+	<LoadingMessage>Lade Vereins-Downloads</LoadingMessage>
+{:then folderResponse}
+	<Table
+		class="!rounded-lg [&>table]:!rounded-lg"
+		source={{
+			head: ['Name', 'Größe'],
+			body: tableMapperValues(getTableContent(folderResponse), ['name', 'size']),
+			meta: tableMapperValues(getTableContent(folderResponse), ['id'])
+		}}
+		interactive={true}
+		on:selected={onSelected}
+	/>
+{/await}

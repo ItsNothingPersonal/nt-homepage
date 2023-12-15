@@ -1,23 +1,7 @@
 <script lang="ts">
-	import Spielort from '$lib/components/spielort.svelte';
-	import { getImageUrl } from '$lib/util';
-	import type { PageData } from './$types';
+	import Spielort from '$lib/components/Spielort/Spielort.svelte';
 
-	export let data: PageData;
-
-	let images = data.bilder?.map((e) => {
-		return {
-			id: e.camarilla_spielort_id,
-			imgurl: getImageUrl(e.directus_files_id, 768, 512, 'cover')
-		};
-	});
+	export let data;
 </script>
 
-<Spielort
-	name={data.spielort?.spielort_name ?? ''}
-	strasse={data.spielort?.spielort_strasse ?? ''}
-	plz={data.spielort?.spielort_plz ?? ''}
-	ort={data.spielort?.spielort_ort ?? ''}
-	bilder={images}
-	karte={data.spielort?.spielort_karte ?? ''}
-/>
+<Spielort spielort={data.spielort} bilder={data.bilder} />

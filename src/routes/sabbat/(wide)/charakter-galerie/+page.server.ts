@@ -1,5 +1,3 @@
-import { sabbatCharakter } from '$lib/types/zod/sabbatCharakter';
-import { sabbatPacks } from '$lib/types/zod/sabbatPacks';
 import { readItems } from '@directus/sdk';
 import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
@@ -21,7 +19,7 @@ export const load = (async () => {
 	);
 
 	return {
-		packs: sabbatPacks.array().parse(await packs),
-		charaktere: sabbatCharakter.array().parse(await charaktere)
+		packs,
+		charaktere
 	};
 }) satisfies PageServerLoad;

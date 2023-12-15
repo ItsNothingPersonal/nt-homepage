@@ -5,4 +5,4 @@ export const wh40kUebersichtFiles = z.object({
 	directus_files_id: z.string()
 });
 
-export type wh40kUebersichtFiles = z.infer<typeof wh40kUebersichtFiles>;
+export type Wh40kUebersichtFiles = z.infer<typeof wh40kUebersichtFiles>;

@@ -1,4 +1,3 @@
-import { vereinAnsprechpersonen } from '$lib/types/zod/vereinAnsprechpersonen';
 import { readItems } from '@directus/sdk';
 import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
@@ -39,8 +38,8 @@ export const load = (async () => {
 	);
 
 	return {
-		vorstand: vereinAnsprechpersonen.array().parse(await vorstand),
-		projektleiter: vereinAnsprechpersonen.array().parse(await projektleiter),
-		andere: vereinAnsprechpersonen.array().parse(await andere)
+		vorstand,
+		projektleiter,
+		andere
 	};
 }) satisfies PageServerLoad;

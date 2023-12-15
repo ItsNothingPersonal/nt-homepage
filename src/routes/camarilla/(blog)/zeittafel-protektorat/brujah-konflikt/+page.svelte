@@ -1,17 +1,8 @@
 <script lang="ts">
-	import { Heading, Timeline, TimelineItem } from 'flowbite-svelte';
-	import type { PageData } from './$types';
+	import Zeittafel from '$lib/components/Zeittafel/Zeittafel.svelte';
 
-	export let data: PageData;
+	export let data;
 </script>
 
-<Heading tag="h1" class="mb-4">Die Geschichte des Brujah-Konflikts</Heading>
-<Timeline>
-	{#each data.zeittafel as zeittafelEintrag}
-		<TimelineItem title={zeittafelEintrag.titel ?? ''} date={zeittafelEintrag.datum}>
-			<p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-				{zeittafelEintrag.text}
-			</p>
-		</TimelineItem>
-	{/each}
-</Timeline>
+<h1 class="h1 mb-4 text-center font-bold">Die Geschichte des Brujah-Konflikts</h1>
+<Zeittafel events={data.zeittafel} />

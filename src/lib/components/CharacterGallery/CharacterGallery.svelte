@@ -3,8 +3,7 @@
 	import type { PackInformation } from '$lib/types/zod/packInformation';
 	import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
 	import { getDownloadUrl, isNullOrUndefined } from '$lib/util';
-	import { Card, Heading, Img, P } from 'flowbite-svelte';
-	import CharacterCard from './characterCard.svelte';
+	import CharacterCard from './CharacterCard.svelte';
 
 	export let leaders: CamarillaCharaktere[] | SabbatCharakter[] | undefined;
 	export let officers: CamarillaCharaktere[] | SabbatCharakter[];
@@ -16,10 +15,8 @@
 
 {#if !isNullOrUndefined(selektiertesPack?.pack?.beschreibung) || !isNullOrUndefined(selektiertesPack?.pack.logo)}
 	<div class="mb-4 flex items-center justify-center gap-x-2">
-		<Card
-			class="w-full bg-light-50 text-left shadow-lg dark:bg-dark-700 dark:shadow-gray-800"
-			size="lg"
-			padding="xl"
+		<div
+			class="bg-light-50 dark:bg-dark-700 card w-full max-w-2xl p-4 text-left shadow-lg dark:shadow-gray-800"
 		>
 			<div
 				class={selektiertesPack?.pack.beschreibung
@@ -27,26 +24,26 @@
 					: 'flex items-center justify-center'}
 			>
 				{#if selektiertesPack?.pack.logo}
-					<Img
+					<img
 						src={getDownloadUrl(selektiertesPack?.pack.logo)}
 						alt={`Logo des Packs ${selektiertesPack?.pack.name}`}
-						class={`mb-2  mr-2 max-h-56 rounded-lg  ${
+						class={`mb-2  mr-4 max-h-56 rounded-lg  ${
 							selektiertesPack?.pack.beschreibung ? 'float-left shadow-lg dark:shadow-gray-800' : ''
 						}`}
 					/>
 				{/if}
 				{#if selektiertesPack?.pack.beschreibung}
-					<P justify class="first-letter:text-2xl">
+					<p class="text-justify first-letter:text-2xl">
 						{selektiertesPack?.pack.beschreibung}
-					</P>
+					</p>
 				{/if}
 			</div>
-		</Card>
+		</div>
 	</div>
 {/if}
 
 {#if leaders && noFilterActive}
-	<Heading tag="h2" class="mb-2">Anführer</Heading>
+	<h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Anführer</h2>
 	<div class="flex justify-center">
 		{#if leaders.length === 1}
 			<CharacterCard
@@ -77,7 +74,7 @@
 {/if}
 
 {#if officers && noFilterActive}
-	<Heading tag="h2" class="mb-2 mt-4">Offiziere</Heading>
+	<h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Offiziere</h2>
 	{#if officers.length >= 4}
 		<div
 			class="mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4"
@@ -112,7 +109,7 @@
 {/if}
 
 {#if selektiertesPack && selektiertesPack.leaders.length > 0}
-	<Heading tag="h2" class="mb-2">Anführer</Heading>
+	<h2 class="h2 mb-2 flex justify-center font-bold">Anführer</h2>
 	<div class="mb-4 flex flex-col justify-center gap-2 md:flex-row">
 		{#each selektiertesPack.leaders as charakter}
 			<CharacterCard
@@ -129,13 +126,13 @@
 {/if}
 
 {#if noFilterActive || (selektiertesPack && charaktere.length > 0)}
-	<Heading tag="h2" class="mb-2">
+	<h2 class="h2 mb-2 flex justify-center font-bold">
 		{setting === 'Camarilla' ? 'Domänenmitglieder' : 'Sabbatis'}
-	</Heading>
+	</h2>
 {/if}
 {#if charaktere.length >= 4}
 	<div
-		class="grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4"
+		class="mb-10 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4"
 	>
 		{#each charaktere as charakter}
 			<CharacterCard
@@ -150,7 +147,7 @@
 		{/each}
 	</div>
 {:else}
-	<div class="flex h-max w-full justify-center">
+	<div class="mb-10 flex h-max w-full justify-center">
 		<div class="mb-4 flex flex-col gap-2 md:grid md:grid-cols-2 lg:flex lg:flex-row">
 			{#each charaktere as charakter}
 				<CharacterCard
