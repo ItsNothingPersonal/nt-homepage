@@ -40,7 +40,11 @@
 	<p class="mb-3 break-words font-light text-gray-500 dark:text-gray-400">
 		{synopsis}
 	</p>
-	<a class="variant-filled-primary btn w-fit" role="button" href={`/news/${project}/${newsId}`}>
+	<a
+		class="variant-filled-primary btn w-fit rounded-lg"
+		role="button"
+		href={`/news/${project}/${newsId}`}
+	>
 		Weiterlesen <Icon icon="mdi:arrow-right-thin" class="left-[0.2rem] ml-2 self-center text-2xl" />
 	</a>
 </div>
