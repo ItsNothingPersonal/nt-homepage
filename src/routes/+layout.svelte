@@ -78,9 +78,11 @@
 				{/if}
 				{#if innerWidth >= 360}
 					<p class="align-middle">
-						<strong class="whitespace-nowrap text-center text-xl">
-							Nächtliches Theater e.V.
-						</strong>
+						<a href="/">
+							<strong class="whitespace-nowrap text-center text-xl">
+								Nächtliches Theater e.V.
+							</strong>
+						</a>
 					</p>
 				{/if}
 			</svelte:fragment>
