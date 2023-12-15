@@ -21,7 +21,7 @@
 			src={avatar
 				? `${getDownloadUrl(avatar)}&width=28&height=28`
 				: 'https://placehold.co/28x28?text=%22Platzhalter%22'}
-			alt="sample 1"
+			alt="Avatar des News-Authors"
 			class="h-7 w-7 rounded-full"
 		/>
 		<div class="flex h-auto max-h-11 flex-auto flex-grow flex-wrap gap-x-1">
@@ -34,9 +34,9 @@
 			</p>
 		</div>
 	</div>
-	<h5 class="h5 font-bold tracking-tight text-gray-900 dark:text-white">
+	<h3 class="h3 font-bold tracking-tight text-gray-900 dark:text-white">
 		{title}
-	</h5>
+	</h3>
 	<p class="mb-3 break-words font-light text-gray-500 dark:text-gray-400">
 		{synopsis}
 	</p>

@@ -5,7 +5,7 @@
 </script>
 
 <ProjektUebersicht
-	titel="Vampire Live - Sabbat"
+	titel="Vampire Live - Camarilla"
 	beschreibung={data.beschreibung}
 	spieltermine={data.spieltermine}
 	projektUbersicht={data.camarillaUebersicht}

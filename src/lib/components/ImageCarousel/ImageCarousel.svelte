@@ -8,45 +8,41 @@
 	export let floatLeft = false;
 
 	let additionalCarouselStyles = '';
+	let elemCarousel: HTMLDivElement;
+	let timeoutId: NodeJS.Timeout;
+
 	const floatLeftStyle = 'float-left md:mr-4';
 
 	onMount(() => {
 		if (floatLeft === true) {
 			additionalCarouselStyles = floatLeftStyle;
 		}
+
+		timeoutId = setTimeout(carouselRight, timeout);
 	});
 
-	let elemCarousel: HTMLDivElement;
-	let timeoutId: NodeJS.Timeout;
+	onDestroy(() => {
+		clearTimeout(timeoutId);
+	});
 
 	function carouselLeft(): void {
 		const x =
 			elemCarousel.scrollLeft === 0
-				? elemCarousel.clientWidth * elemCarousel.childElementCount // loop
-				: elemCarousel.scrollLeft - elemCarousel.clientWidth; // step left
+				? elemCarousel.clientWidth * elemCarousel.childElementCount
+				: elemCarousel.scrollLeft - elemCarousel.clientWidth;
 		elemCarousel.scroll(x, 0);
 	}
 
-	function carouselRight(): void {
+	async function carouselRight(): Promise<void> {
 		const x =
 			elemCarousel.scrollLeft === elemCarousel.scrollWidth - elemCarousel.clientWidth
-				? 0 // loop
-				: elemCarousel.scrollLeft + elemCarousel.clientWidth; // step right
+				? 0
+				: elemCarousel.scrollLeft + elemCarousel.clientWidth;
 		elemCarousel.scroll(x, 0);
 
 		clearTimeout(timeoutId);
 		timeoutId = setTimeout(carouselRight, timeout);
 	}
-
-	onMount(() => {
-		// Start the image rotation when the component is mounted
-		carouselRight();
-	});
-
-	onDestroy(() => {
-		// Clear any pending timeouts when the component is unmounted to avoid memory leaks
-		clearTimeout(timeoutId);
-	});
 </script>
 
 <div
@@ -57,6 +53,7 @@
 		type="button"
 		class="variant-glass btn-icon absolute left-4 border-2 border-white dark:border-primary-500"
 		on:click={carouselLeft}
+		aria-label="Button Bild zurück"
 	>
 		<Icon icon="mdi:arrow-left" />
 	</button>
@@ -65,8 +62,13 @@
 		bind:this={elemCarousel}
 		class="hide-scrollbar flex snap-x snap-mandatory overflow-x-auto scroll-smooth"
 	>
-		{#each images as image}
-			<img class="snap-center rounded-lg" src={image} alt={image} loading="lazy" />
+		{#each images as image, i}
+			<img
+				class="snap-center rounded-lg"
+				src={image}
+				alt={image}
+				loading={i == 0 ? 'eager' : 'lazy'}
+			/>
 		{/each}
 	</div>
 	<!-- Button: Right -->
@@ -74,6 +76,7 @@
 		type="button"
 		class="variant-glass btn-icon absolute right-4 border-2 border-white dark:border-primary-500"
 		on:click={carouselRight}
+		aria-label="Button Bild weiter"
 	>
 		<Icon icon="mdi:arrow-right" />
 	</button>

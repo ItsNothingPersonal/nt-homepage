@@ -29,7 +29,13 @@
 							class="my-1 rounded-lg shadow-lg dark:shadow-gray-800"
 						/>
 					{/if}
-					<a class="anchor no-underline" href={`mailto:${person.email}`}>{person.email ?? ''}</a>
+					{#if person.email}
+						<a
+							class="anchor no-underline"
+							href={`mailto:${person.email}`}
+							aria-label="E-Mail-Adresse für {person.name}">{person.email ?? ''}</a
+						>
+					{/if}
 				</div>
 			{/each}
 		</div>
