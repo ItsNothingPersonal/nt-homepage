@@ -15,7 +15,7 @@ export const load = (async () => {
 				{ sekte: ['name'] }
 			],
 			sort: ['offizier', 'charakter_status'],
-			filter: { status: { _eq: 'published' } }
+			filter: { status: { _eq: 'archived' } }
 		})
 	);
 

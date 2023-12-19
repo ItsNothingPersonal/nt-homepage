@@ -11,8 +11,9 @@
 	export let clan: Clan | undefined | null;
 	export let blutlinie: Blutlinie | undefined | null;
 	export let status: CharakterStatusName | SabbatCharakterStatusName | undefined = undefined;
-	export let beschreibung: string;
+	export let beschreibung: string | undefined = undefined;
 	export let bild: string;
+	export let letzteWorte: string | undefined = undefined;
 
 	let width: number;
 	let height: number;
@@ -62,9 +63,21 @@
 			</div>
 		</div>
 		<hr />
-		{#if beschreibung.trim().length > 0}
+
+		{#if beschreibung}
 			<p class="mt-2">{beschreibung}</p>
-		{:else}
+		{/if}
+
+		{#if letzteWorte}
+			{#if beschreibung}
+				<div class="my-2 flex items-center justify-center">
+					<hr class="w-1/2" />
+				</div>
+			{/if}
+			<p class="mt-2">{letzteWorte}</p>
+		{/if}
+
+		{#if !beschreibung && !letzteWorte}
 			<br />
 		{/if}
 	</section>

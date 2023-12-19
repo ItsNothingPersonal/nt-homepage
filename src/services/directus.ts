@@ -1,6 +1,6 @@
 import type { Blutlinie } from '$lib/types/zod/blutlinie';
 import type { CamarillaBrujahKonflikt } from '$lib/types/zod/camarillaBrujahKonflikt';
-import type { CamarillaCharaktere } from '$lib/types/zod/camarillaCharaktere';
+import type { CamarillaCharakter } from '$lib/types/zod/camarillaCharaktere';
 import type { CamarillaSpielortFiles } from '$lib/types/zod/camarillaSpielortFiles';
 import type { CamarillaUebersichtFiles } from '$lib/types/zod/camarillaUebersichtFiles';
 import type { Clan } from '$lib/types/zod/clan';
@@ -30,7 +30,7 @@ import { createDirectus, rest } from '@directus/sdk';
 export interface DirectusSchema {
 	blutlinien: Blutlinie[];
 	camarilla_brujah_konflikt: CamarillaBrujahKonflikt[];
-	camarilla_charaktere: CamarillaCharaktere[];
+	camarilla_charaktere: CamarillaCharakter[];
 	camarilla_news: News[];
 	camarilla_orga: Orga[];
 	camarilla_spielort: Spielort;

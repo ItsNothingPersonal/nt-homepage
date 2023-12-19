@@ -3,8 +3,11 @@
 	import CharacterGallery from '$lib/components/CharacterGallery/CharacterGallery.svelte';
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 	import { ScreenSize } from '$lib/types/sceenSize';
+	import type { SubMenuConfig } from '$lib/types/subMenuConfig';
+	import { sabbatCharakter } from '$lib/types/zod/sabbatCharakter';
 	import { type SabbatPacks } from '$lib/types/zod/sabbatPacks';
-	import { writable, type Writable } from 'svelte/store';
+	import { onMount } from 'svelte';
+	import { get, writable, type Writable } from 'svelte/store';
 	import {
 		getGefilterteCharaktere,
 		getLeader,
@@ -21,15 +24,49 @@
 	let offizierFilter = writable('');
 	let einzelgaengerFilter: Writable<boolean> = writable(false);
 	let selektiertesPack = writable<SabbatPacks | undefined>();
+	const jahrFilter = writable('.*');
 
 	let width: number = 0;
+
+	let jahrSubMenu: SubMenuConfig[] = [];
+	const uniqueYearsSet = new Set<number>();
+
+	async function getJahrSubMenu(jahrFilter: Writable<string>) {
+		const parsed = sabbatCharakter.array().parse(await data.charaktere);
+		parsed.map((e) => {
+			if (e.date_updated) {
+				uniqueYearsSet.add(e.date_updated.getFullYear());
+			}
+		});
+
+		const result = Array.from(uniqueYearsSet).map((e) => {
+			return {
+				label: e.toString(),
+				onClick: () => swapJahrFilter(jahrFilter, e.toString())
+			};
+		});
+
+		jahrSubMenu = result;
+	}
+
+	function swapJahrFilter(jahrFilter: Writable<string>, filter: string) {
+		if (get(jahrFilter).match(filter)) {
+			jahrFilter.set('.*');
+		} else {
+			jahrFilter.set(filter);
+		}
+	}
+
+	onMount(async () => {
+		await getJahrSubMenu(jahrFilter);
+	});
 </script>
 
 <svelte:window bind:innerWidth={width} />
 
-<h1 class="h1 mb-4 text-center font-bold">Charakter-Galerie</h1>
+<h1 class="h1 mb-4 text-center font-bold">Charakter-Friedhof</h1>
 {#await data.packs}
-	<LoadingMessage>Lade Charakter-Galerie-Filter</LoadingMessage>
+	<LoadingMessage>Lade Charakter-Friedhof-Filter</LoadingMessage>
 {:then packs}
 	<ButtonGroup
 		config={[
@@ -50,6 +87,12 @@
 				onClick: () => swapOffizierFilter(offizierFilter, 'true'),
 				indicator: $offizierFilter.length > 0,
 				store: offizierFilter
+			},
+			{
+				label: 'Jahr',
+				indicator: $jahrFilter !== '.*',
+				subMenu: jahrSubMenu,
+				store: jahrFilter
 			}
 		]}
 		smallSwitch={width < ScreenSize.SM}

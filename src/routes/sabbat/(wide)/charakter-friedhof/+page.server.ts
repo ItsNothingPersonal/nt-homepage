@@ -3,23 +3,24 @@ import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
+	const packs = client.request(readItems('sabbat_packs'));
 	const charaktere = client.request(
-		readItems('camarilla_charaktere', {
+		readItems('sabbat_charaktere', {
 			fields: [
 				'*',
-				{ blutlinie: ['name'] },
-				{ clan: ['name'] },
-				{ charakter_status: ['name'] },
 				{ offizier: ['name'] },
-				{ zusatzfunktion: ['name'] },
-				{ sekte: ['name'] }
+				{ blutlinie: ['name'] },
+				{ pack: ['name'] },
+				{ charakter_status: ['name'] },
+				{ clan: ['name'] }
 			],
-			sort: ['offizier', 'charakter_status'],
-			filter: { status: { _eq: 'published' } }
+			sort: ['offizier', '-charakter_status'],
+			filter: { status: { _eq: 'archived' } }
 		})
 	);
 
 	return {
+		packs,
 		charaktere
 	};
 }) satisfies PageServerLoad;
