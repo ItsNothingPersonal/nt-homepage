@@ -13,7 +13,7 @@
 	export let status: CharakterStatusName | SabbatCharakterStatusName | undefined = undefined;
 	export let beschreibung: string | undefined = undefined;
 	export let bild: string;
-	export let letzteWorte: string | undefined = undefined;
+	export let letzteWorte: string | undefined | null = undefined;
 
 	let width: number;
 	let height: number;

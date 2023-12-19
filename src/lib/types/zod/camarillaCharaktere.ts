@@ -3,10 +3,11 @@ import { blutlinie } from './blutlinie';
 import { camarillaAemter } from './camarillaAemter';
 import { charakterStatus } from './charakterStatus';
 import { clan } from './clan';
+import { itemStatus } from './itemStatus';
 import { sekten } from './sekten';
 
 export const camarillaCharakter = z.object({
-	status: z.enum(['draft', 'published', 'archived']),
+	status: itemStatus,
 	name: z.string(),
 	clan: clan.nullable(),
 	blutlinie: blutlinie.nullable(),
@@ -16,7 +17,7 @@ export const camarillaCharakter = z.object({
 	sekte: sekten,
 	beschreibung: z.string(),
 	bild: z.string(),
-	letzte_worte: z.string().optional(),
+	letzte_worte: z.string().nullable().optional(),
 	date_updated: z.coerce.date()
 });
 
