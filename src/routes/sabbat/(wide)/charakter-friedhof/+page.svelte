@@ -20,13 +20,13 @@
 
 	export let data;
 
-	let packFilter = writable('.*');
-	let offizierFilter = writable('');
-	let einzelgaengerFilter: Writable<boolean> = writable(false);
-	let selektiertesPack = writable<SabbatPacks | undefined>();
+	const packFilter = writable('.*');
+	const offizierFilter = writable('');
+	const einzelgaengerFilter: Writable<boolean> = writable(false);
+	const selektiertesPack = writable<SabbatPacks | undefined>();
 	const jahrFilter = writable('.*');
 
-	let width: number = 0;
+	let width = 0;
 
 	let jahrSubMenu: SubMenuConfig[] = [];
 	const uniqueYearsSet = new Set<number>();

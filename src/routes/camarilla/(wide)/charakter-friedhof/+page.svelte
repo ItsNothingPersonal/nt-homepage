@@ -24,7 +24,7 @@
 	const clanFilter = writable('.*');
 	const jahrFilter = writable('.*');
 
-	let width: number = 0;
+	let width = 0;
 
 	let jahrSubMenu: SubMenuConfig[] = [];
 	const uniqueYearsSet = new Set<number>();

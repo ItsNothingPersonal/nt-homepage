@@ -5,7 +5,7 @@
 	import { getDownloadUrl, isNullOrUndefined } from '$lib/util';
 	import CharacterCard from './CharacterCard.svelte';
 
-	export let leaders: CamarillaCharakter[] | SabbatCharakter[] | undefined;
+	export let leaders: CamarillaCharakter[] | SabbatCharakter[];
 	export let officers: CamarillaCharakter[] | SabbatCharakter[];
 	export let charaktere: CamarillaCharakter[] | SabbatCharakter[];
 	export let noFilterActive: boolean;
@@ -42,7 +42,7 @@
 	</div>
 {/if}
 
-{#if leaders && leaders.length > 0 && noFilterActive}
+{#if leaders.length > 0 && noFilterActive}
 	<h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Anführer</h2>
 	<div class="flex justify-center">
 		{#if leaders.length === 1}
@@ -75,7 +75,7 @@
 	</div>
 {/if}
 
-{#if officers && officers.length > 0 && noFilterActive}
+{#if officers.length > 0 && noFilterActive}
 	<h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Offiziere</h2>
 	{#if officers.length >= 4}
 		<div
@@ -130,7 +130,7 @@
 	</div>
 {/if}
 
-{#if noFilterActive || (selektiertesPack && charaktere.length > 0)}
+{#if charaktere.length > 0 && (noFilterActive || selektiertesPack)}
 	<h2 class="h2 mb-2 flex justify-center font-bold">
 		{setting === 'Camarilla' ? 'Domänenmitglieder' : 'Sabbatis'}
 	</h2>

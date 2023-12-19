@@ -24,13 +24,13 @@
 									class="!rounded-none"
 									on:click={() =>
 										subMenu.onClick
-											? subMenu.onClick(entry.store, entry.label)
+											? subMenu.onClick
 											: defaultOnClick
 												? defaultOnClick(entry.store, entry.label)
 												: undefined}
 									on:keyup={() =>
 										subMenu.onClick
-											? subMenu.onClick(entry.store, entry.label)
+											? subMenu.onClick
 											: defaultOnClick
 												? defaultOnClick(entry.store, entry.label)
 												: undefined}
@@ -46,13 +46,13 @@
 						class="relative"
 						on:click={() =>
 							entry.onClick
-								? entry.onClick(entry.store, entry.label)
+								? entry.onClick
 								: defaultOnClick
 									? defaultOnClick(entry.store, entry.label)
 									: undefined}
 						on:keyup={() =>
 							entry.onClick
-								? entry.onClick(entry.store, entry.label)
+								? entry.onClick
 								: defaultOnClick
 									? defaultOnClick(entry.store, entry.label)
 									: undefined}
@@ -84,13 +84,13 @@
 								class="!rounded-none"
 								on:click={() =>
 									subMenu.onClick
-										? subMenu.onClick(entry.store, entry.label)
+										? subMenu.onClick
 										: defaultOnClick
 											? defaultOnClick(entry.store, entry.label)
 											: undefined}
 								on:keyup={() =>
 									subMenu.onClick
-										? subMenu.onClick(entry.store, entry.label)
+										? subMenu.onClick
 										: defaultOnClick
 											? defaultOnClick(entry.store, entry.label)
 											: undefined}
@@ -108,13 +108,13 @@
 					}`}
 					on:click={() =>
 						entry.onClick
-							? entry.onClick(entry.store, entry.label)
+							? entry.onClick
 							: defaultOnClick
 								? defaultOnClick(entry.store, entry.label)
 								: undefined}
 					on:keyup={() =>
 						entry.onClick
-							? entry.onClick(entry.store, entry.label)
+							? entry.onClick
 							: defaultOnClick
 								? defaultOnClick(entry.store, entry.label)
 								: undefined}

@@ -3,15 +3,18 @@
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 	import { ScreenSize } from '$lib/types/sceenSize';
 	import { SektenName } from '$lib/types/sektenName';
-	import { writable } from 'svelte/store';
+	import { get, writable, type Writable } from 'svelte/store';
 
 	export let data;
 
 	let width: number;
 	let sectFilter = writable('.*');
 
-	function swapSectFilter(filter: string) {
-		if ($sectFilter.match(filter)) {
+	function swapSectFilter(sectFilter: Writable<string | boolean | undefined>, filter: string) {
+		const filterContent = get(sectFilter);
+		if (typeof filterContent === 'boolean') return;
+
+		if (filterContent?.match(filter)) {
 			sectFilter.set('.*');
 		} else {
 			sectFilter.set(filter);
@@ -35,26 +38,30 @@
 	config={[
 		{
 			label: SektenName.Camarilla,
-			indicator: $sectFilter === SektenName.Camarilla
+			indicator: $sectFilter === SektenName.Camarilla,
+			store: sectFilter
 		},
 		{
 			label: SektenName.Sabbat,
-			indicator: $sectFilter === SektenName.Sabbat
+			indicator: $sectFilter === SektenName.Sabbat,
+			store: sectFilter
 		},
 		{
 			label: SektenName.Allianz,
-			indicator: $sectFilter === SektenName.Allianz
+			indicator: $sectFilter === SektenName.Allianz,
+			store: sectFilter
 		},
 		{
 			label: SektenName.Unabhängig,
-			indicator: $sectFilter === SektenName.Unabhängig
+			indicator: $sectFilter === SektenName.Unabhängig,
+			store: sectFilter
 		}
 	]}
 	defaultOnClick={swapSectFilter}
 	smallSwitch={width < ScreenSize.SM}
 />
 
-<div class={`grid-rows-7 grid grid-cols-4 gap-4 text-center md:grid-cols-5  md:grid-rows-1`}>
+<div class={`grid grid-cols-4 grid-rows-7 gap-4 text-center md:grid-cols-5  md:grid-rows-1`}>
 	{#await data.clans}
 		<LoadingMessage>Lade Clans</LoadingMessage>
 	{:then clans}
@@ -65,7 +72,7 @@
 						width < ScreenSize.MD ? '80' : '192'
 					}&height=${width < ScreenSize.MD ? '80' : '192'}&quality=80&format=auto`}
 					alt={`logo of clan ${clan.name}`}
-					class="h-20 w-20 rounded-lg object-cover shadow-lg dark:shadow-gray-800 md:h-48 md:w-48"
+					class="h-20 w-20 rounded-lg object-cover shadow-lg md:h-48 md:w-48 dark:shadow-gray-800"
 				/>
 				{#if width > ScreenSize.MD}
 					<p

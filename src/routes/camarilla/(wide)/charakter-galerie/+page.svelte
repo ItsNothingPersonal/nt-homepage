@@ -20,7 +20,7 @@
 	const offizierFilter = writable('');
 	const clanFilter = writable('.*');
 
-	let width: number = 0;
+	let width = 0;
 </script>
 
 <svelte:window bind:innerWidth={width} />
