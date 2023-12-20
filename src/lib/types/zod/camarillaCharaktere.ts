@@ -3,9 +3,11 @@ import { blutlinie } from './blutlinie';
 import { camarillaAemter } from './camarillaAemter';
 import { charakterStatus } from './charakterStatus';
 import { clan } from './clan';
+import { itemStatus } from './itemStatus';
 import { sekten } from './sekten';
 
-export const camarillaCharaktere = z.object({
+export const camarillaCharakter = z.object({
+	status: itemStatus,
 	name: z.string(),
 	clan: clan.nullable(),
 	blutlinie: blutlinie.nullable(),
@@ -14,7 +16,9 @@ export const camarillaCharaktere = z.object({
 	zusatzfunktion: camarillaAemter.nullable(),
 	sekte: sekten,
 	beschreibung: z.string(),
-	bild: z.string()
+	bild: z.string(),
+	letzte_worte: z.string().nullable().optional(),
+	date_updated: z.coerce.date()
 });
 
-export type CamarillaCharaktere = z.infer<typeof camarillaCharaktere>;
+export type CamarillaCharakter = z.infer<typeof camarillaCharakter>;

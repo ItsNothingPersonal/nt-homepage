@@ -17,22 +17,22 @@
 		>
 			{#each config as entry}
 				{#if entry.subMenu}
-					<NavButton popUpId="button-group" indicator={entry.indicator} {rounded}>
+					<NavButton popUpId="button-group-{entry.label}" indicator={entry.indicator} {rounded}>
 						<svelte:fragment slot="popupMenu">
 							{#each entry.subMenu as subMenu (subMenu.label)}
 								<button
 									class="!rounded-none"
 									on:click={() =>
 										subMenu.onClick
-											? subMenu.onClick(entry.label)
+											? subMenu.onClick(entry.store, entry.label)
 											: defaultOnClick
-												? defaultOnClick(entry.label)
+												? defaultOnClick(entry.store, entry.label)
 												: undefined}
 									on:keyup={() =>
 										subMenu.onClick
-											? subMenu.onClick(entry.label)
+											? subMenu.onClick(entry.store, entry.label)
 											: defaultOnClick
-												? defaultOnClick(entry.label)
+												? defaultOnClick(entry.store, entry.label)
 												: undefined}
 								>
 									{subMenu.label}
@@ -46,15 +46,15 @@
 						class="relative"
 						on:click={() =>
 							entry.onClick
-								? entry.onClick(entry.label)
+								? entry.onClick(entry.store, entry.label)
 								: defaultOnClick
-									? defaultOnClick(entry.label)
+									? defaultOnClick(entry.store, entry.label)
 									: undefined}
 						on:keyup={() =>
 							entry.onClick
-								? entry.onClick(entry.label)
+								? entry.onClick(entry.store, entry.label)
 								: defaultOnClick
-									? defaultOnClick(entry.label)
+									? defaultOnClick(entry.store, entry.label)
 									: undefined}
 					>
 						{entry.label}
@@ -68,13 +68,15 @@
 	</div>
 {:else}
 	<div class="mb-4 grid grid-cols-2 gap-2">
-		{#each config as entry}
+		{#each config as entry, i}
 			{#if entry.subMenu}
 				<NavButton
-					popUpId="button-group"
+					popUpId="button-group-{entry.label}"
 					indicator={entry.indicator}
 					rounded="!rounded-none"
-					additionalStyles={'variant-filled w-full'}
+					additionalStyles={`variant-filled w-full ${
+						config.length % 2 !== 0 && config.length === i + 1 ? 'col-span-2' : undefined
+					}`}
 				>
 					<svelte:fragment slot="popupMenu">
 						{#each entry.subMenu as subMenu (subMenu.label)}
@@ -82,15 +84,15 @@
 								class="!rounded-none"
 								on:click={() =>
 									subMenu.onClick
-										? subMenu.onClick(entry.label)
+										? subMenu.onClick(entry.store, entry.label)
 										: defaultOnClick
-											? defaultOnClick(entry.label)
+											? defaultOnClick(entry.store, entry.label)
 											: undefined}
 								on:keyup={() =>
 									subMenu.onClick
-										? subMenu.onClick(entry.label)
+										? subMenu.onClick(entry.store, entry.label)
 										: defaultOnClick
-											? defaultOnClick(entry.label)
+											? defaultOnClick(entry.store, entry.label)
 											: undefined}
 							>
 								{subMenu.label}
@@ -101,18 +103,20 @@
 				</NavButton>
 			{:else}
 				<button
-					class="variant-filled relative h-12"
+					class={`variant-filled relative h-12 ${
+						config.length % 2 !== 0 && config.length === i + 1 ? 'col-span-2' : undefined
+					}`}
 					on:click={() =>
 						entry.onClick
-							? entry.onClick(entry.label)
+							? entry.onClick(entry.store, entry.label)
 							: defaultOnClick
-								? defaultOnClick(entry.label)
+								? defaultOnClick(entry.store, entry.label)
 								: undefined}
 					on:keyup={() =>
 						entry.onClick
-							? entry.onClick(entry.label)
+							? entry.onClick(entry.store, entry.label)
 							: defaultOnClick
-								? defaultOnClick(entry.label)
+								? defaultOnClick(entry.store, entry.label)
 								: undefined}
 				>
 					{entry.label}

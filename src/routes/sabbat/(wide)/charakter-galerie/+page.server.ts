@@ -14,7 +14,8 @@ export const load = (async () => {
 				{ charakter_status: ['name'] },
 				{ clan: ['name'] }
 			],
-			sort: ['offizier', '-charakter_status']
+			sort: ['offizier', '-charakter_status'],
+			filter: { status: { _eq: 'published' } }
 		})
 	);
 

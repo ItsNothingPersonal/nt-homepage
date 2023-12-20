@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { CamarillaCharaktere } from '$lib/types/zod/camarillaCharaktere';
+	import type { CamarillaCharakter } from '$lib/types/zod/camarillaCharaktere';
 	import type { PackInformation } from '$lib/types/zod/packInformation';
 	import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
 	import { getDownloadUrl, isNullOrUndefined } from '$lib/util';
 	import CharacterCard from './CharacterCard.svelte';
 
-	export let leaders: CamarillaCharaktere[] | SabbatCharakter[] | undefined;
-	export let officers: CamarillaCharaktere[] | SabbatCharakter[];
-	export let charaktere: CamarillaCharaktere[] | SabbatCharakter[];
+	export let leaders: CamarillaCharakter[] | SabbatCharakter[];
+	export let officers: CamarillaCharakter[] | SabbatCharakter[];
+	export let charaktere: CamarillaCharakter[] | SabbatCharakter[];
 	export let noFilterActive: boolean;
 	export let setting: 'Camarilla' | 'Sabbat';
 	export let selektiertesPack: PackInformation | undefined = undefined;
@@ -42,7 +42,7 @@
 	</div>
 {/if}
 
-{#if leaders && noFilterActive}
+{#if leaders.length > 0 && noFilterActive}
 	<h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Anführer</h2>
 	<div class="flex justify-center">
 		{#if leaders.length === 1}
@@ -54,6 +54,7 @@
 				status={leaders[0].charakter_status?.name}
 				beschreibung={leaders[0].beschreibung ?? ''}
 				bild={leaders[0].bild}
+				letzteWorte={leaders[0].letzte_worte}
 			/>
 		{:else}
 			<div class="mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2">
@@ -66,6 +67,7 @@
 						status={singleLeader.charakter_status?.name}
 						beschreibung={singleLeader.beschreibung ?? ''}
 						bild={singleLeader.bild}
+						letzteWorte={singleLeader.letzte_worte}
 					/>
 				{/each}
 			</div>
@@ -73,7 +75,7 @@
 	</div>
 {/if}
 
-{#if officers && noFilterActive}
+{#if officers.length > 0 && noFilterActive}
 	<h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Offiziere</h2>
 	{#if officers.length >= 4}
 		<div
@@ -88,6 +90,7 @@
 					status={charakter.charakter_status?.name}
 					beschreibung={charakter.beschreibung ?? ''}
 					bild={charakter.bild}
+					letzteWorte={charakter.letzte_worte}
 				/>
 			{/each}
 		</div>
@@ -102,6 +105,7 @@
 					status={charakter.charakter_status?.name}
 					beschreibung={charakter.beschreibung ?? ''}
 					bild={charakter.bild}
+					letzteWorte={charakter.letzte_worte}
 				/>
 			{/each}
 		</div>
@@ -120,12 +124,13 @@
 				status={charakter.charakter_status?.name}
 				beschreibung={charakter.beschreibung ?? ''}
 				bild={charakter.bild}
+				letzteWorte={charakter.letzte_worte}
 			/>
 		{/each}
 	</div>
 {/if}
 
-{#if noFilterActive || (selektiertesPack && charaktere.length > 0)}
+{#if charaktere.length > 0 && (noFilterActive || selektiertesPack)}
 	<h2 class="h2 mb-2 flex justify-center font-bold">
 		{setting === 'Camarilla' ? 'Domänenmitglieder' : 'Sabbatis'}
 	</h2>
@@ -143,6 +148,7 @@
 				status={charakter.charakter_status?.name}
 				beschreibung={charakter.beschreibung ?? ''}
 				bild={charakter.bild}
+				letzteWorte={charakter.letzte_worte}
 			/>
 		{/each}
 	</div>
@@ -158,6 +164,7 @@
 					status={charakter.charakter_status?.name}
 					beschreibung={charakter.beschreibung ?? ''}
 					bild={charakter.bild}
+					letzteWorte={charakter.letzte_worte}
 				/>
 			{/each}
 		</div>
