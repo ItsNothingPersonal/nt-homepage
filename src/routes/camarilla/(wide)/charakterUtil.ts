@@ -9,11 +9,17 @@ export function getClanSubMenu(
 	clanFilter: Writable<string | null>,
 	charaktere: CamarillaCharakter[]
 ): SubMenuConfig[] {
-	return [...Object.keys(ClanName), 'Lasombra antitribu', 'Unbekannt']
+	console.warn(charaktere.map((c) => c.clan?.name));
+	return [...Object.keys(ClanName), 'Lasombra antitribu', 'Caitiff', 'Unbekannt']
 		.filter((clan) =>
 			clan === 'Unbekannt'
-				? charaktere.find((charakter) => charakter.clan?.name === undefined)
-				: charaktere.find((charakter) => charakter.clan?.name === clan)
+				? charaktere.find(
+						(charakter) =>
+							charakter.clan?.name === undefined && charakter.blutlinie?.name === undefined
+					)
+				: charaktere.find(
+						(charakter) => charakter.clan?.name === clan || charakter.blutlinie?.name === clan
+					)
 		)
 		.map((e) => {
 			return {
@@ -108,9 +114,7 @@ export function getGefilterteCharaktere(
 					? offizierFilter === ''
 						? isNullOrUndefined(c.offizier)
 						: c.offizier
-					: (isNullOrUndefined(c.clan?.name) && isNullOrUndefined(clanFilter)) ||
-						(!isNullOrUndefined(clanFilter) && c.clan?.name.match(clanFilter)) ||
-						(!isNullOrUndefined(clanFilter) && c.blutlinie?.name.match(clanFilter))) &&
+					: filterClansUndBlutlinien(c.clan?.name, c.blutlinie?.name, clanFilter)) &&
 				(offizierFilter === '' ? true : c.offizier)
 		)
 		.filter(
@@ -118,4 +122,16 @@ export function getGefilterteCharaktere(
 				isNullOrUndefined(e.abgelegt_am) ||
 				e.abgelegt_am?.getFullYear().toString().match(jahrFilter)
 		);
+}
+
+function filterClansUndBlutlinien(
+	clanName: string | null | undefined,
+	blutlinienName: string | null | undefined,
+	clanFilter: string | null
+): boolean {
+	return Boolean(
+		(isNullOrUndefined(clanName) && isNullOrUndefined(clanFilter)) ||
+			(!isNullOrUndefined(clanFilter) && clanName?.match(clanFilter)) ||
+			(!isNullOrUndefined(clanFilter) && blutlinienName?.match(clanFilter))
+	);
 }
