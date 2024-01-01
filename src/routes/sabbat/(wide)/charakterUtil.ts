@@ -80,7 +80,9 @@ export function getOfficers(
 	charaktere: SabbatCharakter[],
 	jahrFilter: string = '.*'
 ): SabbatCharakter[] {
-	return charaktere
+	return sabbatCharakter
+		.array()
+		.parse(charaktere)
 		.filter(
 			(e) => !isNullOrUndefined(e.offizier) && e.offizier.name !== SabbatAemterName.Erzbischof
 		)
