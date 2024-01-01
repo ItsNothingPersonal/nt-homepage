@@ -2,7 +2,7 @@
 	import type { FilterButtonConfig } from '$lib/types/filterButtonConfig';
 	import type { FilterFunction } from '$lib/types/filterFunction';
 	import Icon from '@iconify/svelte';
-	import NavButton from '../DropdownMenuButton/DropdownMenuButton.svelte';
+	import DropdownMenuButton from '../DropdownMenuButton/DropdownMenuButton.svelte';
 
 	export let config: FilterButtonConfig[];
 	export let defaultOnClick: FilterFunction | undefined = undefined;
@@ -17,7 +17,12 @@
 		>
 			{#each config as entry}
 				{#if entry.subMenu}
-					<NavButton popUpId="button-group-{entry.label}" indicator={entry.indicator} {rounded}>
+					<DropdownMenuButton
+						popUpId="button-group-{entry.label}"
+						indicator={entry.indicator}
+						{rounded}
+						disabled={entry.subMenu.length <= 0}
+					>
 						<svelte:fragment slot="popupMenu">
 							{#each entry.subMenu as subMenu (subMenu.label)}
 								<button
@@ -40,7 +45,7 @@
 							{/each}
 						</svelte:fragment>
 						{entry.label}
-					</NavButton>
+					</DropdownMenuButton>
 				{:else}
 					<button
 						class="relative"
@@ -70,13 +75,14 @@
 	<div class="mb-4 grid grid-cols-2 gap-2">
 		{#each config as entry, i}
 			{#if entry.subMenu}
-				<NavButton
+				<DropdownMenuButton
 					popUpId="button-group-{entry.label}"
 					indicator={entry.indicator}
 					rounded="!rounded-none"
 					additionalStyles={`variant-filled w-full ${
 						config.length % 2 !== 0 && config.length === i + 1 ? 'col-span-2' : undefined
 					}`}
+					disabled={entry.subMenu.length <= 0}
 				>
 					<svelte:fragment slot="popupMenu">
 						{#each entry.subMenu as subMenu (subMenu.label)}
@@ -100,7 +106,7 @@
 						{/each}
 					</svelte:fragment>
 					{entry.label}
-				</NavButton>
+				</DropdownMenuButton>
 			{:else}
 				<button
 					class={`variant-filled relative h-12 ${

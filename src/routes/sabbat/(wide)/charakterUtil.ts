@@ -2,7 +2,7 @@ import { SabbatCharakterStatusName } from '$lib/types/sabbatCharakterStatusName'
 import { SabbatAemterName } from '$lib/types/sabbatOffizier';
 import type { SubMenuConfig } from '$lib/types/subMenuConfig';
 import type { PackInformation } from '$lib/types/zod/packInformation';
-import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
+import { sabbatCharakter, type SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
 import type { SabbatPacks } from '$lib/types/zod/sabbatPacks';
 import { isNullOrUndefined } from '$lib/util';
 import { get, type Writable } from 'svelte/store';
@@ -62,42 +62,70 @@ export function swapFilterEinzelgaenger(
 	}
 }
 
-export function getLeader(charaktere: SabbatCharakter[]): SabbatCharakter[] {
-	return charaktere.filter((e) => e.offizier?.name === SabbatAemterName.Erzbischof);
+export function getLeader(
+	charaktere: SabbatCharakter[],
+	jahrFilter: string = '.*'
+): SabbatCharakter[] {
+	return sabbatCharakter
+		.array()
+		.parse(charaktere)
+		.filter((e) => e.offizier?.name === SabbatAemterName.Erzbischof)
+		.filter(
+			(e) =>
+				isNullOrUndefined(e.abgelegt_am) || e.abgelegt_am.getFullYear().toString().match(jahrFilter)
+		);
 }
 
-export function getOfficers(charaktere: SabbatCharakter[]): SabbatCharakter[] {
-	return charaktere.filter(
-		(e) => !isNullOrUndefined(e.offizier) && e.offizier.name !== SabbatAemterName.Erzbischof
-	);
+export function getOfficers(
+	charaktere: SabbatCharakter[],
+	jahrFilter: string = '.*'
+): SabbatCharakter[] {
+	return charaktere
+		.filter(
+			(e) => !isNullOrUndefined(e.offizier) && e.offizier.name !== SabbatAemterName.Erzbischof
+		)
+		.filter(
+			(e) =>
+				isNullOrUndefined(e.abgelegt_am) || e.abgelegt_am.getFullYear().toString().match(jahrFilter)
+		);
 }
 
 export function getPackLeaders(
 	charaktere: SabbatCharakter[],
-	name: string | undefined
+	name: string | undefined,
+	jahrFilter: string = '.*'
 ): SabbatCharakter[] {
-	return getPackByName(charaktere, name).filter(
-		(e) =>
-			e.charakter_status?.name === SabbatCharakterStatusName.Ductus ||
-			e.charakter_status?.name === SabbatCharakterStatusName.Priester
-	);
+	return getPackByName(charaktere, name)
+		.filter(
+			(e) =>
+				e.charakter_status?.name === SabbatCharakterStatusName.Ductus ||
+				e.charakter_status?.name === SabbatCharakterStatusName.Priester
+		)
+		.filter(
+			(e) =>
+				isNullOrUndefined(e.abgelegt_am) || e.abgelegt_am.getFullYear().toString().match(jahrFilter)
+		);
 }
 
 export function getPackByName(
 	charaktere: SabbatCharakter[],
 	name: string | undefined
 ): SabbatCharakter[] {
-	return charaktere.filter((e) => e.pack?.name === name);
+	return sabbatCharakter
+		.array()
+		.parse(charaktere)
+		.filter((e) => e.pack?.name === name);
 }
 
 export function getPackInformation(
 	charaktere: SabbatCharakter[],
-	selektiertesPack: SabbatPacks | undefined
+	selektiertesPack: SabbatPacks | undefined,
+	jahrFilter: string = '.*'
 ): PackInformation | undefined {
 	if (selektiertesPack) {
 		return {
 			pack: selektiertesPack,
-			leaders: getPackLeaders(charaktere, selektiertesPack?.name)
+			leaders: getPackLeaders(charaktere, selektiertesPack?.name, jahrFilter)
 		};
 	}
 	return undefined;
@@ -107,17 +135,25 @@ export function getGefilterteCharaktere(
 	charaktere: SabbatCharakter[],
 	einzelgaengerFilter: boolean,
 	packFilter: string,
-	offizierFilter: string
+	offizierFilter: string,
+	jahrFilter: string = '.*'
 ): SabbatCharakter[] {
-	return charaktere.filter((c) =>
-		!(packFilter === '.*' && einzelgaengerFilter === false && offizierFilter === '')
-			? ((einzelgaengerFilter === true && (c.pack === null || c.pack === undefined)) ||
-					(packFilter === '.*' && einzelgaengerFilter === false) ||
-					(einzelgaengerFilter === false &&
-						c.pack?.name.match(packFilter) &&
-						(c.charakter_status?.name === SabbatCharakterStatusName.TrueSabbat ||
-							c.charakter_status?.name === SabbatCharakterStatusName.FalseSabbat))) &&
-				(offizierFilter.length > 0 ? !isNullOrUndefined(c.offizier) : true)
-			: isNullOrUndefined(c.offizier)
-	);
+	return sabbatCharakter
+		.array()
+		.parse(charaktere)
+		.filter((c) =>
+			!(packFilter === '.*' && einzelgaengerFilter === false && offizierFilter === '')
+				? ((einzelgaengerFilter === true && (c.pack === null || c.pack === undefined)) ||
+						(packFilter === '.*' && einzelgaengerFilter === false) ||
+						(einzelgaengerFilter === false &&
+							c.pack?.name.match(packFilter) &&
+							(c.charakter_status?.name === SabbatCharakterStatusName.TrueSabbat ||
+								c.charakter_status?.name === SabbatCharakterStatusName.FalseSabbat))) &&
+					(offizierFilter.length > 0 ? !isNullOrUndefined(c.offizier) : true)
+				: isNullOrUndefined(c.offizier)
+		)
+		.filter(
+			(e) =>
+				isNullOrUndefined(e.abgelegt_am) || e.abgelegt_am.getFullYear().toString().match(jahrFilter)
+		);
 }
