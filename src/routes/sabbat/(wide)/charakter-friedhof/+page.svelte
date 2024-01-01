@@ -34,8 +34,8 @@
 	async function getJahrSubMenu(jahrFilter: Writable<string>) {
 		const parsed = sabbatCharakter.array().parse(await data.charaktere);
 		parsed.map((e) => {
-			if (e.date_updated) {
-				uniqueYearsSet.add(e.date_updated.getFullYear());
+			if (e.abgelegt_am) {
+				uniqueYearsSet.add(e.abgelegt_am.getFullYear());
 			}
 		});
 

@@ -53,7 +53,7 @@ export function getOfficers(
 				e.offizier.name !== CamarillaAemterName.Baron
 		)
 		.filter((e) => e.sekte.name.match(sectFilter))
-		.filter((e) => e.date_updated && e.date_updated.getFullYear().toString().match(jahrFilter));
+		.filter((e) => e.abgelegt_am.getFullYear().toString().match(jahrFilter));
 }
 
 export function getLeader(
@@ -71,7 +71,7 @@ export function getLeader(
 					e.offizier.name === CamarillaAemterName.Prinz)
 		)
 		.filter((e) => e.sekte.name.match(sectFilter))
-		.filter((e) => e.date_updated?.getFullYear().toString().match(jahrFilter));
+		.filter((e) => e.abgelegt_am.getFullYear().toString().match(jahrFilter));
 }
 
 export function getGefilterteCharaktere(
@@ -94,5 +94,5 @@ export function getGefilterteCharaktere(
 					: c.clan?.name.match(clanFilter) || c.blutlinie?.name.match(clanFilter)) &&
 				(offizierFilter === '' ? true : c.offizier)
 		)
-		.filter((e) => e.date_updated && e.date_updated.getFullYear().toString().match(jahrFilter));
+		.filter((e) => e.abgelegt_am.getFullYear().toString().match(jahrFilter));
 }
