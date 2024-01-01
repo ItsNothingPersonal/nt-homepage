@@ -104,8 +104,8 @@
 	<LoadingMessage>Lade Charakter-Galerie</LoadingMessage>
 {:then charaktere}
 	<CharacterGallery
-		leaders={getLeader(charaktere)}
-		officers={getOfficers(charaktere)}
+		leaders={getLeader(charaktere, $jahrFilter)}
+		officers={getOfficers(charaktere, $jahrFilter)}
 		noFilterActive={$packFilter === '.*' &&
 			$einzelgaengerFilter === false &&
 			$offizierFilter === ''}
@@ -113,9 +113,10 @@
 			charaktere,
 			$einzelgaengerFilter,
 			$packFilter,
-			$offizierFilter
+			$offizierFilter,
+			$jahrFilter
 		)}
 		setting="Sabbat"
-		selektiertesPack={getPackInformation(charaktere, $selektiertesPack)}
+		selektiertesPack={getPackInformation(charaktere, $selektiertesPack, $jahrFilter)}
 	/>
 {/await}

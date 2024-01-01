@@ -19,7 +19,9 @@ export const camarillaCharakter = z.object({
 	bild: z.string(),
 	abgelegt_am: z.coerce
 		.date()
-		.min(new Date('2021-01-01'), 'Daten vor dem Jahr des Chronik-Starts sind ungültig'),
+		.min(new Date('2021-01-01'), 'Daten vor dem Jahr des Chronik-Starts sind ungültig')
+		.nullable()
+		.optional(),
 	letzte_worte: z.string().nullable().optional()
 });
 
