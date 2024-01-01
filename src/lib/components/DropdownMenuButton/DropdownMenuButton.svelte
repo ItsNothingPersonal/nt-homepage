@@ -6,6 +6,7 @@
 	export let indicator: boolean = false;
 	export let rounded: string | undefined = '!rounded-lg';
 	export let additionalStyles: string | undefined = undefined;
+	export let disabled: boolean = false;
 
 	const popupCombobox: PopupSettings = {
 		event: 'click',
@@ -17,6 +18,7 @@
 <button
 	class={`bg-ghost btn relative w-fit ${rounded} ${additionalStyles} border-0`}
 	use:popup={popupCombobox}
+	{disabled}
 >
 	<span class="capitalize">
 		<slot />
