@@ -9,7 +9,6 @@ export function getClanSubMenu(
 	clanFilter: Writable<string | null>,
 	charaktere: CamarillaCharakter[]
 ): SubMenuConfig[] {
-	console.warn(charaktere.map((c) => c.clan?.name));
 	return [...Object.keys(ClanName), 'Lasombra antitribu', 'Caitiff', 'Unbekannt']
 		.filter((clan) =>
 			clan === 'Unbekannt'
@@ -131,7 +130,7 @@ function filterClansUndBlutlinien(
 ): boolean {
 	return Boolean(
 		(isNullOrUndefined(clanName) && isNullOrUndefined(clanFilter)) ||
-			(!isNullOrUndefined(clanFilter) && clanName?.match(clanFilter)) ||
-			(!isNullOrUndefined(clanFilter) && blutlinienName?.match(clanFilter))
+			(!isNullOrUndefined(clanFilter) && clanName?.match(/^clanFilter$/)) ||
+			(!isNullOrUndefined(clanFilter) && blutlinienName?.match(/^clanFilter$/))
 	);
 }
