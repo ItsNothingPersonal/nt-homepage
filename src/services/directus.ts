@@ -10,7 +10,7 @@ import type { News } from '$lib/types/zod/news';
 import type { Orga } from '$lib/types/zod/orga';
 import type { ProjektUebersicht } from '$lib/types/zod/projektUebersicht';
 import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
-import type { SabbatPacks } from '$lib/types/zod/sabbatPacks';
+import type { SabbatPack } from '$lib/types/zod/sabbatPacks';
 import type { SabbatSpielortFiles } from '$lib/types/zod/sabbatSpielortFiles';
 import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles';
 import type { SettingSteckbrief } from '$lib/types/zod/settingSteckbrief';
@@ -44,7 +44,7 @@ export interface DirectusSchema {
 	sabbat_charaktere: SabbatCharakter[];
 	sabbat_news: News[];
 	sabbat_orga: Orga[];
-	sabbat_packs: SabbatPacks[];
+	sabbat_packs: SabbatPack[];
 	sabbat_spielort: Spielort;
 	sabbat_spielort_files: SabbatSpielortFiles[];
 	sabbat_steckbrief: SettingSteckbrief;

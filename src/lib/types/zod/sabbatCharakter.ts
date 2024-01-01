@@ -4,7 +4,7 @@ import { clan } from './clan';
 import { itemStatus } from './itemStatus';
 import { sabbatAemter } from './sabbatAemter';
 import { sabbatCharakterStatus } from './sabbatCharakterStatus';
-import { sabbatPacks } from './sabbatPacks';
+import { sabbatPack } from './sabbatPacks';
 
 export const sabbatCharakter = z.object({
 	status: itemStatus,
@@ -13,7 +13,7 @@ export const sabbatCharakter = z.object({
 	blutlinie: blutlinie.nullable(),
 	charakter_status: sabbatCharakterStatus.optional(),
 	offizier: sabbatAemter.nullable(),
-	pack: sabbatPacks.nullable(),
+	pack: sabbatPack.nullable(),
 	beschreibung: z.string().nullish(),
 	bild: z.string(),
 	abgelegt_am: z.coerce

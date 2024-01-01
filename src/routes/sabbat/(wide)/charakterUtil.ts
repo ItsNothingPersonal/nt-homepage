@@ -3,30 +3,33 @@ import { SabbatAemterName } from '$lib/types/sabbatOffizier';
 import type { SubMenuConfig } from '$lib/types/subMenuConfig';
 import type { PackInformation } from '$lib/types/zod/packInformation';
 import { sabbatCharakter, type SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
-import type { SabbatPacks } from '$lib/types/zod/sabbatPacks';
+import type { SabbatPack } from '$lib/types/zod/sabbatPacks';
 import { isNullOrUndefined } from '$lib/util';
 import { get, type Writable } from 'svelte/store';
 
 export function getPackSubMenu(
 	packFilter: Writable<string>,
-	selektiertesPack: Writable<SabbatPacks | undefined>,
+	selektiertesPack: Writable<SabbatPack | undefined>,
 	einzelgaengerFilter: Writable<boolean>,
-	packs: SabbatPacks[]
+	packs: SabbatPack[],
+	charaktere: SabbatCharakter[]
 ): SubMenuConfig[] {
-	return packs.map((e) => {
-		return {
-			label: e.name,
-			onClick: () =>
-				swapPackFilter(packFilter, selektiertesPack, einzelgaengerFilter, packs, e.name)
-		};
-	});
+	return packs
+		.filter((p) => charaktere.map((c) => c.pack?.name).find((c) => c === p.name))
+		.map((e) => {
+			return {
+				label: e.name,
+				onClick: () =>
+					swapPackFilter(packFilter, selektiertesPack, einzelgaengerFilter, packs, e.name)
+			};
+		});
 }
 
 export function swapPackFilter(
 	packFilter: Writable<string>,
-	selektiertesPack: Writable<SabbatPacks | undefined>,
+	selektiertesPack: Writable<SabbatPack | undefined>,
 	einzelgaengerFilter: Writable<boolean>,
-	packs: SabbatPacks[],
+	packs: SabbatPack[],
 	filter: string
 ) {
 	if (get(packFilter).match(filter)) {
@@ -49,7 +52,7 @@ export function swapOffizierFilter(offizierFilter: Writable<string>, filter: str
 
 export function swapFilterEinzelgaenger(
 	packFilter: Writable<string>,
-	selektiertesPack: Writable<SabbatPacks | undefined>,
+	selektiertesPack: Writable<SabbatPack | undefined>,
 	einzelgaengerFilter: Writable<boolean>
 ) {
 	if (get(einzelgaengerFilter) === true) {
@@ -121,7 +124,7 @@ export function getPackByName(
 
 export function getPackInformation(
 	charaktere: SabbatCharakter[],
-	selektiertesPack: SabbatPacks | undefined,
+	selektiertesPack: SabbatPack | undefined,
 	jahrFilter: string = '.*'
 ): PackInformation | undefined {
 	if (selektiertesPack) {
