@@ -16,8 +16,10 @@ export const sabbatCharakter = z.object({
 	pack: sabbatPacks.nullable(),
 	beschreibung: z.string().nullish(),
 	bild: z.string(),
-	letzte_worte: z.string().nullable().optional(),
-	date_updated: z.coerce.date()
+	abgelegt_am: z.coerce
+		.date()
+		.min(new Date('2021-01-01'), 'Daten vor dem Jahr des Chronik-Starts sind ungültig'),
+	letzte_worte: z.string().nullable().optional()
 });
 
 export type SabbatCharakter = z.infer<typeof sabbatCharakter>;
