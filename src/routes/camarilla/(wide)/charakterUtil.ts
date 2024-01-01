@@ -128,9 +128,14 @@ function filterClansUndBlutlinien(
 	blutlinienName: string | null | undefined,
 	clanFilter: string | null
 ): boolean {
-	return Boolean(
-		(isNullOrUndefined(clanName) && isNullOrUndefined(clanFilter)) ||
-			(!isNullOrUndefined(clanFilter) && clanName?.match(/^clanFilter$/)) ||
-			(!isNullOrUndefined(clanFilter) && blutlinienName?.match(/^clanFilter$/))
-	);
+	const isEmpty =
+		isNullOrUndefined(clanName) &&
+		isNullOrUndefined(blutlinienName) &&
+		isNullOrUndefined(clanFilter);
+
+	if (isEmpty) return true;
+
+	const clanRegExp: RegExp = new RegExp('^' + clanName + '$');
+	const blutlinienRegExp: RegExp = new RegExp('^' + blutlinienName + '$');
+	return Boolean(clanFilter && (clanRegExp.test(clanFilter) || blutlinienRegExp.test(clanFilter)));
 }
