@@ -6,15 +6,19 @@ import { isNullOrUndefined } from '$lib/util';
 import { get, type Writable } from 'svelte/store';
 
 export function getClanSubMenu(
-	clanFilter: Writable<string>,
+	clanFilter: Writable<string | null>,
 	charaktere: CamarillaCharakter[]
 ): SubMenuConfig[] {
-	return [...Object.keys(ClanName), 'Lasombra antitribu']
-		.filter((clan) => charaktere.map((c) => c.clan?.name).find((c) => c === clan))
+	return [...Object.keys(ClanName), 'Lasombra antitribu', 'Unbekannt']
+		.filter((clan) =>
+			clan === 'Unbekannt'
+				? charaktere.find((charakter) => charakter.clan?.name === undefined)
+				: charaktere.find((charakter) => charakter.clan?.name === clan)
+		)
 		.map((e) => {
 			return {
 				label: e,
-				onClick: () => swapClanFilter(clanFilter, e)
+				onClick: () => swapClanFilter(clanFilter, e === 'Unbekannt' ? null : e)
 			};
 		});
 }
@@ -35,8 +39,8 @@ export function swapOffizierFilter(offizierFilter: Writable<string>, filter: str
 	}
 }
 
-export function swapClanFilter(clanFilter: Writable<string>, filter: string) {
-	if (get(clanFilter).match(filter)) {
+export function swapClanFilter(clanFilter: Writable<string | null>, filter: string | null) {
+	if ((get(clanFilter) === null && filter === null) || (filter && get(clanFilter)?.match(filter))) {
 		clanFilter.set('.*');
 	} else {
 		clanFilter.set(filter);
@@ -90,7 +94,7 @@ export function getLeader(
 export function getGefilterteCharaktere(
 	charaktere: CamarillaCharakter[],
 	sectFilter: string,
-	clanFilter: string,
+	clanFilter: string | null,
 	offizierFilter: string,
 	jahrFilter: string = '.*'
 ): CamarillaCharakter[] {
@@ -104,7 +108,9 @@ export function getGefilterteCharaktere(
 					? offizierFilter === ''
 						? isNullOrUndefined(c.offizier)
 						: c.offizier
-					: c.clan?.name.match(clanFilter) || c.blutlinie?.name.match(clanFilter)) &&
+					: (isNullOrUndefined(c.clan?.name) && isNullOrUndefined(clanFilter)) ||
+						(!isNullOrUndefined(clanFilter) && c.clan?.name.match(clanFilter)) ||
+						(!isNullOrUndefined(clanFilter) && c.blutlinie?.name.match(clanFilter))) &&
 				(offizierFilter === '' ? true : c.offizier)
 		)
 		.filter(

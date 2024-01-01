@@ -10,7 +10,10 @@
 	let width: number;
 	let sectFilter = writable('.*');
 
-	function swapSectFilter(sectFilter: Writable<string | boolean | undefined>, filter: string) {
+	function swapSectFilter(
+		sectFilter: Writable<string | boolean | undefined | null>,
+		filter: string
+	) {
 		const filterContent = get(sectFilter);
 		if (typeof filterContent === 'boolean') return;
 

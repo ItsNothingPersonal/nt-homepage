@@ -4,7 +4,7 @@
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 	import { ScreenSize } from '$lib/types/sceenSize.js';
 	import { SektenName } from '$lib/types/sektenName';
-	import { writable } from 'svelte/store';
+	import { writable, type Writable } from 'svelte/store';
 	import {
 		getClanSubMenu,
 		getGefilterteCharaktere,
@@ -18,7 +18,7 @@
 
 	const sectFilter = writable('.*');
 	const offizierFilter = writable('');
-	const clanFilter = writable('.*');
+	const clanFilter: Writable<string | null> = writable('.*');
 
 	let width = 0;
 </script>
