@@ -5,7 +5,7 @@
 	import { ScreenSize } from '$lib/types/sceenSize';
 	import type { SubMenuConfig } from '$lib/types/subMenuConfig';
 	import { sabbatCharakter } from '$lib/types/zod/sabbatCharakter';
-	import { type SabbatPacks } from '$lib/types/zod/sabbatPacks';
+	import { type SabbatPack } from '$lib/types/zod/sabbatPacks';
 	import { onMount } from 'svelte';
 	import { get, writable, type Writable } from 'svelte/store';
 	import {
@@ -23,7 +23,7 @@
 	const packFilter = writable('.*');
 	const offizierFilter = writable('');
 	const einzelgaengerFilter: Writable<boolean> = writable(false);
-	const selektiertesPack = writable<SabbatPacks | undefined>();
+	const selektiertesPack = writable<SabbatPack | undefined>();
 	const jahrFilter = writable('.*');
 
 	let width = 0;
@@ -65,44 +65,50 @@
 <svelte:window bind:innerWidth={width} />
 
 <h1 class="h1 mb-4 text-center font-bold">Charakter-Friedhof</h1>
-{#await data.packs}
-	<LoadingMessage>Lade Charakter-Friedhof-Filter</LoadingMessage>
-{:then packs}
-	<ButtonGroup
-		config={[
-			{
-				label: 'Einzelgänger',
-				onClick: () => swapFilterEinzelgaenger(packFilter, selektiertesPack, einzelgaengerFilter),
-				indicator: $einzelgaengerFilter === true,
-				store: einzelgaengerFilter
-			},
-			{
-				label: 'Packs',
-				indicator: $packFilter !== '.*',
-				subMenu: getPackSubMenu(packFilter, selektiertesPack, einzelgaengerFilter, packs),
-				store: packFilter
-			},
-			{
-				label: 'Offiziere',
-				onClick: () => swapOffizierFilter(offizierFilter, 'true'),
-				indicator: $offizierFilter.length > 0,
-				store: offizierFilter
-			},
-			{
-				label: 'Jahr',
-				indicator: $jahrFilter !== '.*',
-				subMenu: jahrSubMenu,
-				store: jahrFilter
-			}
-		]}
-		smallSwitch={width < ScreenSize.SM}
-		rounded={'!rounded-none'}
-	/>
-{/await}
-
 {#await data.charaktere}
 	<LoadingMessage>Lade Charakter-Galerie</LoadingMessage>
 {:then charaktere}
+	{#await data.packs}
+		<LoadingMessage>Lade Charakter-Friedhof-Filter</LoadingMessage>
+	{:then packs}
+		<ButtonGroup
+			config={[
+				{
+					label: 'Einzelgänger',
+					onClick: () => swapFilterEinzelgaenger(packFilter, selektiertesPack, einzelgaengerFilter),
+					indicator: $einzelgaengerFilter === true,
+					store: einzelgaengerFilter
+				},
+				{
+					label: 'Packs',
+					indicator: $packFilter !== '.*',
+					subMenu: getPackSubMenu(
+						packFilter,
+						selektiertesPack,
+						einzelgaengerFilter,
+						packs,
+						charaktere
+					),
+					store: packFilter
+				},
+				{
+					label: 'Offiziere',
+					onClick: () => swapOffizierFilter(offizierFilter, 'true'),
+					indicator: $offizierFilter.length > 0,
+					store: offizierFilter
+				},
+				{
+					label: 'Jahr',
+					indicator: $jahrFilter !== '.*',
+					subMenu: jahrSubMenu,
+					store: jahrFilter
+				}
+			]}
+			smallSwitch={width < ScreenSize.SM}
+			rounded={'!rounded-none'}
+		/>
+	{/await}
+
 	<CharacterGallery
 		leaders={getLeader(charaktere, $jahrFilter)}
 		officers={getOfficers(charaktere, $jahrFilter)}

@@ -10,7 +10,7 @@ export const load = (async () => {
 				'*',
 				{ offizier: ['name'] },
 				{ blutlinie: ['name'] },
-				{ pack: ['name'] },
+				{ pack: ['name', 'status'] },
 				{ charakter_status: ['name'] },
 				{ clan: ['name'] }
 			],

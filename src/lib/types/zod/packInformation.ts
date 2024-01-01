@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import { sabbatCharakter } from './sabbatCharakter';
-import { sabbatPacks } from './sabbatPacks';
+import { sabbatPack } from './sabbatPacks';
 
 export const packInformation = z.object({
 	leaders: sabbatCharakter.array(),
-	pack: sabbatPacks
+	pack: sabbatPack
 });
 
 export type PackInformation = z.infer<typeof packInformation>;

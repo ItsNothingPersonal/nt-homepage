@@ -3,14 +3,18 @@ import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const packs = client.request(readItems('sabbat_packs'));
+	const packs = client.request(
+		readItems('sabbat_packs', {
+			filter: { status: { _eq: 'published' } }
+		})
+	);
 	const charaktere = client.request(
 		readItems('sabbat_charaktere', {
 			fields: [
 				'*',
 				{ offizier: ['name'] },
 				{ blutlinie: ['name'] },
-				{ pack: ['name'] },
+				{ pack: ['name', 'status'] },
 				{ charakter_status: ['name'] },
 				{ clan: ['name'] }
 			],

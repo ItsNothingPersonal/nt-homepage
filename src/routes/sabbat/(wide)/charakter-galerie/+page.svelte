@@ -3,7 +3,7 @@
 	import CharacterGallery from '$lib/components/CharacterGallery/CharacterGallery.svelte';
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 	import { ScreenSize } from '$lib/types/sceenSize';
-	import { type SabbatPacks } from '$lib/types/zod/sabbatPacks';
+	import { type SabbatPack } from '$lib/types/zod/sabbatPacks';
 	import { writable, type Writable } from 'svelte/store';
 	import {
 		getGefilterteCharaktere,
@@ -20,7 +20,7 @@
 	const packFilter = writable('.*');
 	const offizierFilter = writable('');
 	const einzelgaengerFilter: Writable<boolean> = writable(false);
-	const selektiertesPack = writable<SabbatPacks | undefined>();
+	const selektiertesPack = writable<SabbatPack | undefined>();
 
 	let width = 0;
 </script>
@@ -28,38 +28,44 @@
 <svelte:window bind:innerWidth={width} />
 
 <h1 class="h1 mb-4 text-center font-bold">Charakter-Galerie</h1>
-{#await data.packs}
-	<LoadingMessage>Lade Charakter-Galerie-Filter</LoadingMessage>
-{:then packs}
-	<ButtonGroup
-		config={[
-			{
-				label: 'Einzelgänger',
-				onClick: () => swapFilterEinzelgaenger(packFilter, selektiertesPack, einzelgaengerFilter),
-				indicator: $einzelgaengerFilter === true,
-				store: einzelgaengerFilter
-			},
-			{
-				label: 'Packs',
-				indicator: $packFilter !== '.*',
-				subMenu: getPackSubMenu(packFilter, selektiertesPack, einzelgaengerFilter, packs),
-				store: packFilter
-			},
-			{
-				label: 'Offiziere',
-				onClick: () => swapOffizierFilter(offizierFilter, 'true'),
-				indicator: $offizierFilter.length > 0,
-				store: offizierFilter
-			}
-		]}
-		smallSwitch={width < ScreenSize.SM}
-		rounded={'!rounded-none'}
-	/>
-{/await}
-
 {#await data.charaktere}
 	<LoadingMessage>Lade Charakter-Galerie</LoadingMessage>
 {:then charaktere}
+	{#await data.packs}
+		<LoadingMessage>Lade Charakter-Galerie-Filter</LoadingMessage>
+	{:then packs}
+		<ButtonGroup
+			config={[
+				{
+					label: 'Einzelgänger',
+					onClick: () => swapFilterEinzelgaenger(packFilter, selektiertesPack, einzelgaengerFilter),
+					indicator: $einzelgaengerFilter === true,
+					store: einzelgaengerFilter
+				},
+				{
+					label: 'Packs',
+					indicator: $packFilter !== '.*',
+					subMenu: getPackSubMenu(
+						packFilter,
+						selektiertesPack,
+						einzelgaengerFilter,
+						packs,
+						charaktere
+					),
+					store: packFilter
+				},
+				{
+					label: 'Offiziere',
+					onClick: () => swapOffizierFilter(offizierFilter, 'true'),
+					indicator: $offizierFilter.length > 0,
+					store: offizierFilter
+				}
+			]}
+			smallSwitch={width < ScreenSize.SM}
+			rounded={'!rounded-none'}
+		/>
+	{/await}
+
 	<CharacterGallery
 		leaders={getLeader(charaktere)}
 		officers={getOfficers(charaktere)}

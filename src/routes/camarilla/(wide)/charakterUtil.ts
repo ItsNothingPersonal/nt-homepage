@@ -5,13 +5,18 @@ import { camarillaCharakter, type CamarillaCharakter } from '$lib/types/zod/cama
 import { isNullOrUndefined } from '$lib/util';
 import { get, type Writable } from 'svelte/store';
 
-export function getClanSubMenu(clanFilter: Writable<string>): SubMenuConfig[] {
-	return [...Object.keys(ClanName), 'Lasombra antitribu'].map((e) => {
-		return {
-			label: e,
-			onClick: () => swapClanFilter(clanFilter, e)
-		};
-	});
+export function getClanSubMenu(
+	clanFilter: Writable<string>,
+	charaktere: CamarillaCharakter[]
+): SubMenuConfig[] {
+	return [...Object.keys(ClanName), 'Lasombra antitribu']
+		.filter((clan) => charaktere.map((c) => c.clan?.name).find((c) => c === clan))
+		.map((e) => {
+			return {
+				label: e,
+				onClick: () => swapClanFilter(clanFilter, e)
+			};
+		});
 }
 
 export function swapSectFilter(sectFilter: Writable<string>, filter: string) {
