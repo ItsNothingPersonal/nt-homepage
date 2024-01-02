@@ -45,7 +45,7 @@ export function swapOffizierFilter(offizierFilter: Writable<string>, filter: str
 }
 
 export function swapClanFilter(clanFilter: Writable<string | null>, filter: string | null) {
-	if ((get(clanFilter) === null && filter === null) || (filter && get(clanFilter)?.match(filter))) {
+	if ((get(clanFilter) === null && filter === null) || (filter && get(clanFilter) === filter)) {
 		clanFilter.set('.*');
 	} else {
 		clanFilter.set(filter);
