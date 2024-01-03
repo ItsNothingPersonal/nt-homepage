@@ -1,6 +1,6 @@
 import type { Blutlinie } from '$lib/types/zod/blutlinie';
 import type { CamarillaBrujahKonflikt } from '$lib/types/zod/camarillaBrujahKonflikt';
-import type { CamarillaCharaktere } from '$lib/types/zod/camarillaCharaktere';
+import type { CamarillaCharakter } from '$lib/types/zod/camarillaCharaktere';
 import type { CamarillaSpielortFiles } from '$lib/types/zod/camarillaSpielortFiles';
 import type { CamarillaUebersichtFiles } from '$lib/types/zod/camarillaUebersichtFiles';
 import type { Clan } from '$lib/types/zod/clan';
@@ -10,7 +10,7 @@ import type { News } from '$lib/types/zod/news';
 import type { Orga } from '$lib/types/zod/orga';
 import type { ProjektUebersicht } from '$lib/types/zod/projektUebersicht';
 import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
-import type { SabbatPacks } from '$lib/types/zod/sabbatPacks';
+import type { SabbatPack } from '$lib/types/zod/sabbatPacks';
 import type { SabbatSpielortFiles } from '$lib/types/zod/sabbatSpielortFiles';
 import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles';
 import type { SettingSteckbrief } from '$lib/types/zod/settingSteckbrief';
@@ -22,15 +22,15 @@ import type { VereinRollen } from '$lib/types/zod/vereinRollen';
 import type { VereinDatenschutz } from '$lib/types/zod/vereindatenschutz';
 import type { WasIstVampireLive } from '$lib/types/zod/wasIstVampireLive';
 import type { WasSindClans } from '$lib/types/zod/wasSindClans';
-import type { wh40kSpielortFiles } from '$lib/types/zod/wh40kSpielortFiles';
-import type { wh40kUebersichtFiles } from '$lib/types/zod/wh40kUebersichtFiles';
+import type { Wh40kSpielortFiles } from '$lib/types/zod/wh40kSpielortFiles';
+import type { Wh40kUebersichtFiles } from '$lib/types/zod/wh40kUebersichtFiles';
 import type { Zeittafel } from '$lib/types/zod/zeittafel';
 import { createDirectus, rest } from '@directus/sdk';
 
 export interface DirectusSchema {
 	blutlinien: Blutlinie[];
 	camarilla_brujah_konflikt: CamarillaBrujahKonflikt[];
-	camarilla_charaktere: CamarillaCharaktere[];
+	camarilla_charaktere: CamarillaCharakter[];
 	camarilla_news: News[];
 	camarilla_orga: Orga[];
 	camarilla_spielort: Spielort;
@@ -44,7 +44,7 @@ export interface DirectusSchema {
 	sabbat_charaktere: SabbatCharakter[];
 	sabbat_news: News[];
 	sabbat_orga: Orga[];
-	sabbat_packs: SabbatPacks[];
+	sabbat_packs: SabbatPack[];
 	sabbat_spielort: Spielort;
 	sabbat_spielort_files: SabbatSpielortFiles[];
 	sabbat_steckbrief: SettingSteckbrief;
@@ -59,9 +59,9 @@ export interface DirectusSchema {
 	verein_rollen: VereinRollen[];
 	wh40k_news: News[];
 	wh40k_spielort: Spielort;
-	wh40k_spielort_files: wh40kSpielortFiles[];
+	wh40k_spielort_files: Wh40kSpielortFiles[];
 	wh40k_uebersicht: ProjektUebersicht;
-	wh40k_uebersicht_files: wh40kUebersichtFiles[];
+	wh40k_uebersicht_files: Wh40kUebersichtFiles[];
 	was_ist_vampire_live: WasIstVampireLive;
 	was_sind_clans: WasSindClans;
 }

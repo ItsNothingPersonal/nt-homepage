@@ -1,17 +1,20 @@
 <script lang="ts">
-	import { Heading, P } from 'flowbite-svelte';
-	import type { PageData } from './$types';
+	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 
-	export let data: PageData;
+	export let data;
 </script>
 
-<Heading tag="h1" class="mb-4">
+<h1 class="h1 mb-4 text-center font-bold">
 	Hinweis zu Verfassungsfeindlichen Organisationen und deren Propagandamaterial
-</Heading>
-<P
-	uppercase
-	class={`[&>p]:first-letter:text-2xl [&>p]::text-2xl [&>p]:text-justify [&>p]:mb-2 [&>h2]:text-4xl [&>h2]:font-bold [&>h3]:text-3xl [&>h3]:font-bold text-gray-900 dark:text-white w-full ` +
-		`[&>p>a]:underline [&>p>a]:decoration-dotted`}
+</h1>
+
+<p
+	class={`[&>p]::text-2xl w-full text-gray-900 dark:text-white [&>h2]:text-4xl [&>h2]:font-bold [&>h3]:text-3xl [&>h3]:font-bold [&>p]:mb-2 [&>p]:text-justify [&>p]:first-letter:text-2xl ` +
+		`[&>p>a]:underline [&>p>a]:decoration-dotted [&>p>a]:underline-offset-4`}
 >
-	{@html data.paragraph86und86a?.code}
-</P>
+	{#await data.paragraph86und86a}
+		<LoadingMessage>Lade Informationen zu Paragraph 86 und 86a</LoadingMessage>
+	{:then paragraph86und86a}
+		{@html paragraph86und86a?.code}
+	{/await}
+</p>

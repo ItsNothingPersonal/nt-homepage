@@ -1,0 +1,80 @@
+<script lang="ts">
+	import type { PreprocessorReturn } from '$lib/types/preprocessorReturn';
+	import type { CamarillaUebersichtFiles } from '$lib/types/zod/camarillaUebersichtFiles';
+	import type { ProjektUebersicht } from '$lib/types/zod/projektUebersicht';
+	import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles';
+	import type { Wh40kUebersichtFiles } from '$lib/types/zod/wh40kUebersichtFiles';
+	import { getImageUrl, isNullOrUndefined } from '$lib/util';
+	import GoogleCalendar from '../Google/GoogleCalendar.svelte';
+	import ImageCarousel from '../ImageCarousel/ImageCarousel.svelte';
+	import LoadingMessage from '../LoadingMessage/LoadingMessage.svelte';
+	import SocialButton from '../Socials/socialButton.svelte';
+
+	export let titel: string;
+	export let projektUbersicht: Promise<ProjektUebersicht>;
+	export let beschreibung: PreprocessorReturn;
+	export let spieltermine: PreprocessorReturn;
+	export let images:
+		| Promise<Wh40kUebersichtFiles[] | SabbatUebersichtFiles[] | CamarillaUebersichtFiles[]>
+		| undefined = undefined;
+
+	let innerWidth: number;
+</script>
+
+<svelte:window bind:innerWidth />
+<h1 class="h1 mb-4 text-center font-bold">{titel}</h1>
+
+{#await projektUbersicht}
+	<LoadingMessage>Lade Projektinformationen</LoadingMessage>
+{:then projekt}
+	<div class="flex flex-col-reverse md:container md:inline-block">
+		{#await images}
+			<LoadingMessage>Lade Bilder</LoadingMessage>
+		{:then images}
+			{#if !isNullOrUndefined(images) && images.length > 0}
+				<ImageCarousel
+					size={innerWidth > 640 ? 'w-96' : 'w-fit'}
+					images={images
+						?.filter((e) => !isNullOrUndefined(e.directus_files_id))
+						.map((e) => getImageUrl(e.directus_files_id, 384))}
+					floatLeft={true}
+				/>
+			{/if}
+		{/await}
+
+		<div class="flex flex-col">
+			<p class="[&>p]::text-2xl [&>p]:mb-2 [&>p]:text-justify [&>p]:first-letter:text-2xl">
+				{#await beschreibung}
+					<LoadingMessage>Formatiere Projektbeschreibung</LoadingMessage>
+				{:then beschreibung}
+					{@html beschreibung?.code}
+				{/await}
+			</p>
+
+			<h2 class="h2 mb-2 text-center">Spieltermine</h2>
+			<p class="[&>p]::text-2xl [&>p]:mb-2 [&>p]:text-justify [&>p]:first-letter:text-2xl">
+				{#await spieltermine}
+					<LoadingMessage>Formatiere Spieltermine</LoadingMessage>
+				{:then spieltermine}
+					{@html spieltermine?.code}
+				{/await}
+			</p>
+
+			<h2 class="h2 mb-2 text-center">Kontakt</h2>
+			<div class="mb-4 flex justify-center">
+				<SocialButton
+					icon="email"
+					href={`mailto:${projekt.email}`}
+					text="Kontakt zur Projektleitung"
+				/>
+			</div>
+		</div>
+	</div>
+
+	{#if projekt.google_calendar_link}
+		<GoogleCalendar
+			src={projekt.google_calendar_link}
+			size={innerWidth >= 640 ? 'normal' : 'small'}
+		/>
+	{/if}
+{/await}

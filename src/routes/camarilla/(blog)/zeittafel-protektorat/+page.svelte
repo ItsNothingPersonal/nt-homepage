@@ -1,10 +1,9 @@
 <script lang="ts">
-	import Zeittafel from '$lib/components/zeittafel.svelte';
-	import { Heading } from 'flowbite-svelte';
-	import type { PageData } from './$types';
+	import Zeittafel from '$lib/components/Zeittafel/Zeittafel.svelte';
 
-	export let data: PageData;
+	export let data;
 </script>
 
-<Heading tag="h1" class="mb-4">Zeittafel der Domäne Nürnberg</Heading>
-<Zeittafel daten={data.zeittafel} />
+<h1 class="h1 mb-4 text-center font-bold">Zeittafel der Domäne Nürnberg</h1>
+
+<Zeittafel events={data.zeittafel} />

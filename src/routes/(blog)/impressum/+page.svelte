@@ -1,73 +1,88 @@
 <script lang="ts">
-	import { Heading, P } from 'flowbite-svelte';
-	import type { PageData } from './$types';
+	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 
-	export let data: PageData;
+	export let data;
 </script>
 
-<Heading tag="h1" class="mb-4">Impressum</Heading>
-<Heading tag="h2" class="mt-2">Angaben gemäß § 5 TMG</Heading>
-<P>
-	{data.impressum.betreiber_name}
-</P>
-<P>
-	{data.impressum.strasse}
-</P>
-<P>
-	{data.impressum.plz}
-	{data.impressum.ort}
-</P>
-<br />
-<P>
-	<strong class="font-semibold text-gray-900 dark:text-white">Vereinsregister: </strong>
-	{data.impressum.vereinsregister}
-</P>
-<P>
-	<strong class="font-semibold text-gray-900 dark:text-white">Registergericht: </strong>
-	{data.impressum.registergericht}
-</P>
+<h1 class="h1">Impressum</h1>
+<h2 class="h2 mb-1 mt-4">Angaben gemäß § 5 TMG</h2>
 
-<Heading tag="h3" class="mt-2">Vertreten durch</Heading>
-<P>{data.impressum.erster_vorstand} (Erster Vorstand)</P>
-<P>{data.impressum.zweiter_vorstand} (Zweiter Vorstand)</P>
-<P>{data.impressum.schatzmeister} (Schatzmeister)</P>
+{#await data.impressum}
+	<LoadingMessage>Lade allgemeine Impressums-Angaben</LoadingMessage>
+{:then impressum}
+	<p>
+		{impressum.betreiber_name}
+	</p>
+	<p>
+		{impressum.strasse}
+	</p>
+	<p>
+		{impressum.plz}
+		{impressum.ort}
+	</p>
+	<br />
+	<p>
+		<strong class="font-semibold text-gray-900 dark:text-white">Vereinsregister: </strong>
+		{impressum.vereinsregister}
+	</p>
+	<p>
+		<strong class="font-semibold text-gray-900 dark:text-white">Registergericht: </strong>
+		{impressum.registergericht}
+	</p>
 
-<Heading tag="h2" class="mt-2">Kontakt</Heading>
-<P>
-	<strong class="font-semibold text-gray-900 dark:text-white">Telefon: </strong>
-	{data.impressum.telefon}
-</P>
-<P>
-	<strong class="font-semibold text-gray-900 dark:text-white">E-Mail: </strong>
-	<a class="underline decoration-dotted" href={`mailto:${data.impressum.email}`}>
-		{data.impressum.email}
-	</a>
-</P>
+	<h3 class="h3 mt-2">Vertreten durch</h3>
+	<p>{impressum.erster_vorstand} (Erster Vorstand)</p>
+	<p>{impressum.zweiter_vorstand} (Zweiter Vorstand)</p>
+	<p>{impressum.schatzmeister} (Schatzmeister)</p>
 
-<Heading tag="h2" class="mt-2">Redaktionell verantwortlich</Heading>
-<P>{data.impressum.webmaster_name}</P>
-<P>
-	{data.impressum.webmaster_strasse}
-</P>
-<P>
-	{data.impressum.webmaster_plz}
-	{data.impressum.webmaster_ort}
-</P>
+	<h2 class="h2 mb-1 mt-4">Kontakt</h2>
+	<p>
+		<strong class="font-semibold text-gray-900 dark:text-white">Telefon: </strong>
+		{impressum.telefon}
+	</p>
+	<p>
+		<strong class="font-semibold text-gray-900 dark:text-white">E-Mail: </strong>
+		<a class="underline decoration-dotted underline-offset-4" href={`mailto:${impressum.email}`}>
+			{impressum.email}
+		</a>
+	</p>
 
-<Heading tag="h2" class="mt-2">Copyright</Heading>
-<P
-	uppercase
-	class="[&>p]:first-letter:text-2xl [&>p]:text-justify [&>p]:mb-2 [&>p>a]:underline [&>p>a]:decoration-dotted [&>h3]:text-xl [&>h3]:font-bold"
+	<h2 class="h2 mb-1 mt-4">Redaktionell verantwortlich</h2>
+	<p>{impressum.webmaster_name}</p>
+	<p>
+		{impressum.webmaster_strasse}
+	</p>
+	<p>
+		{impressum.webmaster_plz}
+		{impressum.webmaster_ort}
+	</p>
+{/await}
+
+<h2 class="h2 mb-1 mt-4">Copyright</h2>
+<p
+	class="[&>h3]:h3 [&>h3]:mt-2 [&>p:not(:last-of-type)]:mb-2 [&>p>a]:underline [&>p>a]:decoration-dotted [&>p>a]:underline-offset-4 [&>p]:text-justify [&>p]:first-letter:text-2xl"
 >
-	{@html data.copyrightNotice?.code}
-</P>
+	{#await data.copyrightNotice}
+		<LoadingMessage>Lade Copyright-Angaben</LoadingMessage>
+	{:then copyrightNotice}
+		{@html copyrightNotice?.code}
+	{/await}
+</p>
 
-<Heading tag="h2" class="mt-2">Haftungsausschluss</Heading>
-<P uppercase class="first-letter:text-2xl text-justify mb-2">
-	{data.impressum.haftungsausschluss}
-</P>
+<h2 class="h2 mb-1 mt-4">Haftungsausschluss</h2>
+<p class=" mb-2 text-justify first-letter:text-2xl">
+	{#await data.impressum}
+		<LoadingMessage>Lade Impressums-Angaben zum Haftungsausschluss</LoadingMessage>
+	{:then impressum}
+		{impressum.haftungsausschluss}
+	{/await}
+</p>
 
-<Heading tag="h2" class="mt-2">Streitbeilegung</Heading>
-<P uppercase class="first-letter:text-2xl text-justify mb-2">
-	{data.impressum.schlichtungsstelle}
-</P>
+<h2 class="h2 mb-1 mt-4">Streitbeilegung</h2>
+<p class="mb-2 text-justify first-letter:text-2xl">
+	{#await data.impressum}
+		<LoadingMessage>Lade Impressums-Angaben zur Schlichtungsstelle</LoadingMessage>
+	{:then impressum}
+		{impressum.schlichtungsstelle}
+	{/await}
+</p>

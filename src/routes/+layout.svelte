@@ -1,36 +1,108 @@
 <script lang="ts">
-	import Footer from '$lib/components/footer.svelte';
-	import { DarkMode } from 'flowbite-svelte';
-	import '../app.css';
-	import Navbar from '../lib/components/navbar.svelte';
+	import { afterNavigate } from '$app/navigation';
+	import Footer from '$lib/components/Footer/Footer.svelte';
+	import Navigation from '$lib/components/Navigation/Navigation.svelte';
+	import { ScreenSize } from '$lib/types/sceenSize';
+	import { isMobile } from '$lib/util';
+	import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
+	import {
+		AppBar,
+		AppShell,
+		Drawer,
+		LightSwitch,
+		getDrawerStore,
+		initializeStores,
+		storePopup
+	} from '@skeletonlabs/skeleton';
+	import type { AfterNavigate } from '@sveltejs/kit';
+	import '../app.postcss';
 
-	let width: number;
-	let height: number;
-	let breakPoint: number = 1050;
+	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+	initializeStores();
 
-	$: mobile = width < breakPoint;
-	$: quer = width > height;
+	const drawerStore = getDrawerStore();
+	let innerWidth = 0;
+	let innerHeight = 0;
+	$: mobile = isMobile(innerWidth);
+
+	function drawerOpen(): void {
+		drawerStore.open();
+	}
+
+	afterNavigate((params: AfterNavigate) => {
+		const isNewPage = params.from?.url.pathname !== params.to?.url.pathname;
+		const elemPage = document.querySelector('#page');
+		if (isNewPage && elemPage !== null) {
+			elemPage.scrollTop = 0;
+		}
+	});
 </script>
 
-<svelte:window bind:innerWidth={width} bind:innerHeight={height} />
-<div class="px-4 flex flex-col">
-	<DarkMode
-		btnClass={'text-light-500 dark:text-dark-400 hover:bg-light-100 dark:hover:bg-dark-700 focus:outline-none ' +
-			'focus:ring-4 focus:ring-light-200 dark:focus:ring-dark-700 rounded-lg text-lg p-2.5 fixed right-2 top-12 ' +
-			'md:top-3 md:right-2 z-50'}
-	/>
-	<Navbar />
-	{#if mobile && quer}
-		<main class="mx-auto max-w-screen-2xl text-center mt-4">
-			<slot />
-		</main>
-	{:else}
-		<main class="mx-auto max-w-screen-2xl text-center mt-20 sm:mt-24 lg:mt-28 xl:mt-24">
-			<slot />
-		</main>
-	{/if}
-</div>
+<svelte:window bind:innerWidth bind:innerHeight />
 
-<div class="row-start-2 row-end-3 mt-4">
-	<Footer />
-</div>
+<Drawer>
+	<h2 class="p-4">Navigation</h2>
+	<hr />
+	<Navigation />
+</Drawer>
+
+<AppShell
+	slotSidebarLeft="bg-surface-500/5 w-0"
+	slotPageContent="px-2 mx-auto mt-2"
+	slotHeader="[&>div>div]:gap-0"
+>
+	<svelte:fragment slot="header">
+		<!-- App Bar -->
+		<AppBar
+			gridColumns="grid-cols-desktop-top-menu"
+			slotLead="place-self-start align-middle self-center"
+			slotDefault="place-self-center"
+			slotTrail="place-content-end"
+		>
+			<svelte:fragment slot="lead">
+				<button class="btn btn-sm mr-4 items-center xl:hidden" on:click={drawerOpen}>
+					<span>
+						<svg viewBox="0 0 100 80" class="fill-token h-4 w-4">
+							<rect width="100" height="20" />
+							<rect y="30" width="100" height="20" />
+							<rect y="60" width="100" height="20" />
+						</svg>
+					</span>
+				</button>
+				{#if (innerWidth > 420 && mobile) || innerWidth < 360 || innerWidth > ScreenSize.XL + 240}
+					<img
+						src="/images/Logo_Navbar.webp"
+						alt="Nächtliches Theater Logo"
+						class="dark:shadow-dark-800 mr-2 rounded-lg shadow-lg"
+					/>
+				{/if}
+				{#if innerWidth >= 360}
+					<p class="align-middle">
+						<a href="/">
+							<strong class="whitespace-nowrap text-center text-xl">
+								Nächtliches Theater e.V.
+							</strong>
+						</a>
+					</p>
+				{/if}
+			</svelte:fragment>
+
+			{#if innerWidth >= ScreenSize.XL}
+				<Navigation />
+			{/if}
+
+			<svelte:fragment slot="trail">
+				{#if innerWidth > 310}
+					<LightSwitch />
+				{/if}
+			</svelte:fragment>
+		</AppBar>
+	</svelte:fragment>
+
+	<!-- Page Route Content -->
+	<slot />
+
+	<svelte:fragment slot="pageFooter">
+		<Footer />
+	</svelte:fragment>
+</AppShell>

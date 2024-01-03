@@ -1,25 +1,13 @@
 <script lang="ts">
-	import ProjektUebersicht from '$lib/components/projektUebersicht.svelte';
-	import { getImageUrl, isNullOrUndefined } from '$lib/util';
-	import type { PageData } from './$types';
+	import ProjektUebersicht from '$lib/components/Projekt/ProjektUebersicht.svelte';
 
-	export let data: PageData;
-
-	const images = data.bilder
-		?.filter((e) => !isNullOrUndefined(e.directus_files_id))
-		.map((e) => {
-			return {
-				id: e.camarilla_uebersicht_id,
-				imgurl: getImageUrl(e.directus_files_id)
-			};
-		});
+	export let data;
 </script>
 
 <ProjektUebersicht
 	titel="Vampire Live - Camarilla"
-	beschreibung={data.beschreibung?.code ?? ''}
-	spieltermine={data.spieltermine?.code ?? ''}
-	email={data.camarillaUebersicht.email}
-	{images}
-	googleCalendarLink={data.camarillaUebersicht.google_calendar_link}
+	beschreibung={data.beschreibung}
+	spieltermine={data.spieltermine}
+	projektUbersicht={data.camarillaUebersicht}
+	images={data.bilder}
 />

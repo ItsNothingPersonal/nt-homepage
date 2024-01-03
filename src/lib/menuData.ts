@@ -1,9 +1,6 @@
-export const menuData: {
-	id: number;
-	label: string;
-	href?: string;
-	subData?: { href: string; label: string }[];
-}[] = [
+import type { MenuButtonConfig } from './types/menuButtonConfig';
+
+export const menuData: MenuButtonConfig[] = [
 	{
 		id: 0,
 		label: 'Über Vampire',
@@ -20,7 +17,8 @@ export const menuData: {
 			{ href: '/camarilla/spielort', label: 'Spielort' },
 			{ href: '/camarilla/orga', label: 'Orga-Team' },
 			{ href: '/camarilla/zeittafel-protektorat', label: 'Zeittafel' },
-			{ href: '/camarilla/charakter-galerie', label: 'Charaktergalerie' }
+			{ href: '/camarilla/charakter-galerie', label: 'Charakter-Galerie' },
+			{ href: '/camarilla/charakter-friedhof', label: 'Charakter-Friedhof' }
 		]
 	},
 	{
@@ -32,7 +30,8 @@ export const menuData: {
 			{ href: '/sabbat/orga', label: 'Orga-Team' },
 			{ href: '/sabbat/setting-steckbrief', label: 'Setting-Steckbrief' },
 			{ href: '/sabbat/zeittafel-sabbat', label: 'Zeittafel' },
-			{ href: '/sabbat/charakter-galerie', label: 'Charaktergalerie' }
+			{ href: '/sabbat/charakter-galerie', label: 'Charakter-Galerie' },
+			{ href: '/sabbat/charakter-friedhof', label: 'Charakter-Friedhof' }
 		]
 	},
 	{

@@ -5,4 +5,4 @@ export const wh40kSpielortFiles = z.object({
 	directus_files_id: z.string()
 });
 
-export type wh40kSpielortFiles = z.infer<typeof wh40kSpielortFiles>;
+export type Wh40kSpielortFiles = z.infer<typeof wh40kSpielortFiles>;

@@ -4,10 +4,10 @@ import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-	const wasIstVampireLiveResponse = client.request(readSingleton('was_ist_vampire_live'));
+	const wasIstVampireLive = client.request(readSingleton('was_ist_vampire_live'));
 
 	return {
-		ueberschrift: (await wasIstVampireLiveResponse).ueberschrift,
-		erklaerung: compile((await wasIstVampireLiveResponse).erklaerung)
+		wasIstVampireLive,
+		erklaerung: compile((await wasIstVampireLive).erklaerung)
 	};
 }) satisfies PageServerLoad;
