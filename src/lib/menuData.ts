@@ -18,7 +18,8 @@ export const menuData: MenuButtonConfig[] = [
 			{ href: '/camarilla/orga', label: 'Orga-Team' },
 			{ href: '/camarilla/zeittafel-protektorat', label: 'Zeittafel' },
 			{ href: '/camarilla/charakter-galerie', label: 'Charakter-Galerie' },
-			{ href: '/camarilla/charakter-friedhof', label: 'Charakter-Friedhof' }
+			{ href: '/camarilla/charakter-friedhof', label: 'Charakter-Friedhof' },
+			{ href: '/camarilla/gallerie', label: 'Galerie' }
 		]
 	},
 	{
@@ -31,7 +32,8 @@ export const menuData: MenuButtonConfig[] = [
 			{ href: '/sabbat/setting-steckbrief', label: 'Setting-Steckbrief' },
 			{ href: '/sabbat/zeittafel-sabbat', label: 'Zeittafel' },
 			{ href: '/sabbat/charakter-galerie', label: 'Charakter-Galerie' },
-			{ href: '/sabbat/charakter-friedhof', label: 'Charakter-Friedhof' }
+			{ href: '/sabbat/charakter-friedhof', label: 'Charakter-Friedhof' },
+			{ href: '/sabbat/gallerie', label: 'Galerie' }
 		]
 	},
 	{
@@ -39,7 +41,8 @@ export const menuData: MenuButtonConfig[] = [
 		label: 'Wh40k',
 		subData: [
 			{ href: '/wh40k/uebersicht', label: 'Übersicht' },
-			{ href: '/wh40k/spielort', label: 'Spielort' }
+			{ href: '/wh40k/spielort', label: 'Spielort' },
+			{ href: '/wh40k/gallerie', label: 'Gallerie' }
 		]
 	},
 	{
