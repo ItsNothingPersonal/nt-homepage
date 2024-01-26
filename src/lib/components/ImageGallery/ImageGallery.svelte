@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FileInformation } from '$lib/types/zod/fileInformation';
-	import { getImageUrlQuality } from '$lib/util';
+	import { getImageUrlQuality, getOriginalFile } from '$lib/util';
 	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
 
@@ -50,9 +50,9 @@
 		{#each rowA as rowAElement}
 			<div
 				on:click={() =>
-					modalComponentImage(getImageUrlQuality(rowAElement.id, 100), rowAElement.description)}
+					modalComponentImage(getOriginalFile(rowAElement.id), rowAElement.description)}
 				on:keyup={() =>
-					modalComponentImage(getImageUrlQuality(rowAElement.id, 100), rowAElement.description)}
+					modalComponentImage(getOriginalFile(rowAElement.id), rowAElement.description)}
 				role="button"
 				tabindex="0"
 			>
@@ -68,8 +68,10 @@
 	<div class="grid gap-4">
 		{#each rowB as rowBElement}
 			<div
-				on:click={() => modalComponentImage(getImageUrlQuality(rowBElement.id, 100))}
-				on:keyup={() => modalComponentImage(getImageUrlQuality(rowBElement.id, 100))}
+				on:click={() =>
+					modalComponentImage(getOriginalFile(rowBElement.id), rowBElement.description)}
+				on:keyup={() =>
+					modalComponentImage(getOriginalFile(rowBElement.id), rowBElement.description)}
 				role="button"
 				tabindex="0"
 			>
@@ -85,8 +87,10 @@
 	<div class="grid gap-4">
 		{#each rowC as rowCElement}
 			<div
-				on:click={() => modalComponentImage(getImageUrlQuality(rowCElement.id, 100))}
-				on:keyup={() => modalComponentImage(getImageUrlQuality(rowCElement.id, 100))}
+				on:click={() =>
+					modalComponentImage(getOriginalFile(rowCElement.id), rowCElement.description)}
+				on:keyup={() =>
+					modalComponentImage(getOriginalFile(rowCElement.id), rowCElement.description)}
 				role="button"
 				tabindex="0"
 			>
@@ -102,8 +106,10 @@
 	<div class="grid gap-4">
 		{#each rowD as rowDElement}
 			<div
-				on:click={() => modalComponentImage(getImageUrlQuality(rowDElement.id, 100))}
-				on:keyup={() => modalComponentImage(getImageUrlQuality(rowDElement.id, 100))}
+				on:click={() =>
+					modalComponentImage(getOriginalFile(rowDElement.id), rowDElement.description)}
+				on:keyup={() =>
+					modalComponentImage(getOriginalFile(rowDElement.id), rowDElement.description)}
 				role="button"
 				tabindex="0"
 			>

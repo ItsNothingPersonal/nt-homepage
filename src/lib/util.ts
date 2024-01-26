@@ -26,6 +26,10 @@ export function getImageUrlQuality(
 	}/assets/${filesId}?format=${format}&quality=${quality}`;
 }
 
+export function getOriginalFile(filesId: string) {
+	return `${import.meta.env.VITE_DIRECTUS_URL}/assets/${filesId}`;
+}
+
 export function getDownloadUrl(filesId: string) {
 	return `${import.meta.env.VITE_DIRECTUS_URL}/assets/${filesId}`;
 }
