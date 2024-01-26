@@ -1,58 +1,71 @@
 <script lang="ts">
+	import { ScreenSize } from '$lib/types/sceenSize';
 	import type { FileInformation } from '$lib/types/zod/fileInformation';
-	import { getImageUrlQuality, getOriginalFile } from '$lib/util';
-	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
-	import { onMount } from 'svelte';
+	import type { FolderInformation } from '$lib/types/zod/folderInformation';
+	import { getImageUrlQuality, getOriginalFile, isString } from '$lib/util';
+	import { getModalStore } from '@skeletonlabs/skeleton';
+	import { writable } from 'svelte/store';
+	import ButtonGroup from '../ButtonGroup/ButtonGroup.svelte';
+	import {
+		getSpielabendFilterSubMenu,
+		modalComponentImage,
+		splitArrayIntoParts
+	} from './imageGalleryUtils';
 
 	export let images: FileInformation[];
+	export let folders: FolderInformation[] = [];
 
 	let rowA: FileInformation[] = [];
 	let rowB: FileInformation[] = [];
 	let rowC: FileInformation[] = [];
 	let rowD: FileInformation[] = [];
+	let width = 0;
 
 	const modalStore = getModalStore();
+	const galleryFilter = writable('.*');
 
-	onMount(() => {
-		const result = splitArrayIntoParts(images, 4);
+	$: {
+		const filteredFolder = folders.filter((e) => e.name.match($galleryFilter));
+
+		const result = splitArrayIntoParts(
+			images.filter((e) =>
+				filteredFolder
+					.map((e) => e.id)
+					.includes(isString(e.folder) ? e.folder : e.folder?.name ?? '')
+			),
+			4
+		);
 
 		rowA = result[0];
 		rowB = result[1];
 		rowC = result[2];
 		rowD = result[3];
-	});
-
-	function splitArrayIntoParts(array: FileInformation[], parts: number) {
-		let result: FileInformation[][] = [];
-
-		for (let i = 0; i < parts; i++) {
-			let start = Math.floor((i * array.length) / parts);
-			let end = Math.floor(((i + 1) * array.length) / parts);
-			result.push(array.slice(start, end));
-		}
-
-		return result;
-	}
-
-	function modalComponentImage(imageUrl: string, alt: string | undefined | null = ''): void {
-		const modal: ModalSettings = {
-			type: 'component',
-			component: 'image',
-			image: imageUrl,
-			meta: { alt: alt ?? '' }
-		};
-		modalStore.trigger(modal);
 	}
 </script>
+
+<svelte:window bind:innerWidth={width} />
+
+<ButtonGroup
+	config={[
+		{
+			label: 'Filter',
+			indicator: $galleryFilter !== '.*',
+			subMenu: getSpielabendFilterSubMenu(galleryFilter, folders),
+			store: galleryFilter
+		}
+	]}
+	smallSwitch={width < ScreenSize.SM}
+	rounded={'!rounded-none'}
+/>
 
 <section class="grid grid-cols-2 gap-2 md:grid-cols-4">
 	<div class="grid gap-4">
 		{#each rowA as rowAElement}
 			<div
 				on:click={() =>
-					modalComponentImage(getOriginalFile(rowAElement.id), rowAElement.description)}
+					modalComponentImage(modalStore, getOriginalFile(rowAElement.id), rowAElement.description)}
 				on:keyup={() =>
-					modalComponentImage(getOriginalFile(rowAElement.id), rowAElement.description)}
+					modalComponentImage(modalStore, getOriginalFile(rowAElement.id), rowAElement.description)}
 				role="button"
 				tabindex="0"
 			>
@@ -69,9 +82,9 @@
 		{#each rowB as rowBElement}
 			<div
 				on:click={() =>
-					modalComponentImage(getOriginalFile(rowBElement.id), rowBElement.description)}
+					modalComponentImage(modalStore, getOriginalFile(rowBElement.id), rowBElement.description)}
 				on:keyup={() =>
-					modalComponentImage(getOriginalFile(rowBElement.id), rowBElement.description)}
+					modalComponentImage(modalStore, getOriginalFile(rowBElement.id), rowBElement.description)}
 				role="button"
 				tabindex="0"
 			>
@@ -88,9 +101,9 @@
 		{#each rowC as rowCElement}
 			<div
 				on:click={() =>
-					modalComponentImage(getOriginalFile(rowCElement.id), rowCElement.description)}
+					modalComponentImage(modalStore, getOriginalFile(rowCElement.id), rowCElement.description)}
 				on:keyup={() =>
-					modalComponentImage(getOriginalFile(rowCElement.id), rowCElement.description)}
+					modalComponentImage(modalStore, getOriginalFile(rowCElement.id), rowCElement.description)}
 				role="button"
 				tabindex="0"
 			>
@@ -107,9 +120,9 @@
 		{#each rowD as rowDElement}
 			<div
 				on:click={() =>
-					modalComponentImage(getOriginalFile(rowDElement.id), rowDElement.description)}
+					modalComponentImage(modalStore, getOriginalFile(rowDElement.id), rowDElement.description)}
 				on:keyup={() =>
-					modalComponentImage(getOriginalFile(rowDElement.id), rowDElement.description)}
+					modalComponentImage(modalStore, getOriginalFile(rowDElement.id), rowDElement.description)}
 				role="button"
 				tabindex="0"
 			>
