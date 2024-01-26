@@ -42,7 +42,7 @@ export const menuData: MenuButtonConfig[] = [
 		subData: [
 			{ href: '/wh40k/uebersicht', label: 'Übersicht' },
 			{ href: '/wh40k/spielort', label: 'Spielort' },
-			{ href: '/wh40k/galerie', label: 'Gallerie' }
+			{ href: '/wh40k/galerie', label: 'Galerie' }
 		]
 	},
 	{
