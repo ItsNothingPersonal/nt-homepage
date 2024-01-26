@@ -25,4 +25,4 @@ export const load = (async () => {
 	const images = fileInformation.array().parse(imageResults.flat());
 
 	return { images, imageFolders };
-}) as PageServerLoad;
+}) satisfies PageServerLoad;
