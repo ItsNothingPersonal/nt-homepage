@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { folderInformation } from './folderInformation';
 
 export const fileInformation = z.object({
 	id: z.string(),
@@ -6,7 +7,7 @@ export const fileInformation = z.object({
 	filename_disk: z.string().nullable(),
 	filename_download: z.string(),
 	type: z.string().nullable(),
-	folder: z.string().or(z.custom<{ id: string; name: string; parent: unknown }>()).nullable(),
+	folder: z.string().or(folderInformation).nullable(),
 	uploaded_by: z.string().uuid(),
 	uploaded_on: z.string().datetime(),
 	modified_by: z.string().uuid().nullable(),

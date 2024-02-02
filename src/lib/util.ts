@@ -16,6 +16,20 @@ export function getImageUrl(
 	}/assets/${filesId}?format=${format}&width=${width}&height=${height}&fit=${fit}`;
 }
 
+export function getImageUrlQuality(
+	filesId: string,
+	quality = 100,
+	format: 'auto' | 'jpg' | 'png' | 'webp' | 'tiff' = 'auto'
+) {
+	return `${
+		import.meta.env.VITE_DIRECTUS_URL
+	}/assets/${filesId}?format=${format}&quality=${quality}`;
+}
+
+export function getOriginalFile(filesId: string) {
+	return `${import.meta.env.VITE_DIRECTUS_URL}/assets/${filesId}`;
+}
+
 export function getDownloadUrl(filesId: string) {
 	return `${import.meta.env.VITE_DIRECTUS_URL}/assets/${filesId}`;
 }

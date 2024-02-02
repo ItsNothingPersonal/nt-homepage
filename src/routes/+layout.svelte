@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
 	import Footer from '$lib/components/Footer/Footer.svelte';
+	import ModalImage from '$lib/components/Modals/ModalImage.svelte';
 	import Navigation from '$lib/components/Navigation/Navigation.svelte';
 	import { ScreenSize } from '$lib/types/sceenSize';
 	import { isMobile } from '$lib/util';
@@ -10,9 +11,11 @@
 		AppShell,
 		Drawer,
 		LightSwitch,
+		Modal,
 		getDrawerStore,
 		initializeStores,
-		storePopup
+		storePopup,
+		type ModalComponent
 	} from '@skeletonlabs/skeleton';
 	import type { AfterNavigate } from '@sveltejs/kit';
 	import '../app.postcss';
@@ -24,6 +27,10 @@
 	let innerWidth = 0;
 	let innerHeight = 0;
 	$: mobile = isMobile(innerWidth);
+
+	const modalComponentRegistry: Record<string, ModalComponent> = {
+		image: { ref: ModalImage }
+	};
 
 	function drawerOpen(): void {
 		drawerStore.open();
@@ -45,6 +52,8 @@
 	<hr />
 	<Navigation />
 </Drawer>
+
+<Modal components={modalComponentRegistry} />
 
 <AppShell
 	slotSidebarLeft="bg-surface-500/5 w-0"
