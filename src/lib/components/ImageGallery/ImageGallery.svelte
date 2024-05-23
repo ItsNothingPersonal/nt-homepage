@@ -2,8 +2,9 @@
 	import { ScreenSize } from '$lib/types/sceenSize';
 	import type { FileInformation } from '$lib/types/zod/fileInformation';
 	import type { FolderInformation } from '$lib/types/zod/folderInformation';
-	import { getImageUrlQuality, getOriginalFile, isString } from '$lib/util';
+	import { getOriginalFile, isString } from '$lib/util';
 	import { getModalStore } from '@skeletonlabs/skeleton';
+	import { Image } from '@unpic/svelte';
 	import { writable } from 'svelte/store';
 	import ButtonGroup from '../ButtonGroup/ButtonGroup.svelte';
 	import {
@@ -69,11 +70,12 @@
 				role="button"
 				tabindex="0"
 			>
-				<img
-					class="h-auto max-w-full rounded-lg"
-					src={getImageUrlQuality(rowAElement.id, 75, 'webp')}
+				<Image
+					src={getOriginalFile(rowAElement.id)}
+					layout="fullWidth"
 					alt={rowAElement.description ?? ''}
-					loading="lazy"
+					class="rounded-lg"
+					cdn="directus"
 				/>
 			</div>
 		{/each}
@@ -88,11 +90,12 @@
 				role="button"
 				tabindex="0"
 			>
-				<img
-					class="h-auto max-w-full rounded-lg"
-					src={getImageUrlQuality(rowBElement.id, 75, 'webp')}
+				<Image
+					src={getOriginalFile(rowBElement.id)}
+					layout="fullWidth"
 					alt={rowBElement.description ?? ''}
-					loading="lazy"
+					class="rounded-lg"
+					cdn="directus"
 				/>
 			</div>
 		{/each}
@@ -107,11 +110,12 @@
 				role="button"
 				tabindex="0"
 			>
-				<img
-					class="h-auto max-w-full rounded-lg"
-					src={getImageUrlQuality(rowCElement.id, 75, 'webp')}
+				<Image
+					src={getOriginalFile(rowCElement.id)}
+					layout="fullWidth"
 					alt={rowCElement.description ?? ''}
-					loading="lazy"
+					class="rounded-lg"
+					cdn="directus"
 				/>
 			</div>
 		{/each}
@@ -126,11 +130,12 @@
 				role="button"
 				tabindex="0"
 			>
-				<img
-					class="h-auto max-w-full rounded-lg"
-					src={getImageUrlQuality(rowDElement.id, 75, 'webp')}
+				<Image
+					src={getOriginalFile(rowDElement.id)}
+					layout="fullWidth"
 					alt={rowDElement.description ?? ''}
-					loading="lazy"
+					class="rounded-lg"
+					cdn="directus"
 				/>
 			</div>
 		{/each}
