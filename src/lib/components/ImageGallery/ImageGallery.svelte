@@ -71,7 +71,7 @@
 			>
 				<img
 					class="h-auto max-w-full rounded-lg"
-					src={getImageUrlQuality(rowAElement.id, 75)}
+					src={getImageUrlQuality(rowAElement.id, 75, 'webp')}
 					alt={rowAElement.description ?? ''}
 					loading="lazy"
 				/>
@@ -90,7 +90,7 @@
 			>
 				<img
 					class="h-auto max-w-full rounded-lg"
-					src={getImageUrlQuality(rowBElement.id, 75)}
+					src={getImageUrlQuality(rowBElement.id, 75, 'webp')}
 					alt={rowBElement.description ?? ''}
 					loading="lazy"
 				/>
@@ -109,7 +109,7 @@
 			>
 				<img
 					class="h-auto max-w-full rounded-lg"
-					src={getImageUrlQuality(rowCElement.id, 75)}
+					src={getImageUrlQuality(rowCElement.id, 75, 'webp')}
 					alt={rowCElement.description ?? ''}
 					loading="lazy"
 				/>
@@ -128,7 +128,7 @@
 			>
 				<img
 					class="h-auto max-w-full rounded-lg"
-					src={getImageUrlQuality(rowDElement.id, 75)}
+					src={getImageUrlQuality(rowDElement.id, 75, 'webp')}
 					alt={rowDElement.description ?? ''}
 					loading="lazy"
 				/>
