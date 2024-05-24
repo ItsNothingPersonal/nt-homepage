@@ -15,14 +15,13 @@
 		on:click={parent.onClose}>×</button
 	>
 	<!-- Image -->
-	<picture
-		class="flex max-h-[90vh] max-w-[90%] justify-center overflow-hidden shadow-xl rounded-container-token"
-	>
+	<picture class="flex justify-center">
 		<Source src={$modalStore[0].image} type="image/webp" layout="fullWidth" cdn="directus" />
 		<Image
 			src={$modalStore[0].image}
 			layout="fullWidth"
 			alt={$modalStore[0].meta.alt ?? ''}
+			class="max-h-[95vh] shadow-xl rounded-container-token"
 			cdn="directus"
 			background="auto"
 		/>

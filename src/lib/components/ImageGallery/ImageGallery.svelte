@@ -81,7 +81,7 @@
 />
 
 <section class="grid grid-cols-2 gap-2 md:grid-cols-4">
-	<div class="grid gap-4">
+	<div class="flex flex-col gap-4">
 		{#each rowA as rowAElement, aElementIndex}
 			<div
 				on:click={() => modalComponentImage(modalStore, rowAElement.url, rowAElement.description)}
@@ -104,7 +104,7 @@
 			</div>
 		{/each}
 	</div>
-	<div class="grid gap-4">
+	<div class="flex flex-col gap-4">
 		{#each rowB as rowBElement, bElementIndex}
 			<div
 				on:click={() => modalComponentImage(modalStore, rowBElement.url, rowBElement.description)}
@@ -127,7 +127,7 @@
 			</div>
 		{/each}
 	</div>
-	<div class="grid gap-4">
+	<div class="flex flex-col gap-4">
 		{#each rowC as rowCElement, cElementIndex}
 			<div
 				on:click={() => modalComponentImage(modalStore, rowCElement.url, rowCElement.description)}
@@ -150,7 +150,7 @@
 			</div>
 		{/each}
 	</div>
-	<div class="grid gap-4">
+	<div class="flex flex-col gap-4">
 		{#each rowD as rowDElement, dElementIndex}
 			<div
 				on:click={() => modalComponentImage(modalStore, rowDElement.url, rowDElement.description)}
