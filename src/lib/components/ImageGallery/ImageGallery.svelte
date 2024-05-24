@@ -91,7 +91,6 @@
 			>
 				<picture>
 					<Source src={rowAElement.url} type="image/webp" layout="fullWidth" cdn="directus" />
-					<Source src={rowAElement.url} type="image/jpeg" layout="fullWidth" cdn="directus" />
 					<Image
 						src={rowAElement.url}
 						layout="fullWidth"
@@ -115,7 +114,6 @@
 			>
 				<picture>
 					<Source src={rowBElement.url} type="image/webp" layout="fullWidth" cdn="directus" />
-					<Source src={rowBElement.url} type="image/jpeg" layout="fullWidth" cdn="directus" />
 					<Image
 						src={rowBElement.url}
 						layout="fullWidth"
@@ -139,7 +137,6 @@
 			>
 				<picture>
 					<Source src={rowCElement.url} type="image/webp" layout="fullWidth" cdn="directus" />
-					<Source src={rowCElement.url} type="image/jpeg" layout="fullWidth" cdn="directus" />
 					<Image
 						src={rowCElement.url}
 						layout="fullWidth"
@@ -163,7 +160,6 @@
 			>
 				<picture>
 					<Source src={rowDElement.url} type="image/webp" layout="fullWidth" cdn="directus" />
-					<Source src={rowDElement.url} type="image/jpeg" layout="fullWidth" cdn="directus" />
 					<Image
 						src={rowDElement.url}
 						layout="fullWidth"
