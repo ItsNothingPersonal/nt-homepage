@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
 	import type { CamarillaAemterName } from '$lib/types/camarillaAemterName';
 	import type { CharakterStatusName } from '$lib/types/charakterStatusName';
 	import type { SabbatCharakterStatusName } from '$lib/types/sabbatCharakterStatusName';
@@ -23,9 +24,7 @@
 <div class="bg-light-50 dark:bg-dark-700 card w-full max-w-sm shadow-md dark:shadow-gray-800">
 	<header class="card-header p-0">
 		<img
-			src={`${
-				import.meta.env.VITE_DIRECTUS_URL
-			}/assets/${bild}?fit=contain&width=384&height=384&quality=80&format=auto`}
+			src={`${PUBLIC_DIRECTUS_URL}/assets/${bild}?fit=contain&width=384&height=384&quality=80&format=auto`}
 			alt="Charakterbild von {characterName}"
 			class="rounded-t-3xl"
 		/>

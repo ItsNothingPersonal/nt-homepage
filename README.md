@@ -15,9 +15,7 @@ Um die Anwendung lokal zu starten werden die folgenden Tools benötigt:
 Das .env File benötigt folgende Schlüssel. Der Directus User muss in Directus bereits existieren, der Rest wird automatisch angelegt, wenn die Docker-Container erzeugt werden.
 
 ```text
-VITE_DIRECTUS_URL=http://localhost:<DIRECTUS_PORT>
-VITE_DIRECTUS_USER=<Ein in Directus existierender User>
-VITE_DIRECTUS_PW=<Passwort des Users>
+PUBLIC_DIRECTUS_URL=http://localhost:<DIRECTUS_PORT>
 
 POSTGRES_USER=<Name für einen User in Postgres>
 POSTGRES_PASSWORD=<Das zu verwendende Passwort für den Postgres User>
@@ -37,6 +35,13 @@ DIRECTUS_PORT=<Port für Directus z.B. 8055>
 CORS_ENABLED=true
 
 PUBLIC_URL=/
+
+EMAIL_USER=<User für das E-Mail-Konto zum Versand der Directus-EMails>
+EMAIL_PASSWORD=<Passwort für das E-Mail-Konto zum Versand der Directus-EMails>
+
+SABBAT_GALLERY_FOLDER=<ID des Sabbat-Gallerie Ordners>
+CAMARILLA_GALLERY_FOLDER=<ID des Camarilla-Gallerie Ordners>
+WH40K_GALLERY_FOLDER=<ID des WH40K-Gallerie Ordners>
 ```
 
 ### Start der Anwendung

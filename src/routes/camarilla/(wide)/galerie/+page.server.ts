@@ -1,3 +1,4 @@
+import { CAMARILLA_GALLERY_FOLDER } from '$env/static/private';
 import { fileInformation } from '$lib/types/zod/fileInformation';
 import { folderInformation } from '$lib/types/zod/folderInformation';
 import { readFiles, readFolders } from '@directus/sdk';
@@ -7,7 +8,7 @@ import type { PageServerLoad } from './$types';
 export const load = (async () => {
 	const imageFoldersRAW = await client.request(
 		readFolders({
-			filter: { parent: { _eq: import.meta.env.VITE_CAMARILLA_GALLERY_FOLDER } },
+			filter: { parent: { _eq: CAMARILLA_GALLERY_FOLDER } },
 			deep: true
 		})
 	);
