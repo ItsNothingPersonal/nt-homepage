@@ -21,7 +21,7 @@
 			src={$modalStore[0].image}
 			layout="fullWidth"
 			alt={$modalStore[0].meta.alt ?? ''}
-			class="max-h-[95vh] shadow-xl rounded-container-token"
+			class="max-h-[90vh] rounded-lg shadow-xl"
 			cdn="directus"
 			background="auto"
 		/>
