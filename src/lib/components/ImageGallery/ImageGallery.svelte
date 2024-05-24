@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
 	import { ScreenSize } from '$lib/types/sceenSize';
 	import type { FileInformation } from '$lib/types/zod/fileInformation';
 	import type { FolderInformation } from '$lib/types/zod/folderInformation';
-	import { getOriginalFile, isString } from '$lib/util';
+	import { isString } from '$lib/util';
 	import { getModalStore } from '@skeletonlabs/skeleton';
-	import { Image } from '@unpic/svelte';
+	import { Image, Source } from '@unpic/svelte';
 	import { writable } from 'svelte/store';
 	import ButtonGroup from '../ButtonGroup/ButtonGroup.svelte';
 	import {
@@ -16,10 +17,10 @@
 	export let images: FileInformation[];
 	export let folders: FolderInformation[] = [];
 
-	let rowA: FileInformation[] = [];
-	let rowB: FileInformation[] = [];
-	let rowC: FileInformation[] = [];
-	let rowD: FileInformation[] = [];
+	let rowA: { url: string; description: string | null }[] = [];
+	let rowB: { url: string; description: string | null }[] = [];
+	let rowC: { url: string; description: string | null }[] = [];
+	let rowD: { url: string; description: string | null }[] = [];
 	let width = 0;
 
 	const modalStore = getModalStore();
@@ -37,10 +38,30 @@
 			4
 		);
 
-		rowA = result[0];
-		rowB = result[1];
-		rowC = result[2];
-		rowD = result[3];
+		rowA = result[0].map((e) => {
+			return {
+				url: `${PUBLIC_DIRECTUS_URL}/assets/${e.id}`,
+				description: e.description
+			};
+		});
+		rowB = result[1].map((e) => {
+			return {
+				url: `${PUBLIC_DIRECTUS_URL}/assets/${e.id}`,
+				description: e.description
+			};
+		});
+		rowC = result[2].map((e) => {
+			return {
+				url: `${PUBLIC_DIRECTUS_URL}/assets/${e.id}`,
+				description: e.description
+			};
+		});
+		rowD = result[3].map((e) => {
+			return {
+				url: `${PUBLIC_DIRECTUS_URL}/assets/${e.id}`,
+				description: e.description
+			};
+		});
 	}
 </script>
 
@@ -61,82 +82,98 @@
 
 <section class="grid grid-cols-2 gap-2 md:grid-cols-4">
 	<div class="grid gap-4">
-		{#each rowA as rowAElement}
+		{#each rowA as rowAElement, aElementIndex}
 			<div
-				on:click={() =>
-					modalComponentImage(modalStore, getOriginalFile(rowAElement.id), rowAElement.description)}
-				on:keyup={() =>
-					modalComponentImage(modalStore, getOriginalFile(rowAElement.id), rowAElement.description)}
+				on:click={() => modalComponentImage(modalStore, rowAElement.url, rowAElement.description)}
+				on:keyup={() => modalComponentImage(modalStore, rowAElement.url, rowAElement.description)}
 				role="button"
 				tabindex="0"
 			>
-				<Image
-					src={getOriginalFile(rowAElement.id)}
-					layout="fullWidth"
-					alt={rowAElement.description ?? ''}
-					class="rounded-lg"
-					cdn="directus"
-				/>
+				<picture>
+					<Source src={rowAElement.url} type="image/webp" layout="fullWidth" cdn="directus" />
+					<Source src={rowAElement.url} type="image/jpeg" layout="fullWidth" cdn="directus" />
+					<Image
+						src={rowAElement.url}
+						layout="fullWidth"
+						alt={rowAElement.description ?? ''}
+						class="rounded-lg"
+						cdn="directus"
+						loading={aElementIndex < 2 ? 'eager' : 'lazy'}
+						background="auto"
+					/>
+				</picture>
 			</div>
 		{/each}
 	</div>
 	<div class="grid gap-4">
-		{#each rowB as rowBElement}
+		{#each rowB as rowBElement, bElementIndex}
 			<div
-				on:click={() =>
-					modalComponentImage(modalStore, getOriginalFile(rowBElement.id), rowBElement.description)}
-				on:keyup={() =>
-					modalComponentImage(modalStore, getOriginalFile(rowBElement.id), rowBElement.description)}
+				on:click={() => modalComponentImage(modalStore, rowBElement.url, rowBElement.description)}
+				on:keyup={() => modalComponentImage(modalStore, rowBElement.url, rowBElement.description)}
 				role="button"
 				tabindex="0"
 			>
-				<Image
-					src={getOriginalFile(rowBElement.id)}
-					layout="fullWidth"
-					alt={rowBElement.description ?? ''}
-					class="rounded-lg"
-					cdn="directus"
-				/>
+				<picture>
+					<Source src={rowBElement.url} type="image/webp" layout="fullWidth" cdn="directus" />
+					<Source src={rowBElement.url} type="image/jpeg" layout="fullWidth" cdn="directus" />
+					<Image
+						src={rowBElement.url}
+						layout="fullWidth"
+						alt={rowBElement.description ?? ''}
+						class="rounded-lg"
+						cdn="directus"
+						loading={bElementIndex < 2 ? 'eager' : 'lazy'}
+						background="auto"
+					/>
+				</picture>
 			</div>
 		{/each}
 	</div>
 	<div class="grid gap-4">
-		{#each rowC as rowCElement}
+		{#each rowC as rowCElement, cElementIndex}
 			<div
-				on:click={() =>
-					modalComponentImage(modalStore, getOriginalFile(rowCElement.id), rowCElement.description)}
-				on:keyup={() =>
-					modalComponentImage(modalStore, getOriginalFile(rowCElement.id), rowCElement.description)}
+				on:click={() => modalComponentImage(modalStore, rowCElement.url, rowCElement.description)}
+				on:keyup={() => modalComponentImage(modalStore, rowCElement.url, rowCElement.description)}
 				role="button"
 				tabindex="0"
 			>
-				<Image
-					src={getOriginalFile(rowCElement.id)}
-					layout="fullWidth"
-					alt={rowCElement.description ?? ''}
-					class="rounded-lg"
-					cdn="directus"
-				/>
+				<picture>
+					<Source src={rowCElement.url} type="image/webp" layout="fullWidth" cdn="directus" />
+					<Source src={rowCElement.url} type="image/jpeg" layout="fullWidth" cdn="directus" />
+					<Image
+						src={rowCElement.url}
+						layout="fullWidth"
+						alt={rowCElement.description ?? ''}
+						class="rounded-lg"
+						cdn="directus"
+						loading={cElementIndex < 2 ? 'eager' : 'lazy'}
+						background="auto"
+					/>
+				</picture>
 			</div>
 		{/each}
 	</div>
 	<div class="grid gap-4">
-		{#each rowD as rowDElement}
+		{#each rowD as rowDElement, dElementIndex}
 			<div
-				on:click={() =>
-					modalComponentImage(modalStore, getOriginalFile(rowDElement.id), rowDElement.description)}
-				on:keyup={() =>
-					modalComponentImage(modalStore, getOriginalFile(rowDElement.id), rowDElement.description)}
+				on:click={() => modalComponentImage(modalStore, rowDElement.url, rowDElement.description)}
+				on:keyup={() => modalComponentImage(modalStore, rowDElement.url, rowDElement.description)}
 				role="button"
 				tabindex="0"
 			>
-				<Image
-					src={getOriginalFile(rowDElement.id)}
-					layout="fullWidth"
-					alt={rowDElement.description ?? ''}
-					class="rounded-lg"
-					cdn="directus"
-				/>
+				<picture>
+					<Source src={rowDElement.url} type="image/webp" layout="fullWidth" cdn="directus" />
+					<Source src={rowDElement.url} type="image/jpeg" layout="fullWidth" cdn="directus" />
+					<Image
+						src={rowDElement.url}
+						layout="fullWidth"
+						alt={rowDElement.description ?? ''}
+						class="rounded-lg"
+						cdn="directus"
+						loading={dElementIndex < 2 ? 'eager' : 'lazy'}
+						background="auto"
+					/>
+				</picture>
 			</div>
 		{/each}
 	</div>
