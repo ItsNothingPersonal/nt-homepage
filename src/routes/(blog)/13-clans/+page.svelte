@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
 	import ButtonGroup from '$lib/components/ButtonGroup/ButtonGroup.svelte';
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 	import { ScreenSize } from '$lib/types/sceenSize';
@@ -71,11 +72,11 @@
 		{#each clans.filter((e) => e.sekte?.match($sectFilter)) as clan}
 			<a href={`/13-clans/${clan.id}`} class="flex flex-col">
 				<img
-					src={`${import.meta.env.VITE_DIRECTUS_URL}/assets/${clan.logo}?fit=cover&width=${
+					src={`${PUBLIC_DIRECTUS_URL}/assets/${clan.logo}?fit=cover&width=${
 						width < ScreenSize.MD ? '80' : '192'
 					}&height=${width < ScreenSize.MD ? '80' : '192'}&quality=80&format=auto`}
 					alt={`logo of clan ${clan.name}`}
-					class="h-20 w-20 rounded-lg object-cover shadow-lg md:h-48 md:w-48 dark:shadow-gray-800"
+					class="h-20 w-20 rounded-lg object-cover shadow-lg dark:shadow-gray-800 md:h-48 md:w-48"
 				/>
 				{#if width > ScreenSize.MD}
 					<p

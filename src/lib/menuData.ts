@@ -18,7 +18,8 @@ export const menuData: MenuButtonConfig[] = [
 			{ href: '/camarilla/orga', label: 'Orga-Team' },
 			{ href: '/camarilla/zeittafel-protektorat', label: 'Zeittafel' },
 			{ href: '/camarilla/charakter-galerie', label: 'Charakter-Galerie' },
-			{ href: '/camarilla/charakter-friedhof', label: 'Charakter-Friedhof' }
+			{ href: '/camarilla/charakter-friedhof', label: 'Charakter-Friedhof' },
+			{ href: '/camarilla/downloads', label: 'Downloads' }
 		]
 	},
 	{
@@ -29,6 +30,7 @@ export const menuData: MenuButtonConfig[] = [
 			{ href: '/sabbat/spielort', label: 'Spielort' },
 			{ href: '/sabbat/orga', label: 'Orga-Team' },
 			{ href: '/sabbat/setting-steckbrief', label: 'Setting-Steckbrief' },
+			{ href: '/sabbat/galerie', label: 'Galerie' },
 			{ href: '/sabbat/zeittafel-sabbat', label: 'Zeittafel' },
 			{ href: '/sabbat/charakter-galerie', label: 'Charakter-Galerie' },
 			{ href: '/sabbat/charakter-friedhof', label: 'Charakter-Friedhof' }

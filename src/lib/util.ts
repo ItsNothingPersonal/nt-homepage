@@ -1,3 +1,4 @@
+import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
 import { ScreenSize } from './types/sceenSize';
 
 export function isNullOrUndefined<T>(obj: T | null | undefined): obj is null | undefined {
@@ -11,13 +12,23 @@ export function getImageUrl(
 	fit: 'cover' | 'contain' | 'inside' | 'outside' = 'contain',
 	format: 'auto' | 'jpg' | 'png' | 'webp' | 'tiff' = 'auto'
 ) {
-	return `${
-		import.meta.env.VITE_DIRECTUS_URL
-	}/assets/${filesId}?format=${format}&width=${width}&height=${height}&fit=${fit}`;
+	return `${PUBLIC_DIRECTUS_URL}/assets/${filesId}?format=${format}&width=${width}&height=${height}&fit=${fit}`;
+}
+
+export function getImageUrlQuality(
+	filesId: string,
+	quality = 100,
+	format: 'auto' | 'jpg' | 'png' | 'webp' | 'tiff' = 'auto'
+) {
+	return `${PUBLIC_DIRECTUS_URL}/assets/${filesId}?format=${format}&quality=${quality}`;
+}
+
+export function getOriginalFile(filesId: string) {
+	return `${PUBLIC_DIRECTUS_URL}/assets/${filesId}`;
 }
 
 export function getDownloadUrl(filesId: string) {
-	return `${import.meta.env.VITE_DIRECTUS_URL}/assets/${filesId}`;
+	return `${PUBLIC_DIRECTUS_URL}/assets/${filesId}`;
 }
 
 export function getFormattedDay(date: Date | undefined): string {

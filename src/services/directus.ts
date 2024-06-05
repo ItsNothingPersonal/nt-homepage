@@ -1,3 +1,4 @@
+import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
 import type { Blutlinie } from '$lib/types/zod/blutlinie';
 import type { CamarillaBrujahKonflikt } from '$lib/types/zod/camarillaBrujahKonflikt';
 import type { CamarillaCharakter } from '$lib/types/zod/camarillaCharaktere';
@@ -66,6 +67,4 @@ export interface DirectusSchema {
 	was_sind_clans: WasSindClans;
 }
 
-export const client = createDirectus<DirectusSchema>(import.meta.env.VITE_DIRECTUS_URL).with(
-	rest()
-);
+export const client = createDirectus<DirectusSchema>(PUBLIC_DIRECTUS_URL).with(rest());

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
 	import ImageCarousel from '$lib/components/ImageCarousel/ImageCarousel.svelte';
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 	import { isNullOrUndefined } from '$lib/util.js';
@@ -25,9 +26,7 @@
 			<ImageCarousel
 				size={innerWidth > 640 ? 'w-96' : 'w-fit'}
 				images={bilder.map((e) => {
-					return `${import.meta.env.VITE_DIRECTUS_URL}/assets/${
-						e.directus_files_id
-					}?fit=cover&width=384&height=384&format=auto`;
+					return `${PUBLIC_DIRECTUS_URL}/assets/${e.directus_files_id}?fit=cover&width=384&height=384&format=auto`;
 				})}
 				floatLeft={true}
 			/>
