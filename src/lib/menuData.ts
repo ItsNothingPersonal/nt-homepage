@@ -16,6 +16,7 @@ export const menuData: MenuButtonConfig[] = [
 			{ href: '/camarilla/uebersicht', label: 'Übersicht' },
 			{ href: '/camarilla/spielort', label: 'Spielort' },
 			{ href: '/camarilla/orga', label: 'Orga-Team' },
+			{ href: '/camarilla/galerie', label: 'Galerie' },
 			{ href: '/camarilla/zeittafel-protektorat', label: 'Zeittafel' },
 			{ href: '/camarilla/charakter-galerie', label: 'Charakter-Galerie' },
 			{ href: '/camarilla/charakter-friedhof', label: 'Charakter-Friedhof' },
