@@ -42,10 +42,12 @@ export function getSpielabendFilterSubMenu(
 	spielabendFilter: Writable<string>,
 	folders: FolderInformation[]
 ): SubMenuConfig[] {
-	return folders.map((e) => {
-		return {
-			label: e.name,
-			onClick: () => swapGalleryFilter(spielabendFilter, e.name)
-		};
-	});
+	return folders
+		.map((e) => {
+			return {
+				label: e.name,
+				onClick: () => swapGalleryFilter(spielabendFilter, e.name)
+			};
+		})
+		.sort((a, b) => a.label.localeCompare(b.label));
 }
