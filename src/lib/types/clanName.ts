@@ -14,5 +14,8 @@ export enum ClanName {
 	Setiten = 'Setiten',
 	Ravnos = 'Ravnos',
 	Caitiff = 'Caitiff',
-	ThinBloods = 'Thin-Bloods'
+	ThinBloods = 'Thin-Bloods',
+	Ministry = 'Ministry',
+	Hecata = 'Hecata',
+	Salubri = 'Salubri'
 }

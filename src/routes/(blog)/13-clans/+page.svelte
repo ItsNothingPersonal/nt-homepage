@@ -70,7 +70,7 @@
 		<LoadingMessage>Lade Clans</LoadingMessage>
 	{:then clans}
 		{#each clans
-			.filter((clan) => clan.name !== 'Banu Haqim' && clan.name !== 'Caitiff' && clan.name !== 'Thin-Bloods')
+			.filter((clan) => clan.name !== 'Banu Haqim' && clan.name !== 'Caitiff' && clan.name !== 'Thin-Bloods' && clan.name !== 'Ministry' && clan.name !== 'Hecata' && clan.name !== 'Salubri')
 			.filter((e) => e.sekte?.match($sectFilter)) as clan}
 			<a href={`/13-clans/${clan.id}`} class="flex flex-col">
 				<img
