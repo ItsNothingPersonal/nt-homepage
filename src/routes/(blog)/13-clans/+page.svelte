@@ -69,7 +69,9 @@
 	{#await data.clans}
 		<LoadingMessage>Lade Clans</LoadingMessage>
 	{:then clans}
-		{#each clans.filter((e) => e.sekte?.match($sectFilter)) as clan}
+		{#each clans
+			.filter((clan) => clan.name !== 'Banu Haqim' && clan.name !== 'Caitiff' && clan.name !== 'Thin-Bloods')
+			.filter((e) => e.sekte?.match($sectFilter)) as clan}
 			<a href={`/13-clans/${clan.id}`} class="flex flex-col">
 				<img
 					src={`${PUBLIC_DIRECTUS_URL}/assets/${clan.logo}?fit=cover&width=${

@@ -38,9 +38,9 @@
 				store: sectFilter
 			},
 			{
-				label: SektenName.Anarchen,
-				onClick: () => swapSectFilter(sectFilter, SektenName.Anarchen),
-				indicator: $sectFilter === SektenName.Anarchen,
+				label: SektenName.Unabhängig,
+				onClick: () => swapSectFilter(sectFilter, SektenName.Unabhängig),
+				indicator: $sectFilter === SektenName.Unabhängig,
 				store: sectFilter
 			},
 			{
