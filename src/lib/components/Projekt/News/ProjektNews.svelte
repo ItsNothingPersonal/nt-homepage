@@ -14,7 +14,7 @@
 </script>
 
 <div
-	class="bg-light-50 dark:bg-dark-700 card grid w-full grid-cols-1 grid-rows-news-preview gap-2 p-4 text-left"
+	class="bg-light-50 dark:bg-dark-700 card grid w-full grid-cols-1 grid-rows-news-preview gap-2 rounded-lg p-4 text-left"
 >
 	<div class="grid grid-cols-news-header gap-x-2">
 		<img

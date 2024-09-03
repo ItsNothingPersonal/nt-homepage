@@ -9,7 +9,7 @@
 	<div class="flex w-full items-start gap-1 self-center align-middle sm:items-center">
 		<Icon icon="mdi:copyright" class="h-10 w-10 self-center" />
 		<div class="flex flex-col gap-x-2 sm:flex-row">
-			<div class="whitespace-nowrap">2023 Nächtliches Theater e.V.</div>
+			<div class="whitespace-nowrap">2023-2024 Nächtliches Theater e.V.</div>
 			<div class="whitespace-nowrap">All Rights Reserved.</div>
 		</div>
 	</div>
