@@ -34,16 +34,17 @@
 	{#await data.kontakt}
 		<LoadingMessage>Lade Projekt-Kontakt-Informationen</LoadingMessage>
 	{:then kontakt}
-		<SocialButton
-			icon="email"
-			href={`mailto:${kontakt.email_camarilla}`}
-			text="Projektleitung Protektorat"
-		/>
-		<SocialButton
-			icon="email"
-			href={`mailto:${kontakt.email_sabbat}`}
-			text="Projektleitung Sabbat"
-		/>
-		<SocialButton icon="email" href={`mailto:${kontakt.email_wh40k}`} text="Projektleitung Wh40k" />
+		<div class="flex w-full flex-col gap-2 md:col-span-3 md:flex-row">
+			<SocialButton
+				icon="email"
+				href={`mailto:${kontakt.email_camarilla}`}
+				text="Projektleitung Protektorat"
+			/>
+			<SocialButton
+				icon="email"
+				href={`mailto:${kontakt.email_sabbat}`}
+				text="Projektleitung Sabbat"
+			/>
+		</div>
 	{/await}
 </div>

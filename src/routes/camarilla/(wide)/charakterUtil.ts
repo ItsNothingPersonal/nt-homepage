@@ -9,23 +9,36 @@ export function getClanSubMenu(
 	clanFilter: Writable<string | null>,
 	charaktere: CamarillaCharakter[]
 ): SubMenuConfig[] {
-	return [...Object.keys(ClanName), 'Lasombra antitribu', 'Caitiff', 'Unbekannt']
+	return [...Object.values(ClanName), 'Unbekannt']
 		.filter((clan) =>
 			clan === 'Unbekannt'
-				? charaktere.find(
-						(charakter) =>
-							charakter.clan?.name === undefined && charakter.blutlinie?.name === undefined
-					)
-				: charaktere.find(
-						(charakter) => charakter.clan?.name === clan || charakter.blutlinie?.name === clan
-					)
+				? charaktere.find((charakter) => charakter.clan?.name === undefined)
+				: charaktere.find((charakter) => charakter.clan?.name === clan)
 		)
+		.sort(sortNonClansLast)
 		.map((e) => {
 			return {
 				label: e,
 				onClick: () => swapClanFilter(clanFilter, e === 'Unbekannt' ? null : e)
 			};
 		});
+}
+
+function sortNonClansLast(a: string, b: string): number {
+	const nonClans = ['Thin-Bloods', 'Caitiff'];
+
+	const isASpecial = nonClans.includes(a);
+	const isBSpecial = nonClans.includes(b);
+
+	if (isASpecial && isBSpecial) {
+		return a.localeCompare(b);
+	} else if (isASpecial) {
+		return 1;
+	} else if (isBSpecial) {
+		return -1;
+	} else {
+		return a.localeCompare(b);
+	}
 }
 
 export function swapSectFilter(sectFilter: Writable<string>, filter: string) {

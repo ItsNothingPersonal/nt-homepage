@@ -40,14 +40,6 @@ export const menuData: MenuButtonConfig[] = [
 	},
 	{
 		id: 3,
-		label: 'Wh40k',
-		subData: [
-			{ href: '/wh40k/uebersicht', label: 'Übersicht' },
-			{ href: '/wh40k/spielort', label: 'Spielort' }
-		]
-	},
-	{
-		id: 4,
 		href: '/verein',
 		label: 'Verein',
 		subData: [

@@ -1,5 +1,6 @@
 export enum ClanName {
 	Assamiten = 'Assamiten',
+	BanuHaqim = 'Banu Haqim',
 	Brujah = 'Brujah',
 	Gangrel = 'Gangrel',
 	Malkavianer = 'Malkavianer',
@@ -11,5 +12,7 @@ export enum ClanName {
 	Tzimisce = 'Tzimisce',
 	Giovanni = 'Giovanni',
 	Setiten = 'Setiten',
-	Ravnos = 'Ravnos'
+	Ravnos = 'Ravnos',
+	Caitiff = 'Caitiff',
+	ThinBloods = 'Thin-Bloods'
 }

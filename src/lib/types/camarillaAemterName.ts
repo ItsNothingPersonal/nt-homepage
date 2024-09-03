@@ -1,14 +1,12 @@
 export enum CamarillaAemterName {
 	Prinz = 'Prinz',
 	Seneschall = 'Seneschall',
-	Sheriff = 'Sheriff',
-	Harpyie = 'Harpyie',
-	Hüter = 'Hüter',
-	Geißel = 'Geißel',
 	Primogen = 'Primogen',
+	Sheriff = 'Sheriff',
+	Herold = 'Herold',
+	Hüter = 'Hüter',
 	Whip = 'Whip',
 	Baron = 'Baron',
-	Botschafter = 'Botschafter',
-	Architekt = 'Architekt',
-	Wachtmesiter = 'Wachtmeister'
+	BewahrerDesGlaubens = 'Bewahrer des Glaubens',
+	Harpyie = 'Harpyie'
 }
