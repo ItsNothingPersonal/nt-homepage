@@ -9,7 +9,7 @@
 	export let style: 'button' | 'icon' = 'button';
 	export let iconSize: string | undefined = undefined;
 
-	const buttonStyle = 'variant-filled-primary btn rounded-lg text-lg';
+	const buttonStyle = 'variant-filled-primary btn rounded-lg text-lg w-full';
 	$: styling = style === 'button' ? buttonStyle : undefined;
 </script>
 
