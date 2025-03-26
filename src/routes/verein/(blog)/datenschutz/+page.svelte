@@ -7,7 +7,7 @@
 
 <h1 class="h1 mb-4 text-center font-bold">Datenschutz</h1>
 
-<Accordion autocollapse class="w-full" rounded="rounded-lg">
+<Accordion autocollapse class="w-full" rounded-sm="rounded-lg">
 	{#await data.datenverarbeitung}
 		<LoadingMessage>Lade Datenverarbeitungserklärung</LoadingMessage>
 	{:then datenverarbeitung}

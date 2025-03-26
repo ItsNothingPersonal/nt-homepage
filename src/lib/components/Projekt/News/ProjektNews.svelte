@@ -29,7 +29,7 @@
 			alt="Avatar des News-Authors"
 			class="h-7 w-7 rounded-full"
 		/>
-		<div class="flex h-auto max-h-11 flex-auto flex-grow flex-wrap gap-x-1">
+		<div class="flex h-auto max-h-11 flex-auto grow flex-wrap gap-x-1">
 			<p class="whitespace-nowrap text-sm font-bold">{authorFirstName} {authorLastName}</p>
 			<p class="whitespace-nowrap text-sm">in</p>
 			<p class="whitespace-nowrap text-sm font-bold">{project}</p>

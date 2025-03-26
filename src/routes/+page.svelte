@@ -8,7 +8,7 @@
 
 <h1 class="h1 mb-4 text-center font-bold">Willkommen beim Nächtlichen Theater</h1>
 <div
-	class="mx-auto mb-20 grid max-h-[32rem] max-w-screen-2xl grid-cols-1 grid-rows-2 gap-y-14 md:row-start-1 md:grid-cols-2 md:grid-rows-1"
+	class="mx-auto mb-20 grid max-h-[32rem] max-w-(--breakpoint-2xl) grid-cols-1 grid-rows-2 gap-y-14 md:row-start-1 md:grid-cols-2 md:grid-rows-1"
 >
 	<div class="row-start-1 flex flex-col items-center text-center md:col-start-1 md:gap-2">
 		<h2 class="h2 mb-2 font-bold">Camarilla</h2>
@@ -37,7 +37,7 @@
 </div>
 
 <h2 class="h2 mb-2 text-center font-bold">Neuigkeiten</h2>
-<div class="mx-auto grid max-w-screen-2xl auto-rows-auto grid-cols-1 gap-4 md:grid-cols-3">
+<div class="mx-auto grid max-w-(--breakpoint-2xl) auto-rows-auto grid-cols-1 gap-4 md:grid-cols-3">
 	{#await data.news}
 		<LoadingMessage>Lade News</LoadingMessage>
 	{:then newsListEntry}

@@ -19,9 +19,9 @@
 		{#each menuData as menuEntry (menuEntry.id)}
 			<li>
 				{#if !menuEntry.subData}
-					<a class="!rounded-lg capitalize" href={menuEntry.href}>{menuEntry.label}</a>
+					<a class="rounded-lg! capitalize" href={menuEntry.href}>{menuEntry.label}</a>
 				{:else if isMobile(innerWidth)}
-					<Accordion rounded="!rounded-none">
+					<Accordion rounded="rounded-none!">
 						<AccordionItem>
 							{#snippet summary()}
 								{menuEntry.label}
@@ -31,7 +31,7 @@
 									{#if menuEntry.subData}
 										{#each menuEntry.subData as subMenu}
 											<li>
-												<a href={subMenu.href} onclick={drawerClose} class="!rounded-none">
+												<a href={subMenu.href} onclick={drawerClose} class="rounded-none!">
 													{subMenu.label}
 												</a>
 											</li>
@@ -46,7 +46,7 @@
 						{#snippet popupMenu()}
 							{#if menuEntry.subData}
 								{#each menuEntry.subData as subMenu (subMenu.label)}
-									<a class="!rounded-lg capitalize" href={subMenu.href}>{subMenu.label}</a>
+									<a class="rounded-lg! capitalize" href={subMenu.href}>{subMenu.label}</a>
 								{/each}
 							{/if}
 						{/snippet}

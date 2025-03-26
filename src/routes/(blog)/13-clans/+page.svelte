@@ -33,7 +33,7 @@
 {#await data.beschreibung}
 	<LoadingMessage>Lade Setting Beschreibung</LoadingMessage>
 {:then beschreibung}
-	<p class="card mb-4 rounded-sm p-4 text-justify shadow-md">
+	<p class="card mb-4 rounded-xs p-4 text-justify shadow-md">
 		{@html beschreibung?.code}
 	</p>
 {/await}

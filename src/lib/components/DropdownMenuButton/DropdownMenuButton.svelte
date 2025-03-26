@@ -16,7 +16,7 @@
 	let {
 		popUpId = 1,
 		indicator = false,
-		rounded = '!rounded-lg',
+		rounded = 'rounded-lg!',
 		additionalStyles = undefined,
 		disabled = false,
 		children,
@@ -46,11 +46,11 @@
 </button>
 
 <div
-	class="card bg-surface-100-800-token z-20 min-w-[12rem] !rounded-lg border-l-0 py-2 text-left shadow-xl"
+	class="card bg-surface-100-800-token z-20 min-w-[12rem] rounded-lg! border-l-0 py-2 text-left shadow-xl"
 	data-popup={`popupCombobox-${popUpId}`}
 >
 	<div
-		class="flex flex-col [&>button:hover]:bg-primary-500/10 [&>button]:!justify-start [&>button]:!rounded-none [&>button]:!text-black [&>button]:dark:!text-white"
+		class="flex flex-col [&>button:hover]:bg-primary-500/10 [&>button]:justify-start! [&>button]:rounded-none! [&>button]:text-black! dark:[&>button]:text-white!"
 	>
 		{@render popupMenu?.()}
 	</div>

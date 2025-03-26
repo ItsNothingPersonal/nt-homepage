@@ -83,7 +83,7 @@
 		}
 	]}
 	smallSwitch={width < ScreenSize.SM}
-	rounded={'!rounded-none'}
+	rounded={'rounded-none!'}
 />
 
 <section class="grid grid-cols-2 gap-2 md:grid-cols-4">

@@ -39,7 +39,7 @@
 	<p
 		class={`[&>h1]:text-3xl [&>h1]:font-bold [&>h2]:text-2xl [&>h2]:font-bold [&>h3]:text-xl [&>h3]:font-bold [&>p]:mb-2 [&>p]:whitespace-pre-line [&>p]:text-justify [&>p]:first-letter:text-2xl` +
 			`w-full text-gray-900 dark:text-white [&>ol]:list-inside [&>ol]:list-decimal [&>p>a]:underline [&>p>a]:decoration-dotted [&>p>a]:underline-offset-4 [&>ul]:list-inside [&>ul]:list-disc ` +
-			`[&>blockquote]:border-l-4 [&>blockquote]:border-gray-300 [&>blockquote]:bg-gray-50 [&>blockquote]:p-4 [&>blockquote]:dark:bg-gray-800 [&>table]:w-full [&>table]:table-auto`}
+			`[&>blockquote]:border-l-4 [&>blockquote]:border-gray-300 [&>blockquote]:bg-gray-50 [&>blockquote]:p-4 dark:[&>blockquote]:bg-gray-800 [&>table]:w-full [&>table]:table-auto`}
 	>
 		{@html news}
 	</p>

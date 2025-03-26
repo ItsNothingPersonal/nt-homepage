@@ -36,7 +36,7 @@
 	<LoadingMessage>Lade Vereins-Downloads</LoadingMessage>
 {:then folderResponse}
 	<Table
-		class="!rounded-lg [&>table]:!rounded-lg"
+		class="rounded-lg! [&>table]:rounded-lg!"
 		source={{
 			head: ['Name', 'Größe'],
 			body: tableMapperValues(getTableContent(folderResponse), ['name', 'size']),

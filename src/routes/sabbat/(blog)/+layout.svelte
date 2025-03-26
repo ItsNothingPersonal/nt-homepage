@@ -3,6 +3,6 @@
 	let { children } = $props();
 </script>
 
-<div class="max-w-screen-md">
+<div class="max-w-(--breakpoint-md)">
 	{@render children?.()}
 </div>

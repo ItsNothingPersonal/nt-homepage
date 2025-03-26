@@ -15,7 +15,7 @@
 		config,
 		defaultOnClick = undefined,
 		smallSwitch = false,
-		rounded = '!rounded-lg'
+		rounded = 'rounded-lg!'
 	}: Props = $props();
 </script>
 
@@ -36,7 +36,7 @@
 							{#if entry.subMenu}
 								{#each entry.subMenu as subMenu (subMenu.label)}
 									<button
-										class="!rounded-none"
+										class="rounded-none!"
 										onclick={() =>
 											subMenu.onClick
 												? subMenu.onClick(entry.store, entry.label)
@@ -89,7 +89,7 @@
 				<DropdownMenuButton
 					popUpId="button-group-{entry.label}"
 					indicator={entry.indicator}
-					rounded="!rounded-none"
+					rounded="rounded-none!"
 					additionalStyles={`variant-filled w-full ${
 						config.length % 2 !== 0 && config.length === i + 1 ? 'col-span-2' : undefined
 					}`}
@@ -99,7 +99,7 @@
 						{#if entry.subMenu}
 							{#each entry.subMenu as subMenu (subMenu.label)}
 								<button
-									class="!rounded-none"
+									class="rounded-none!"
 									onclick={() =>
 										subMenu.onClick
 											? subMenu.onClick(entry.store, entry.label)

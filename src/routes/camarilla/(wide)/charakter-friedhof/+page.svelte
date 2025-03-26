@@ -100,7 +100,7 @@
 			}
 		]}
 		smallSwitch={width < ScreenSize.SM}
-		rounded={'!rounded-none'}
+		rounded={'rounded-none!'}
 	/>
 
 	<CharacterGallery
