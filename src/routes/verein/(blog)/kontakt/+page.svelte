@@ -2,7 +2,7 @@
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 	import SocialButton from '$lib/components/Socials/socialButton.svelte';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <div class="grid grid-cols-1 gap-2 lg:grid-cols-3">

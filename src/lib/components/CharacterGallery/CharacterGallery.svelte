@@ -5,12 +5,23 @@
 	import { getDownloadUrl, isNullOrUndefined } from '$lib/util';
 	import CharacterCard from './CharacterCard.svelte';
 
-	export let leaders: CamarillaCharakter[] | SabbatCharakter[];
-	export let officers: CamarillaCharakter[] | SabbatCharakter[];
-	export let charaktere: CamarillaCharakter[] | SabbatCharakter[];
-	export let noFilterActive: boolean;
-	export let setting: 'Camarilla' | 'Sabbat';
-	export let selektiertesPack: PackInformation | undefined = undefined;
+	interface Props {
+		leaders: CamarillaCharakter[] | SabbatCharakter[];
+		officers: CamarillaCharakter[] | SabbatCharakter[];
+		charaktere: CamarillaCharakter[] | SabbatCharakter[];
+		noFilterActive: boolean;
+		setting: 'Camarilla' | 'Sabbat';
+		selektiertesPack?: PackInformation | undefined;
+	}
+
+	let {
+		leaders,
+		officers,
+		charaktere,
+		noFilterActive,
+		setting,
+		selektiertesPack = undefined
+	}: Props = $props();
 </script>
 
 {#if !isNullOrUndefined(selektiertesPack?.pack?.beschreibung) || !isNullOrUndefined(selektiertesPack?.pack.logo)}

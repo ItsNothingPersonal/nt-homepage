@@ -4,7 +4,7 @@
 	import { getDownloadUrl } from '$lib/util.js';
 	import { Table, tableMapperValues } from '@skeletonlabs/skeleton';
 
-	export let data;
+	let { data } = $props();
 
 	function onSelected(info: { detail: string[] }) {
 		window.open(getDownloadUrl(info.detail[0]));

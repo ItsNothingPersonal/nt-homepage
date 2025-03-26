@@ -3,7 +3,11 @@
 	import { Image, Source } from '@unpic/svelte';
 	import type { SvelteComponent } from 'svelte';
 
-	export let parent: SvelteComponent;
+	interface Props {
+		parent: SvelteComponent;
+	}
+
+	let { parent }: Props = $props();
 
 	const modalStore = getModalStore();
 </script>
@@ -12,7 +16,7 @@
 	<!-- Button -->
 	<button
 		class="variant-filled btn-icon fixed right-4 top-4 z-50 font-bold shadow-xl"
-		on:click={parent.onClose}>×</button
+		onclick={parent.onClose}>×</button
 	>
 	<!-- Image -->
 	<picture class="flex justify-center">

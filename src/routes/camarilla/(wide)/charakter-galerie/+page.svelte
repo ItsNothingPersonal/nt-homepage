@@ -14,13 +14,13 @@
 		swapSectFilter
 	} from '../charakterUtil.js';
 
-	export let data;
+	let { data } = $props();
 
 	const sectFilter = writable('.*');
 	const offizierFilter = writable('');
 	const clanFilter: Writable<string | null> = writable('.*');
 
-	let width = 0;
+	let width = $state(0);
 </script>
 
 <svelte:window bind:innerWidth={width} />

@@ -10,15 +10,19 @@
 	import LoadingMessage from '../LoadingMessage/LoadingMessage.svelte';
 	import SocialButton from '../Socials/socialButton.svelte';
 
-	export let titel: string;
-	export let projektUbersicht: Promise<ProjektUebersicht>;
-	export let beschreibung: PreprocessorReturn;
-	export let spieltermine: PreprocessorReturn;
-	export let images:
-		| Promise<Wh40kUebersichtFiles[] | SabbatUebersichtFiles[] | CamarillaUebersichtFiles[]>
-		| undefined = undefined;
+	interface Props {
+		titel: string;
+		projektUbersicht: Promise<ProjektUebersicht>;
+		beschreibung: PreprocessorReturn;
+		spieltermine: PreprocessorReturn;
+		images?:
+			| Promise<Wh40kUebersichtFiles[] | SabbatUebersichtFiles[] | CamarillaUebersichtFiles[]>
+			| undefined;
+	}
 
-	let innerWidth: number;
+	let { titel, projektUbersicht, beschreibung, spieltermine, images = undefined }: Props = $props();
+
+	let innerWidth: number = $state(0);
 </script>
 
 <svelte:window bind:innerWidth />

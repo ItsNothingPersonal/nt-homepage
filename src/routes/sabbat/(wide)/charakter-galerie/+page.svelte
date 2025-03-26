@@ -15,14 +15,14 @@
 		swapOffizierFilter
 	} from '../charakterUtil';
 
-	export let data;
+	let { data } = $props();
 
 	const packFilter = writable('.*');
 	const offizierFilter = writable('');
 	const einzelgaengerFilter: Writable<boolean> = writable(false);
 	const selektiertesPack = writable<SabbatPack | undefined>();
 
-	let width = 0;
+	let width = $state(0);
 </script>
 
 <svelte:window bind:innerWidth={width} />

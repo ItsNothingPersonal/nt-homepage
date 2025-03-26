@@ -4,9 +4,9 @@
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 	import { isNullOrUndefined } from '$lib/util.js';
 
-	export let data;
+	let { data } = $props();
 
-	let innerWidth: number = 0;
+	let innerWidth: number = $state(0);
 </script>
 
 <svelte:window bind:innerWidth />

@@ -3,7 +3,7 @@
 	import ProjektNews from '$lib/components/Projekt/News/ProjektNews.svelte';
 	import { isString } from '$lib/util';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <h1 class="h1 mb-4 text-center font-bold">Willkommen beim Nächtlichen Theater</h1>

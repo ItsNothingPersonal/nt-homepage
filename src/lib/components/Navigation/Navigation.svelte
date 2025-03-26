@@ -5,8 +5,8 @@
 	import NavButton from '../DropdownMenuButton/DropdownMenuButton.svelte';
 
 	const drawerStore = getDrawerStore();
-	let innerWidth = 0;
-	let innerHeight = 0;
+	let innerWidth = $state(0);
+	let innerHeight = $state(0);
 
 	function drawerClose(): void {
 		drawerStore.close();
@@ -23,27 +23,33 @@
 				{:else if isMobile(innerWidth)}
 					<Accordion rounded="!rounded-none">
 						<AccordionItem>
-							<svelte:fragment slot="summary">{menuEntry.label}</svelte:fragment>
-							<svelte:fragment slot="content">
+							{#snippet summary()}
+								{menuEntry.label}
+							{/snippet}
+							{#snippet content()}
 								<ul tabindex="-1">
-									{#each menuEntry.subData as subMenu}
-										<li>
-											<a href={subMenu.href} on:click={drawerClose} class="!rounded-none">
-												{subMenu.label}
-											</a>
-										</li>
-									{/each}
+									{#if menuEntry.subData}
+										{#each menuEntry.subData as subMenu}
+											<li>
+												<a href={subMenu.href} onclick={drawerClose} class="!rounded-none">
+													{subMenu.label}
+												</a>
+											</li>
+										{/each}
+									{/if}
 								</ul>
-							</svelte:fragment>
+							{/snippet}
 						</AccordionItem>
 					</Accordion>
 				{:else}
-					<NavButton>
-						<svelte:fragment slot="popupMenu">
-							{#each menuEntry.subData as subMenu (subMenu.label)}
-								<a class="!rounded-lg capitalize" href={subMenu.href}>{subMenu.label}</a>
-							{/each}
-						</svelte:fragment>
+					<NavButton popUpId={menuEntry.id}>
+						{#snippet popupMenu()}
+							{#if menuEntry.subData}
+								{#each menuEntry.subData as subMenu (subMenu.label)}
+									<a class="!rounded-lg capitalize" href={subMenu.href}>{subMenu.label}</a>
+								{/each}
+							{/if}
+						{/snippet}
 						{menuEntry.label}
 					</NavButton>
 				{/if}

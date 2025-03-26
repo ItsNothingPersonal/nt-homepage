@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
 	import { ScreenSize } from '$lib/types/sceenSize';
 	import type { FileInformation } from '$lib/types/zod/fileInformation';
@@ -14,26 +16,30 @@
 		splitArrayIntoParts
 	} from './imageGalleryUtils';
 
-	export let images: FileInformation[];
-	export let folders: FolderInformation[] = [];
+	interface Props {
+		images: FileInformation[];
+		folders?: FolderInformation[];
+	}
 
-	let rowA: { url: string; description: string | null }[] = [];
-	let rowB: { url: string; description: string | null }[] = [];
-	let rowC: { url: string; description: string | null }[] = [];
-	let rowD: { url: string; description: string | null }[] = [];
-	let width = 0;
+	let { images, folders = [] }: Props = $props();
+
+	let rowA: { url: string; description: string | null }[] = $state([]);
+	let rowB: { url: string; description: string | null }[] = $state([]);
+	let rowC: { url: string; description: string | null }[] = $state([]);
+	let rowD: { url: string; description: string | null }[] = $state([]);
+	let width = $state(0);
 
 	const modalStore = getModalStore();
 	const galleryFilter = writable('.*');
 
-	$: {
+	run(() => {
 		const filteredFolder = folders.filter((e) => e.name.match($galleryFilter));
 
 		const result = splitArrayIntoParts(
 			images.filter((e) =>
 				filteredFolder
 					.map((e) => e.id)
-					.includes(isString(e.folder) ? e.folder : e.folder?.name ?? '')
+					.includes(isString(e.folder) ? e.folder : (e.folder?.name ?? ''))
 			),
 			4
 		);
@@ -62,7 +68,7 @@
 				description: e.description
 			};
 		});
-	}
+	});
 </script>
 
 <svelte:window bind:innerWidth={width} />
@@ -84,8 +90,8 @@
 	<div class="flex flex-col gap-4">
 		{#each rowA as rowAElement, aElementIndex}
 			<div
-				on:click={() => modalComponentImage(modalStore, rowAElement.url, rowAElement.description)}
-				on:keyup={() => modalComponentImage(modalStore, rowAElement.url, rowAElement.description)}
+				onclick={() => modalComponentImage(modalStore, rowAElement.url, rowAElement.description)}
+				onkeyup={() => modalComponentImage(modalStore, rowAElement.url, rowAElement.description)}
 				role="button"
 				tabindex="0"
 			>
@@ -107,8 +113,8 @@
 	<div class="flex flex-col gap-4">
 		{#each rowB as rowBElement, bElementIndex}
 			<div
-				on:click={() => modalComponentImage(modalStore, rowBElement.url, rowBElement.description)}
-				on:keyup={() => modalComponentImage(modalStore, rowBElement.url, rowBElement.description)}
+				onclick={() => modalComponentImage(modalStore, rowBElement.url, rowBElement.description)}
+				onkeyup={() => modalComponentImage(modalStore, rowBElement.url, rowBElement.description)}
 				role="button"
 				tabindex="0"
 			>
@@ -130,8 +136,8 @@
 	<div class="flex flex-col gap-4">
 		{#each rowC as rowCElement, cElementIndex}
 			<div
-				on:click={() => modalComponentImage(modalStore, rowCElement.url, rowCElement.description)}
-				on:keyup={() => modalComponentImage(modalStore, rowCElement.url, rowCElement.description)}
+				onclick={() => modalComponentImage(modalStore, rowCElement.url, rowCElement.description)}
+				onkeyup={() => modalComponentImage(modalStore, rowCElement.url, rowCElement.description)}
 				role="button"
 				tabindex="0"
 			>
@@ -153,8 +159,8 @@
 	<div class="flex flex-col gap-4">
 		{#each rowD as rowDElement, dElementIndex}
 			<div
-				on:click={() => modalComponentImage(modalStore, rowDElement.url, rowDElement.description)}
-				on:keyup={() => modalComponentImage(modalStore, rowDElement.url, rowDElement.description)}
+				onclick={() => modalComponentImage(modalStore, rowDElement.url, rowDElement.description)}
+				onkeyup={() => modalComponentImage(modalStore, rowDElement.url, rowDElement.description)}
 				role="button"
 				tabindex="0"
 			>

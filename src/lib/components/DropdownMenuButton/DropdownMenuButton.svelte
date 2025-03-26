@@ -1,12 +1,27 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { popup, type PopupSettings } from '@skeletonlabs/skeleton';
+	import type { Snippet } from 'svelte';
 
-	export let popUpId: string | number = 1;
-	export let indicator: boolean = false;
-	export let rounded: string | undefined = '!rounded-lg';
-	export let additionalStyles: string | undefined = undefined;
-	export let disabled: boolean = false;
+	interface Props {
+		popUpId?: string | number;
+		indicator?: boolean;
+		rounded?: string | undefined;
+		additionalStyles?: string | undefined;
+		disabled?: boolean;
+		children?: Snippet;
+		popupMenu?: Snippet;
+	}
+
+	let {
+		popUpId = 1,
+		indicator = false,
+		rounded = '!rounded-lg',
+		additionalStyles = undefined,
+		disabled = false,
+		children,
+		popupMenu
+	}: Props = $props();
 
 	const popupCombobox: PopupSettings = {
 		event: 'click',
@@ -21,7 +36,7 @@
 	{disabled}
 >
 	<span class="capitalize">
-		<slot />
+		{@render children?.()}
 	</span>
 	<Icon icon="mdi:chevron-down" />
 
@@ -37,6 +52,6 @@
 	<div
 		class="flex flex-col [&>button:hover]:bg-primary-500/10 [&>button]:!justify-start [&>button]:!rounded-none [&>button]:!text-black [&>button]:dark:!text-white"
 	>
-		<slot name="popupMenu" />
+		{@render popupMenu?.()}
 	</div>
 </div>

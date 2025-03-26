@@ -1,7 +1,7 @@
 <script lang="ts">
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <h1 class="h1 mb-4 text-center font-bold">Setting Steckbrief</h1>

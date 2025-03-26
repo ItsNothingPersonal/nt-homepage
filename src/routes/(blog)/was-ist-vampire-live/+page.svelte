@@ -1,7 +1,7 @@
 <script lang="ts">
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 {#await data.wasIstVampireLive}

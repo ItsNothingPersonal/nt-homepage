@@ -4,10 +4,19 @@
 	import Icon from '@iconify/svelte';
 	import DropdownMenuButton from '../DropdownMenuButton/DropdownMenuButton.svelte';
 
-	export let config: FilterButtonConfig[];
-	export let defaultOnClick: FilterFunction | undefined = undefined;
-	export let smallSwitch: boolean = false;
-	export let rounded: string = '!rounded-lg';
+	interface Props {
+		config: FilterButtonConfig[];
+		defaultOnClick?: FilterFunction | undefined;
+		smallSwitch?: boolean;
+		rounded?: string;
+	}
+
+	let {
+		config,
+		defaultOnClick = undefined,
+		smallSwitch = false,
+		rounded = '!rounded-lg'
+	}: Props = $props();
 </script>
 
 {#if !smallSwitch}
@@ -23,39 +32,41 @@
 						{rounded}
 						disabled={entry.subMenu.length <= 0}
 					>
-						<svelte:fragment slot="popupMenu">
-							{#each entry.subMenu as subMenu (subMenu.label)}
-								<button
-									class="!rounded-none"
-									on:click={() =>
-										subMenu.onClick
-											? subMenu.onClick(entry.store, entry.label)
-											: defaultOnClick
-												? defaultOnClick(entry.store, entry.label)
-												: undefined}
-									on:keyup={() =>
-										subMenu.onClick
-											? subMenu.onClick(entry.store, entry.label)
-											: defaultOnClick
-												? defaultOnClick(entry.store, entry.label)
-												: undefined}
-								>
-									{subMenu.label}
-								</button>
-							{/each}
-						</svelte:fragment>
+						{#snippet popupMenu()}
+							{#if entry.subMenu}
+								{#each entry.subMenu as subMenu (subMenu.label)}
+									<button
+										class="!rounded-none"
+										onclick={() =>
+											subMenu.onClick
+												? subMenu.onClick(entry.store, entry.label)
+												: defaultOnClick
+													? defaultOnClick(entry.store, entry.label)
+													: undefined}
+										onkeyup={() =>
+											subMenu.onClick
+												? subMenu.onClick(entry.store, entry.label)
+												: defaultOnClick
+													? defaultOnClick(entry.store, entry.label)
+													: undefined}
+									>
+										{subMenu.label}
+									</button>
+								{/each}
+							{/if}
+						{/snippet}
 						{entry.label}
 					</DropdownMenuButton>
 				{:else}
 					<button
 						class="relative"
-						on:click={() =>
+						onclick={() =>
 							entry.onClick
 								? entry.onClick(entry.store, entry.label)
 								: defaultOnClick
 									? defaultOnClick(entry.store, entry.label)
 									: undefined}
-						on:keyup={() =>
+						onkeyup={() =>
 							entry.onClick
 								? entry.onClick(entry.store, entry.label)
 								: defaultOnClick
@@ -84,27 +95,29 @@
 					}`}
 					disabled={entry.subMenu.length <= 0}
 				>
-					<svelte:fragment slot="popupMenu">
-						{#each entry.subMenu as subMenu (subMenu.label)}
-							<button
-								class="!rounded-none"
-								on:click={() =>
-									subMenu.onClick
-										? subMenu.onClick(entry.store, entry.label)
-										: defaultOnClick
-											? defaultOnClick(entry.store, entry.label)
-											: undefined}
-								on:keyup={() =>
-									subMenu.onClick
-										? subMenu.onClick(entry.store, entry.label)
-										: defaultOnClick
-											? defaultOnClick(entry.store, entry.label)
-											: undefined}
-							>
-								{subMenu.label}
-							</button>
-						{/each}
-					</svelte:fragment>
+					{#snippet popupMenu()}
+						{#if entry.subMenu}
+							{#each entry.subMenu as subMenu (subMenu.label)}
+								<button
+									class="!rounded-none"
+									onclick={() =>
+										subMenu.onClick
+											? subMenu.onClick(entry.store, entry.label)
+											: defaultOnClick
+												? defaultOnClick(entry.store, entry.label)
+												: undefined}
+									onkeyup={() =>
+										subMenu.onClick
+											? subMenu.onClick(entry.store, entry.label)
+											: defaultOnClick
+												? defaultOnClick(entry.store, entry.label)
+												: undefined}
+								>
+									{subMenu.label}
+								</button>
+							{/each}
+						{/if}
+					{/snippet}
 					{entry.label}
 				</DropdownMenuButton>
 			{:else}
@@ -112,13 +125,13 @@
 					class={`variant-filled relative h-12 ${
 						config.length % 2 !== 0 && config.length === i + 1 ? 'col-span-2' : undefined
 					}`}
-					on:click={() =>
+					onclick={() =>
 						entry.onClick
 							? entry.onClick(entry.store, entry.label)
 							: defaultOnClick
 								? defaultOnClick(entry.store, entry.label)
 								: undefined}
-					on:keyup={() =>
+					onkeyup={() =>
 						entry.onClick
 							? entry.onClick(entry.store, entry.label)
 							: defaultOnClick

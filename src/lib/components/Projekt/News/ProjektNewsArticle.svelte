@@ -2,13 +2,17 @@
 	import type { ProjektName } from '$lib/types/zod/projektName';
 	import { getDownloadUrl, getFormattedDay, getFormattedMonth } from '$lib/util';
 
-	export let title: string;
-	export let news: string;
-	export let authorFirstName: string | null | undefined;
-	export let authorLastName: string | null | undefined;
-	export let avatar: string | undefined | null;
-	export let date: Date | undefined;
-	export let project: ProjektName;
+	interface Props {
+		title: string;
+		news: string;
+		authorFirstName: string | null | undefined;
+		authorLastName: string | null | undefined;
+		avatar: string | undefined | null;
+		date: Date | undefined;
+		project: ProjektName;
+	}
+
+	let { title, news, authorFirstName, authorLastName, avatar, date, project }: Props = $props();
 </script>
 
 <div class="bg-light-50 dark:bg-dark-700 card w-full p-4 text-left">

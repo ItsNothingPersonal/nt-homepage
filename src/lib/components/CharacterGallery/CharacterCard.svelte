@@ -7,17 +7,30 @@
 	import type { Blutlinie } from '$lib/types/zod/blutlinie';
 	import type { Clan } from '$lib/types/zod/clan';
 
-	export let characterName: string;
-	export let aemterName: CamarillaAemterName | SabbatAemterName | undefined = undefined;
-	export let clan: Clan | undefined | null;
-	export let blutlinie: Blutlinie | undefined | null;
-	export let status: CharakterStatusName | SabbatCharakterStatusName | undefined = undefined;
-	export let beschreibung: string | undefined = undefined;
-	export let bild: string;
-	export let letzteWorte: string | undefined | null = undefined;
+	interface Props {
+		characterName: string;
+		aemterName?: CamarillaAemterName | SabbatAemterName | undefined;
+		clan: Clan | undefined | null;
+		blutlinie: Blutlinie | undefined | null;
+		status?: CharakterStatusName | SabbatCharakterStatusName | undefined;
+		beschreibung?: string | undefined;
+		bild: string;
+		letzteWorte?: string | undefined | null;
+	}
 
-	let width: number;
-	let height: number;
+	let {
+		characterName,
+		aemterName = undefined,
+		clan,
+		blutlinie,
+		status = undefined,
+		beschreibung = undefined,
+		bild,
+		letzteWorte = undefined
+	}: Props = $props();
+
+	let width: number = $state(0);
+	let height: number = $state(0);
 </script>
 
 <svelte:window bind:innerWidth={width} bind:innerHeight={height} />

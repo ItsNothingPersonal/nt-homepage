@@ -3,14 +3,19 @@
 	import { getDownloadUrl, getFormattedDay, getFormattedMonth } from '$lib/util';
 	import Icon from '@iconify/svelte';
 
-	export let title: string;
-	export let synopsis: string;
-	export let authorFirstName: string | null | undefined;
-	export let authorLastName: string | null | undefined;
-	export let avatar: string | undefined | null;
-	export let date: Date | undefined;
-	export let project: ProjektName;
-	export let newsId: string | number | undefined;
+	interface Props {
+		title: string;
+		synopsis: string;
+		authorFirstName: string | null | undefined;
+		authorLastName: string | null | undefined;
+		avatar: string | undefined | null;
+		date: Date | undefined;
+		project: ProjektName;
+		newsId: string | number | undefined;
+	}
+
+	let { title, synopsis, authorFirstName, authorLastName, avatar, date, project, newsId }: Props =
+		$props();
 </script>
 
 <div

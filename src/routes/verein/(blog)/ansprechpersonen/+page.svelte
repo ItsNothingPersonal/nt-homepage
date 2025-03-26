@@ -1,7 +1,7 @@
 <script lang="ts">
 	import AnsprechpersonenEntry from '$lib/components/Ansprechperson/AnsprechpersonenEntry.svelte';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Ansprechpersonen</h2>

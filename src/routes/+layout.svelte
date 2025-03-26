@@ -19,14 +19,19 @@
 	} from '@skeletonlabs/skeleton';
 	import type { AfterNavigate } from '@sveltejs/kit';
 	import '../app.postcss';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 	initializeStores();
 
 	const drawerStore = getDrawerStore();
-	let innerWidth = 0;
-	let innerHeight = 0;
-	$: mobile = isMobile(innerWidth);
+	let innerWidth = $state(0);
+	let innerHeight = $state(0);
+	let mobile = $derived(isMobile(innerWidth));
 
 	const modalComponentRegistry: Record<string, ModalComponent> = {
 		image: { ref: ModalImage }
@@ -60,7 +65,7 @@
 	slotPageContent="px-2 mx-auto mt-2"
 	slotHeader="[&>div>div]:gap-0"
 >
-	<svelte:fragment slot="header">
+	{#snippet header()}
 		<!-- App Bar -->
 		<AppBar
 			gridColumns="grid-cols-desktop-top-menu"
@@ -68,8 +73,12 @@
 			slotDefault="place-self-center"
 			slotTrail="place-content-end"
 		>
-			<svelte:fragment slot="lead">
-				<button class="btn btn-sm mr-4 items-center xl:hidden" on:click={drawerOpen}>
+			{#snippet lead()}
+				<button
+					class="btn btn-sm mr-4 items-center xl:hidden"
+					onclick={drawerOpen}
+					aria-label="Navigation Aufklappen Button"
+				>
 					<span>
 						<svg viewBox="0 0 100 80" class="fill-token h-4 w-4">
 							<rect width="100" height="20" />
@@ -94,24 +103,24 @@
 						</a>
 					</p>
 				{/if}
-			</svelte:fragment>
+			{/snippet}
 
 			{#if innerWidth >= ScreenSize.XL}
 				<Navigation />
 			{/if}
 
-			<svelte:fragment slot="trail">
+			{#snippet trail()}
 				{#if innerWidth > 310}
 					<LightSwitch />
 				{/if}
-			</svelte:fragment>
+			{/snippet}
 		</AppBar>
-	</svelte:fragment>
+	{/snippet}
 
 	<!-- Page Route Content -->
-	<slot />
+	{@render children?.()}
 
-	<svelte:fragment slot="pageFooter">
+	{#snippet pageFooter()}
 		<Footer />
-	</svelte:fragment>
+	{/snippet}
 </AppShell>

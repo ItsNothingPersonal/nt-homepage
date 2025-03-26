@@ -3,7 +3,11 @@
 	import Icon from '@iconify/svelte';
 	import LoadingMessage from '../LoadingMessage/LoadingMessage.svelte';
 
-	export let events: Promise<Zeittafel[]>;
+	interface Props {
+		events: Promise<Zeittafel[]>;
+	}
+
+	let { events }: Props = $props();
 </script>
 
 {#await events}

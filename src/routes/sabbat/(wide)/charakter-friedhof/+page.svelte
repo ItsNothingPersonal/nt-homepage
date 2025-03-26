@@ -18,7 +18,7 @@
 		swapOffizierFilter
 	} from '../charakterUtil';
 
-	export let data;
+	let { data } = $props();
 
 	const packFilter = writable('.*');
 	const offizierFilter = writable('');
@@ -26,9 +26,9 @@
 	const selektiertesPack = writable<SabbatPack | undefined>();
 	const jahrFilter = writable('.*');
 
-	let width = 0;
+	let width = $state(0);
 
-	let jahrSubMenu: SubMenuConfig[] = [];
+	let jahrSubMenu: SubMenuConfig[] = $state([]);
 	const uniqueYearsSet = new Set<number>();
 
 	async function getJahrSubMenu(jahrFilter: Writable<string>) {

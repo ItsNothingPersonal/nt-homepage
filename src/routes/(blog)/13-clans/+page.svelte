@@ -6,9 +6,9 @@
 	import { SektenName } from '$lib/types/sektenName';
 	import { get, writable, type Writable } from 'svelte/store';
 
-	export let data;
+	let { data } = $props();
 
-	let width: number;
+	let width: number = $state(0);
 	let sectFilter = writable('.*');
 
 	function swapSectFilter(

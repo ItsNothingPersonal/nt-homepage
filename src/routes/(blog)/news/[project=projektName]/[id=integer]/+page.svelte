@@ -2,7 +2,7 @@
 	import ProjektNewsArticle from '$lib/components/Projekt/News/ProjektNewsArticle.svelte';
 	import { isString } from '$lib/util';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <ProjektNewsArticle

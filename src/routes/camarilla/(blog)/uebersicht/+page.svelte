@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ProjektUebersicht from '$lib/components/Projekt/ProjektUebersicht.svelte';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <ProjektUebersicht

@@ -7,12 +7,14 @@
 	import LoadingMessage from '../LoadingMessage/LoadingMessage.svelte';
 	import ImageCarousel from '../ImageCarousel/ImageCarousel.svelte';
 
-	export let bilder: Promise<
-		Wh40kSpielortFiles[] | SabbatSpielortFiles[] | CamarillaSpielortFiles[]
-	>;
-	export let spielort: Promise<Spielort>;
+	interface Props {
+		bilder: Promise<Wh40kSpielortFiles[] | SabbatSpielortFiles[] | CamarillaSpielortFiles[]>;
+		spielort: Promise<Spielort>;
+	}
 
-	let innerWidth: number = 0;
+	let { bilder, spielort }: Props = $props();
+
+	let innerWidth: number = $state(0);
 </script>
 
 <svelte:window bind:innerWidth />
@@ -41,7 +43,7 @@
 			loading="lazy"
 			referrerpolicy="no-referrer-when-downgrade"
 			height="300px"
-		/>
+		></iframe>
 	{/await}
 
 	{#await bilder}
