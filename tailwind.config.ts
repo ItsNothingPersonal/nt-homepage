@@ -1,4 +1,3 @@
-import { skeleton } from '@skeletonlabs/tw-plugin';
 import typography from '@tailwindcss/typography';
 import { join } from 'path';
 import type { Config } from 'tailwindcss';
@@ -30,12 +29,7 @@ const config = {
 			}
 		}
 	},
-	plugins: [
-		typography,
-		skeleton({
-			themes: { preset: ['crimson'] }
-		})
-	],
+	plugins: [typography],
 	darkMode: 'class'
 } satisfies Config;
 

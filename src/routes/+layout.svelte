@@ -18,7 +18,7 @@
 		type ModalComponent
 	} from '@skeletonlabs/skeleton';
 	import type { AfterNavigate } from '@sveltejs/kit';
-	import '../app.postcss';
+	import '../app.css';
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
