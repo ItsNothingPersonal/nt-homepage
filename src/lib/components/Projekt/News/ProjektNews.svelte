@@ -19,9 +19,9 @@
 </script>
 
 <div
-	class="bg-light-50 dark:bg-dark-700 card grid w-full grid-cols-1 grid-rows-news-preview gap-2 rounded-lg p-4 text-left"
+	class="bg-light-50 dark:bg-dark-700 card grid-rows-news-preview grid w-full grid-cols-1 gap-2 rounded-lg p-4 text-left"
 >
-	<div class="grid grid-cols-news-header gap-x-2">
+	<div class="grid-cols-news-header grid gap-x-2">
 		<img
 			src={avatar
 				? `${getDownloadUrl(avatar)}&width=28&height=28`
@@ -30,11 +30,11 @@
 			class="h-7 w-7 rounded-full"
 		/>
 		<div class="flex h-auto max-h-11 flex-auto grow flex-wrap gap-x-1">
-			<p class="whitespace-nowrap text-sm font-bold">{authorFirstName} {authorLastName}</p>
-			<p class="whitespace-nowrap text-sm">in</p>
-			<p class="whitespace-nowrap text-sm font-bold">{project}</p>
-			<p class="whitespace-nowrap text-sm">am</p>
-			<p class="whitespace-nowrap text-sm font-bold">
+			<p class="text-sm font-bold whitespace-nowrap">{authorFirstName} {authorLastName}</p>
+			<p class="text-sm whitespace-nowrap">in</p>
+			<p class="text-sm font-bold whitespace-nowrap">{project}</p>
+			<p class="text-sm whitespace-nowrap">am</p>
+			<p class="text-sm font-bold whitespace-nowrap">
 				{getFormattedDay(date)}.{getFormattedMonth(date)}.{date?.getFullYear()}
 			</p>
 		</div>
@@ -42,11 +42,11 @@
 	<h3 class="h3 font-bold tracking-tight text-gray-900 dark:text-white">
 		{title}
 	</h3>
-	<p class="mb-3 break-words font-light text-gray-500 dark:text-gray-400">
+	<p class="mb-3 font-light break-words text-gray-500 dark:text-gray-400">
 		{synopsis}
 	</p>
 	<a
-		class="variant-filled-primary btn w-fit rounded-lg"
+		class="preset-filled-primary-500 btn w-fit rounded-lg"
 		role="button"
 		href={`/news/${project}/${newsId}`}
 	>

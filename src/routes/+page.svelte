@@ -16,7 +16,7 @@
 			<img
 				src="/images/Protektorat-2.webp"
 				alt="Beispielbild Camarilla"
-				class={`rounded-lg shadow-lg dark:shadow-gray-800 md:rounded-l-lg md:rounded-r-none md:transition-all ` +
+				class={`rounded-lg shadow-lg md:rounded-l-lg md:rounded-r-none md:transition-all dark:shadow-gray-800 ` +
 					`h-full w-full max-w-full cursor-pointer object-cover md:grayscale md:filter md:duration-300 md:hover:grayscale-0`}
 			/>
 		</a>
@@ -29,7 +29,7 @@
 			<img
 				src="/images/P1080017-small.webp"
 				alt="Beispielbild Sabbat"
-				class={`rounded-lg shadow-lg dark:shadow-gray-800 md:rounded-l-none md:transition-all md:duration-300 ` +
+				class={`rounded-lg shadow-lg md:rounded-l-none md:transition-all md:duration-300 dark:shadow-gray-800 ` +
 					`h-full w-full max-w-full cursor-pointer object-cover md:grayscale md:filter md:hover:grayscale-0`}
 			/>
 		</a>

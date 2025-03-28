@@ -33,7 +33,7 @@
 {#await data.beschreibung}
 	<LoadingMessage>Lade Setting Beschreibung</LoadingMessage>
 {:then beschreibung}
-	<p class="card mb-4 rounded-xs p-4 text-justify shadow-md">
+	<p class="card mb-4 rounded-xs text-justify whitespace-break-spaces shadow-md">
 		{@html beschreibung?.code}
 	</p>
 {/await}
@@ -65,20 +65,22 @@
 	smallSwitch={width < ScreenSize.SM}
 />
 
-<div class={`grid grid-cols-4 grid-rows-7 gap-4 text-center md:grid-cols-5  md:grid-rows-1`}>
+<div
+	class={`grid grid-cols-3 grid-rows-7 gap-y-2 text-center sm:grid-cols-6 sm:gap-4 md:grid-rows-1`}
+>
 	{#await data.clans}
 		<LoadingMessage>Lade Clans</LoadingMessage>
 	{:then clans}
 		{#each clans
 			.filter((clan) => clan.name !== 'Banu Haqim' && clan.name !== 'Caitiff' && clan.name !== 'Thin-Bloods' && clan.name !== 'Ministry' && clan.name !== 'Hecata' && clan.name !== 'Salubri')
 			.filter((e) => e.sekte?.match($sectFilter)) as clan}
-			<a href={`/13-clans/${clan.id}`} class="flex flex-col">
+			<a href={`/13-clans/${clan.id}`} class="flex flex-col items-center">
 				<img
 					src={`${PUBLIC_DIRECTUS_URL}/assets/${clan.logo}?fit=cover&width=${
 						width < ScreenSize.MD ? '80' : '192'
 					}&height=${width < ScreenSize.MD ? '80' : '192'}&quality=80&format=auto`}
 					alt={`logo of clan ${clan.name}`}
-					class="h-20 w-20 rounded-lg object-cover shadow-lg dark:shadow-gray-800 md:h-48 md:w-48"
+					class="h-20 w-20 rounded-lg object-cover shadow-lg md:h-48 md:w-48 dark:shadow-gray-800"
 				/>
 				{#if width > ScreenSize.MD}
 					<p

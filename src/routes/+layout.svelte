@@ -1,44 +1,20 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
+	import DropdownMenuButton from '$lib/components/DropdownMenuButton/DropdownMenuButton.svelte';
 	import Footer from '$lib/components/Footer/Footer.svelte';
-	import ModalImage from '$lib/components/Modals/ModalImage.svelte';
-	import Navigation from '$lib/components/Navigation/Navigation.svelte';
-	import { ScreenSize } from '$lib/types/sceenSize';
-	import { isMobile } from '$lib/util';
-	import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
-	import {
-		AppBar,
-		AppShell,
-		Drawer,
-		LightSwitch,
-		Modal,
-		getDrawerStore,
-		initializeStores,
-		storePopup,
-		type ModalComponent
-	} from '@skeletonlabs/skeleton';
+	import LightSwitch from '$lib/components/LightSwitch/LightSwitch.svelte';
+	import { menuData } from '$lib/menuData';
+	import IconX from '@lucide/svelte/icons/x';
+	import { Accordion, AppBar, Modal } from '@skeletonlabs/skeleton-svelte';
 	import type { AfterNavigate } from '@sveltejs/kit';
 	import '../app.css';
-	interface Props {
-		children?: import('svelte').Snippet;
-	}
 
-	let { children }: Props = $props();
+	let { children } = $props();
 
-	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
-	initializeStores();
-
-	const drawerStore = getDrawerStore();
-	let innerWidth = $state(0);
-	let innerHeight = $state(0);
-	let mobile = $derived(isMobile(innerWidth));
-
-	const modalComponentRegistry: Record<string, ModalComponent> = {
-		image: { ref: ModalImage }
-	};
+	let showSideMenu = $state(false);
 
 	function drawerOpen(): void {
-		drawerStore.open();
+		showSideMenu = !showSideMenu;
 	}
 
 	afterNavigate((params: AfterNavigate) => {
@@ -48,79 +24,135 @@
 			elemPage.scrollTop = 0;
 		}
 	});
+
+	function drawerClose() {
+		showSideMenu = false;
+	}
 </script>
 
-<svelte:window bind:innerWidth bind:innerHeight />
+<div class="grid h-screen grid-rows-[auto_1fr_auto] overflow-hidden">
+	<!-- Header -->
+	<AppBar
+		headlineClasses="sm:hidden"
+		centerClasses="hidden xl:flex justify-center items-center"
+		classes="border-b-[1px] border-surface-500/20 bg-surface-50/90 dark:bg-surface-900/90 backdrop-blur"
+		leadClasses="flex items-center"
+		toolbarGap="gap-2 sm:gap-4"
+		trailClasses="hidden sm:flex justify-end col-start-3"
+		toolbarClasses="grid grid-cols-desktop-top-menu"
+	>
+		{#snippet lead()}
+			<Modal
+				open={showSideMenu}
+				onOpenChange={(e) => (showSideMenu = e.open)}
+				contentBase="bg-surface-100-900 dark:bg-surface-900-100 p-4 space-y-4 shadow-xl w-[280px] h-screen overflow-y-auto"
+				positionerJustify="justify-start"
+				positionerAlign=""
+				positionerPadding=""
+				transitionsPositionerIn={{ x: -480, duration: 200 }}
+				transitionsPositionerOut={{ x: -480, duration: 200 }}
+			>
+				{#snippet trigger()}
+					<button
+						class="btn btn-sm mr-0 items-center xl:hidden"
+						onclick={drawerOpen}
+						aria-label="Navigation Aufklappen Button"
+					>
+						<span>
+							<svg viewBox="0 0 100 80" class="dark:fill-surface-50 fill-surface-800 h-4 w-4">
+								<rect width="100" height="20" />
+								<rect y="30" width="100" height="20" />
+								<rect y="60" width="100" height="20" />
+							</svg>
+						</span>
+					</button>
+				{/snippet}
+				{#snippet content()}
+					<header class="flex justify-between">
+						<h2 class="h2">Menü</h2>
 
-<Drawer>
-	<h2 class="p-4">Navigation</h2>
-	<hr />
-	<Navigation />
-</Drawer>
+						<IconX onclick={drawerClose} />
+					</header>
 
-<Modal components={modalComponentRegistry} />
-
-<AppShell
-	slotSidebarLeft="bg-surface-500/5 w-0"
-	slotPageContent="px-2 mx-auto mt-2"
-	slotHeader="[&>div>div]:gap-0"
->
-	{#snippet header()}
-		<!-- App Bar -->
-		<AppBar
-			gridColumns="grid-cols-desktop-top-menu"
-			slotLead="place-self-start align-middle self-center"
-			slotDefault="place-self-center"
-			slotTrail="place-content-end"
-		>
-			{#snippet lead()}
-				<button
-					class="btn btn-sm mr-4 items-center xl:hidden"
-					onclick={drawerOpen}
-					aria-label="Navigation Aufklappen Button"
-				>
-					<span>
-						<svg viewBox="0 0 100 80" class="fill-token h-4 w-4">
-							<rect width="100" height="20" />
-							<rect y="30" width="100" height="20" />
-							<rect y="60" width="100" height="20" />
-						</svg>
-					</span>
-				</button>
-				{#if (innerWidth > 420 && mobile) || innerWidth < 360 || innerWidth > ScreenSize.XL + 240}
-					<img
-						src="/images/Logo_Navbar.webp"
-						alt="Nächtliches Theater Logo"
-						class="dark:shadow-dark-800 mr-2 rounded-lg shadow-lg"
-					/>
-				{/if}
-				{#if innerWidth >= 360}
-					<p class="align-middle">
-						<a href="/">
-							<strong class="whitespace-nowrap text-center text-xl">
-								Nächtliches Theater e.V.
-							</strong>
+					<Accordion rounded="rounded-lg" collapsible classes="w-full flex flex-col items-start">
+						<a href="/" class="btn btn-base hover:preset-tonal capitalize" onclick={drawerClose}>
+							Home
 						</a>
-					</p>
-				{/if}
-			{/snippet}
 
-			{#if innerWidth >= ScreenSize.XL}
-				<Navigation />
+						{#each menuData as menuDataEntry}
+							{#if menuDataEntry.subData}
+								<Accordion.Item
+									value={menuDataEntry.label}
+									panelClasses="flex flex-col items-start"
+								>
+									{#snippet control()}{menuDataEntry.label}{/snippet}
+									{#snippet panel()}
+										{#if menuDataEntry.subData}
+											{#each menuDataEntry.subData as subEntry}
+												<a
+													href={subEntry.href}
+													class="btn btn-base hover:preset-tonal capitalize"
+													onclick={drawerClose}
+												>
+													{subEntry.label}
+												</a>
+											{/each}
+										{/if}
+									{/snippet}
+								</Accordion.Item>
+							{:else if menuDataEntry.href}
+								<a
+									href={menuDataEntry.href}
+									class="btn btn-base hover:preset-tonal capitalize"
+									onclick={drawerClose}
+								>
+									{menuDataEntry.label}
+								</a>
+							{/if}
+						{/each}
+					</Accordion>
+				{/snippet}
+			</Modal>
+			<img
+				src="/images/Logo_Navbar.webp"
+				alt="Nächtliches Theater Logo"
+				class="dark:shadow-dark-800 mr-2 hidden rounded-lg shadow-lg sm:block"
+			/>
+			<p class="align-middle">
+				<a href="/">
+					<strong class="text-center text-xl whitespace-nowrap sm:text-xl">
+						Nächtliches Theater e.V.
+					</strong>
+				</a>
+			</p>
+		{/snippet}
+
+		{#snippet trail()}
+			<LightSwitch />
+		{/snippet}
+		{#each menuData as menuDataEntry}
+			{#if menuDataEntry.subData}
+				<DropdownMenuButton subMenu={menuDataEntry.subData}>
+					{menuDataEntry.label}
+				</DropdownMenuButton>
+			{:else}
+				<a href={menuDataEntry.href} class="btn btn-base hover:preset-tonal capitalize">
+					{menuDataEntry.label}
+				</a>
 			{/if}
+		{/each}
+	</AppBar>
 
-			{#snippet trail()}
-				{#if innerWidth > 310}
-					<LightSwitch />
-				{/if}
-			{/snippet}
-		</AppBar>
-	{/snippet}
+	<main class="overflow-y-auto">
+		<div class="container mx-auto flex flex-col place-items-center p-4 pb-16">
+			{@render children?.()}
+		</div>
+	</main>
 
-	<!-- Page Route Content -->
-	{@render children?.()}
-
-	{#snippet pageFooter()}
+	<!-- Footer -->
+	<footer
+		class="border-surface-500/20 bg-surface-50/90 dark:bg-surface-900/90 border-t-[1px] backdrop-blur"
+	>
 		<Footer />
-	{/snippet}
-</AppShell>
+	</footer>
+</div>

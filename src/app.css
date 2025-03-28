@@ -1,22 +1,26 @@
 /* Write your global styles here, in PostCSS syntax */
 @import 'tailwindcss';
+@import '@skeletonlabs/skeleton';
+@import '@skeletonlabs/skeleton/optional/presets';
+@import '@skeletonlabs/skeleton/themes/crimson';
+@source "../node_modules/@skeletonlabs/skeleton-svelte/dist";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --grid-template-columns-min-content-first: min-content 1fr;
-  --grid-template-columns-desktop-top-menu: minmax(min-content, 1fr)
-    minmax(min-content, 3fr) minmax(min-content, 1fr);
-  --grid-template-columns-news-header: 1.75rem auto;
+	--grid-template-columns-min-content-first: min-content 1fr;
+	--grid-template-columns-desktop-top-menu: minmax(min-content, 1fr) minmax(min-content, 3fr)
+		minmax(min-content, 1fr);
+	--grid-template-columns-news-header: 1.75rem auto;
 
-  --grid-template-rows-min-content-first: min-content 1fr;
-  --grid-template-rows-body-template: 1fr auto;
-  --grid-template-rows-news-preview: minmax(min-content, 15%)
-    minmax(min-content, 15%) minmax(min-content, 55%) min-content;
+	--grid-template-rows-min-content-first: min-content 1fr;
+	--grid-template-rows-body-template: 1fr auto;
+	--grid-template-rows-news-preview: minmax(min-content, 15%) minmax(min-content, 15%)
+		minmax(min-content, 55%) min-content;
 
-  --breakpoint-gal-sm: 1060px;
-  --breakpoint-gal: 1400px;
-  --breakpoint-xxl: 1450px;
+	--breakpoint-gal-sm: 1060px;
+	--breakpoint-gal: 1400px;
+	--breakpoint-xxl: 1450px;
 }
 
 /*
@@ -28,16 +32,13 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
-
-@layer utilities {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentColor);
+	}
 }
 
 html,

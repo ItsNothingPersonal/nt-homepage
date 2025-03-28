@@ -4,8 +4,8 @@
 	import type { Spielort } from '$lib/types/zod/spielort';
 	import type { Wh40kSpielortFiles } from '$lib/types/zod/wh40kSpielortFiles';
 	import { getImageUrl, isNullOrUndefined } from '$lib/util';
-	import LoadingMessage from '../LoadingMessage/LoadingMessage.svelte';
 	import ImageCarousel from '../ImageCarousel/ImageCarousel.svelte';
+	import LoadingMessage from '../LoadingMessage/LoadingMessage.svelte';
 
 	interface Props {
 		bilder: Promise<Wh40kSpielortFiles[] | SabbatSpielortFiles[] | CamarillaSpielortFiles[]>;
@@ -26,7 +26,7 @@
 		<LoadingMessage>Lade Spielort-Informationen</LoadingMessage>
 	{:then spielort}
 		<h2 class="h2 mb-2">Anschrift</h2>
-		<div class="card mb-4 rounded-lg p-2">
+		<div class="card dark:bg-surface-800 preset-outlined-primary-500 mb-4 rounded-lg p-4">
 			<div class="flex flex-col items-center justify-center">
 				<p>{spielort.spielort_name}</p>
 				<p>{spielort.spielort_strasse}</p>
@@ -49,7 +49,7 @@
 	{#await bilder}
 		<LoadingMessage>Lade Spielort-Bilder</LoadingMessage>
 	{:then bilder}
-		<h3 class="h3 mb-2 mt-4">Bildergalerie</h3>
+		<h3 class="h3 mt-4 mb-2">Bildergalerie</h3>
 
 		<ImageCarousel
 			images={bilder

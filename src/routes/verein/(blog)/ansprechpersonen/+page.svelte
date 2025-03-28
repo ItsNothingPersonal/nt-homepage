@@ -4,7 +4,7 @@
 	let { data } = $props();
 </script>
 
-<h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Ansprechpersonen</h2>
+<h2 class="h2 mt-4 mb-2 flex justify-center font-bold">Ansprechpersonen</h2>
 
 <AnsprechpersonenEntry
 	personen={data.vorstand}

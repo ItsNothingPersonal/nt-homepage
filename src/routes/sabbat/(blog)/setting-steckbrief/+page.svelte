@@ -9,7 +9,7 @@
 {#await data.steckbrief}
 	<LoadingMessage>Lade Setting Steckbrief</LoadingMessage>
 {:then steckbrief}
-	<h2 class="h2 mb-2 mt-4 font-bold">{steckbrief?.name}</h2>
+	<h2 class="h2 mt-4 mb-2 font-bold">{steckbrief?.name}</h2>
 	<p>{steckbrief?.thema}</p>
 	<h3 class="h3">Stimmung</h3>
 	<p>{steckbrief?.stimmung}</p>

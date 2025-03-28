@@ -34,12 +34,14 @@
 </script>
 
 <svelte:window bind:innerWidth={width} bind:innerHeight={height} />
-<div class="bg-light-50 dark:bg-dark-700 card w-full max-w-sm shadow-md dark:shadow-gray-800">
+<div
+	class="bg-light-50 dark:bg-dark-700 card w-full max-w-sm rounded-lg shadow-md dark:shadow-gray-800"
+>
 	<header class="card-header p-0">
 		<img
 			src={`${PUBLIC_DIRECTUS_URL}/assets/${bild}?fit=contain&width=384&height=384&quality=80&format=auto`}
 			alt="Charakterbild von {characterName}"
-			class="rounded-t-3xl"
+			class="rounded-t-lg"
 		/>
 	</header>
 	<section class="p-4 pb-6">
@@ -48,7 +50,7 @@
 		</h3>
 
 		{#if aemterName}
-			<p class="mb-3 text-center font-normal leading-tight text-gray-700 dark:text-gray-400">
+			<p class="mb-3 text-center leading-tight font-normal text-gray-700 dark:text-gray-400">
 				{aemterName}
 			</p>
 		{:else}
@@ -57,13 +59,13 @@
 
 		<hr />
 		<div class="my-2 flex gap-x-4">
-			<div class="grid grid-cols-min-content-first gap-x-1">
-				<p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Status</p>
-				<p class="whitespace-nowrap font-normal leading-tight">{status ?? '-'}</p>
+			<div class="grid-cols-min-content-first grid gap-x-1">
+				<p class="leading-tight font-normal text-gray-700 dark:text-gray-400">Status</p>
+				<p class="leading-tight font-normal whitespace-nowrap">{status ?? '-'}</p>
 			</div>
-			<div class="row-start-2 grid grid-cols-min-content-first gap-x-1 xxl:row-start-1">
-				<p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Clan</p>
-				<p class="font-normal leading-tight lg:whitespace-nowrap">
+			<div class="grid-cols-min-content-first xxl:row-start-1 row-start-2 grid gap-x-1">
+				<p class="leading-tight font-normal text-gray-700 dark:text-gray-400">Clan</p>
+				<p class="leading-tight font-normal lg:whitespace-nowrap">
 					{#if blutlinie?.name}
 						{blutlinie.name}
 					{:else if clan?.name}

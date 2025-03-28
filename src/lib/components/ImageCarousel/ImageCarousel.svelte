@@ -59,17 +59,14 @@
 	<!-- Button: Left -->
 	<button
 		type="button"
-		class="variant-glass btn-icon absolute left-4 border-2 border-white dark:border-primary-500"
+		class="preset-tonal btn-icon dark:border-primary-500 absolute left-4 border-2 border-white"
 		onclick={carouselLeft}
 		aria-label="Button Bild zurück"
 	>
 		<Icon icon="mdi:arrow-left" />
 	</button>
 	<!-- Full Images -->
-	<div
-		bind:this={elemCarousel}
-		class="hide-scrollbar flex snap-x snap-mandatory overflow-x-auto scroll-smooth"
-	>
+	<div bind:this={elemCarousel} class="flex snap-x snap-mandatory overflow-x-hidden scroll-smooth">
 		{#each images as image, i}
 			<img
 				class="snap-center rounded-lg"
@@ -82,7 +79,7 @@
 	<!-- Button: Right -->
 	<button
 		type="button"
-		class="variant-glass btn-icon absolute right-4 border-2 border-white dark:border-primary-500"
+		class="preset-tonal btn-icon dark:border-primary-500 absolute right-4 border-2 border-white"
 		onclick={carouselRight}
 		aria-label="Button Bild weiter"
 	>

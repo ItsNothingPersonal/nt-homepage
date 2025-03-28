@@ -14,7 +14,7 @@
 	<LoadingMessage>Lade Zeittafel</LoadingMessage>
 {:then events}
 	<div class="relative">
-		<div class="absolute left-4 top-0 h-full w-1 bg-gray-300"></div>
+		<div class="absolute top-0 left-4 h-full w-1 bg-gray-300"></div>
 
 		{#each events as event}
 			<div class="mb-6 ml-8 flex flex-col items-center">
@@ -38,7 +38,7 @@
 					<a
 						href={event.link}
 						rel="noopener noreferrer"
-						class="variant-filled-primary btn mt-2 w-40"
+						class="preset-filled-primary-500 btn mt-2 w-40"
 						role="button"
 					>
 						Weiterlesen

@@ -38,7 +38,7 @@
 					<img
 						src={getDownloadUrl(selektiertesPack?.pack.logo)}
 						alt={`Logo des Packs ${selektiertesPack?.pack.name}`}
-						class={`mb-2  mr-4 max-h-56 rounded-lg  ${
+						class={`mr-4  mb-2 max-h-56 rounded-lg  ${
 							selektiertesPack?.pack.beschreibung ? 'float-left shadow-lg dark:shadow-gray-800' : ''
 						}`}
 					/>
@@ -54,7 +54,7 @@
 {/if}
 
 {#if leaders.length > 0 && noFilterActive}
-	<h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Anführer</h2>
+	<h2 class="h2 mt-4 mb-2 flex justify-center font-bold">Anführer</h2>
 	<div class="flex justify-center">
 		{#if leaders.length === 1}
 			<CharacterCard
@@ -87,10 +87,10 @@
 {/if}
 
 {#if officers.length > 0 && noFilterActive}
-	<h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Offiziere</h2>
+	<h2 class="h2 mt-4 mb-2 flex justify-center font-bold">Offiziere</h2>
 	{#if officers.length >= 4}
 		<div
-			class="mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4"
+			class="gal-sm:grid-cols-3 gal:grid-cols-4 mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2"
 		>
 			{#each officers as charakter}
 				<CharacterCard
@@ -148,7 +148,7 @@
 {/if}
 {#if charaktere.length >= 4}
 	<div
-		class="mb-10 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4"
+		class="gal-sm:grid-cols-3 gal:grid-cols-4 mb-10 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2"
 	>
 		{#each charaktere as charakter}
 			<CharacterCard

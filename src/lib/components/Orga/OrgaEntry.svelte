@@ -24,7 +24,7 @@
 
 		{@render beschreibung?.()}
 		<hr class="my-2" />
-		<div class="mb-2 mt-2 flex flex-col md:grid md:grid-cols-2 md:grid-rows-1">
+		<div class="mt-2 mb-2 flex flex-col md:grid md:grid-cols-2 md:grid-rows-1">
 			{#each personen as person}
 				<div class="mb-2 flex flex-col items-center last:mb-0">
 					<p class="font-semibold">

@@ -19,7 +19,7 @@
 		iconSize = undefined
 	}: Props = $props();
 
-	const buttonStyle = 'variant-filled-primary btn rounded-lg text-lg w-full';
+	const buttonStyle = 'preset-filled-primary-500 btn rounded-lg text-lg w-full';
 	let styling = $derived(style === 'button' ? buttonStyle : undefined);
 </script>
 

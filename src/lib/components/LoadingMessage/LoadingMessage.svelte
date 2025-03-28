@@ -4,6 +4,6 @@
 	let { children }: { children: Snippet } = $props();
 </script>
 
-<p class="font-normal leading-tight">
+<p class="leading-tight font-normal">
 	{@render children()}
 </p>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { FilterButtonConfig } from '$lib/types/filterButtonConfig';
 	import type { FilterFunction } from '$lib/types/filterFunction';
-	import Icon from '@iconify/svelte';
+	import CircleCheck from '@lucide/svelte/icons/circle-check';
 	import DropdownMenuButton from '../DropdownMenuButton/DropdownMenuButton.svelte';
 
 	interface Props {
@@ -19,87 +19,24 @@
 	}: Props = $props();
 </script>
 
-{#if !smallSwitch}
-	<div class="mb-4 flex w-full justify-center">
-		<div
-			class="variant-filled btn-group [&>*+*]:border-surface-200 [&>button:not(:first-of-type)]:border-l"
-		>
-			{#each config as entry}
-				{#if entry.subMenu}
-					<DropdownMenuButton
-						popUpId="button-group-{entry.label}"
-						indicator={entry.indicator}
-						{rounded}
-						disabled={entry.subMenu.length <= 0}
-					>
-						{#snippet popupMenu()}
-							{#if entry.subMenu}
-								{#each entry.subMenu as subMenu (subMenu.label)}
-									<button
-										class="rounded-none!"
-										onclick={() =>
-											subMenu.onClick
-												? subMenu.onClick(entry.store, entry.label)
-												: defaultOnClick
-													? defaultOnClick(entry.store, entry.label)
-													: undefined}
-										onkeyup={() =>
-											subMenu.onClick
-												? subMenu.onClick(entry.store, entry.label)
-												: defaultOnClick
-													? defaultOnClick(entry.store, entry.label)
-													: undefined}
-									>
-										{subMenu.label}
-									</button>
-								{/each}
-							{/if}
-						{/snippet}
-						{entry.label}
-					</DropdownMenuButton>
-				{:else}
-					<button
-						class="relative"
-						onclick={() =>
-							entry.onClick
-								? entry.onClick(entry.store, entry.label)
-								: defaultOnClick
-									? defaultOnClick(entry.store, entry.label)
-									: undefined}
-						onkeyup={() =>
-							entry.onClick
-								? entry.onClick(entry.store, entry.label)
-								: defaultOnClick
-									? defaultOnClick(entry.store, entry.label)
-									: undefined}
-					>
-						{entry.label}
-						{#if entry.indicator}
-							<Icon icon="material-symbols:check-circle" class="absolute right-1 top-1 text-lg" />
-						{/if}
-					</button>
-				{/if}
-			{/each}
-		</div>
-	</div>
-{:else}
-	<div class="mb-4 grid grid-cols-2 gap-2">
-		{#each config as entry, i}
+<div class="mb-4 flex justify-center">
+	<div
+		class={`btn-group preset-filled-primary-500 grid ${config.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} flex-col rounded-lg p-2 md:flex md:flex-row`}
+	>
+		{#each config as entry}
 			{#if entry.subMenu}
 				<DropdownMenuButton
 					popUpId="button-group-{entry.label}"
 					indicator={entry.indicator}
-					rounded="rounded-none!"
-					additionalStyles={`variant-filled w-full ${
-						config.length % 2 !== 0 && config.length === i + 1 ? 'col-span-2' : undefined
-					}`}
+					{rounded}
 					disabled={entry.subMenu.length <= 0}
+					offset={15}
 				>
 					{#snippet popupMenu()}
 						{#if entry.subMenu}
 							{#each entry.subMenu as subMenu (subMenu.label)}
 								<button
-									class="rounded-none!"
+									class="btn btn-base capitalize"
 									onclick={() =>
 										subMenu.onClick
 											? subMenu.onClick(entry.store, entry.label)
@@ -122,9 +59,8 @@
 				</DropdownMenuButton>
 			{:else}
 				<button
-					class={`variant-filled relative h-12 ${
-						config.length % 2 !== 0 && config.length === i + 1 ? 'col-span-2' : undefined
-					}`}
+					type="button"
+					class="btn preset-filled-primary-500 relative capitalize"
 					onclick={() =>
 						entry.onClick
 							? entry.onClick(entry.store, entry.label)
@@ -139,11 +75,13 @@
 								: undefined}
 				>
 					{entry.label}
-					{#if entry.indicator}
-						<Icon icon="material-symbols:check-circle" class="absolute right-1 top-1 text-lg" />
-					{/if}
+					<CircleCheck
+						additive="replace"
+						size="17"
+						class={`absolute top-0 right-0 z-20 text-lg ${entry.indicator ? 'block' : 'hidden'}`}
+					/>
 				</button>
 			{/if}
 		{/each}
 	</div>
-{/if}
+</div>
