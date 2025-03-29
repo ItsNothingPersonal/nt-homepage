@@ -62,7 +62,6 @@
 		}
 	]}
 	defaultOnClick={swapSectFilter}
-	smallSwitch={width < ScreenSize.SM}
 />
 
 <div

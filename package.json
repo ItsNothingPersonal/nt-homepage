@@ -67,8 +67,8 @@
 			"esbuild"
 		]
 	},
-	"packageManager": "pnpm@10.2.0",
+	"packageManager": "pnpm@10.0.0",
 	"engines": {
-		"node": "^18.17.0 || ^20.0.0"
+		"node": "22.x"
 	}
 }

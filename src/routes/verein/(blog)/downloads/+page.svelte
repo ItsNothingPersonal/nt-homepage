@@ -1,6 +1,6 @@
 <script lang="ts">
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
-	import type { FileInformation } from '$lib/types/zod/fileInformation.js';
+	import { fileInformation, type FileInformation } from '$lib/types/zod/fileInformation.js';
 	import { getDownloadUrl } from '$lib/util.js';
 	let { data } = $props();
 
@@ -16,7 +16,7 @@
 				return {
 					id: e.id,
 					name: e.filename_download,
-					size: e.filesize ? parseInt(e.filesize) / 1024 ** 2 : 0
+					size: e.filesize ? e.filesize / 1024 ** 2 : 0
 				};
 			})
 			.map((e) => {
@@ -42,7 +42,7 @@
 				</tr>
 			</thead>
 			<tbody class="[&>tr]:hover:preset-tonal-primary [&>tr]:hover:cursor-pointer">
-				{#each getTableContent(folderResponse) as row (row.id)}
+				{#each getTableContent(fileInformation.array().parse(folderResponse)) as row (row.id)}
 					<tr id={row.id} onclick={() => onSelected(row.id)}>
 						<td class="break-all">{row.name}</td>
 						<td>{row.size}</td>

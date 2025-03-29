@@ -61,34 +61,43 @@ async function getProjectNews(project: ProjektName): Promise<ShortNewsWithUser[]
 	const userSet: Map<string, BasicUser> = new Map();
 
 	for (const news of newsList) {
-		const temp: ShortNewsWithUser = {
-			id: news.id,
-			titel: news.titel,
-			synopsis: news.synopsis,
-			user_created: {
-				id: undefined,
-				first_name: undefined,
-				last_name: undefined,
-				avatar: undefined
-			},
-			user_updated: undefined,
+		if (!userSet.has(news.user_created)) {
+			const author = await client.request(readUser(news.user_created));
+			userSet.set(news.user_created, {
+				id: author.id,
+				first_name: author.first_name,
+				last_name: author.last_name,
+				avatar: author.avatar as BasicUser['avatar']
+			});
+		}
+
+		// Fetch user_updated data if it exists
+		if (news.user_updated && !userSet.has(news.user_updated)) {
+			const updater = await client.request(readUser(news.user_updated));
+			userSet.set(news.user_updated, {
+				id: updater.id,
+				first_name: updater.first_name,
+				last_name: updater.last_name,
+				avatar: updater.avatar as BasicUser['avatar']
+			});
+		}
+
+		const user = userSet.get(news.user_created);
+		const updater = news.user_updated ? userSet.get(news.user_updated) : null;
+
+		if (!user) {
+			console.error(`User not found for news item ${news.id}`);
+			continue;
+		}
+
+		shortNewsWithUsers.push({
+			...news,
+			user_created: user,
+			user_updated: updater ?? null,
 			date_created: new Date(news.date_created),
 			date_updated: news.date_updated ? new Date(news.date_updated) : undefined,
 			project
-		};
-
-		if (!userSet.has(news.user_created)) {
-			userSet.set(news.user_created, await client.request(readUser(news.user_created)));
-		}
-		const author = userSet.get(news.user_created);
-
-		temp.user_created.id = author?.id;
-		temp.user_created.first_name = author?.first_name;
-		temp.user_created.last_name = author?.last_name;
-		temp.user_created.avatar = author?.avatar;
-
-		shortNewsWithUsers.push(temp);
+		});
 	}
-
 	return shortNewsWithUsers;
 }

@@ -2,7 +2,6 @@
 	import ButtonGroup from '$lib/components/ButtonGroup/ButtonGroup.svelte';
 	import CharacterGallery from '$lib/components/CharacterGallery/CharacterGallery.svelte';
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
-	import { ScreenSize } from '$lib/types/sceenSize.js';
 	import { SektenName } from '$lib/types/sektenName';
 	import { writable, type Writable } from 'svelte/store';
 	import {
@@ -56,7 +55,6 @@
 				store: clanFilter
 			}
 		]}
-		smallSwitch={width < ScreenSize.SM}
 		rounded="rounded-none!"
 	/>
 

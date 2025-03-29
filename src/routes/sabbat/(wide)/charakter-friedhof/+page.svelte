@@ -2,7 +2,6 @@
 	import ButtonGroup from '$lib/components/ButtonGroup/ButtonGroup.svelte';
 	import CharacterGallery from '$lib/components/CharacterGallery/CharacterGallery.svelte';
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
-	import { ScreenSize } from '$lib/types/sceenSize';
 	import type { SubMenuConfig } from '$lib/types/subMenuConfig';
 	import { sabbatCharakter } from '$lib/types/zod/sabbatCharakter';
 	import { type SabbatPack } from '$lib/types/zod/sabbatPacks';
@@ -104,7 +103,6 @@
 					store: jahrFilter
 				}
 			]}
-			smallSwitch={width < ScreenSize.SM}
 			rounded="rounded-none!"
 		/>
 	{/await}
