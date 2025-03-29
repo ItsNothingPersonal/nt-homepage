@@ -1,19 +1,19 @@
 import { z } from 'zod';
-import { directusUser } from './directus/directusUser';
-import { folderInformation } from './folderInformation';
+import { directusFolder } from './directusFolder';
+import { directusUser } from './directusUser';
 
-export const fileInformation = z.object({
+export const directusFile: z.ZodType<any> = z.object({
 	id: z.string(),
 	storage: z.string(),
 	filename_disk: z.string().nullable(),
 	filename_download: z.string(),
 	title: z.string().nullable(),
 	type: z.string().nullable(),
-	folder: z.union([z.string(), folderInformation]).optional().nullable(),
+	folder: z.union([directusFolder, z.string()]).optional().nullable(),
 	uploaded_by: z.union([directusUser, z.string()]).nullable(),
-	uploaded_on: z.string().datetime(),
+	uploaded_on: z.date(),
 	modified_by: z.union([directusUser, z.string()]).nullable(),
-	modified_on: z.string().datetime().nullable(),
+	modified_on: z.date(),
 	charset: z.string().nullable(),
 	filesize: z.string().nullable(),
 	width: z.number().nullable(),
@@ -22,8 +22,10 @@ export const fileInformation = z.object({
 	embed: z.unknown(),
 	description: z.string().nullable(),
 	location: z.string().nullable(),
-	tags: z.array(z.string()).nullable(),
-	metadata: z.record(z.string(), z.any()).nullable()
+	tags: z.string().array().nullable(),
+	metadata: z.record(z.string(), z.any()).nullable(),
+	focal_point_x: z.number().nullable(),
+	focal_point_y: z.number().nullable()
 });
 
-export type FileInformation = z.infer<typeof fileInformation>;
+export type DirectusFile = z.infer<typeof directusFile>;

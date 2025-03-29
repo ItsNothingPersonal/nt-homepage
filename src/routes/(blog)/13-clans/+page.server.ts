@@ -1,5 +1,6 @@
 import { type Clan } from '$lib/types/zod/clan';
 import { readItems, readSingleton } from '@directus/sdk';
+// @ts-ignore
 import { compile } from 'mdsvex';
 import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';

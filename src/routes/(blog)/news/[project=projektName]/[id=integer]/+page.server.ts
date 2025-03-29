@@ -2,6 +2,7 @@ import { news, type News } from '$lib/types/zod/news';
 import type { NewsWithUser } from '$lib/types/zod/newsWithUser';
 import { readItem, readUser } from '@directus/sdk';
 import { error } from '@sveltejs/kit';
+// @ts-ignore
 import { compile } from 'mdsvex';
 import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
