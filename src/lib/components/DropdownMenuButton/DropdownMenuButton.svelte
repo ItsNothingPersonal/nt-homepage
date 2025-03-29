@@ -47,7 +47,7 @@
 		{#if popupMenu}
 			{@render popupMenu()}
 		{:else if subMenu}
-			{#each subMenu as entry}
+			{#each subMenu as entry (entry.label)}
 				<a href={entry.href} class="btn btn-base capitalize">{entry.label}</a>
 			{/each}
 		{/if}

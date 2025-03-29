@@ -79,7 +79,7 @@
 							Home
 						</a>
 
-						{#each menuData as menuDataEntry}
+						{#each menuData as menuDataEntry (menuDataEntry.id)}
 							{#if menuDataEntry.subData}
 								<Accordion.Item
 									value={menuDataEntry.label}
@@ -88,7 +88,7 @@
 									{#snippet control()}{menuDataEntry.label}{/snippet}
 									{#snippet panel()}
 										{#if menuDataEntry.subData}
-											{#each menuDataEntry.subData as subEntry}
+											{#each menuDataEntry.subData as subEntry (subEntry.label)}
 												<a
 													href={subEntry.href}
 													class="btn btn-base hover:preset-tonal capitalize"
@@ -130,7 +130,7 @@
 		{#snippet trail()}
 			<LightSwitch />
 		{/snippet}
-		{#each menuData as menuDataEntry}
+		{#each menuData as menuDataEntry (menuDataEntry.id)}
 			{#if menuDataEntry.subData}
 				<DropdownMenuButton subMenu={menuDataEntry.subData}>
 					{menuDataEntry.label}

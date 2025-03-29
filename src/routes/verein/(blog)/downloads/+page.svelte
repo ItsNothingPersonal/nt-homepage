@@ -42,7 +42,7 @@
 				</tr>
 			</thead>
 			<tbody class="[&>tr]:hover:preset-tonal-primary [&>tr]:hover:cursor-pointer">
-				{#each getTableContent(folderResponse) as row}
+				{#each getTableContent(folderResponse) as row (row.id)}
 					<tr id={row.id} onclick={() => onSelected(row.id)}>
 						<td class="break-all">{row.name}</td>
 						<td>{row.size}</td>

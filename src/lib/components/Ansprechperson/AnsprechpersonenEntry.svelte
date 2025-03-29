@@ -24,7 +24,7 @@
 		{/if}
 		<hr class="my-1" />
 		<div class="mt-2 mb-2 flex flex-col md:grid md:grid-cols-3 md:grid-rows-1">
-			{#each personen as person}
+			{#each personen as person (person.id)}
 				<div class="mb-2 flex flex-col items-center last:mb-0">
 					<p class="font-semibold">{person.name}</p>
 					<p>{person.rolle.name}</p>

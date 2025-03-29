@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { directusFolder } from './directusFolder';
 import { directusUser } from './directusUser';
 
-export const directusFile: z.ZodType<any> = z.object({
+export const directusFile: z.ZodType<unknown> = z.object({
 	id: z.string(),
 	storage: z.string(),
 	filename_disk: z.string().nullable(),

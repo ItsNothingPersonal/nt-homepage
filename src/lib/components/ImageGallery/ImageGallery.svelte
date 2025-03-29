@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { ScreenSize } from '$lib/types/sceenSize';
 	import type { FileInformation } from '$lib/types/zod/fileInformation';
 	import type { FolderInformation } from '$lib/types/zod/folderInformation';
 	import { isString } from '$lib/util';
@@ -73,13 +72,12 @@
 			store: galleryFilter
 		}
 	]}
-	smallSwitch={width < ScreenSize.SM}
-	rounded={'rounded-none!'}
+	rounded="rounded-none!"
 />
 
 <section class="grid grid-cols-2 md:grid-cols-4">
 	<div class="flex flex-col">
-		{#each rowA as rowAElement, index}
+		{#each rowA as rowAElement, index (rowAElement)}
 			<ImageModal
 				id={rowAElement.id}
 				description={rowAElement.description}
@@ -88,7 +86,7 @@
 		{/each}
 	</div>
 	<div class="flex flex-col">
-		{#each rowB as rowBElement, index}
+		{#each rowB as rowBElement, index (rowBElement.id)}
 			<ImageModal
 				id={rowBElement.id}
 				description={rowBElement.description}
@@ -97,7 +95,7 @@
 		{/each}
 	</div>
 	<div class="flex flex-col">
-		{#each rowC as rowCElement, index}
+		{#each rowC as rowCElement, index (rowCElement.id)}
 			<ImageModal
 				id={rowCElement.id}
 				description={rowCElement.description}
@@ -106,7 +104,7 @@
 		{/each}
 	</div>
 	<div class="flex flex-col">
-		{#each rowD as rowDElement, index}
+		{#each rowD as rowDElement, index (rowDElement.id)}
 			<ImageModal
 				id={rowDElement.id}
 				description={rowDElement.description}

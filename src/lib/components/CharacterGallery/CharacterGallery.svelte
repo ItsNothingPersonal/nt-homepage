@@ -69,7 +69,7 @@
 			/>
 		{:else}
 			<div class="mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2">
-				{#each leaders as singleLeader}
+				{#each leaders as singleLeader (singleLeader.name)}
 					<CharacterCard
 						characterName={singleLeader.name}
 						clan={singleLeader.clan}
@@ -92,7 +92,7 @@
 		<div
 			class="gal-sm:grid-cols-3 gal:grid-cols-4 mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2"
 		>
-			{#each officers as charakter}
+			{#each officers as charakter (charakter.name)}
 				<CharacterCard
 					characterName={charakter.name}
 					clan={charakter.clan}
@@ -107,7 +107,7 @@
 		</div>
 	{:else}
 		<div class="mb-4 flex flex-wrap justify-center gap-2">
-			{#each officers as charakter}
+			{#each officers as charakter (charakter.name)}
 				<CharacterCard
 					characterName={charakter.name}
 					clan={charakter.clan}
@@ -126,7 +126,7 @@
 {#if selektiertesPack && selektiertesPack.leaders.length > 0}
 	<h2 class="h2 mb-2 flex justify-center font-bold">Anführer</h2>
 	<div class="mb-4 flex flex-col justify-center gap-2 md:flex-row">
-		{#each selektiertesPack.leaders as charakter}
+		{#each selektiertesPack.leaders as charakter (charakter.name)}
 			<CharacterCard
 				characterName={charakter.name}
 				clan={charakter.clan}
@@ -150,7 +150,7 @@
 	<div
 		class="gal-sm:grid-cols-3 gal:grid-cols-4 mb-10 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2"
 	>
-		{#each charaktere as charakter}
+		{#each charaktere as charakter (charakter.name)}
 			<CharacterCard
 				characterName={charakter.name}
 				clan={charakter.clan}
@@ -166,7 +166,7 @@
 {:else}
 	<div class="mb-10 flex h-max w-full justify-center">
 		<div class="mb-4 flex flex-col gap-2 md:grid md:grid-cols-2 lg:flex lg:flex-row">
-			{#each charaktere as charakter}
+			{#each charaktere as charakter (charakter.name)}
 				<CharacterCard
 					characterName={charakter.name}
 					clan={charakter.clan}

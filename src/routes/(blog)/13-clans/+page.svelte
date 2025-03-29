@@ -66,14 +66,14 @@
 />
 
 <div
-	class={`grid grid-cols-3 grid-rows-7 gap-y-2 text-center sm:grid-cols-6 sm:gap-4 md:grid-rows-1`}
+	class="grid grid-cols-3 grid-rows-7 gap-y-2 text-center sm:grid-cols-6 sm:gap-4 md:grid-rows-1"
 >
 	{#await data.clans}
 		<LoadingMessage>Lade Clans</LoadingMessage>
 	{:then clans}
 		{#each clans
 			.filter((clan) => clan.name !== 'Banu Haqim' && clan.name !== 'Caitiff' && clan.name !== 'Thin-Bloods' && clan.name !== 'Ministry' && clan.name !== 'Hecata' && clan.name !== 'Salubri')
-			.filter((e) => e.sekte?.match($sectFilter)) as clan}
+			.filter((e) => e.sekte?.match($sectFilter)) as clan (clan.id)}
 			<a href={`/13-clans/${clan.id}`} class="flex flex-col items-center">
 				<img
 					src={`${PUBLIC_DIRECTUS_URL}/assets/${clan.logo}?fit=cover&width=${

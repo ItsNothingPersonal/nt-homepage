@@ -22,7 +22,7 @@
 		<div class="mb-4 flex place-content-center">
 			<SocialButton
 				icon="email"
-				href={`mailto:Sabbat@NaechtlichesTheater.de`}
+				href="mailto:Sabbat@NaechtlichesTheater.de"
 				text="Kontakt zur Spielleitung"
 			/>
 		</div>

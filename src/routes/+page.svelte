@@ -43,7 +43,7 @@
 	{:then newsListEntry}
 		{#each newsListEntry
 			.flat()
-			.sort((objA, objB) => objB.date_created.getTime() - objA.date_created.getTime()) as news}
+			.sort((objA, objB) => objB.date_created.getTime() - objA.date_created.getTime()) as news (news.id)}
 			<ProjektNews
 				title={news.titel}
 				synopsis={news.synopsis}

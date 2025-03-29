@@ -38,7 +38,7 @@
 		<iframe
 			title="Spielort Karte"
 			src={spielort.spielort_karte}
-			style={`border:0; width: 100%;`}
+			style="border:0; width: 100%;"
 			allowfullscreen={true}
 			loading="lazy"
 			referrerpolicy="no-referrer-when-downgrade"

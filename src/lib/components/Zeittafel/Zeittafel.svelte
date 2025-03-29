@@ -16,7 +16,7 @@
 	<div class="relative">
 		<div class="absolute top-0 left-4 h-full w-1 bg-gray-300"></div>
 
-		{#each events as event}
+		{#each events as event (event.id)}
 			<div class="mb-6 ml-8 flex flex-col items-center">
 				{#if event.titel}
 					<Icon icon="octicon:dot-fill-24" class="absolute left-[0.2rem] self-center text-3xl" />

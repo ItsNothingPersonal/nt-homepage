@@ -7,23 +7,17 @@
 	interface Props {
 		config: FilterButtonConfig[];
 		defaultOnClick?: FilterFunction | undefined;
-		smallSwitch?: boolean;
 		rounded?: string;
 	}
 
-	let {
-		config,
-		defaultOnClick = undefined,
-		smallSwitch = false,
-		rounded = 'rounded-lg!'
-	}: Props = $props();
+	let { config, defaultOnClick = undefined, rounded = 'rounded-lg!' }: Props = $props();
 </script>
 
 <div class="mb-4 flex justify-center">
 	<div
 		class={`btn-group preset-filled-primary-500 grid ${config.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} flex-col rounded-lg p-2 md:flex md:flex-row`}
 	>
-		{#each config as entry}
+		{#each config as entry (entry.label)}
 			{#if entry.subMenu}
 				<DropdownMenuButton
 					popUpId="button-group-{entry.label}"

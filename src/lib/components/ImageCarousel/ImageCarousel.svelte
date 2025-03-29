@@ -67,7 +67,7 @@
 	</button>
 	<!-- Full Images -->
 	<div bind:this={elemCarousel} class="flex snap-x snap-mandatory overflow-x-hidden scroll-smooth">
-		{#each images as image, i}
+		{#each images as image, i (image)}
 			<img
 				class="snap-center rounded-lg"
 				src={image}

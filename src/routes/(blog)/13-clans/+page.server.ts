@@ -1,6 +1,6 @@
 import { type Clan } from '$lib/types/zod/clan';
 import { readItems, readSingleton } from '@directus/sdk';
-// @ts-ignore
+// @ts-expect-error compile is fine, just doesn't export types anymore
 import { compile } from 'mdsvex';
 import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
