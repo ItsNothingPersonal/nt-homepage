@@ -77,7 +77,7 @@
 
 <section class="grid grid-cols-2 md:grid-cols-4">
 	<div class="flex flex-col">
-		{#each rowA as rowAElement, index (rowAElement)}
+		{#each rowA as rowAElement, index (rowAElement.id)}
 			<ImageModal
 				id={rowAElement.id}
 				description={rowAElement.description}

@@ -14,7 +14,7 @@ export const fileInformation = z.object({
 	modified_by: z.string().nullable(),
 	modified_on: z.string().datetime().nullable(),
 	charset: z.string().nullable(),
-	filesize: z.number(),
+	filesize: z.number().or(z.string()),
 	width: z.number().nullable(),
 	height: z.number().nullable(),
 	duration: z.number().nullable(),

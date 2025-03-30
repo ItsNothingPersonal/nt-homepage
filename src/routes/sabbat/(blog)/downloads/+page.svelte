@@ -16,7 +16,7 @@
 				return {
 					id: e.id,
 					name: e.filename_download,
-					size: e.filesize ? e.filesize / 1024 ** 2 : 0
+					size: e.filesize ? Number(e.filesize) / 1024 ** 2 : 0
 				};
 			})
 			.map((e) => {
