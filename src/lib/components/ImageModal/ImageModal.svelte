@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getImageUrl, getOriginalFile } from '$lib/util';
+	import { getOriginalFile } from '$lib/util';
 	import { Modal } from '@skeletonlabs/skeleton-svelte';
 	import { Image, Source } from '@unpic/svelte';
 
@@ -23,9 +23,9 @@
 >
 	{#snippet trigger()}
 		<picture>
-			<Source src={getImageUrl(id)} type="image/webp" layout="fullWidth" cdn="directus" />
+			<Source src={getOriginalFile(id)} type="image/webp" layout="fullWidth" cdn="directus" />
 			<Image
-				src={getImageUrl(id)}
+				src={getOriginalFile(id)}
 				layout="fullWidth"
 				alt={description ?? ''}
 				class="rounded-lg"
