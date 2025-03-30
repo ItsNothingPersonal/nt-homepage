@@ -2,7 +2,6 @@
 	import ButtonGroup from '$lib/components/ButtonGroup/ButtonGroup.svelte';
 	import CharacterGallery from '$lib/components/CharacterGallery/CharacterGallery.svelte';
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
-	import { ScreenSize } from '$lib/types/sceenSize';
 	import { type SabbatPack } from '$lib/types/zod/sabbatPacks';
 	import { writable, type Writable } from 'svelte/store';
 	import {
@@ -15,14 +14,14 @@
 		swapOffizierFilter
 	} from '../charakterUtil';
 
-	export let data;
+	let { data } = $props();
 
 	const packFilter = writable('.*');
 	const offizierFilter = writable('');
 	const einzelgaengerFilter: Writable<boolean> = writable(false);
 	const selektiertesPack = writable<SabbatPack | undefined>();
 
-	let width = 0;
+	let width = $state(0);
 </script>
 
 <svelte:window bind:innerWidth={width} />
@@ -61,8 +60,7 @@
 					store: offizierFilter
 				}
 			]}
-			smallSwitch={width < ScreenSize.SM}
-			rounded={'!rounded-none'}
+			rounded="rounded-none!"
 		/>
 	{/await}
 

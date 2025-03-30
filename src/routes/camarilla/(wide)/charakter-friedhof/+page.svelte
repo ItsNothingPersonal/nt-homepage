@@ -2,7 +2,6 @@
 	import ButtonGroup from '$lib/components/ButtonGroup/ButtonGroup.svelte';
 	import CharacterGallery from '$lib/components/CharacterGallery/CharacterGallery.svelte';
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
-	import { ScreenSize } from '$lib/types/sceenSize';
 	import { SektenName } from '$lib/types/sektenName';
 	import type { SubMenuConfig } from '$lib/types/subMenuConfig';
 	import { camarillaCharakter } from '$lib/types/zod/camarillaCharaktere';
@@ -17,16 +16,16 @@
 		swapSectFilter
 	} from '../charakterUtil';
 
-	export let data;
+	let { data } = $props();
 
 	const sectFilter = writable('.*');
 	const offizierFilter = writable('');
 	const clanFilter = writable('.*');
 	const jahrFilter = writable('.*');
 
-	let width = 0;
+	let width = $state(0);
 
-	let jahrSubMenu: SubMenuConfig[] = [];
+	let jahrSubMenu: SubMenuConfig[] = $state([]);
 	const uniqueYearsSet = new Set<number>();
 
 	async function getJahrSubMenu(jahrFilter: Writable<string>) {
@@ -99,8 +98,7 @@
 				store: jahrFilter
 			}
 		]}
-		smallSwitch={width < ScreenSize.SM}
-		rounded={'!rounded-none'}
+		rounded="rounded-none!"
 	/>
 
 	<CharacterGallery

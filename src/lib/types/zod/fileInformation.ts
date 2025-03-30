@@ -6,22 +6,23 @@ export const fileInformation = z.object({
 	storage: z.string(),
 	filename_disk: z.string().nullable(),
 	filename_download: z.string(),
+	title: z.string().nullable(),
 	type: z.string().nullable(),
-	folder: z.string().or(folderInformation).nullable(),
-	uploaded_by: z.string().uuid(),
+	folder: z.union([z.string(), folderInformation]).nullable(),
+	uploaded_by: z.string().nullable(),
 	uploaded_on: z.string().datetime(),
-	modified_by: z.string().uuid().nullable(),
-	modified_on: z.string().datetime(),
+	modified_by: z.string().nullable(),
+	modified_on: z.string().datetime().nullable(),
 	charset: z.string().nullable(),
-	filesize: z.string().nullable(),
+	filesize: z.number().or(z.string()),
 	width: z.number().nullable(),
 	height: z.number().nullable(),
 	duration: z.number().nullable(),
-	embed: z.unknown(),
+	embed: z.string().nullable(),
 	description: z.string().nullable(),
 	location: z.string().nullable(),
-	tags: z.string().array().nullable(),
-	metadata: z.any()
+	tags: z.array(z.string()).nullable(),
+	metadata: z.record(z.string(), z.any()).nullable()
 });
 
 export type FileInformation = z.infer<typeof fileInformation>;

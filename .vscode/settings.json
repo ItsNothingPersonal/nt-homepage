@@ -1,3 +1,4 @@
 {
-	"workbench.editor.labelFormat": "short"
+	"workbench.editor.labelFormat": "short",
+	"eslint.validate": ["javascript", "typescript", "javascriptreact", "svelte"]
 }

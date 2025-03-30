@@ -2,12 +2,12 @@
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 	import SocialButton from '$lib/components/Socials/socialButton.svelte';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <div class="grid grid-cols-1 gap-2 lg:grid-cols-3">
 	<h1 class="h1 mb-4 text-center font-bold md:col-span-3">Kontakt</h1>
-	<h2 class="h2 mb-2 mt-4 flex justify-center font-bold md:col-span-3">Social-Media</h2>
+	<h2 class="h2 mt-4 mb-2 flex justify-center font-bold md:col-span-3">Social-Media</h2>
 	<p class="text-center md:col-span-3">
 		Der Verein ist auf den folgenden Social-Media-Kanälen vertreten.
 	</p>
@@ -16,7 +16,7 @@
 	<SocialButton icon="facebook" />
 	<SocialButton icon="instagram" />
 
-	<h2 class="h2 mb-2 mt-4 flex justify-center font-bold md:col-span-3">E-Mail</h2>
+	<h2 class="h2 mt-4 mb-2 flex justify-center font-bold md:col-span-3">E-Mail</h2>
 	<p class="text-center md:col-span-3">
 		Der Verein und seine Projekte können über die folgenden E-Mail-Adressen kontaktiert werden.
 	</p>

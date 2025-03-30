@@ -1,7 +1,6 @@
 import type { SubMenuConfig } from '$lib/types/subMenuConfig';
 import type { FileInformation } from '$lib/types/zod/fileInformation';
 import type { FolderInformation } from '$lib/types/zod/folderInformation';
-import type { ModalSettings, ModalStore } from '@skeletonlabs/skeleton';
 import { get, type Writable } from 'svelte/store';
 
 export function splitArrayIntoParts(array: FileInformation[], parts: number) {
@@ -14,20 +13,6 @@ export function splitArrayIntoParts(array: FileInformation[], parts: number) {
 	}
 
 	return result;
-}
-
-export function modalComponentImage(
-	modalStore: ModalStore,
-	imageUrl: string,
-	alt: string | undefined | null = ''
-): void {
-	const modal: ModalSettings = {
-		type: 'component',
-		component: 'image',
-		image: imageUrl,
-		meta: { alt: alt ?? '' }
-	};
-	modalStore.trigger(modal);
 }
 
 export function swapGalleryFilter(galleryFilter: Writable<string>, filter: string) {

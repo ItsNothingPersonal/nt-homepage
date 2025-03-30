@@ -5,12 +5,23 @@
 	import { getDownloadUrl, isNullOrUndefined } from '$lib/util';
 	import CharacterCard from './CharacterCard.svelte';
 
-	export let leaders: CamarillaCharakter[] | SabbatCharakter[];
-	export let officers: CamarillaCharakter[] | SabbatCharakter[];
-	export let charaktere: CamarillaCharakter[] | SabbatCharakter[];
-	export let noFilterActive: boolean;
-	export let setting: 'Camarilla' | 'Sabbat';
-	export let selektiertesPack: PackInformation | undefined = undefined;
+	interface Props {
+		leaders: CamarillaCharakter[] | SabbatCharakter[];
+		officers: CamarillaCharakter[] | SabbatCharakter[];
+		charaktere: CamarillaCharakter[] | SabbatCharakter[];
+		noFilterActive: boolean;
+		setting: 'Camarilla' | 'Sabbat';
+		selektiertesPack?: PackInformation | undefined;
+	}
+
+	let {
+		leaders,
+		officers,
+		charaktere,
+		noFilterActive,
+		setting,
+		selektiertesPack = undefined
+	}: Props = $props();
 </script>
 
 {#if !isNullOrUndefined(selektiertesPack?.pack?.beschreibung) || !isNullOrUndefined(selektiertesPack?.pack.logo)}
@@ -27,7 +38,7 @@
 					<img
 						src={getDownloadUrl(selektiertesPack?.pack.logo)}
 						alt={`Logo des Packs ${selektiertesPack?.pack.name}`}
-						class={`mb-2  mr-4 max-h-56 rounded-lg  ${
+						class={`mr-4  mb-2 max-h-56 rounded-lg  ${
 							selektiertesPack?.pack.beschreibung ? 'float-left shadow-lg dark:shadow-gray-800' : ''
 						}`}
 					/>
@@ -43,7 +54,7 @@
 {/if}
 
 {#if leaders.length > 0 && noFilterActive}
-	<h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Anführer</h2>
+	<h2 class="h2 mt-4 mb-2 flex justify-center font-bold">Anführer</h2>
 	<div class="flex justify-center">
 		{#if leaders.length === 1}
 			<CharacterCard
@@ -58,7 +69,7 @@
 			/>
 		{:else}
 			<div class="mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2">
-				{#each leaders as singleLeader}
+				{#each leaders as singleLeader (singleLeader.name)}
 					<CharacterCard
 						characterName={singleLeader.name}
 						clan={singleLeader.clan}
@@ -76,12 +87,12 @@
 {/if}
 
 {#if officers.length > 0 && noFilterActive}
-	<h2 class="h2 mb-2 mt-4 flex justify-center font-bold">Offiziere</h2>
+	<h2 class="h2 mt-4 mb-2 flex justify-center font-bold">Offiziere</h2>
 	{#if officers.length >= 4}
 		<div
-			class="mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4"
+			class="gal-sm:grid-cols-3 gal:grid-cols-4 mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2"
 		>
-			{#each officers as charakter}
+			{#each officers as charakter (charakter.name)}
 				<CharacterCard
 					characterName={charakter.name}
 					clan={charakter.clan}
@@ -96,7 +107,7 @@
 		</div>
 	{:else}
 		<div class="mb-4 flex flex-wrap justify-center gap-2">
-			{#each officers as charakter}
+			{#each officers as charakter (charakter.name)}
 				<CharacterCard
 					characterName={charakter.name}
 					clan={charakter.clan}
@@ -115,7 +126,7 @@
 {#if selektiertesPack && selektiertesPack.leaders.length > 0}
 	<h2 class="h2 mb-2 flex justify-center font-bold">Anführer</h2>
 	<div class="mb-4 flex flex-col justify-center gap-2 md:flex-row">
-		{#each selektiertesPack.leaders as charakter}
+		{#each selektiertesPack.leaders as charakter (charakter.name)}
 			<CharacterCard
 				characterName={charakter.name}
 				clan={charakter.clan}
@@ -137,9 +148,9 @@
 {/if}
 {#if charaktere.length >= 4}
 	<div
-		class="mb-10 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2 gal-sm:grid-cols-3 gal:grid-cols-4"
+		class="gal-sm:grid-cols-3 gal:grid-cols-4 mb-10 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2"
 	>
-		{#each charaktere as charakter}
+		{#each charaktere as charakter (charakter.name)}
 			<CharacterCard
 				characterName={charakter.name}
 				clan={charakter.clan}
@@ -155,7 +166,7 @@
 {:else}
 	<div class="mb-10 flex h-max w-full justify-center">
 		<div class="mb-4 flex flex-col gap-2 md:grid md:grid-cols-2 lg:flex lg:flex-row">
-			{#each charaktere as charakter}
+			{#each charaktere as charakter (charakter.name)}
 				<CharacterCard
 					characterName={charakter.name}
 					clan={charakter.clan}
