@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { PreprocessorReturn } from '$lib/types/preprocessorReturn';
 	import type { CamarillaUebersichtFiles } from '$lib/types/zod/camarillaUebersichtFiles';
 	import type { ProjektUebersicht } from '$lib/types/zod/projektUebersicht';
 	import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles';
@@ -13,8 +12,8 @@
 	interface Props {
 		titel: string;
 		projektUbersicht: Promise<ProjektUebersicht>;
-		beschreibung: PreprocessorReturn;
-		spieltermine: PreprocessorReturn;
+		beschreibung: string;
+		spieltermine: string;
 		images?:
 			| Promise<Wh40kUebersichtFiles[] | SabbatUebersichtFiles[] | CamarillaUebersichtFiles[]>
 			| undefined;
@@ -51,7 +50,7 @@
 				{#await beschreibung}
 					<LoadingMessage>Formatiere Projektbeschreibung</LoadingMessage>
 				{:then beschreibung}
-					{@html beschreibung?.code}
+					{@html beschreibung}
 				{/await}
 			</p>
 
@@ -60,7 +59,7 @@
 				{#await spieltermine}
 					<LoadingMessage>Formatiere Spieltermine</LoadingMessage>
 				{:then spieltermine}
-					{@html spieltermine?.code}
+					{@html spieltermine}
 				{/await}
 			</p>
 

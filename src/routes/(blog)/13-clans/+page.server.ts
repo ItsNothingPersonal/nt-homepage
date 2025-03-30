@@ -1,7 +1,6 @@
+import { renderMarkdown } from '$lib/markdownUtil';
 import { type Clan } from '$lib/types/zod/clan';
 import { readItems, readSingleton } from '@directus/sdk';
-// @ts-expect-error compile is fine, just doesn't export types anymore
-import { compile } from 'mdsvex';
 import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
@@ -11,6 +10,6 @@ export const load = (async () => {
 
 	return {
 		clans: clans as Promise<Clan[]>,
-		beschreibung: compile((await wasSindClans).beschreibung)
+		beschreibung: renderMarkdown((await wasSindClans).beschreibung)
 	};
 }) satisfies PageServerLoad;

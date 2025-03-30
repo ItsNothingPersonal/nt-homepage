@@ -14,7 +14,7 @@
 			{#await data.datenverarbeitung}
 				<LoadingMessage>Lade Datenverarbeitungserklärung</LoadingMessage>
 			{:then datenverarbeitung}
-				{@html datenverarbeitung?.code}
+				{@html datenverarbeitung}
 			{/await}
 		{/snippet}
 	</Accordion.Item>
@@ -25,7 +25,7 @@
 			{#await data.datenschutzerklaerung}
 				<LoadingMessage>Lade Datenschutzerklärung</LoadingMessage>
 			{:then datenschutzerklaerung}
-				{@html datenschutzerklaerung?.code}
+				{@html datenschutzerklaerung}
 			{/await}
 		{/snippet}
 	</Accordion.Item>

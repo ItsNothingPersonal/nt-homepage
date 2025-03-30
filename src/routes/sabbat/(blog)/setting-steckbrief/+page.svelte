@@ -27,7 +27,7 @@
 		class={`[&>p]::text-2xl w-full text-gray-900 dark:text-white [&>h2]:text-4xl [&>h2]:font-bold [&>h3]:text-3xl [&>h3]:font-bold [&>p]:mb-2 [&>p]:text-justify [&>p]:first-letter:text-2xl ` +
 			`[&>p>a]:underline [&>p>a]:decoration-dotted [&>p>a]:underline-offset-4`}
 	>
-		{@html beschreibung?.code}
+		{@html beschreibung}
 	</p>
 {/await}
 

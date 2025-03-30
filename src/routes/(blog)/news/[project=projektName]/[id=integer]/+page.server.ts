@@ -1,10 +1,9 @@
+import { renderMarkdown } from '$lib/markdownUtil';
 import type { BasicUser } from '$lib/types/zod/basicUser';
 import { news, type News } from '$lib/types/zod/news';
 import type { NewsWithUser } from '$lib/types/zod/newsWithUser';
 import { readItem, readUser } from '@directus/sdk';
 import { error } from '@sveltejs/kit';
-// @ts-expect-error compile is fine, just doesn't export types anymore
-import { compile } from 'mdsvex';
 import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
@@ -40,7 +39,7 @@ export const load = (async ({ params }) => {
 		id: basicNews.id,
 		titel: basicNews.titel,
 		synopsis: basicNews.synopsis,
-		news: (await compile(basicNews.news))?.code ?? '',
+		news: renderMarkdown(basicNews.news),
 		user_created: {
 			id: author.id,
 			first_name: author.first_name,

@@ -15,6 +15,6 @@
 	{#await data.paragraph86und86a}
 		<LoadingMessage>Lade Informationen zu Paragraph 86 und 86a</LoadingMessage>
 	{:then paragraph86und86a}
-		{@html paragraph86und86a?.code}
+		{@html paragraph86und86a}
 	{/await}
 </p>

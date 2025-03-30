@@ -34,7 +34,7 @@
 	<LoadingMessage>Lade Setting Beschreibung</LoadingMessage>
 {:then beschreibung}
 	<p class="card mb-4 rounded-xs text-justify whitespace-break-spaces shadow-md">
-		{@html beschreibung?.code}
+		{@html beschreibung}
 	</p>
 {/await}
 

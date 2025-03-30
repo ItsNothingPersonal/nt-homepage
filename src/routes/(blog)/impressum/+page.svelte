@@ -65,7 +65,7 @@
 	{#await data.copyrightNotice}
 		<LoadingMessage>Lade Copyright-Angaben</LoadingMessage>
 	{:then copyrightNotice}
-		{@html copyrightNotice?.code}
+		{@html copyrightNotice}
 	{/await}
 </p>
 

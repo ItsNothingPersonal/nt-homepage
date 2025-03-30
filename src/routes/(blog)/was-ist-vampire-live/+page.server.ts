@@ -1,6 +1,5 @@
+import { renderMarkdown } from '$lib/markdownUtil';
 import { readSingleton } from '@directus/sdk';
-// @ts-expect-error compile is fine, just doesn't export types anymore
-import { compile } from 'mdsvex';
 import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
@@ -9,6 +8,6 @@ export const load = (async () => {
 
 	return {
 		wasIstVampireLive,
-		erklaerung: compile((await wasIstVampireLive).erklaerung)
+		erklaerung: renderMarkdown((await wasIstVampireLive).erklaerung)
 	};
 }) satisfies PageServerLoad;
