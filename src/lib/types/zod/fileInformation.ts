@@ -22,7 +22,7 @@ export const fileInformation = z.object({
 	description: z.string().nullable(),
 	location: z.string().nullable(),
 	tags: z.array(z.string()).nullable(),
-	metadata: z.record(z.unknown()).optional()
+	metadata: z.record(z.string(), z.any()).nullable()
 });
 
 export type FileInformation = z.infer<typeof fileInformation>;
