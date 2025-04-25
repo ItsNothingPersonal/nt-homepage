@@ -53,7 +53,7 @@ export const menuData: MenuButtonConfig[] = [
 	{
 		id: 5,
 		href: 'http://user.naechtlichestheater.de',
-		label: 'Login'
+		label: 'Sabbat-Charakter'
 	},
 	{
 		id: 6,
