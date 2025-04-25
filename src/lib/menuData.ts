@@ -52,11 +52,24 @@ export const menuData: MenuButtonConfig[] = [
 	},
 	{
 		id: 5,
-		href: 'http://user.naechtlichestheater.de',
-		label: 'Login'
+		label: 'Logins',
+		subData: [
+			{
+				href: 'https://elysium.naechtlichestheater.de',
+				label: 'Elysium'
+			},
+			{
+				href: 'http://user.naechtlichestheater.de',
+				label: 'Sabbat-Charakter'
+			},
+			{
+				href: 'https://www.beta-cc.de/osticket/tickets.php',
+				label: 'Ticketsystem'
+			}
+		]
 	},
 	{
-		id: 6,
+		id: 8,
 		href: '/impressum',
 		label: 'Impressum'
 	}
