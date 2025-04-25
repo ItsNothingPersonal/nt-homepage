@@ -57,6 +57,11 @@ export const menuData: MenuButtonConfig[] = [
 	},
 	{
 		id: 6,
+		href: 'https://elysium.naechtlichestheater.de',
+		label: 'Elysium'
+	},
+	{
+		id: 7,
 		href: '/impressum',
 		label: 'Impressum'
 	}
