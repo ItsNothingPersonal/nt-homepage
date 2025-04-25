@@ -62,6 +62,11 @@ export const menuData: MenuButtonConfig[] = [
 	},
 	{
 		id: 7,
+		href: 'https://www.beta-cc.de/osticket/tickets.php',
+		label: 'Ticketsystem'
+	},
+	{
+		id: 8,
 		href: '/impressum',
 		label: 'Impressum'
 	}
