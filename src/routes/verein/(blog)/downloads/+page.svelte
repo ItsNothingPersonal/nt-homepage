@@ -1,13 +1,11 @@
 <script lang="ts">
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
-	import type { FileInformation } from '$lib/types/zod/fileInformation.js';
+	import { fileInformation, type FileInformation } from '$lib/types/zod/fileInformation.js';
 	import { getDownloadUrl } from '$lib/util.js';
-	import { Table, tableMapperValues } from '@skeletonlabs/skeleton';
+	let { data } = $props();
 
-	export let data;
-
-	function onSelected(info: { detail: string[] }) {
-		window.open(getDownloadUrl(info.detail[0]));
+	function onSelected(id: string) {
+		window.open(getDownloadUrl(id));
 	}
 
 	function getTableContent(
@@ -18,7 +16,7 @@
 				return {
 					id: e.id,
 					name: e.filename_download,
-					size: e.filesize ? parseInt(e.filesize) / 1024 ** 2 : 0
+					size: e.filesize ? Number(e.filesize) / 1024 ** 2 : 0
 				};
 			})
 			.map((e) => {
@@ -35,14 +33,22 @@
 {#await data.folderResponse}
 	<LoadingMessage>Lade Vereins-Downloads</LoadingMessage>
 {:then folderResponse}
-	<Table
-		class="!rounded-lg [&>table]:!rounded-lg"
-		source={{
-			head: ['Name', 'Größe'],
-			body: tableMapperValues(getTableContent(folderResponse), ['name', 'size']),
-			meta: tableMapperValues(getTableContent(folderResponse), ['id'])
-		}}
-		interactive={true}
-		on:selected={onSelected}
-	/>
+	<div class="table-wrap">
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="dark:text-white/50">Name</th>
+					<th class="dark:text-white/50">Größe</th>
+				</tr>
+			</thead>
+			<tbody class="[&>tr]:hover:preset-tonal-primary [&>tr]:hover:cursor-pointer">
+				{#each getTableContent(fileInformation.array().parse(folderResponse)) as row (row.id)}
+					<tr id={row.id} onclick={() => onSelected(row.id)}>
+						<td class="break-all">{row.name}</td>
+						<td>{row.size}</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	</div>
 {/await}

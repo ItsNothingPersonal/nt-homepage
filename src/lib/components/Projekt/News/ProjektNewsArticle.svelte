@@ -2,13 +2,17 @@
 	import type { ProjektName } from '$lib/types/zod/projektName';
 	import { getDownloadUrl, getFormattedDay, getFormattedMonth } from '$lib/util';
 
-	export let title: string;
-	export let news: string;
-	export let authorFirstName: string | null | undefined;
-	export let authorLastName: string | null | undefined;
-	export let avatar: string | undefined | null;
-	export let date: Date | undefined;
-	export let project: ProjektName;
+	interface Props {
+		title: string;
+		news: string;
+		authorFirstName: string | null | undefined;
+		authorLastName: string | null | undefined;
+		avatar: string | undefined | null;
+		date: Date | undefined;
+		project: ProjektName;
+	}
+
+	let { title, news, authorFirstName, authorLastName, avatar, date, project }: Props = $props();
 </script>
 
 <div class="bg-light-50 dark:bg-dark-700 card w-full p-4 text-left">
@@ -33,9 +37,9 @@
 		{title}
 	</h1>
 	<p
-		class={`[&>h1]:text-3xl [&>h1]:font-bold [&>h2]:text-2xl [&>h2]:font-bold [&>h3]:text-xl [&>h3]:font-bold [&>p]:mb-2 [&>p]:whitespace-pre-line [&>p]:text-justify [&>p]:first-letter:text-2xl` +
+		class={`[&>h1]:text-3xl [&>h1]:font-bold [&>h2]:text-2xl [&>h2]:font-bold [&>h3]:text-xl [&>h3]:font-bold [&>p]:mb-2 [&>p]:text-justify [&>p]:whitespace-pre-line [&>p]:first-letter:text-2xl` +
 			`w-full text-gray-900 dark:text-white [&>ol]:list-inside [&>ol]:list-decimal [&>p>a]:underline [&>p>a]:decoration-dotted [&>p>a]:underline-offset-4 [&>ul]:list-inside [&>ul]:list-disc ` +
-			`[&>blockquote]:border-l-4 [&>blockquote]:border-gray-300 [&>blockquote]:bg-gray-50 [&>blockquote]:p-4 [&>blockquote]:dark:bg-gray-800 [&>table]:w-full [&>table]:table-auto`}
+			`[&>blockquote]:border-l-4 [&>blockquote]:border-gray-300 [&>blockquote]:bg-gray-50 [&>blockquote]:p-4 dark:[&>blockquote]:bg-gray-800 [&>table]:w-full [&>table]:table-auto`}
 	>
 		{@html news}
 	</p>

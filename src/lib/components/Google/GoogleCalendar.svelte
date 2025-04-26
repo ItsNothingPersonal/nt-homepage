@@ -1,6 +1,10 @@
 <script lang="ts">
-	export let src: string;
-	export let size: 'normal' | 'small' = 'normal';
+	interface Props {
+		src: string;
+		size?: 'normal' | 'small';
+	}
+
+	let { src, size = 'normal' }: Props = $props();
 </script>
 
 <div class="mt-4 w-full overflow-hidden border-2 border-gray-300 shadow-lg dark:shadow-gray-800">
@@ -16,5 +20,5 @@
 		scrolling="no"
 		frameborder="0"
 		height="600"
-	/>
+	></iframe>
 </div>

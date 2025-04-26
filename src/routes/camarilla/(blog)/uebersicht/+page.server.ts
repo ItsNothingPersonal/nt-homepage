@@ -1,5 +1,5 @@
+import { renderMarkdown } from '$lib/markdownUtil';
 import { readItems, readSingleton } from '@directus/sdk';
-import { compile } from 'mdsvex';
 import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
@@ -8,8 +8,8 @@ export const load = (async () => {
 	const bilder = client.request(readItems('camarilla_uebersicht_files'));
 
 	return {
-		beschreibung: compile((await response).beschreibung ?? ''),
-		spieltermine: compile((await response).spieltermine ?? ''),
+		beschreibung: renderMarkdown((await response).beschreibung ?? ''),
+		spieltermine: renderMarkdown((await response).spieltermine ?? ''),
 		bilder,
 		camarillaUebersicht: response
 	};

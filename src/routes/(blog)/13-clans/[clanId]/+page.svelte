@@ -4,9 +4,9 @@
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 	import { isNullOrUndefined } from '$lib/util.js';
 
-	export let data;
+	let { data } = $props();
 
-	let innerWidth: number = 0;
+	let innerWidth: number = $state(0);
 </script>
 
 <svelte:window bind:innerWidth />
@@ -37,8 +37,8 @@
 		<LoadingMessage>Lade Clan-Beschreibung</LoadingMessage>
 	{:then beschreibung}
 		<p class="[&>p]::text-2xl [&>p]:mb-2 [&>p]:text-justify [&>p]:first-letter:text-2xl">
-			{@html beschreibung?.code}
-			{#if beschreibung?.code !== '\n\n'}
+			{@html beschreibung}
+			{#if beschreibung !== '\n\n'}
 				<a
 					href="https://whitewolf.fandom.com/de/wiki/Vampire:_Die_Maskerade_1999"
 					class="text-sm underline decoration-dotted underline-offset-4"

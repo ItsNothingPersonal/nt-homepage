@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { PreprocessorReturn } from '$lib/types/preprocessorReturn';
 	import type { CamarillaUebersichtFiles } from '$lib/types/zod/camarillaUebersichtFiles';
 	import type { ProjektUebersicht } from '$lib/types/zod/projektUebersicht';
 	import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles';
@@ -10,15 +9,19 @@
 	import LoadingMessage from '../LoadingMessage/LoadingMessage.svelte';
 	import SocialButton from '../Socials/socialButton.svelte';
 
-	export let titel: string;
-	export let projektUbersicht: Promise<ProjektUebersicht>;
-	export let beschreibung: PreprocessorReturn;
-	export let spieltermine: PreprocessorReturn;
-	export let images:
-		| Promise<Wh40kUebersichtFiles[] | SabbatUebersichtFiles[] | CamarillaUebersichtFiles[]>
-		| undefined = undefined;
+	interface Props {
+		titel: string;
+		projektUbersicht: Promise<ProjektUebersicht>;
+		beschreibung: string;
+		spieltermine: string;
+		images?:
+			| Promise<Wh40kUebersichtFiles[] | SabbatUebersichtFiles[] | CamarillaUebersichtFiles[]>
+			| undefined;
+	}
 
-	let innerWidth: number;
+	let { titel, projektUbersicht, beschreibung, spieltermine, images = undefined }: Props = $props();
+
+	let innerWidth: number = $state(0);
 </script>
 
 <svelte:window bind:innerWidth />
@@ -47,7 +50,7 @@
 				{#await beschreibung}
 					<LoadingMessage>Formatiere Projektbeschreibung</LoadingMessage>
 				{:then beschreibung}
-					{@html beschreibung?.code}
+					{@html beschreibung}
 				{/await}
 			</p>
 
@@ -56,7 +59,7 @@
 				{#await spieltermine}
 					<LoadingMessage>Formatiere Spieltermine</LoadingMessage>
 				{:then spieltermine}
-					{@html spieltermine?.code}
+					{@html spieltermine}
 				{/await}
 			</p>
 

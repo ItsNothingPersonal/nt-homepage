@@ -1,11 +1,17 @@
 <script lang="ts">
 	import type { VereinAnsprechpersonen } from '$lib/types/zod/vereinAnsprechpersonen';
 	import { getImageUrl } from '$lib/util';
+	import type { Snippet } from 'svelte';
 	import LoadingMessage from '../LoadingMessage/LoadingMessage.svelte';
 
-	export let personen: Promise<VereinAnsprechpersonen[]>;
-	export let titel: string;
-	export let beschreibung: string | undefined = undefined;
+	interface Props {
+		personen: Promise<VereinAnsprechpersonen[]>;
+		titel: string;
+		beschreibung?: string | undefined;
+		footer?: Snippet;
+	}
+
+	let { personen, titel, beschreibung = undefined, footer }: Props = $props();
 </script>
 
 {#await personen}
@@ -17,8 +23,8 @@
 			<p class="text-justify">{beschreibung}</p>
 		{/if}
 		<hr class="my-1" />
-		<div class="mb-2 mt-2 flex flex-col md:grid md:grid-cols-3 md:grid-rows-1">
-			{#each personen as person}
+		<div class="mt-2 mb-2 flex flex-col md:grid md:grid-cols-3 md:grid-rows-1">
+			{#each personen as person (person.id)}
 				<div class="mb-2 flex flex-col items-center last:mb-0">
 					<p class="font-semibold">{person.name}</p>
 					<p>{person.rolle.name}</p>
@@ -40,6 +46,8 @@
 			{/each}
 		</div>
 		<hr clasS="my-1" />
-		<slot name="footer" />
+		{#if footer}
+			{@render footer()}
+		{/if}
 	{/if}
 {/await}

@@ -2,10 +2,10 @@ import { z } from 'zod';
 import { fileInformation } from './fileInformation';
 
 export const basicUser = z.object({
-	id: z.string().or(z.number()).optional(),
-	first_name: z.string().nullish(),
-	last_name: z.string().nullish(),
-	avatar: fileInformation.nullish().or(z.string())
+	id: z.string(),
+	first_name: z.string().nullable(),
+	last_name: z.string().nullable(),
+	avatar: z.union([z.string(), fileInformation]).nullable()
 });
 
 export type BasicUser = z.infer<typeof basicUser>;

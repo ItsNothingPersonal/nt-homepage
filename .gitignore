@@ -10,3 +10,8 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 /data
 /uploads
+.vercel
+package-lock.json
+yarn.lock
+bun.lock
+bun.lockb

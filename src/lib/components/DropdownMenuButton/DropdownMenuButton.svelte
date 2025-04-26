@@ -1,42 +1,55 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
-	import { popup, type PopupSettings } from '@skeletonlabs/skeleton';
+	import type { SubMenuConfig } from '$lib/types/subMenuConfig';
+	import ChevronDown from '@lucide/svelte/icons/chevron-down';
+	import ChevronUp from '@lucide/svelte/icons/chevron-up';
+	import CircleCheck from '@lucide/svelte/icons/circle-check';
+	import { Popover } from '@skeletonlabs/skeleton-svelte';
+	import type { Snippet } from 'svelte';
 
-	export let popUpId: string | number = 1;
-	export let indicator: boolean = false;
-	export let rounded: string | undefined = '!rounded-lg';
-	export let additionalStyles: string | undefined = undefined;
-	export let disabled: boolean = false;
+	interface Props {
+		subMenu?: SubMenuConfig[];
+		offset?: number;
+		popUpId?: string | number;
+		indicator?: boolean;
+		rounded?: string | undefined;
+		additionalStyles?: string | undefined;
+		disabled?: boolean;
+		children?: Snippet;
+		popupMenu?: Snippet;
+	}
 
-	const popupCombobox: PopupSettings = {
-		event: 'click',
-		target: `popupCombobox-${popUpId}`,
-		closeQuery: 'a[href]'
-	};
+	let { subMenu, offset = 0, children, popupMenu, indicator }: Props = $props();
+
+	let openState = $state(false);
 </script>
 
-<button
-	class={`bg-ghost btn relative w-fit ${rounded} ${additionalStyles} border-0`}
-	use:popup={popupCombobox}
-	{disabled}
+<Popover
+	open={openState}
+	onOpenChange={(e) => (openState = e.open)}
+	positioning={{ placement: 'bottom', offset: { mainAxis: offset } }}
+	triggerBase="btn btn-base hover:preset-tonal capitalize relative"
+	contentBase="card bg-surface-200 dark:bg-surface-800 p-4 space-y-2 max-w-[320px] flex flex-col items-start preset-outlined-primary-500"
 >
-	<span class="capitalize">
-		<slot />
-	</span>
-	<Icon icon="mdi:chevron-down" />
-
-	{#if indicator}
-		<Icon icon="material-symbols:check-circle" class="absolute right-1  top-1 text-lg" />
-	{/if}
-</button>
-
-<div
-	class="card bg-surface-100-800-token z-20 min-w-[12rem] !rounded-lg border-l-0 py-2 text-left shadow-xl"
-	data-popup={`popupCombobox-${popUpId}`}
->
-	<div
-		class="flex flex-col [&>button:hover]:bg-primary-500/10 [&>button]:!justify-start [&>button]:!rounded-none [&>button]:!text-black [&>button]:dark:!text-white"
-	>
-		<slot name="popupMenu" />
-	</div>
-</div>
+	{#snippet trigger()}
+		{@render children?.()}
+		{#if openState}
+			<ChevronDown />
+		{:else}
+			<ChevronUp />
+		{/if}
+		<CircleCheck
+			additive="replace"
+			size="17"
+			class={`absolute top-0 right-0 z-20 text-lg ${indicator ? 'block' : 'hidden'}`}
+		/>
+	{/snippet}
+	{#snippet content()}
+		{#if popupMenu}
+			{@render popupMenu()}
+		{:else if subMenu}
+			{#each subMenu as entry (entry.label)}
+				<a href={entry.href} class="btn btn-base capitalize">{entry.label}</a>
+			{/each}
+		{/if}
+	{/snippet}
+</Popover>

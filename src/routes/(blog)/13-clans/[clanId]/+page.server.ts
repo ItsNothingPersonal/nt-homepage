@@ -1,7 +1,7 @@
+import { renderMarkdown } from '$lib/markdownUtil';
 import { type Clan } from '$lib/types/zod/clan';
 import type { ClansFiles } from '$lib/types/zod/clansFiles';
 import { readItem, readItems } from '@directus/sdk';
-import { compile } from 'mdsvex';
 import { client } from 'services/directus';
 import type { PageServerLoad } from './$types';
 
@@ -13,7 +13,7 @@ export const load = (async ({ params }) => {
 
 	return {
 		clan: clan as Promise<Clan>,
-		beschreibung: compile(((await clan) as Clan).beschreibung ?? ''),
+		beschreibung: renderMarkdown(((await clan) as Clan).beschreibung ?? ''),
 		bilder: bilder as Promise<ClansFiles[]>
 	};
 }) satisfies PageServerLoad;

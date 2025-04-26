@@ -1,7 +1,7 @@
 <script lang="ts">
 	import LoadingMessage from '$lib/components/LoadingMessage/LoadingMessage.svelte';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <h1 class="h1 mb-4 text-center font-bold">Setting Steckbrief</h1>
@@ -9,7 +9,7 @@
 {#await data.steckbrief}
 	<LoadingMessage>Lade Setting Steckbrief</LoadingMessage>
 {:then steckbrief}
-	<h2 class="h2 mb-2 mt-4 font-bold">{steckbrief?.name}</h2>
+	<h2 class="h2 mt-4 mb-2 font-bold">{steckbrief?.name}</h2>
 	<p>{steckbrief?.thema}</p>
 	<h3 class="h3">Stimmung</h3>
 	<p>{steckbrief?.stimmung}</p>
@@ -27,7 +27,7 @@
 		class={`[&>p]::text-2xl w-full text-gray-900 dark:text-white [&>h2]:text-4xl [&>h2]:font-bold [&>h3]:text-3xl [&>h3]:font-bold [&>p]:mb-2 [&>p]:text-justify [&>p]:first-letter:text-2xl ` +
 			`[&>p>a]:underline [&>p>a]:decoration-dotted [&>p>a]:underline-offset-4`}
 	>
-		{@html beschreibung?.code}
+		{@html beschreibung}
 	</p>
 {/await}
 

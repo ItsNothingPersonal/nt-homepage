@@ -3,16 +3,20 @@
 	import Icon from '@iconify/svelte';
 	import LoadingMessage from '../LoadingMessage/LoadingMessage.svelte';
 
-	export let events: Promise<Zeittafel[]>;
+	interface Props {
+		events: Promise<Zeittafel[]>;
+	}
+
+	let { events }: Props = $props();
 </script>
 
 {#await events}
 	<LoadingMessage>Lade Zeittafel</LoadingMessage>
 {:then events}
 	<div class="relative">
-		<div class="absolute left-4 top-0 h-full w-1 bg-gray-300"></div>
+		<div class="absolute top-0 left-4 h-full w-1 bg-gray-300"></div>
 
-		{#each events as event}
+		{#each events as event (event.id)}
 			<div class="mb-6 ml-8 flex flex-col items-center">
 				{#if event.titel}
 					<Icon icon="octicon:dot-fill-24" class="absolute left-[0.2rem] self-center text-3xl" />
@@ -34,7 +38,7 @@
 					<a
 						href={event.link}
 						rel="noopener noreferrer"
-						class="variant-filled-primary btn mt-2 w-40"
+						class="preset-filled-primary-500 btn mt-2 w-40"
 						role="button"
 					>
 						Weiterlesen
