@@ -19,10 +19,6 @@ export const load = (async ({ params }) => {
 			basicNews = news.parse(await client.request(readItem('sabbat_news', params.id)));
 			break;
 		}
-		case 'Wh40k': {
-			basicNews = news.parse(await client.request(readItem('wh40k_news', params.id)));
-			break;
-		}
 		case 'Verein': {
 			basicNews = news.parse(await client.request(readItem('verein_news', params.id)));
 			break;
