@@ -2,7 +2,6 @@
 	import type { CamarillaUebersichtFiles } from '$lib/types/zod/camarillaUebersichtFiles';
 	import type { ProjektUebersicht } from '$lib/types/zod/projektUebersicht';
 	import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles';
-	import type { Wh40kUebersichtFiles } from '$lib/types/zod/wh40kUebersichtFiles';
 	import { getImageUrl, isNullOrUndefined } from '$lib/util';
 	import GoogleCalendar from '../Google/GoogleCalendar.svelte';
 	import ImageCarousel from '../ImageCarousel/ImageCarousel.svelte';
@@ -14,9 +13,7 @@
 		projektUbersicht: Promise<ProjektUebersicht>;
 		beschreibung: string;
 		spieltermine: string;
-		images?:
-			| Promise<Wh40kUebersichtFiles[] | SabbatUebersichtFiles[] | CamarillaUebersichtFiles[]>
-			| undefined;
+		images?: Promise<SabbatUebersichtFiles[] | CamarillaUebersichtFiles[]> | undefined;
 	}
 
 	let { titel, projektUbersicht, beschreibung, spieltermine, images = undefined }: Props = $props();

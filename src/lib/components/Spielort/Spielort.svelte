@@ -2,13 +2,12 @@
 	import type { CamarillaSpielortFiles } from '$lib/types/zod/camarillaSpielortFiles';
 	import type { SabbatSpielortFiles } from '$lib/types/zod/sabbatSpielortFiles';
 	import type { Spielort } from '$lib/types/zod/spielort';
-	import type { Wh40kSpielortFiles } from '$lib/types/zod/wh40kSpielortFiles';
 	import { getImageUrl, isNullOrUndefined } from '$lib/util';
 	import ImageCarousel from '../ImageCarousel/ImageCarousel.svelte';
 	import LoadingMessage from '../LoadingMessage/LoadingMessage.svelte';
 
 	interface Props {
-		bilder: Promise<Wh40kSpielortFiles[] | SabbatSpielortFiles[] | CamarillaSpielortFiles[]>;
+		bilder: Promise<SabbatSpielortFiles[] | CamarillaSpielortFiles[]>;
 		spielort: Promise<Spielort>;
 	}
 
