@@ -19,6 +19,10 @@ export const load = (async ({ params }) => {
 			basicNews = news.parse(await client.request(readItem('sabbat_news', params.id)));
 			break;
 		}
+		case 'Anarchen': {
+			basicNews = news.parse(await client.request(readItem('anarchen_news', params.id)));
+			break;
+		}
 		case 'Verein': {
 			basicNews = news.parse(await client.request(readItem('verein_news', params.id)));
 			break;

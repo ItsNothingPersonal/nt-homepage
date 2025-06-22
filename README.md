@@ -41,6 +41,7 @@ EMAIL_PASSWORD=<Passwort für das E-Mail-Konto zum Versand der Directus-EMails>
 
 SABBAT_GALLERY_FOLDER=<ID des Sabbat-Gallerie Ordners>
 CAMARILLA_GALLERY_FOLDER=<ID des Camarilla-Gallerie Ordners>
+ANARCHEN_GALLERY_FOLDER=<ID des Anarchen-Gallerie Ordners>
 ```
 
 ### Start der Anwendung

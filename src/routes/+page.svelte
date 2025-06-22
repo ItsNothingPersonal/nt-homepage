@@ -8,35 +8,41 @@
 
 <h1 class="h1 mb-4 text-center font-bold">Willkommen beim Nächtlichen Theater</h1>
 <div
-	class="mx-auto mb-20 grid max-h-[32rem] max-w-(--breakpoint-2xl) grid-cols-1 grid-rows-2 gap-y-14 md:row-start-1 md:grid-cols-2 md:grid-rows-1"
+	class="mx-auto mb-6 grid max-w-(--breakpoint-2xl) grid-cols-1 gap-0 gap-y-4 md:grid-cols-3 md:gap-0 md:gap-y-0"
 >
-	<div class="row-start-1 flex flex-col items-center text-center md:col-start-1 md:gap-2">
+	<div class="flex h-full flex-col items-center text-center">
 		<h2 class="h2 mb-2 font-bold">Camarilla</h2>
 		<a href="/camarilla/uebersicht" class="h-full w-full">
 			<img
 				src="/images/Protektorat-2.webp"
 				alt="Beispielbild Camarilla"
-				class={`rounded-lg shadow-lg md:rounded-l-lg md:rounded-r-none md:transition-all dark:shadow-gray-800 ` +
-					`h-full w-full max-w-full cursor-pointer object-cover md:grayscale md:filter md:duration-300 md:hover:grayscale-0`}
+				class="aspect-[4/3] h-full w-full rounded-lg object-cover shadow-lg md:rounded-none md:rounded-tl-lg md:rounded-bl-lg md:grayscale md:filter md:duration-300 md:hover:grayscale-0 dark:shadow-gray-800"
 			/>
 		</a>
 	</div>
-	<div
-		class="row-start-2 flex flex-col items-center text-center md:col-start-2 md:row-start-1 md:gap-2"
-	>
+	<div class="flex h-full flex-col items-center text-center">
+		<h2 class="h2 mb-2 font-bold">Anarchen</h2>
+		<a href="/anarchen/uebersicht" class="h-full w-full">
+			<img
+				src="/images/anarchenrebellion1.webp"
+				alt="Beispielbild Anarchen"
+				class="aspect-[4/3] h-full w-full rounded-lg object-cover shadow-lg md:rounded-none md:grayscale md:filter md:duration-300 md:hover:grayscale-0 dark:shadow-gray-800"
+			/>
+		</a>
+	</div>
+	<div class="flex h-full flex-col items-center text-center">
 		<h2 class="h2 mb-2 font-bold">Sabbat</h2>
 		<a href="/sabbat/uebersicht" class="h-full w-full">
 			<img
 				src="/images/P1080017-small.webp"
 				alt="Beispielbild Sabbat"
-				class={`rounded-lg shadow-lg md:rounded-l-none md:transition-all md:duration-300 dark:shadow-gray-800 ` +
-					`h-full w-full max-w-full cursor-pointer object-cover md:grayscale md:filter md:hover:grayscale-0`}
+				class="aspect-[4/3] h-full w-full rounded-lg object-cover shadow-lg md:rounded-none md:rounded-tr-lg md:rounded-br-lg md:grayscale md:filter md:duration-300 md:hover:grayscale-0 dark:shadow-gray-800"
 			/>
 		</a>
 	</div>
 </div>
 
-<h2 class="h2 mb-2 text-center font-bold">Neuigkeiten</h2>
+<h2 class="h2 text-center font-bold">Neuigkeiten</h2>
 <div class="mx-auto grid max-w-(--breakpoint-2xl) auto-rows-auto grid-cols-1 gap-4 md:grid-cols-3">
 	{#await data.news}
 		<LoadingMessage>Lade News</LoadingMessage>

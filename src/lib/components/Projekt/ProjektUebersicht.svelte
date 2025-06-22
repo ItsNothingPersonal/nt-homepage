@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { AnarchenUebersichtFiles } from '$lib/types/zod/anarchenUebersichtFiles';
 	import type { CamarillaUebersichtFiles } from '$lib/types/zod/camarillaUebersichtFiles';
 	import type { ProjektUebersicht } from '$lib/types/zod/projektUebersicht';
 	import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles';
@@ -13,7 +14,9 @@
 		projektUbersicht: Promise<ProjektUebersicht>;
 		beschreibung: string;
 		spieltermine: string;
-		images?: Promise<SabbatUebersichtFiles[] | CamarillaUebersichtFiles[]> | undefined;
+		images?:
+			| Promise<AnarchenUebersichtFiles[] | SabbatUebersichtFiles[] | CamarillaUebersichtFiles[]>
+			| undefined;
 	}
 
 	let { titel, projektUbersicht, beschreibung, spieltermine, images = undefined }: Props = $props();

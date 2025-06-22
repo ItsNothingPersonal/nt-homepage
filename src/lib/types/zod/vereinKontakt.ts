@@ -5,6 +5,7 @@ export const vereinKontakt = z.object({
 	email_vorstand: z.string().email(),
 	email_webmaster: z.string().email(),
 	email_camarilla: z.string().email(),
+	email_anarchen: z.string().email(),
 	email_sabbat: z.string().email()
 });
 

@@ -1,4 +1,6 @@
 import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
+import type { AnarchenSpielortFiles } from '$lib/types/zod/anarchenSpielortFiles';
+import type { AnarchenUebersichtFiles } from '$lib/types/zod/anarchenUebersichtFiles';
 import type { Blutlinie } from '$lib/types/zod/blutlinie';
 import type { CamarillaBrujahKonflikt } from '$lib/types/zod/camarillaBrujahKonflikt';
 import type { CamarillaCharakter } from '$lib/types/zod/camarillaCharaktere';
@@ -56,6 +58,12 @@ export interface DirectusSchema {
 	verein_news: News[];
 	verein_paragraph_86_und_86a: VereinParagraph86;
 	verein_rollen: VereinRollen[];
+	anarchen_news: News[];
+	anarchen_orga: Orga[];
+	anarchen_spielort: Spielort;
+	anarchen_spielort_files: AnarchenSpielortFiles[];
+	anarchen_uebersicht: ProjektUebersicht;
+	anarchen_uebersicht_files: AnarchenUebersichtFiles[];
 	was_ist_vampire_live: WasIstVampireLive;
 	was_sind_clans: WasSindClans;
 }
