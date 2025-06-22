@@ -1,8 +1,8 @@
 <script lang="ts">
+	import type { AnarchenUebersichtFiles } from '$lib/types/zod/anarchenUebersichtFiles';
 	import type { CamarillaUebersichtFiles } from '$lib/types/zod/camarillaUebersichtFiles';
 	import type { ProjektUebersicht } from '$lib/types/zod/projektUebersicht';
 	import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles';
-	import type { Wh40kUebersichtFiles } from '$lib/types/zod/wh40kUebersichtFiles';
 	import { getImageUrl, isNullOrUndefined } from '$lib/util';
 	import GoogleCalendar from '../Google/GoogleCalendar.svelte';
 	import ImageCarousel from '../ImageCarousel/ImageCarousel.svelte';
@@ -15,7 +15,7 @@
 		beschreibung: string;
 		spieltermine: string;
 		images?:
-			| Promise<Wh40kUebersichtFiles[] | SabbatUebersichtFiles[] | CamarillaUebersichtFiles[]>
+			| Promise<AnarchenUebersichtFiles[] | SabbatUebersichtFiles[] | CamarillaUebersichtFiles[]>
 			| undefined;
 	}
 

@@ -25,6 +25,17 @@ export const menuData: MenuButtonConfig[] = [
 	},
 	{
 		id: 2,
+		label: 'Anarchen',
+		subData: [
+			{ href: '/anarchen/uebersicht', label: 'Übersicht' },
+			{ href: '/anarchen/spielort', label: 'Spielort' },
+			{ href: '/anarchen/orga', label: 'Orga-Team' },
+			{ href: '/anarchen/galerie', label: 'Galerie' },
+			{ href: '/anarchen/downloads', label: 'Downloads' }
+		]
+	},
+	{
+		id: 3,
 		label: 'Sabbat',
 		subData: [
 			{ href: '/sabbat/uebersicht', label: 'Übersicht' },
@@ -39,7 +50,7 @@ export const menuData: MenuButtonConfig[] = [
 		]
 	},
 	{
-		id: 3,
+		id: 4,
 		href: '/verein',
 		label: 'Verein',
 		subData: [

@@ -22,7 +22,7 @@
 	</div>
 	<div class="flex h-full flex-col items-center text-center">
 		<h2 class="h2 mb-2 font-bold">Anarchen</h2>
-		<a href="/sabbat/uebersicht" class="h-full w-full">
+		<a href="/anarchen/uebersicht" class="h-full w-full">
 			<img
 				src="/images/anarchenrebellion1.webp"
 				alt="Beispielbild Anarchen"

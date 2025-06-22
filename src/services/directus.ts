@@ -1,4 +1,6 @@
 import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
+import type { AnarchenSpielortFiles } from '$lib/types/zod/anarchenSpielortFiles';
+import type { AnarchenUebersichtFiles } from '$lib/types/zod/anarchenUebersichtFiles';
 import type { Blutlinie } from '$lib/types/zod/blutlinie';
 import type { CamarillaBrujahKonflikt } from '$lib/types/zod/camarillaBrujahKonflikt';
 import type { CamarillaCharakter } from '$lib/types/zod/camarillaCharaktere';
@@ -23,8 +25,6 @@ import type { VereinRollen } from '$lib/types/zod/vereinRollen';
 import type { VereinDatenschutz } from '$lib/types/zod/vereindatenschutz';
 import type { WasIstVampireLive } from '$lib/types/zod/wasIstVampireLive';
 import type { WasSindClans } from '$lib/types/zod/wasSindClans';
-import type { Wh40kSpielortFiles } from '$lib/types/zod/wh40kSpielortFiles';
-import type { Wh40kUebersichtFiles } from '$lib/types/zod/wh40kUebersichtFiles';
 import type { Zeittafel } from '$lib/types/zod/zeittafel';
 import { createDirectus, rest } from '@directus/sdk';
 
@@ -58,11 +58,12 @@ export interface DirectusSchema {
 	verein_news: News[];
 	verein_paragraph_86_und_86a: VereinParagraph86;
 	verein_rollen: VereinRollen[];
-	wh40k_news: News[];
-	wh40k_spielort: Spielort;
-	wh40k_spielort_files: Wh40kSpielortFiles[];
-	wh40k_uebersicht: ProjektUebersicht;
-	wh40k_uebersicht_files: Wh40kUebersichtFiles[];
+	anarchen_news: News[];
+	anarchen_orga: Orga[];
+	anarchen_spielort: Spielort;
+	anarchen_spielort_files: AnarchenSpielortFiles[];
+	anarchen_uebersicht: ProjektUebersicht;
+	anarchen_uebersicht_files: AnarchenUebersichtFiles[];
 	was_ist_vampire_live: WasIstVampireLive;
 	was_sind_clans: WasSindClans;
 }
