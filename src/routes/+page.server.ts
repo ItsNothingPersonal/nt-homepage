@@ -11,7 +11,6 @@ export const load = (async () => {
 		news: Promise.all([
 			getProjectNews('Camarilla'),
 			getProjectNews('Sabbat'),
-			getProjectNews('Wh40k'),
 			getProjectNews('Verein')
 		])
 	};
@@ -31,14 +30,6 @@ async function getProjectNews(project: ProjektName): Promise<ShortNewsWithUser[]
 		case 'Sabbat': {
 			newsList = await client.request(
 				readItems('sabbat_news', {
-					fields: ['id', 'titel', 'synopsis', 'date_created', 'date_updated', 'user_created']
-				})
-			);
-			break;
-		}
-		case 'Wh40k': {
-			newsList = await client.request(
-				readItems('wh40k_news', {
 					fields: ['id', 'titel', 'synopsis', 'date_created', 'date_updated', 'user_created']
 				})
 			);
