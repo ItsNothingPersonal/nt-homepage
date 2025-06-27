@@ -56,16 +56,16 @@
 {:then steckbrief}
 	<ul class="list-outside list-disc">
 		<li>
-			<span class="font-semibold">Üblich (0 XP):</span>
+			<span class="font-semibold">Üblich:</span>
 			{steckbrief?.clan_ueblich}
 		</li>
 		<li>
-			<span class="font-semibold">Unüblich (2/3 XP):</span>
+			<span class="font-semibold">Unüblich:</span>
 			{steckbrief?.clan_unueblich}
 		</li>
-		<li><span class="font-semibold">Selten (4/5 XP):</span> {steckbrief?.clan_selten}</li>
+		<li><span class="font-semibold">Selten:</span> {steckbrief?.clan_selten}</li>
 		<li>
-			<span class="font-semibold">Sehr selten (6 XP):</span>
+			<span class="font-semibold">Sehr selten:</span>
 			{steckbrief?.clan_sehr_selten}
 		</li>
 
