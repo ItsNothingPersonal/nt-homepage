@@ -39,7 +39,7 @@
 	<ul class="list-outside list-disc">
 		<li>
 			<span class="flex-auto">
-				{steckbrief?.erfahrung_start} XP zum Start
+				{steckbrief?.erfahrung_start} XP zum Start.
 			</span>
 		</li>
 		<li>
