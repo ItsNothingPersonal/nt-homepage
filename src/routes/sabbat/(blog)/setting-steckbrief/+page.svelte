@@ -39,13 +39,12 @@
 	<ul class="list-outside list-disc">
 		<li>
 			<span class="flex-auto">
-				{steckbrief?.erfahrung_beginn_menge} XP für die ersten {steckbrief?.erfahrung_beginn_dauer_monate}
-				Spielabende.
+				{steckbrief?.erfahrung_start} XP zum Start
 			</span>
 		</li>
 		<li>
 			<span class="flex-auto">
-				{steckbrief?.erfahrung_rest} XP für jeden folgenden Spielabend.
+				{steckbrief?.erfahrung_pro_abend} XP für jeden Spielabend.
 			</span>
 		</li>
 	</ul>
