@@ -13,6 +13,7 @@ import type { News } from '$lib/types/zod/news';
 import type { Orga } from '$lib/types/zod/orga';
 import type { ProjektUebersicht } from '$lib/types/zod/projektUebersicht';
 import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
+import type { SabbatCharaktererstellung } from '$lib/types/zod/sabbatCharaktererstellung';
 import type { SabbatPack } from '$lib/types/zod/sabbatPacks';
 import type { SabbatSpielortFiles } from '$lib/types/zod/sabbatSpielortFiles';
 import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles';
@@ -52,6 +53,7 @@ export interface DirectusSchema {
 	sabbat_uebersicht: ProjektUebersicht;
 	sabbat_uebersicht_files: SabbatUebersichtFiles[];
 	sabbat_zeittafel: Zeittafel[];
+	sabbat_charaktererstellung: SabbatCharaktererstellung;
 	verein_ansprechpersonen: VereinAnsprechpersonen[];
 	verein_datenschutz: VereinDatenschutz;
 	verein_kontakt: VereinKontakt;

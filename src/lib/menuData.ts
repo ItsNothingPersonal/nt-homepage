@@ -46,7 +46,8 @@ export const menuData: MenuButtonConfig[] = [
 			{ href: '/sabbat/zeittafel-sabbat', label: 'Zeittafel' },
 			{ href: '/sabbat/charakter-galerie', label: 'Charakter-Galerie' },
 			{ href: '/sabbat/charakter-friedhof', label: 'Charakter-Friedhof' },
-			{ href: '/sabbat/downloads', label: 'Downloads' }
+			{ href: '/sabbat/downloads', label: 'Downloads' },
+			{ href: '/sabbat/charaktererstellung', label: 'Charaktererstellung' }
 		]
 	},
 	{
