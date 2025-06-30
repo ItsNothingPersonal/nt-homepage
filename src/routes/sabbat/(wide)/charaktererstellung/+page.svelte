@@ -13,7 +13,7 @@
 	<LoadingMessage>Lade Charakteranmeldung</LoadingMessage>
 {:then charaktererstellungRaw}
 	{@const charaktererstellung = sabbatCharaktererstellung.parse(charaktererstellungRaw)}
-	<Accordion {value} onValueChange={(e) => (value = e.value)}>
+	<Accordion {value} onValueChange={(e) => (value = e.value)} collapsible>
 		<Accordion.Item value="fragebogen" panelPadding="0px">
 			<!-- Control -->
 			{#snippet control()}Fragebogen{/snippet}
