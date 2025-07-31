@@ -1,4 +1,6 @@
 import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
+import type { AnarchenSpielortFiles } from '$lib/types/zod/anarchenSpielortFiles';
+import type { AnarchenUebersichtFiles } from '$lib/types/zod/anarchenUebersichtFiles';
 import type { Blutlinie } from '$lib/types/zod/blutlinie';
 import type { CamarillaBrujahKonflikt } from '$lib/types/zod/camarillaBrujahKonflikt';
 import type { CamarillaCharakter } from '$lib/types/zod/camarillaCharaktere';
@@ -11,6 +13,7 @@ import type { News } from '$lib/types/zod/news';
 import type { Orga } from '$lib/types/zod/orga';
 import type { ProjektUebersicht } from '$lib/types/zod/projektUebersicht';
 import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
+import type { SabbatCharaktererstellung } from '$lib/types/zod/sabbatCharaktererstellung';
 import type { SabbatPack } from '$lib/types/zod/sabbatPacks';
 import type { SabbatSpielortFiles } from '$lib/types/zod/sabbatSpielortFiles';
 import type { SabbatUebersichtFiles } from '$lib/types/zod/sabbatUebersichtFiles';
@@ -50,12 +53,19 @@ export interface DirectusSchema {
 	sabbat_uebersicht: ProjektUebersicht;
 	sabbat_uebersicht_files: SabbatUebersichtFiles[];
 	sabbat_zeittafel: Zeittafel[];
+	sabbat_charaktererstellung: SabbatCharaktererstellung;
 	verein_ansprechpersonen: VereinAnsprechpersonen[];
 	verein_datenschutz: VereinDatenschutz;
 	verein_kontakt: VereinKontakt;
 	verein_news: News[];
 	verein_paragraph_86_und_86a: VereinParagraph86;
 	verein_rollen: VereinRollen[];
+	anarchen_news: News[];
+	anarchen_orga: Orga[];
+	anarchen_spielort: Spielort;
+	anarchen_spielort_files: AnarchenSpielortFiles[];
+	anarchen_uebersicht: ProjektUebersicht;
+	anarchen_uebersicht_files: AnarchenUebersichtFiles[];
 	was_ist_vampire_live: WasIstVampireLive;
 	was_sind_clans: WasSindClans;
 }

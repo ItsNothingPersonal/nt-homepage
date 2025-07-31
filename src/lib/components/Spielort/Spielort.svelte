@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { AnarchenSpielortFiles } from '$lib/types/zod/anarchenSpielortFiles';
 	import type { CamarillaSpielortFiles } from '$lib/types/zod/camarillaSpielortFiles';
 	import type { SabbatSpielortFiles } from '$lib/types/zod/sabbatSpielortFiles';
 	import type { Spielort } from '$lib/types/zod/spielort';
@@ -7,7 +8,7 @@
 	import LoadingMessage from '../LoadingMessage/LoadingMessage.svelte';
 
 	interface Props {
-		bilder: Promise<SabbatSpielortFiles[] | CamarillaSpielortFiles[]>;
+		bilder: Promise<AnarchenSpielortFiles[] | SabbatSpielortFiles[] | CamarillaSpielortFiles[]>;
 		spielort: Promise<Spielort>;
 	}
 

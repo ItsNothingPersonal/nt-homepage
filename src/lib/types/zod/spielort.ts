@@ -6,7 +6,7 @@ export const spielort = z.object({
 	spielort_strasse: z.string(),
 	spielort_plz: z.string(),
 	spielort_ort: z.string(),
-	spielort_karte: z.string()
+	spielort_karte: z.string().max(300)
 });
 
 export type Spielort = z.infer<typeof spielort>;
