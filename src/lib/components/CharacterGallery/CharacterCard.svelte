@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
+	import type { AnarchenAemterName } from '$lib/types/anarchenAemterName';
 	import type { CamarillaAemterName } from '$lib/types/camarillaAemterName';
 	import type { CharakterStatusName } from '$lib/types/charakterStatusName';
 	import type { SabbatCharakterStatusName } from '$lib/types/sabbatCharakterStatusName';
@@ -9,7 +10,7 @@
 
 	interface Props {
 		characterName: string;
-		aemterName?: CamarillaAemterName | SabbatAemterName | undefined;
+		aemterName?: CamarillaAemterName | SabbatAemterName | AnarchenAemterName | undefined;
 		clan: Clan | undefined | null;
 		blutlinie: Blutlinie | undefined | null;
 		status?: CharakterStatusName | SabbatCharakterStatusName | undefined;
