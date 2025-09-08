@@ -1,4 +1,5 @@
 import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
+import type { AnarchenCharakter } from '$lib/types/zod/anarchenCharaktere';
 import type { AnarchenSpielortFiles } from '$lib/types/zod/anarchenSpielortFiles';
 import type { AnarchenUebersichtFiles } from '$lib/types/zod/anarchenUebersichtFiles';
 import type { Blutlinie } from '$lib/types/zod/blutlinie';
@@ -60,6 +61,7 @@ export interface DirectusSchema {
 	verein_news: News[];
 	verein_paragraph_86_und_86a: VereinParagraph86;
 	verein_rollen: VereinRollen[];
+	anarchen_charaktere: AnarchenCharakter[];
 	anarchen_news: News[];
 	anarchen_orga: Orga[];
 	anarchen_spielort: Spielort;

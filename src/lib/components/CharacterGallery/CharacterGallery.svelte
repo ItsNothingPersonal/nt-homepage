@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { AnarchenCharakter } from '$lib/types/zod/anarchenCharaktere';
 	import type { CamarillaCharakter } from '$lib/types/zod/camarillaCharaktere';
 	import type { PackInformation } from '$lib/types/zod/packInformation';
 	import type { SabbatCharakter } from '$lib/types/zod/sabbatCharakter';
@@ -6,11 +7,11 @@
 	import CharacterCard from './CharacterCard.svelte';
 
 	interface Props {
-		leaders: CamarillaCharakter[] | SabbatCharakter[];
-		officers: CamarillaCharakter[] | SabbatCharakter[];
-		charaktere: CamarillaCharakter[] | SabbatCharakter[];
+		leaders: CamarillaCharakter[] | SabbatCharakter[] | AnarchenCharakter[];
+		officers: CamarillaCharakter[] | SabbatCharakter[] | AnarchenCharakter[];
+		charaktere: CamarillaCharakter[] | SabbatCharakter[] | AnarchenCharakter[];
 		noFilterActive: boolean;
-		setting: 'Camarilla' | 'Sabbat';
+		setting: 'Camarilla' | 'Sabbat' | 'Anarchen';
 		selektiertesPack?: PackInformation | undefined;
 	}
 
@@ -143,7 +144,7 @@
 
 {#if charaktere.length > 0 && (noFilterActive || selektiertesPack)}
 	<h2 class="h2 mb-2 flex justify-center font-bold">
-		{setting === 'Camarilla' ? 'Domänenmitglieder' : 'Sabbatis'}
+		{setting === 'Camarilla' ? 'Domänenmitglieder' : setting === 'Sabbat' ? 'Sabbatis' : 'Anarchen'}
 	</h2>
 {/if}
 {#if charaktere.length >= 4}

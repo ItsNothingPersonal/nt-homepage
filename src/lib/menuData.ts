@@ -31,6 +31,7 @@ export const menuData: MenuButtonConfig[] = [
 			{ href: '/anarchen/spielort', label: 'Spielort' },
 			{ href: '/anarchen/orga', label: 'Orga-Team' },
 			{ href: '/anarchen/galerie', label: 'Galerie' },
+			{ href: '/anarchen/charakter-galerie', label: 'Charakter-Galerie' },
 			{ href: '/anarchen/downloads', label: 'Downloads' }
 		]
 	},
