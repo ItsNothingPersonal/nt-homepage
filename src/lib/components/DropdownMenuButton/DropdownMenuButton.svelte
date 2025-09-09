@@ -18,24 +18,31 @@
 		popupMenu?: Snippet;
 	}
 
-	let { subMenu, offset = 0, children, popupMenu, indicator }: Props = $props();
+	let { subMenu, offset = 0, children, popupMenu, indicator, disabled }: Props = $props();
 
 	let openState = $state(false);
+
+	function handleOpenChange(e: { open: boolean }) {
+		if (disabled) return;
+		openState = e.open;
+	}
 </script>
 
 <Popover
-	open={openState}
-	onOpenChange={(e) => (openState = e.open)}
+	open={disabled ? false : openState}
+	onOpenChange={handleOpenChange}
 	positioning={{ placement: 'bottom', offset: { mainAxis: offset } }}
-	triggerBase="btn btn-base hover:preset-tonal capitalize relative"
+	triggerBase={`btn btn-base hover:preset-tonal capitalize relative ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}`}
 	contentBase="card bg-surface-200 dark:bg-surface-800 p-4 space-y-2 max-w-[320px] flex flex-col items-start preset-outlined-primary-500"
 >
 	{#snippet trigger()}
 		{@render children?.()}
-		{#if openState}
-			<ChevronDown />
-		{:else}
-			<ChevronUp />
+		{#if !disabled}
+			{#if openState}
+				<ChevronDown />
+			{:else}
+				<ChevronUp />
+			{/if}
 		{/if}
 		<CircleCheck
 			additive="replace"
