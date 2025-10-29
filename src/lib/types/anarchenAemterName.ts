@@ -4,5 +4,7 @@ export enum AnarchenAemterName {
 	Emissary = 'Emissary',
 	Sweeper = 'Sweeper',
 	Bookkeeper = 'Bookkeeper',
-	Preacher = 'Preacher'
+	Preacher = 'Preacher',
+	Bookie = 'Bookie',
+	Botschafter = 'Botschafter'
 }
