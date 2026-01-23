@@ -11,6 +11,7 @@
 	interface Props {
 		characterName: string;
 		aemterName?: CamarillaAemterName | SabbatAemterName | AnarchenAemterName | undefined;
+		zusatzfunktion?: CamarillaAemterName | SabbatAemterName | AnarchenAemterName | undefined;
 		clan: Clan | undefined | null;
 		blutlinie: Blutlinie | undefined | null;
 		status?: CharakterStatusName | SabbatCharakterStatusName | undefined;
@@ -22,6 +23,7 @@
 	let {
 		characterName,
 		aemterName = undefined,
+		zusatzfunktion = undefined,
 		clan,
 		blutlinie,
 		status = undefined,
@@ -50,9 +52,17 @@
 			{characterName}
 		</h3>
 
-		{#if aemterName}
+		{#if aemterName && zusatzfunktion}
+			<p class="mb-3 text-center leading-tight font-normal text-gray-700 dark:text-gray-400">
+				{aemterName} / {zusatzfunktion}
+			</p>
+		{:else if aemterName}
 			<p class="mb-3 text-center leading-tight font-normal text-gray-700 dark:text-gray-400">
 				{aemterName}
+			</p>
+		{:else if zusatzfunktion}
+			<p class="mb-3 text-center leading-tight font-normal text-gray-700 dark:text-gray-400">
+				{zusatzfunktion}
 			</p>
 		{:else}
 			<p class="mb-3 leading-tight"><br /></p>

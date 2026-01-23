@@ -13,6 +13,7 @@ export const sabbatCharakter = z.object({
 	blutlinie: blutlinie.nullable(),
 	charakter_status: sabbatCharakterStatus.optional(),
 	offizier: sabbatAemter.nullable(),
+	zusatzfunktion: sabbatAemter.optional(),
 	pack: sabbatPack.nullable(),
 	beschreibung: z.string().nullish(),
 	bild: z.string(),
