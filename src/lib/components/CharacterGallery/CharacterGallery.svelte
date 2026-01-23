@@ -63,6 +63,7 @@
 				clan={leaders[0].clan}
 				blutlinie={leaders[0].blutlinie}
 				aemterName={leaders[0].offizier?.name}
+				zusatzfunktion={leaders[0].zusatzfunktion?.name}
 				status={leaders[0].charakter_status?.name}
 				beschreibung={leaders[0].beschreibung ?? ''}
 				bild={leaders[0].bild}
@@ -76,6 +77,7 @@
 						clan={singleLeader.clan}
 						blutlinie={singleLeader.blutlinie}
 						aemterName={singleLeader.offizier?.name}
+						zusatzfunktion={singleLeader.zusatzfunktion?.name}
 						status={singleLeader.charakter_status?.name}
 						beschreibung={singleLeader.beschreibung ?? ''}
 						bild={singleLeader.bild}
@@ -99,6 +101,7 @@
 					clan={charakter.clan}
 					blutlinie={charakter.blutlinie}
 					aemterName={charakter.offizier?.name}
+					zusatzfunktion={charakter.zusatzfunktion?.name}
 					status={charakter.charakter_status?.name}
 					beschreibung={charakter.beschreibung ?? ''}
 					bild={charakter.bild}
@@ -114,6 +117,7 @@
 					clan={charakter.clan}
 					blutlinie={charakter.blutlinie}
 					aemterName={charakter.offizier?.name}
+					zusatzfunktion={charakter.zusatzfunktion?.name}
 					status={charakter.charakter_status?.name}
 					beschreibung={charakter.beschreibung ?? ''}
 					bild={charakter.bild}
@@ -133,6 +137,7 @@
 				clan={charakter.clan}
 				blutlinie={charakter.blutlinie}
 				aemterName={charakter.offizier?.name}
+				zusatzfunktion={charakter.zusatzfunktion?.name}
 				status={charakter.charakter_status?.name}
 				beschreibung={charakter.beschreibung ?? ''}
 				bild={charakter.bild}
@@ -157,6 +162,7 @@
 				clan={charakter.clan}
 				blutlinie={charakter.blutlinie}
 				aemterName={charakter.offizier?.name}
+				zusatzfunktion={charakter.zusatzfunktion?.name}
 				status={charakter.charakter_status?.name}
 				beschreibung={charakter.beschreibung ?? ''}
 				bild={charakter.bild}
@@ -173,6 +179,7 @@
 					clan={charakter.clan}
 					blutlinie={charakter.blutlinie}
 					aemterName={charakter.offizier?.name}
+					zusatzfunktion={charakter.zusatzfunktion?.name}
 					status={charakter.charakter_status?.name}
 					beschreibung={charakter.beschreibung ?? ''}
 					bild={charakter.bild}
