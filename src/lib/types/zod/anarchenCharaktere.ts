@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import { anarchenAemter } from './anarchenAemter';
 import { blutlinie } from './blutlinie';
-import { camarillaAemter } from './camarillaAemter';
 import { charakterStatus } from './charakterStatus';
 import { clan } from './clan';
 import { itemStatus } from './itemStatus';
@@ -14,7 +13,7 @@ export const anarchenCharakter = z.object({
 	blutlinie: blutlinie.nullable(),
 	charakter_status: charakterStatus.nullable(),
 	offizier: anarchenAemter.nullable(),
-	zusatzfunktion: camarillaAemter.nullable(),
+	zusatzfunktion: anarchenAemter.nullable(),
 	sekte: sekten,
 	beschreibung: z.string(),
 	bild: z.string(),
