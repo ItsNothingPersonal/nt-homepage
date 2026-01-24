@@ -93,7 +93,7 @@
 	<h2 class="h2 mt-4 mb-2 flex justify-center font-bold">Offiziere</h2>
 	{#if officers.length >= 4}
 		<div
-			class="gal-sm:grid-cols-3 gal:grid-cols-4 mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2"
+			class="gal-sm:grid-cols-3 gal:grid-cols-4 mb-4 grid auto-rows-auto grid-cols-1 justify-items-center gap-2"
 		>
 			{#each officers as charakter (charakter.name)}
 				<CharacterCard
@@ -154,7 +154,7 @@
 {/if}
 {#if charaktere.length >= 4}
 	<div
-		class="gal-sm:grid-cols-3 gal:grid-cols-4 mb-10 grid auto-rows-auto grid-cols-1 justify-items-center gap-2 md:grid-cols-2"
+		class="gal-sm:grid-cols-3 gal:grid-cols-4 mb-10 grid auto-rows-auto grid-cols-1 justify-items-center gap-2"
 	>
 		{#each charaktere as charakter (charakter.name)}
 			<CharacterCard
